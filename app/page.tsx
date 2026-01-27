@@ -1,63 +1,55 @@
-'use client';
+'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { Sparkles, Users, Award, TrendingUp, ArrowRight, Star } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRef } from 'react'
 
-export default function Home() {
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 300], [0, 100]);
-  const y2 = useTransform(scrollY, [0, 300], [0, -100]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
+export default function HomePage() {
+  const heroRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  })
+  
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2])
 
   return (
-    <div className="bg-black text-white overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with Parallax */}
-        <motion.div
-          style={{ y: y1 }}
-          className="absolute inset-0 z-0"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=2400)',
-            }}
+    <main className="bg-deep-black">
+      {/* Hero Section - Ultra Premium */}
+      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Parallax Background */}
+        <motion.div style={{ scale }} className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=2400"
+            alt="Elite fashion model"
+            fill
+            className="object-cover object-center"
+            priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-black/80 via-deep-black/50 to-deep-black" />
+          <div className="absolute inset-0 bg-gradient-to-r from-deep-black/60 via-transparent to-deep-black/60" />
         </motion.div>
 
-        {/* Floating Particles */}
-        <div className="absolute inset-0 z-0">
-          {[...Array(20)].map((_, i) => (
+        {/* Floating particles effect */}
+        <div className="absolute inset-0 z-[1]">
+          {[...Array(30)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 bg-gold rounded-full"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                opacity: Math.random() * 0.5 + 0.3,
+              className="absolute w-1 h-1 bg-champagne-gold/30 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [null, Math.random() * window.innerHeight],
-                x: [null, Math.random() * window.innerWidth],
+                y: [0, -40, 0],
+                opacity: [0.2, 0.6, 0.2],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: 3 + Math.random() * 3,
                 repeat: Infinity,
-                repeatType: 'reverse',
+                delay: Math.random() * 2,
               }}
             />
           ))}
@@ -66,52 +58,73 @@ export default function Home() {
         {/* Hero Content */}
         <motion.div
           style={{ opacity }}
-          className="relative z-10 text-center px-4 max-w-5xl mx-auto"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          className="relative z-10 text-center px-6 max-w-5xl"
         >
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6"
+            transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <Sparkles className="w-12 h-12 text-gold mx-auto mb-4" />
+            <p className="text-champagne-gold/80 text-sm tracking-[0.3em] mb-6 uppercase font-light">
+              Cape Town's Premier Agency
+            </p>
           </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-gold via-white to-gold bg-clip-text text-transparent"
+          
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="font-playfair text-7xl md:text-9xl tracking-[0.2em] text-off-white mb-8 drop-shadow-[0_0_50px_rgba(0,0,0,0.8)]"
           >
-            Luxury Redefined
+            MUSE & CO
           </motion.h1>
-
+          
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="font-inter text-xl md:text-2xl tracking-[0.2em] text-off-white/90 mb-6 uppercase font-light"
           >
-            Elite hostess and promotional modeling services for the most prestigious events in Morocco
+            Elite Lifestyle Models & VIP Staffing
+          </motion.p>
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="text-off-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
+          >
+            Curated female professionals for luxury brand launches, exclusive VIP experiences, and intimate private events. 
+            Cape Town's most sophisticated agency for discerning clientele seeking beauty, elegance, and absolute discretion.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <Link
               href="/portfolio"
-              className="px-8 py-4 bg-gold text-black font-semibold rounded-full hover:bg-gold/90 transition-all hover:scale-105 shadow-lg shadow-gold/50"
+              className="group relative px-12 py-4 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)]"
             >
-              View Portfolio
+              <span className="relative z-10">VIEW PORTFOLIO</span>
+              <motion.div
+                className="absolute inset-0 bg-white"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '0%' }}
+                transition={{ duration: 0.3 }}
+              />
             </Link>
+            
             <Link
               href="/contact"
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/20 transition-all hover:scale-105 border border-white/20"
+              className="px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)]"
             >
-              Book Now
+              BOOK NOW
             </Link>
           </motion.div>
         </motion.div>
@@ -120,166 +133,100 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          transition={{ delay: 2 }}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-gold rounded-full flex justify-center"
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-6 h-10 border-2 border-champagne-gold/50 rounded-full flex justify-center pt-2"
           >
-            <motion.div
-              animate={{ y: [0, 12, 0], opacity: [0, 1, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-gold rounded-full mt-2"
-            />
+            <motion.div className="w-1 h-2 bg-champagne-gold rounded-full" />
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Portfolio Preview Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
-        <div className="max-w-7xl mx-auto">
+      {/* Elite Portfolio Preview - Image-Driven */}
+      <section className="py-32 px-6 md:px-12 bg-deep-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(212,175,55,0.05),transparent_50%)]" />
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="max-w-7xl mx-auto relative z-10"
+        >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-gold to-white bg-clip-text text-transparent">
-              Our Elite Models
+            <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Our Talent</p>
+            <h2 className="font-playfair text-5xl md:text-7xl text-off-white mb-6 tracking-wide">
+              Elite Professionals
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Handpicked professionals who embody elegance and sophistication
+            <p className="text-off-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
+              Handpicked models and hostesses for luxury events, VIP experiences, and exclusive brand activations. 
+              Beauty, sophistication, and absolute discretion.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: 'Event Hostess',
-                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800',
-                description: 'Professional event hosting with grace and charm',
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800",
+                category: "Event Hostess",
+                name: "Available on Request",
+                description: "Professional elegance for corporate galas"
               },
               {
-                name: 'Brand Ambassador',
-                image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=800',
-                description: 'Representing your brand with sophistication',
+                image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=800",
+                category: "Brand Ambassador",
+                name: "Available on Request",
+                description: "Sophisticated representation for luxury brands"
               },
               {
-                name: 'VIP Hostess',
-                image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=800',
-                description: 'Exclusive services for premium clientele',
-              },
+                image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=800",
+                category: "VIP Hostess",
+                name: "Available on Request",
+                description: "Exclusive companionship for high-profile events"
+              }
             ].map((model, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 shadow-2xl"
-              >
-                <div className="aspect-[3/4] overflow-hidden">
-                  <img
-                    src={model.image}
-                    alt={model.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-2xl font-bold mb-2 text-gold">{model.name}</h3>
-                  <p className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {model.description}
-                  </p>
-                </div>
-                <div className="absolute top-4 right-4 bg-gold text-black px-3 py-1 rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Premium
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center mt-12"
-          >
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-gold to-yellow-600 text-black font-semibold rounded-full hover:shadow-lg hover:shadow-gold/50 transition-all hover:scale-105"
-            >
-              View Full Portfolio
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-20 px-4 bg-black">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-gold to-white bg-clip-text text-transparent">
-              Premium Services
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Tailored solutions for every luxury occasion
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: Users,
-                title: 'Event Hosting',
-                description: 'Professional hostesses for corporate events, galas, and conferences',
-                color: 'from-gold to-yellow-600',
-              },
-              {
-                icon: Sparkles,
-                title: 'Brand Promotion',
-                description: 'Elegant brand ambassadors for product launches and promotions',
-                color: 'from-purple-500 to-pink-500',
-              },
-              {
-                icon: Award,
-                title: 'VIP Services',
-                description: 'Exclusive hospitality for high-profile guests and dignitaries',
-                color: 'from-blue-500 to-cyan-500',
-              },
-              {
-                icon: TrendingUp,
-                title: 'Trade Shows',
-                description: 'Engaging promotional models for exhibitions and trade shows',
-                color: 'from-green-500 to-emerald-500',
-              },
-            ].map((service, index) => (
-              <motion.div
-                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-gradient-to-b from-gray-900 to-black p-8 rounded-2xl border border-gray-800 hover:border-gold/50 transition-all duration-300 group"
+                transition={{ delay: index * 0.2 }}
+                className="group relative overflow-hidden"
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <service.icon className="w-8 h-8 text-white" />
+                <div className="relative h-[500px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.9)]">
+                  <Image
+                    src={model.image}
+                    alt={model.category}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/60 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500" />
+                  
+                  {/* Glass morphism overlay */}
+                  <div className="absolute inset-0 glass-effect opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <motion.div 
+                    className="absolute inset-0 border-2 border-champagne-gold/0 group-hover:border-champagne-gold/60 transition-all duration-500"
+                    whileHover={{ scale: 0.95 }}
+                  />
+                  
+                  <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <p className="text-champagne-gold text-sm tracking-[0.25em] mb-2 uppercase font-light">{model.category}</p>
+                    <p className="text-off-white text-xl font-playfair mb-2">{model.name}</p>
+                    <p className="text-off-white/60 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                      {model.description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gold">{service.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -288,151 +235,313 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center mt-12"
+            transition={{ delay: 0.6 }}
+            className="text-center mt-20"
           >
             <Link
-              href="/services"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/20 transition-all hover:scale-105 border border-white/20"
+              href="/portfolio"
+              className="inline-block px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] font-light"
             >
-              Explore All Services
-              <ArrowRight className="w-5 h-5" />
+              EXPLORE FULL PORTFOLIO
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: '500+', label: 'Events Completed' },
-              { value: '200+', label: 'Elite Models' },
-              { value: '98%', label: 'Client Satisfaction' },
-              { value: '50+', label: 'Premium Brands' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
-                  className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gold to-yellow-600 bg-clip-text text-transparent mb-2"
-                >
-                  {stat.value}
-                </motion.div>
-                <div className="text-gray-400 text-lg">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 px-4 bg-black">
-        <div className="max-w-7xl mx-auto">
+      {/* Luxury Services - Image-Heavy with Glass Effect */}
+      <section className="py-32 px-6 md:px-12 relative overflow-hidden">
+        {/* Animated background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-deep-black via-charcoal to-deep-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(212,175,55,0.08),transparent_60%)]" />
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="max-w-7xl mx-auto relative z-10"
+        >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Exclusive Services</p>
+            <h2 className="font-playfair text-5xl md:text-7xl text-off-white mb-6 tracking-wide">
+              Curated Experiences
+            </h2>
+            <p className="text-off-white/70 text-lg max-w-2xl mx-auto">
+              Tailored luxury staffing for the world's most discerning clientele
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ServiceCard
+              image="https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200"
+              title="VIP Nightlife & Events"
+              description="Transform your venue into an exclusive destination. Our elite VIP hostesses bring sophistication and magnetic energy to Cape Town's most prestigious clubs, galas, and private celebrations."
+              features={["Elite VIP Hostesses", "Professional Bottle Service", "Event Entertainment", "Private Party Staffing"]}
+            />
+            
+            <ServiceCard
+              image="https://images.unsplash.com/photo-1540039155733-5cbe8a88f0cd?q=80&w=1200"
+              title="Luxury Concierge Services"
+              description="Elevated experiences for yachts, villas, and exclusive estates. Our lifestyle models provide sophisticated companionship and professional service for your most intimate gatherings."
+              features={["Yacht Staffing & Models", "Private Villa Events", "Golf Event Hostesses", "Executive Companions"]}
+            />
+            
+            <ServiceCard
+              image="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200"
+              title="Brand Launches & Activations"
+              description="Make your brand unforgettable. Our sophisticated brand ambassadors embody luxury and elegance, creating powerful connections with your target audience at product launches and high-profile events."
+              features={["Luxury Brand Ambassadors", "Product Launch Models", "Fashion Show Coordination", "Corporate Event Hosting"]}
+            />
+            
+            <ServiceCard
+              image="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200"
+              title="Bespoke Private Events"
+              description="Personalized elegance for your exclusive occasions. From intimate dinner parties to grand celebrations, our hand-selected professionals ensure every detail exceeds expectations."
+              features={["Private Dinner Hosting", "Luxury Party Staffing", "VIP Guest Services", "Personalized Experiences"]}
+            />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-center mt-20"
+          >
+            <Link
+              href="/services"
+              className="inline-block px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] font-light"
+            >
+              EXPLORE SERVICES
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Testimonials - Elegant Cards */}
+      <section className="py-32 px-6 md:px-12 bg-deep-black relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.03),transparent_70%)]" />
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="max-w-7xl mx-auto relative z-10"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-gold to-white bg-clip-text text-transparent">
-              Client Testimonials
+            <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Client Testimonials</p>
+            <h2 className="font-playfair text-5xl md:text-7xl text-off-white tracking-wide">
+              Trusted Excellence
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              What our clients say about our premium services
-            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: 'Sarah Johnson',
-                role: 'Event Director, Luxury Corp',
-                text: 'Absolutely exceptional service! The professionalism and elegance of their team elevated our gala to new heights.',
-                rating: 5,
+                quote: "MUSE & CO consistently delivers world-class VIP hostesses for our exclusive events. Their professionalism and elegance are unmatched in Cape Town.",
+                author: "Marcus V.",
+                role: "Private Events Director"
               },
               {
-                name: 'Mohammed Al-Rashid',
-                role: 'CEO, Premium Brands ME',
-                text: 'Their models are not just beautiful, they are intelligent, professional, and perfectly represent our brand values.',
-                rating: 5,
+                quote: "Shara's agency has been our go-to for four years. They understand luxury hospitality like no one else. Absolutely worth every cent for the level of sophistication.",
+                author: "Alistair K.",
+                role: "Luxury Hotel Manager"
               },
               {
-                name: 'Isabella Martinez',
-                role: 'Marketing Director, Elite Fashion',
-                text: 'We have worked with many agencies, but this one stands out. The quality and reliability are unmatched.',
-                rating: 5,
-              },
+                quote: "The caliber of talent is exceptional. Our brand launches have never looked better. MUSE & CO brings that high-fashion editorial edge we need.",
+                author: "Isabella R.",
+                role: "Marketing Director"
+              }
             ].map((testimonial, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-b from-gray-900 to-black p-8 rounded-2xl border border-gray-800 hover:border-gold/50 transition-all duration-300"
+                transition={{ delay: index * 0.15 }}
+                className="glass-effect p-8 border border-champagne-gold/20 hover:border-champagne-gold/40 transition-all duration-500 group"
               >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-gold text-gold" />
+                <div className="flex gap-1 mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-champagne-gold text-lg">★</span>
                   ))}
                 </div>
-                <p className="text-gray-300 mb-6 italic leading-relaxed">"{testimonial.text}"</p>
-                <div className="border-t border-gray-800 pt-4">
-                  <div className="font-semibold text-gold">{testimonial.name}</div>
-                  <div className="text-sm text-gray-500">{testimonial.role}</div>
+                
+                <p className="text-off-white/80 leading-relaxed mb-6 italic font-light">
+                  "{testimonial.quote}"
+                </p>
+                
+                <div className="border-t border-champagne-gold/20 pt-4">
+                  <p className="text-champagne-gold font-semibold tracking-wider">{testimonial.author}</p>
+                  <p className="text-off-white/50 text-sm mt-1">{testimonial.role}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-3xl p-12"
-          >
-            <Sparkles className="w-16 h-16 text-gold mx-auto mb-6" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gold to-white bg-clip-text text-transparent">
-              Ready to Elevate Your Event?
-            </h2>
-            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-              Let us bring sophistication and elegance to your next luxury event. Contact us today for a personalized consultation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="px-8 py-4 bg-gradient-to-r from-gold to-yellow-600 text-black font-semibold rounded-full hover:shadow-lg hover:shadow-gold/50 transition-all hover:scale-105"
-              >
-                Get in Touch
-              </Link>
-              <Link
-                href="/portfolio"
-                className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/20 transition-all hover:scale-105 border border-white/20"
-              >
-                View Portfolio
-              </Link>
-            </div>
-          </motion.div>
+      {/* Stats Section - Luxury Showcase */}
+      <section className="py-24 px-6 md:px-12 bg-gradient-to-b from-deep-black via-charcoal to-deep-black relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-champagne-gold rounded-full filter blur-[128px]" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-champagne-gold rounded-full filter blur-[128px]" />
         </div>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="max-w-6xl mx-auto relative z-10"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+            {[
+              { number: "15+", label: "Years Experience" },
+              { number: "1000+", label: "Events Staffed" },
+              { number: "500+", label: "Elite Models" },
+              { number: "100%", label: "Client Satisfaction" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="font-playfair text-5xl md:text-6xl text-champagne-gold mb-3 luxury-text-shadow">
+                  {stat.number}
+                </div>
+                <div className="text-off-white/70 text-sm tracking-[0.2em] uppercase font-light">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </section>
-    </div>
-  );
+
+      {/* CTA Section - Premium */}
+      <section className="py-32 px-6 md:px-12 bg-deep-black relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2400"
+            alt="Luxury event background"
+            fill
+            className="object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-deep-black/80 to-deep-black" />
+        </div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center relative z-10"
+        >
+          <p className="text-champagne-gold/80 text-sm tracking-[0.3em] mb-6 uppercase font-light">
+            Ready to Elevate Your Event?
+          </p>
+          <h2 className="font-playfair text-5xl md:text-7xl text-off-white mb-8 tracking-wide">
+            Let's Create Something Extraordinary
+          </h2>
+          <p className="text-off-white/70 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
+            Experience the MUSE & CO difference. Elite staffing for discerning clients who demand nothing but perfection.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link
+              href="/contact"
+              className="px-12 py-5 bg-champagne-gold text-deep-black font-semibold tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] text-sm uppercase"
+            >
+              Book Consultation
+            </Link>
+            
+            <Link
+              href="/portfolio"
+              className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] text-sm uppercase font-light"
+            >
+              View Portfolio
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+    </main>
+  )
+}
+
+// Service Card Component with Glass Effect
+function ServiceCard({ 
+  image, 
+  title, 
+  description, 
+  features 
+}: { 
+  image: string
+  title: string
+  description: string
+  features: string[]
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="group relative overflow-hidden shadow-[0_20px_70px_rgba(0,0,0,0.9)] hover:shadow-[0_25px_90px_rgba(212,175,55,0.15)] transition-all duration-700"
+    >
+      {/* Background Image */}
+      <div className="relative h-80 overflow-hidden">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/80 to-deep-black/40" />
+        
+        {/* Glass morphism overlay */}
+        <div className="absolute inset-0 glass-effect opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      </div>
+      
+      <div className="relative -mt-32 px-8 pb-8">
+        {/* Gold accent line */}
+        <div className="w-16 h-[2px] bg-gradient-to-r from-champagne-gold to-transparent mb-6 shimmer" />
+        
+        <h3 className="font-playfair text-3xl text-champagne-gold mb-4 tracking-wide group-hover:text-champagne-gold/90 transition-colors">
+          {title}
+        </h3>
+        <p className="text-off-white/70 leading-relaxed mb-6 font-light">
+          {description}
+        </p>
+        
+        <div className="space-y-2">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="flex items-center text-off-white/60 text-sm"
+            >
+              <span className="text-champagne-gold mr-3 text-xs">◆</span>
+              {feature}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Gradient border effect */}
+      <div className="absolute inset-0 border-2 border-champagne-gold/0 group-hover:border-champagne-gold/30 transition-all duration-700 pointer-events-none gradient-border" />
+    </motion.div>
+  )
 }
