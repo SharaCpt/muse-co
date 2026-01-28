@@ -42,7 +42,7 @@ export default function ServicesPage() {
             SERVICES
           </h1>
           <p className="text-off-white/80 text-lg md:text-xl tracking-wide mb-8">
-            ELITE LIFESTYLE MODELS • VIP STAFFING • GLOBAL LUXURY EXPERIENCES
+            ELITE COMPANIONSHIP • PRIVATE EXPERIENCES • GLOBAL ARRANGEMENTS
           </p>
         </motion.div>
       </section>
@@ -107,10 +107,10 @@ export default function ServicesPage() {
             className="space-y-8"
           >
             <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold">
-              Ready to discuss your event?
+              Ready to arrange your experience?
             </h2>
             <p className="text-off-white/80 font-inter text-lg">
-              Contact us for a personalized consultation and custom staffing solutions.
+              Contact us for a personalized consultation and bespoke companion services.
             </p>
             <a
               href="https://wa.me/+27607769793"

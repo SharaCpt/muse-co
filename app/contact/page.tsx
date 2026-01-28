@@ -182,7 +182,7 @@ export default function ContactPage() {
 
               <div>
                 <label htmlFor="eventType" className="block text-off-white/80 font-inter text-sm mb-2">
-                  Event Type *
+                  Service Type *
                 </label>
                 <select
                   id="eventType"
@@ -192,13 +192,14 @@ export default function ContactPage() {
                   required
                   className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-smooth"
                 >
-                  <option value="">Select event type</option>
-                  <option value="nightlife">Nightlife / Club Event</option>
-                  <option value="private">Private Event / Villa</option>
-                  <option value="golf">Golf Day</option>
-                  <option value="brand">Brand Activation</option>
-                  <option value="yacht">Yacht / Boat Party</option>
-                  <option value="other">Other</option>
+                  <option value="">Select service type</option>
+                  <option value="private-companionship">Private Companionship</option>
+                  <option value="travel-arrangement">Travel Arrangement</option>
+                  <option value="extended-experience">Extended Experience</option>
+                  <option value="nightlife">VIP Nightlife Experience</option>
+                  <option value="yacht">Yacht / Coastal Experience</option>
+                  <option value="villa-event">Private Villa / Estate Event</option>
+                  <option value="other">Other Exclusive Experience</option>
                 </select>
               </div>
 

@@ -133,7 +133,7 @@ export default function HomePage() {
             transition={{ duration: 1, delay: 1 }}
             className="font-inter text-xl md:text-2xl tracking-[0.2em] text-off-white/90 mb-6 uppercase font-light"
           >
-            Elite Lifestyle Models & VIP Staffing
+            Elite Companions • VIP Experiences • Global Luxury
           </motion.p>
           
           <motion.p
