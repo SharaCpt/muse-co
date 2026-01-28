@@ -161,7 +161,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-smooth"
+                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-all duration-300 input-glow rounded-sm"
                 />
               </div>
 
@@ -176,7 +176,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-smooth"
+                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-all duration-300 input-glow rounded-sm"
                 />
               </div>
 
@@ -190,7 +190,7 @@ export default function ContactPage() {
                   value={formData.eventType}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-smooth"
+                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-all duration-300 input-glow rounded-sm cursor-pointer"
                 >
                   <option value="">Select event type</option>
                   <option value="nightlife">Nightlife / Club Event</option>
@@ -213,17 +213,19 @@ export default function ContactPage() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-smooth resize-none"
+                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-all duration-300 resize-none input-glow rounded-sm"
                 />
               </div>
 
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-champagne-gold text-deep-black font-inter tracking-widest hover:bg-opacity-90 transition-smooth gold-glow disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full px-8 py-4 bg-champagne-gold text-deep-black font-inter tracking-widest hover:bg-opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:shadow-[0_0_50px_rgba(212,175,55,0.5)]"
               >
                 {isSubmitting ? 'SENDING...' : 'SEND INQUIRY'}
-              </button>
+              </motion.button>
 
               {submitStatus === 'success' && (
                 <motion.p
@@ -256,27 +258,29 @@ function ContactMethod({
   primary?: boolean
 }) {
   return (
-    <a
+    <motion.a
       href={href}
       target={href.startsWith('http') ? '_blank' : undefined}
       rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-      className={`flex items-center space-x-4 p-6 border ${
+      whileHover={{ scale: 1.02, x: 5 }}
+      whileTap={{ scale: 0.98 }}
+      className={`flex items-center space-x-4 p-6 border rounded-sm transition-all duration-300 group ${
         primary
-          ? 'border-champagne-gold bg-champagne-gold/10'
-          : 'border-champagne-gold/20 bg-charcoal/30'
-      } hover:border-champagne-gold transition-smooth group`}
+          ? 'border-champagne-gold bg-champagne-gold/10 shadow-[0_0_25px_rgba(212,175,55,0.2)] hover:shadow-[0_0_40px_rgba(212,175,55,0.4)]'
+          : 'border-champagne-gold/20 bg-charcoal/30 hover:border-champagne-gold/60 hover:bg-charcoal/50'
+      }`}
     >
-      <div className={`text-3xl ${primary ? 'text-champagne-gold' : 'text-champagne-gold/60'} group-hover:text-champagne-gold transition-smooth`}>
+      <div className={`text-3xl transition-all duration-300 ${primary ? 'text-champagne-gold' : 'text-champagne-gold/60'} group-hover:text-champagne-gold group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]`}>
         {icon}
       </div>
       <div>
         <p className="text-off-white/60 text-xs font-inter tracking-wider mb-1">
           {title}
         </p>
-        <p className="text-off-white font-inter">
+        <p className="text-off-white font-inter group-hover:text-champagne-gold transition-colors duration-300">
           {value}
         </p>
       </div>
-    </a>
+    </motion.a>
   )
 }
