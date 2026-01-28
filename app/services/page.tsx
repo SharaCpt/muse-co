@@ -53,7 +53,7 @@ export default function ServicesPage() {
           {/* Exclusive Private Arrangements */}
           <ServiceDetail
             title="EXCLUSIVE PRIVATE ARRANGEMENTS"
-            image="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200"
+            image="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200"
             description="Bespoke long-term arrangements for discerning clients seeking sophisticated companionship. From ongoing business travel to extended private experiences, we curate exclusive relationships built on trust, elegance, and absolute discretion."
             features={[
               'Long-term companionship for business executives and travelers',
