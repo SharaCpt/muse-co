@@ -102,29 +102,6 @@ export default function PricingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-deep-black/60 to-deep-black" />
         </div>
 
-        {/* Floating particles */}
-        <div className="absolute inset-0 z-[1]">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-champagne-gold/40 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 0.7, 0.2],
-              }}
-              transition={{
-                duration: 2.5 + Math.random() * 2.5,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
