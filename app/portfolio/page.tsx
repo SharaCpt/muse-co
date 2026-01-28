@@ -19,15 +19,16 @@ interface PortfolioImage {
   display_order: number
 }
 
+// Reliable header image - the stunning emerald aesthetic everyone loves
+const HEADER_IMAGE = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
+
 export default function PortfolioPage() {
   const [filter, setFilter] = useState('all')
   const [models, setModels] = useState<PortfolioImage[]>([])
   const [loading, setLoading] = useState(true)
-  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000')
 
   useEffect(() => {
     fetchPortfolioImages()
-    fetchHeaderImage()
   }, [])
 
   async function fetchPortfolioImages() {
@@ -47,22 +48,6 @@ export default function PortfolioPage() {
     }
   }
 
-  async function fetchHeaderImage() {
-    try {
-      const { data, error } = await supabase
-        .from('page_headers')
-        .select('image_url')
-        .eq('page_name', 'portfolio')
-        .eq('is_active', true)
-        .single()
-
-      if (error) throw error
-      if (data?.image_url) setHeaderImage(data.image_url)
-    } catch (error) {
-      console.error('Error loading header:', error)
-    }
-  }
-
   const filteredModels = filter === 'all' 
     ? models 
     : models.filter(m => m.category.toLowerCase() === filter.toLowerCase())
@@ -75,7 +60,7 @@ export default function PortfolioPage() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={headerImage}
+            src={HEADER_IMAGE}
             alt="Elite Portfolio"
             fill
             className="object-cover"

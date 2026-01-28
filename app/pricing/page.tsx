@@ -35,30 +35,16 @@ interface BespokeExperience {
 }
 
 export default function PricingPage() {
-  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=2000')
+  // Reliable header image - elegant emerald aesthetic (same as portfolio)
+  const HEADER_IMAGE = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
+  
   const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
   const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchHeaderImage()
     fetchPricingData()
   }, [])
-
-  async function fetchHeaderImage() {
-    try {
-      const { data, error } = await supabase
-        .from('page_headers')
-        .select('image_url')
-        .eq('page_name', 'pricing')
-        .single()
-
-      if (error) throw error
-      if (data) setHeaderImage(data.image_url)
-    } catch (error) {
-      console.error('Error fetching header:', error)
-    }
-  }
 
   async function fetchPricingData() {
     try {
@@ -93,13 +79,12 @@ export default function PricingPage() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={headerImage}
+            src={HEADER_IMAGE}
             alt="Luxury Companion Pricing - Elite Escort Rates Cape Town"
             fill
             className="object-cover"
             priority
             unoptimized
-            quality={90}
           />
           <div className="absolute inset-0 bg-deep-black/75" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
