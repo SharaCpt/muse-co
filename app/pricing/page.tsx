@@ -35,7 +35,7 @@ interface BespokeExperience {
 }
 
 export default function PricingPage() {
-  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000')
+  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=2000')
   const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
   const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
   const [loading, setLoading] = useState(true)
@@ -98,6 +98,8 @@ export default function PricingPage() {
             fill
             className="object-cover"
             priority
+            unoptimized
+            quality={90}
           />
           <div className="absolute inset-0 bg-deep-black/75" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
