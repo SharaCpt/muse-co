@@ -2,67 +2,76 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
+
+interface PortfolioImage {
+  id: string
+  name: string
+  category: string
+  description: string
+  image_url: string
+  display_order: number
+}
 
 export default function PortfolioPage() {
   const [filter, setFilter] = useState('all')
+  const [models, setModels] = useState<PortfolioImage[]>([])
+  const [loading, setLoading] = useState(true)
+  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000')
 
-  const models = [
-    {
-      id: 1,
-      category: 'VIP Hostess',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800',
-      height: 'h-[500px]'
-    },
-    {
-      id: 2,
-      category: 'Brand Ambassador',
-      image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800',
-      height: 'h-[600px]'
-    },
-    {
-      id: 3,
-      category: 'Event Hostess',
-      image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=800',
-      height: 'h-[450px]'
-    },
-    {
-      id: 4,
-      category: 'Lifestyle Model',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800',
-      height: 'h-[550px]'
-    },
-    {
-      id: 5,
-      category: 'VIP Hostess',
-      image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=800',
-      height: 'h-[520px]'
-    },
-    {
-      id: 6,
-      category: 'Brand Ambassador',
-      image: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=800',
-      height: 'h-[480px]'
-    },
-    {
-      id: 7,
-      category: 'Event Hostess',
-      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=800',
-      height: 'h-[530px]'
-    },
-    {
-      id: 8,
-      category: 'Lifestyle Model',
-      image: 'https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?q=80&w=800',
-      height: 'h-[490px]'
-    },
-    {
-      id: 9,
-      category: 'VIP Hostess',
-      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800',
-      height: 'h-[560px]'
-    },
-  ]
+  useEffect(() => {
+    fetchPortfolioImages()
+    fetchHeaderImage()
+  }, [])
+
+  async function fetchPortfolioImages() {
+    try {
+      const { data, error } = await supabase
+        .from('portfolio_images')
+        .select('*')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true })
+
+      if (error) throw error
+      setModels(data || [])
+    } catch (error) {
+      console.error('Error loading portfolio:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function fetchHeaderImage() {
+    try {
+      const { data, error } = await supabase
+        .from('page_headers')
+        .select('image_url')
+        .eq('page_name', 'portfolio')
+        .eq('is_active', true)
+        .single()
+
+      if (error) throw error
+      if (data?.image_url) setHeaderImage(data.image_url)
+    } catch (error) {
+      console.error('Error loading header:', error)
+    }
+  }
+
+  const [filter, setFilter] = useState('all')
+
+  const filteredModels = filter === 'all' 
+    ? models 
+  const filteredModels = filter === 'all' 
+    ? models 
+    : models.filter(m => m.category.toLowerCase() === filter.toLowerCase())
+
+  const categories = ['all', ...Array.from(new Set(models.map(m => m.category)))]
 
   return (
     <main className="bg-deep-black pt-24">
@@ -70,7 +79,7 @@ export default function PortfolioPage() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2400"
+            src={headerImage}
             alt="Elite Portfolio"
             fill
             className="object-cover"
@@ -103,7 +112,7 @@ export default function PortfolioPage() {
       <section className="py-8 px-6 bg-charcoal/50 sticky top-20 z-20 backdrop-blur-md border-b border-champagne-gold/10">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap justify-center gap-4">
-            {['all', 'VIP Hostess', 'Brand Ambassador', 'Event Hostess', 'Lifestyle Model'].map((cat) => (
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
@@ -113,7 +122,7 @@ export default function PortfolioPage() {
                     : 'bg-transparent text-off-white/60 border border-champagne-gold/20 hover:border-champagne-gold/60 hover:text-champagne-gold'
                 }`}
               >
-                {cat === 'all' ? 'All' : cat}
+                {cat}
               </button>
             ))}
           </div>
@@ -123,13 +132,21 @@ export default function PortfolioPage() {
       {/* Portfolio Grid - Masonry Style */}
       <section className="py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {models
-              .filter((model) => filter === 'all' || model.category === filter)
-              .map((model, index) => (
+          {loading ? (
+            <div className="text-center text-champagne-gold py-20">
+              <p>Loading portfolio...</p>
+            </div>
+          ) : filteredModels.length === 0 ? (
+            <div className="text-center text-off-white/60 py-20">
+              <p>No images yet. Upload photos in the admin dashboard.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredModels.map((model, index) => (
                 <ModelCard key={model.id} model={model} index={index} />
               ))}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -182,19 +199,19 @@ export default function PortfolioPage() {
   )
 }
 
-function ModelCard({ model, index }: { model: any; index: number }) {
+function ModelCard({ model, index }: { model: PortfolioImage; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
-      className={`group relative overflow-hidden ${model.height} shadow-[0_10px_60px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_80px_rgba(212,175,55,0.3)] transition-all duration-500`}
+      className="group relative overflow-hidden h-[500px] shadow-[0_10px_60px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_80px_rgba(212,175,55,0.3)] transition-all duration-500"
     >
       {/* Image */}
       <div className="relative w-full h-full">
         <Image
-          src={model.image}
-          alt={model.category}
+          src={model.image_url}
+          alt={model.name}
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
         />
@@ -212,9 +229,14 @@ function ModelCard({ model, index }: { model: any; index: number }) {
             <p className="text-champagne-gold text-sm tracking-[0.2em] uppercase font-light">
               {model.category}
             </p>
-            <p className="text-off-white/60 text-xs tracking-widest uppercase">
-              Available on Request
+            <p className="text-off-white text-base font-semibold">
+              {model.name}
             </p>
+            {model.description && (
+              <p className="text-off-white/60 text-xs">
+                {model.description}
+              </p>
+            )}
           </div>
         </div>
 
