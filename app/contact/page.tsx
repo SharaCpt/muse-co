@@ -1,11 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FaWhatsapp, FaEnvelope, FaPhone } from 'react-icons/fa'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
 export default function ContactPage() {
+  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2000')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,6 +21,25 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  useEffect(() => {
+    fetchHeaderImage()
+  }, [])
+
+  async function fetchHeaderImage() {
+    try {
+      const { data, error } = await supabase
+        .from('page_headers')
+        .select('image_url')
+        .eq('page_name', 'contact')
+        .single()
+
+      if (error) throw error
+      if (data) setHeaderImage(data.image_url)
+    } catch (error) {
+      console.error('Error fetching header:', error)
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
