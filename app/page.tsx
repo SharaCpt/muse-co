@@ -246,7 +246,7 @@ export default function HomePage() {
                 image: modelImages.model_card_1,
                 category: "Event Hostess",
                 name: "Available on Request",
-                description: "Professional elegance for corporate galas"
+                description: "Sophisticated elegance for exclusive events"
               },
               {
                 image: modelImages.model_card_2,

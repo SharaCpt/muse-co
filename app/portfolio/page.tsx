@@ -100,10 +100,10 @@ export default function PortfolioPage() {
             PORTFOLIO
           </h1>
           <p className="text-off-white/80 text-lg md:text-xl tracking-wide mb-8">
-            Elite Lifestyle Models • VIP Hostesses • Brand Ambassadors
+            Elite Lifestyle Models • VIP Hostesses • Private Companions
           </p>
           <p className="text-off-white/60 max-w-2xl mx-auto">
-            Handpicked professionals for luxury brand launches, VIP events, and exclusive private experiences across Cape Town
+            Handpicked professionals for luxury events, sophisticated gatherings, and exclusive private experiences across Cape Town
           </p>
         </motion.div>
       </section>

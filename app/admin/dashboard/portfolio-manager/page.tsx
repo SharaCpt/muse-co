@@ -24,7 +24,7 @@ interface PortfolioImage {
 const CATEGORIES = [
   'Elite Model',
   'VIP Hostess',
-  'Brand Ambassador',
+  'Private Companion',
   'Event Hostess',
   'Travel Companion',
   'Yacht Staff',

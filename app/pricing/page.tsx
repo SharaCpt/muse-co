@@ -156,7 +156,7 @@ export default function PricingPage() {
               STANDARD RATES
             </h2>
             <p className="text-off-white/70 text-lg max-w-2xl mx-auto font-light">
-              Transparent pricing for exclusive model bookings and VIP staffing
+              Transparent pricing for exclusive companionship and elite hosting services
             </p>
           </motion.div>
 

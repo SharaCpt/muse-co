@@ -1,8 +1,11 @@
 -- Site Images Table for CMS
 -- Run this in your Supabase SQL Editor
 
+-- Drop existing table if it exists (to recreate with correct schema)
+DROP TABLE IF EXISTS site_images CASCADE;
+
 -- Create site_images table
-CREATE TABLE IF NOT EXISTS site_images (
+CREATE TABLE site_images (
   id TEXT PRIMARY KEY,
   page TEXT NOT NULL,
   section TEXT NOT NULL,
@@ -39,5 +42,5 @@ TO public
 USING (true);
 
 -- Create index for faster lookups
-CREATE INDEX IF NOT EXISTS idx_site_images_page ON site_images(page);
-CREATE INDEX IF NOT EXISTS idx_site_images_section ON site_images(section);
+CREATE INDEX idx_site_images_page ON site_images(page);
+CREATE INDEX idx_site_images_section ON site_images(section);
