@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -41,62 +40,6 @@ export default function AdminDashboard() {
       color: 'from-yellow-600 to-champagne-gold'
     },
   ]
-      'portfolio_preview_2': 'Portfolio Preview 2',
-      'portfolio_preview_3': 'Portfolio Preview 3'
-    }
-    return labels[section] || section
-  }
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
-        <div className="text-[#D4AF37] text-xl">Loading dashboard...</div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0A0A0A] via-[#1a1a1a] to-[#0A0A0A]">
-      {/* Header */}
-      <div className="border-b border-[#D4AF37]/20 bg-black/40 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-playfair text-[#F5F5F0]">
-              MUSE & CO
-            </h1>
-            <p className="text-[#D4AF37]/70 text-sm">Image Manager</p>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="px-6 py-2 bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] rounded-lg hover:bg-[#D4AF37]/20 transition-colors text-sm uppercase tracking-wider"
-          >
-            Logout
-          </button>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
-        {/* Quick Links Section */}
-        <div className="mb-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a
-            href="/admin/dashboard/pricing-rates"
-            className="bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 border-2 border-[#D4AF37]/40 rounded-xl p-6 hover:border-[#D4AF37] transition-all group"
-          >
-            <h3 className="text-[#D4AF37] text-xl font-playfair mb-2 group-hover:scale-105 transition-transform">
-              Pricing Rates
-            </h3>
-            <p className="text-[#F5F5F0]/60 text-sm">
-              Manage standard hourly/daily rates
-            </p>
-          </a>
-
-          <a
-            href="/admin/dashboard/bespoke-experiences"
-            className="bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 border-2 border-[#D4AF37]/40 rounded-xl p-6 hover:border-[#D4AF37] transition-all group"
-          >
-            <h3 className="text-[#D4AF37] text-xl font-playfair mb-2 group-hover:scale-105 transition-transform">
-              Bespoke Experiences
 
   return (
     <div className="min-h-screen bg-deep-black text-off-white">
