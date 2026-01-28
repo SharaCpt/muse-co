@@ -2,67 +2,80 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import { createClient } from '@supabase/supabase-js'
 import Link from 'next/link'
 
-interface PricingRate {
-  id: string
-  package_name: string
-  duration: string
-  price: number
-  description: string
-  features: string[]
-  is_featured: boolean
-}
+// Hardcoded pricing data - easy to edit!
+const pricingRates = [
+  {
+    package_name: 'EXCLUSIVE HOUR',
+    duration: '1 Hour',
+    price: 8000,
+    description: 'Perfect for intimate gatherings and brief exclusive events',
+    features: ['Elite model or hostess', 'Professional presentation', 'Absolute discretion', 'Premium service'],
+    is_featured: false,
+  },
+  {
+    package_name: 'PREMIUM EXPERIENCE',
+    duration: '2 Hours',
+    price: 15000,
+    description: 'Ideal for sophisticated dinner parties and private functions',
+    features: ['Premium model or VIP hostess', 'Extended professional service', 'Elegant presence', 'Discretion guaranteed'],
+    is_featured: true,
+  },
+  {
+    package_name: 'ELITE PACKAGE',
+    duration: '5 Hours',
+    price: 20000,
+    description: 'Comprehensive coverage for exclusive events and luxury occasions',
+    features: ['Top-tier model or hostess', 'Full event support', 'VIP treatment', 'Complete professionalism'],
+    is_featured: false,
+  },
+  {
+    package_name: 'FULL DAY LUXURY',
+    duration: 'Full Day',
+    price: 30000,
+    description: 'Ultimate luxury experience for all-day events and private engagements',
+    features: ['Elite companion or VIP staffing', 'Complete day coverage', 'Luxury service excellence', 'Unmatched discretion'],
+    is_featured: false,
+  },
+]
 
-interface BespokeExperience {
-  id: string
-  experience_name: string
-  tagline: string
-  description: string
-  price: number | null
-  price_label: string
-  image_url: string | null
-  features: string[]
-}
+const bespokeExperiences = [
+  {
+    experience_name: 'RIVIERA ESCAPE',
+    tagline: 'Curated luxury coastal experiences',
+    description: 'Exclusive weekend getaways with South Africa\'s most sophisticated companions. Private villas, yacht charters, and bespoke itineraries along the Cape coast.',
+    price_label: 'POA',
+    image_url: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1200',
+    features: ['Private villa accommodation', 'Luxury yacht charter', 'Elite companion', 'Curated dining experiences', 'Complete travel coordination'],
+  },
+  {
+    experience_name: 'YACHT WEEKEND',
+    tagline: 'Ultimate maritime luxury',
+    description: 'Premium yacht experiences with professional companions. Multi-day charters featuring gourmet dining, water sports, and unforgettable coastal adventures.',
+    price_label: 'POA',
+    image_url: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
+    features: ['Private yacht charter', 'Professional crew', 'VIP companions', 'Gourmet catering', 'Water sports & activities'],
+  },
+  {
+    experience_name: 'SAFARI LUXURY',
+    tagline: 'Wilderness meets sophistication',
+    description: 'Exclusive safari experiences paired with elite companionship. Five-star lodges, private game drives, and curated bush experiences.',
+    price_label: 'POA',
+    image_url: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1200',
+    features: ['5-star safari lodge', 'Private game drives', 'Elite travel companion', 'Fine dining', 'Complete safari coordination'],
+  },
+  {
+    experience_name: 'CORPORATE RETREAT',
+    tagline: 'Executive excellence redefined',
+    description: 'Bespoke corporate events and executive retreats with professional VIP staffing. From intimate boardroom meetings to luxury team-building experiences.',
+    price_label: 'POA',
+    image_url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200',
+    features: ['VIP event staffing', 'Professional coordination', 'Luxury venue arrangements', 'Catering management', 'Discretion guaranteed'],
+  },
+]
 
 export default function PricingPage() {
-  const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
-  const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
-  const [loading, setLoading] = useState(true)
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
-
-  useEffect(() => {
-    fetchPricing()
-  }, [])
-
-  async function fetchPricing() {
-    try {
-      const [ratesRes, experiencesRes] = await Promise.all([
-        supabase
-          .from('pricing_rates')
-          .select('*')
-          .eq('is_active', true)
-          .order('display_order'),
-        supabase
-          .from('bespoke_experiences')
-          .select('*')
-          .eq('is_active', true)
-          .order('display_order'),
-      ])
-
-      if (ratesRes.data) setPricingRates(ratesRes.data)
-      if (experiencesRes.data) setBespokeExperiences(experiencesRes.data)
-    } catch (error) {
-      console.error('Error fetching pricing:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   return (
     <main className="bg-deep-black pt-24">
@@ -155,22 +168,11 @@ export default function PricingPage() {
             </p>
           </motion.div>
 
-          {loading ? (
-            <div className="flex justify-center items-center py-20">
-              <div className="w-12 h-12 border-4 border-champagne-gold/30 border-t-champagne-gold rounded-full animate-spin" />
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {pricingRates.map((rate, index) => (
-                <PricingCard key={rate.id} rate={rate} index={index} />
-              ))}
-            </div>
-          )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {pricingRates.map((rate, index) => (
+            <PricingCard key={index} rate={rate} index={index} />
+          ))}
         </div>
-      </section>
-
-      {/* Bespoke Experiences */}
-      <section className="py-32 px-6 md:px-12 bg-charcoal relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -187,20 +189,11 @@ export default function PricingPage() {
             </p>
           </motion.div>
 
-          {loading ? (
-            <div className="flex justify-center items-center py-20">
-              <div className="w-12 h-12 border-4 border-champagne-gold/30 border-t-champagne-gold rounded-full animate-spin" />
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {bespokeExperiences.map((experience, index) => (
-                <BespokeCard key={experience.id} experience={experience} index={index} />
-              ))}
-            </div>
-          )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {bespokeExperiences.map((experience, index) => (
+            <BespokeCard key={index} experience={experience} index={index} />
+          ))}
         </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-32 px-6 bg-deep-black relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
@@ -249,46 +242,55 @@ export default function PricingPage() {
   )
 }
 
-function PricingCard({ rate, index }: { rate: PricingRate; index: number }) {
+function PricingCard({ rate, index }: { rate: typeof pricingRates[0]; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="group relative"
+      whileHover={{ y: -10, scale: 1.02 }}
+      className="group relative h-full"
     >
-      {/* Glass morphism card */}
-      <div className="relative h-full bg-gradient-to-br from-charcoal/80 to-charcoal/40 backdrop-blur-sm border border-champagne-gold/20 p-8 overflow-hidden transition-all duration-500 hover:border-champagne-gold/60 hover:shadow-[0_0_40px_rgba(212,175,55,0.2)]">
-        {/* Shimmer effect on hover */}
+      {/* Glass morphism card with enhanced effects */}
+      <div className="relative h-full bg-gradient-to-br from-charcoal/90 to-charcoal/60 backdrop-blur-md border-2 border-champagne-gold/30 p-8 overflow-hidden transition-all duration-500 hover:border-champagne-gold hover:shadow-[0_0_60px_rgba(212,175,55,0.4)]">
+        {/* Animated shimmer effect */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div className="shimmer absolute inset-0" />
         </div>
 
+        {/* Corner accents */}
+        <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-champagne-gold/50 transition-all duration-500 group-hover:w-16 group-hover:h-16" />
+        <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-champagne-gold/50 transition-all duration-500 group-hover:w-16 group-hover:h-16" />
+
         {/* Featured badge */}
         {rate.is_featured && (
-          <div className="absolute top-0 right-0 bg-champagne-gold text-deep-black text-xs tracking-wider px-4 py-1 font-semibold">
-            POPULAR
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-champagne-gold to-yellow-600 text-deep-black text-xs font-bold tracking-wider px-6 py-1.5 shadow-lg">
+            MOST POPULAR
           </div>
         )}
 
         <div className="relative z-10 flex flex-col h-full">
           {/* Duration */}
-          <p className="text-champagne-gold/70 text-sm tracking-[0.2em] uppercase mb-2">
+          <p className="text-champagne-gold/70 text-sm tracking-[0.2em] uppercase mb-2 font-light">
             {rate.duration}
           </p>
 
           {/* Package Name */}
-          <h3 className="font-playfair text-2xl text-off-white mb-6 tracking-wide">
+          <h3 className="font-playfair text-2xl text-off-white mb-6 tracking-wide group-hover:text-champagne-gold transition-colors">
             {rate.package_name}
           </h3>
 
-          {/* Price */}
+          {/* Price with gradient effect */}
           <div className="mb-6">
-            <span className="text-champagne-gold text-5xl font-light">R</span>
-            <span className="text-champagne-gold text-5xl font-light ml-1">
-              {rate.price.toLocaleString('en-ZA', { maximumFractionDigits: 0 })}
-            </span>
+            <motion.div 
+              whileHover={{ scale: 1.1 }}
+              className="inline-block"
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-champagne-gold via-yellow-400 to-champagne-gold text-6xl font-light">
+                R{rate.price.toLocaleString('en-ZA')}
+              </span>
+            </motion.div>
           </div>
 
           {/* Description */}
@@ -298,20 +300,32 @@ function PricingCard({ rate, index }: { rate: PricingRate; index: number }) {
 
           {/* Features */}
           <ul className="space-y-3 mb-8 flex-grow">
-            {rate.features?.map((feature, i) => (
-              <li key={i} className="flex items-start text-off-white/80 text-sm">
-                <span className="text-champagne-gold mr-3 mt-1">✓</span>
+            {rate.features.map((feature, i) => (
+              <motion.li 
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 + i * 0.1 }}
+                className="flex items-start text-off-white/80 text-sm"
+              >
+                <span className="text-champagne-gold mr-3 mt-1 text-lg">✓</span>
                 <span className="font-light">{feature}</span>
-              </li>
+              </motion.li>
             ))}
           </ul>
 
           {/* CTA Button */}
           <Link
             href="/contact"
-            className="block text-center py-3 border border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-wider text-sm"
+            className="relative block text-center py-4 bg-gradient-to-r from-champagne-gold/10 to-champagne-gold/5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-wider text-sm font-semibold overflow-hidden group/btn"
           >
-            BOOK NOW
+            <span className="relative z-10">BOOK NOW</span>
+            <motion.div
+              className="absolute inset-0 bg-champagne-gold"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: '0%' }}
+              transition={{ duration: 0.3 }}
+            />
           </Link>
         </div>
       </div>
@@ -319,9 +333,8 @@ function PricingCard({ rate, index }: { rate: PricingRate; index: number }) {
   )
 }
 
-function BespokeCard({ experience, index }: { experience: BespokeExperience; index: number }) {
+function BespokeCard({ experience, index }: { experience: typeof bespokeExperiences[0]; index: number }) {
   const defaultImage = "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1200"
-  
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
