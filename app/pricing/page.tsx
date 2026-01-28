@@ -338,6 +338,7 @@ function BespokeCard({ experience, index }: { experience: BespokeExperience; ind
           src={experience.image_url || defaultImage}
           alt={experience.experience_name}
           fill
+          unoptimized
           className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/80 to-deep-black/40" />

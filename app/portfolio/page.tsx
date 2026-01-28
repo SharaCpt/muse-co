@@ -195,6 +195,7 @@ function ModelCard({ model, index }: { model: PortfolioImage; index: number }) {
           src={model.image_url}
           alt={model.name}
           fill
+          unoptimized
           className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
         />
         

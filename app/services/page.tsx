@@ -153,6 +153,7 @@ function ServiceDetail({
           src={image}
           alt={title}
           fill
+          unoptimized
           className="object-cover"
         />
         <div className="absolute inset-0 border-2 border-champagne-gold/30" />
