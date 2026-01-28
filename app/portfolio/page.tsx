@@ -93,31 +93,21 @@ export default function PortfolioPage() {
       {/* Filter Bar */}
       <section className="py-8 px-6 bg-charcoal/50 sticky top-20 z-20 backdrop-blur-md border-b border-champagne-gold/10">
         <div className="max-w-6xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-3 md:gap-4"
-          >
-            {categories.map((cat, index) => (
-              <motion.button
+          <div className="flex flex-wrap justify-center gap-4">
+            {categories.map((cat) => (
+              <button
                 key={cat}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 * index }}
                 onClick={() => setFilter(cat)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-2.5 text-sm tracking-[0.15em] uppercase transition-all duration-300 rounded-sm ${
+                className={`px-6 py-2 text-sm tracking-[0.15em] uppercase transition-all duration-300 ${
                   filter === cat
-                    ? 'bg-champagne-gold text-deep-black shadow-[0_0_25px_rgba(212,175,55,0.5)] font-medium'
-                    : 'bg-transparent text-off-white/60 border border-champagne-gold/20 hover:border-champagne-gold/60 hover:text-champagne-gold hover:shadow-[0_0_15px_rgba(212,175,55,0.2)]'
+                    ? 'bg-champagne-gold text-deep-black shadow-[0_0_20px_rgba(212,175,55,0.4)]'
+                    : 'bg-transparent text-off-white/60 border border-champagne-gold/20 hover:border-champagne-gold/60 hover:text-champagne-gold'
                 }`}
               >
                 {cat}
-              </motion.button>
+              </button>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -194,65 +184,46 @@ export default function PortfolioPage() {
 function ModelCard({ model, index }: { model: PortfolioImage; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.08, duration: 0.5, ease: 'easeOut' }}
-      whileHover={{ y: -8 }}
-      className="group relative overflow-hidden h-[500px] shadow-[0_10px_60px_rgba(0,0,0,0.8)] hover:shadow-[0_20px_80px_rgba(212,175,55,0.25)] transition-all duration-500 rounded-sm"
+      transition={{ delay: index * 0.1, duration: 0.6 }}
+      className="group relative overflow-hidden h-[500px] shadow-[0_10px_60px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_80px_rgba(212,175,55,0.3)] transition-all duration-500"
     >
       {/* Image */}
-      <div className="relative w-full h-full overflow-hidden">
-        <motion.div
-          className="relative w-full h-full"
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-        >
-          <Image
-            src={model.image_url}
-            alt={model.name}
-            fill
-            className="object-cover"
-          />
-        </motion.div>
+      <div className="relative w-full h-full">
+        <Image
+          src={model.image_url}
+          alt={model.name}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+        />
         
         {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/30 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
         
-        {/* Gold overlay on hover */}
-        <div className="absolute inset-0 bg-champagne-gold/0 group-hover:bg-champagne-gold/5 transition-all duration-500" />
-        
         {/* Border Animation */}
-        <motion.div 
-          className="absolute inset-0 border-2 border-champagne-gold/0 group-hover:border-champagne-gold/50 transition-all duration-500 rounded-sm"
-          initial={false}
-        />
-        
-        {/* Corner accents on hover */}
-        <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-champagne-gold/0 group-hover:border-champagne-gold/60 transition-all duration-500" />
-        <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-champagne-gold/0 group-hover:border-champagne-gold/60 transition-all duration-500" />
+        <div className="absolute inset-0 border-2 border-champagne-gold/0 group-hover:border-champagne-gold/40 transition-all duration-500" />
         
         {/* Content */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+        <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 group-hover:translate-y-0 transition-transform duration-500">
           <div className="space-y-2">
-            <motion.div 
-              className="w-12 h-[2px] bg-champagne-gold mb-3 origin-left"
-              initial={{ scaleX: 1 }}
-              whileHover={{ scaleX: 2 }}
-              transition={{ duration: 0.5 }}
-            />
-            <p className="text-champagne-gold text-sm tracking-[0.2em] uppercase font-light drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+            <div className="w-12 h-[1px] bg-champagne-gold mb-3 group-hover:w-24 transition-all duration-500" />
+            <p className="text-champagne-gold text-sm tracking-[0.2em] uppercase font-light">
               {model.category}
             </p>
             <p className="text-off-white text-base font-semibold">
               {model.name}
             </p>
             {model.description && (
-              <p className="text-off-white/60 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+              <p className="text-off-white/60 text-xs">
                 {model.description}
               </p>
             )}
           </div>
         </div>
+
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-champagne-gold/0 group-hover:bg-champagne-gold/5 transition-all duration-500 pointer-events-none" />
       </div>
     </motion.div>
   )
