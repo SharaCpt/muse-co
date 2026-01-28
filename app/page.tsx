@@ -221,19 +221,19 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                image: "https://images.unsplash.com/photo-vlqtzHsZKRo?q=80&w=800",
+                image: "https://images.unsplash.com/photo-1612874470096-d93a610de87b?q=80&w=800",
                 category: "Event Hostess",
                 name: "Available on Request",
                 description: "Professional elegance for corporate galas"
               },
               {
-                image: "https://images.unsplash.com/photo-1SKjtoZqwBo?q=80&w=800",
+                image: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?q=80&w=800",
                 category: "Private Companion",
                 name: "Available on Request",
                 description: "Intimate elegance for discerning clientele"
               },
               {
-                image: "https://images.unsplash.com/photo-ZnHRNtwXg6Q?q=80&w=800",
+                image: "https://images.unsplash.com/photo-1604004555489-723a93d6ce74?q=80&w=800",
                 category: "VIP Hostess",
                 name: "Available on Request",
                 description: "Exclusive companionship for high-profile events"
