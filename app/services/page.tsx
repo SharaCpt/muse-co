@@ -11,7 +11,7 @@ const supabase = createClient(
 )
 
 export default function ServicesPage() {
-  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2000')
+  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=2000')
 
   useEffect(() => {
     fetchHeaderImage()

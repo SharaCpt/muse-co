@@ -35,7 +35,7 @@ interface BespokeExperience {
 }
 
 export default function PricingPage() {
-  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2000')
+  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000')
   const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
   const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
   const [loading, setLoading] = useState(true)
