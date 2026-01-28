@@ -3,84 +3,11 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { createClient } from '@supabase/supabase-js'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
-
-interface SiteImage {
-  id: string
-  section: string
-  image_url: string
-  alt_text: string | null
-}
+import Link from 'next/link'
+import { ImagePlus, Image as ImageIcon, Layout, LogOut } from 'lucide-react'
 
 export default function AdminDashboard() {
-  const [images, setImages] = useState<SiteImage[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [uploadingSection, setUploadingSection] = useState<string | null>(null)
   const router = useRouter()
-
-  useEffect(() => {
-    loadImages()
-  }, [])
-
-  const loadImages = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('site_images')
-        .select('*')
-        .order('section')
-
-      if (error) throw error
-      setImages(data || [])
-    } catch (error) {
-      console.error('Error loading images:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const handleImageUpload = async (section: string, file: File) => {
-    setUploadingSection(section)
-
-    try {
-      // Upload to Supabase Storage
-      const fileExt = file.name.split('.').pop()
-      const fileName = `${section}-${Date.now()}.${fileExt}`
-      const filePath = `website/${fileName}`
-
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from('website-images')
-        .upload(filePath, file)
-
-      if (uploadError) throw uploadError
-
-      // Get public URL
-      const { data: { publicUrl } } = supabase.storage
-        .from('website-images')
-        .getPublicUrl(filePath)
-
-      // Update database
-      const { error: updateError } = await supabase
-        .from('site_images')
-        .update({ image_url: publicUrl })
-        .eq('section', section)
-
-      if (updateError) throw updateError
-
-      // Reload images
-      await loadImages()
-    } catch (error) {
-      console.error('Error uploading image:', error)
-      alert('Failed to upload image. Please try again.')
-    } finally {
-      setUploadingSection(null)
-    }
-  }
 
   const handleLogout = async () => {
     try {
@@ -91,13 +18,29 @@ export default function AdminDashboard() {
     }
   }
 
-  const getSectionLabel = (section: string) => {
-    const labels: Record<string, string> = {
-      'homepage_hero': 'Homepage Hero',
-      'vip_hostess_card': 'VIP Hostess Card',
-      'brand_ambassador_card': 'Brand Ambassador Card',
-      'event_hostess_card': 'Event Hostess Card',
-      'portfolio_preview_1': 'Portfolio Preview 1',
+  const managementSections = [
+    {
+      title: 'Portfolio Manager',
+      description: 'Upload and manage model portfolio images',
+      icon: ImagePlus,
+      href: '/admin/dashboard/portfolio-manager',
+      color: 'from-champagne-gold to-yellow-600'
+    },
+    {
+      title: 'Homepage Images',
+      description: 'Manage hero and service card images',
+      icon: Layout,
+      href: '/admin/dashboard/homepage-images',
+      color: 'from-champagne-gold to-yellow-500'
+    },
+    {
+      title: 'Page Headers',
+      description: 'Update header backgrounds for all pages',
+      icon: ImageIcon,
+      href: '/admin/dashboard/page-headers',
+      color: 'from-yellow-600 to-champagne-gold'
+    },
+  ]
       'portfolio_preview_2': 'Portfolio Preview 2',
       'portfolio_preview_3': 'Portfolio Preview 3'
     }
@@ -154,101 +97,84 @@ export default function AdminDashboard() {
           >
             <h3 className="text-[#D4AF37] text-xl font-playfair mb-2 group-hover:scale-105 transition-transform">
               Bespoke Experiences
-            </h3>
-            <p className="text-[#F5F5F0]/60 text-sm">
-              Manage luxury packages & experiences
-            </p>
-          </a>
 
-          <a
-            href="/pricing"
-            target="_blank"
-            className="bg-gradient-to-br from-[#D4AF37]/10 to-transparent border-2 border-[#D4AF37]/20 rounded-xl p-6 hover:border-[#D4AF37]/40 transition-all group"
+  return (
+    <div className="min-h-screen bg-deep-black text-off-white">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-champagne-gold/10 to-transparent border-b border-champagne-gold/20 p-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div>
+            <h1 className="font-playfair text-3xl md:text-4xl text-champagne-gold mb-1">
+              Admin Dashboard
+            </h1>
+            <p className="text-off-white/60">Manage your website content</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 bg-red-500/20 border border-red-500 text-red-500 rounded hover:bg-red-500/30 transition"
           >
-            <h3 className="text-[#F5F5F0] text-xl font-playfair mb-2 group-hover:scale-105 transition-transform">
-              View Pricing Page
-            </h3>
-            <p className="text-[#F5F5F0]/60 text-sm">
-              See how it looks live →
-            </p>
-          </a>
+            <LogOut size={18} />
+            Logout
+          </button>
         </div>
+      </div>
 
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto p-4 md:p-8">
         <div className="mb-8">
-          <h2 className="text-xl md:text-2xl font-semibold text-[#F5F5F0] mb-2">
-            Manage Website Images
+          <h2 className="text-2xl font-playfair text-champagne-gold mb-2">
+            Content Management
           </h2>
-          <p className="text-[#F5F5F0]/60 text-sm md:text-base">
-            Click &quot;Replace Image&quot; to upload a new image from your phone or computer
+          <p className="text-off-white/60">
+            Tap any card to manage that section
           </p>
         </div>
 
-        {/* Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((image) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-black/40 backdrop-blur-xl border border-[#D4AF37]/20 rounded-xl overflow-hidden"
+        {/* CMS Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {managementSections.map((section, index) => (
+            <Link
+              key={index}
+              href={section.href}
+              className="group"
             >
-              {/* Image Preview */}
-              <div className="relative aspect-[4/3] bg-black">
-                <Image
-                  src={image.image_url}
-                  alt={image.alt_text || getSectionLabel(image.section)}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Info & Actions */}
-              <div className="p-4">
-                <h3 className="text-[#F5F5F0] font-semibold mb-3">
-                  {getSectionLabel(image.section)}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gradient-to-br from-charcoal/90 to-charcoal/60 border-2 border-champagne-gold/20 rounded-xl p-8 hover:border-champagne-gold hover:shadow-[0_0_40px_rgba(212,175,55,0.2)] transition-all duration-300 h-full"
+              >
+                <div className={`inline-block p-4 rounded-lg bg-gradient-to-br ${section.color} mb-4`}>
+                  <section.icon size={32} className="text-deep-black" />
+                </div>
+                
+                <h3 className="text-xl font-playfair text-off-white mb-2 group-hover:text-champagne-gold transition-colors">
+                  {section.title}
                 </h3>
+                
+                <p className="text-off-white/60 text-sm leading-relaxed">
+                  {section.description}
+                </p>
 
-                <label className="block">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0]
-                      if (file) handleImageUpload(image.section, file)
-                    }}
-                    className="hidden"
-                    disabled={uploadingSection === image.section}
-                  />
-                  <span className="block w-full text-center px-4 py-3 bg-gradient-to-r from-[#D4AF37] to-[#C5A028] text-black font-semibold rounded-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all cursor-pointer uppercase tracking-wider text-sm disabled:opacity-50">
-                    {uploadingSection === image.section ? (
-                      <span className="flex items-center justify-center gap-2">
-                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                        </svg>
-                        Uploading...
-                      </span>
-                    ) : (
-                      'Replace Image'
-                    )}
-                  </span>
-                </label>
-              </div>
-            </motion.div>
+                <div className="mt-6 flex items-center text-champagne-gold text-sm font-semibold group-hover:translate-x-2 transition-transform">
+                  Manage →
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
 
         {/* Instructions */}
-        <div className="mt-12 bg-[#D4AF37]/5 border border-[#D4AF37]/20 rounded-xl p-6">
-          <h3 className="text-[#D4AF37] font-semibold mb-3 text-lg">
-            📱 How to Use This Dashboard
+        <div className="bg-champagne-gold/5 border border-champagne-gold/20 rounded-xl p-6">
+          <h3 className="text-champagne-gold font-semibold mb-3 text-lg flex items-center gap-2">
+            <span>📱</span> Quick Guide
           </h3>
-          <ul className="text-[#F5F5F0]/70 space-y-2 text-sm md:text-base">
-            <li>• Click any &quot;Replace Image&quot; button to upload a new image</li>
-            <li>• Your phone camera will open (or file browser on desktop)</li>
-            <li>• Choose or take a photo - it will upload automatically</li>
-            <li>• Changes appear on the live website instantly</li>
-            <li>• Recommended: Use high-quality images (at least 1920px wide)</li>
+          <ul className="text-off-white/70 space-y-2 text-sm md:text-base">
+            <li>• <strong>Portfolio Manager:</strong> Upload model photos and manage your portfolio gallery</li>
+            <li>• <strong>Homepage Images:</strong> Update the hero banner and service card images</li>
+            <li>• <strong>Page Headers:</strong> Change background images for About, Services, Pricing, etc.</li>
+            <li>• All changes are instant - refresh the live site to see updates</li>
+            <li>• Works on mobile and desktop - tap to upload from your phone camera</li>
           </ul>
         </div>
       </div>
