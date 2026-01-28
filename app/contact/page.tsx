@@ -83,6 +83,7 @@ export default function ContactPage() {
             fill
             className="object-cover"
             priority
+            unoptimized
           />
           <div className="absolute inset-0 bg-deep-black/75" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
