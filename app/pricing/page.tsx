@@ -11,10 +11,33 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
+interface PricingRate {
+  id?: string
+  package_name: string
+  duration: string
+  price: number
+  description: string
+  features: string[]
+  is_featured: boolean
+  max_hours?: number
+  display_order?: number
+}
+
+interface BespokeExperience {
+  id?: string
+  experience_name: string
+  tagline: string
+  description: string
+  price_label: string
+  image_url: string
+  features: string[]
+  display_order?: number
+}
+
 export default function PricingPage() {
   const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2000')
-  const [pricingRates, setPricingRates] = useState<any[]>([])
-  const [bespokeExperiences, setBespokeExperiences] = useState<any[]>([])
+  const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
+  const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -237,7 +260,7 @@ export default function PricingPage() {
   )
 }
 
-function PricingCard({ rate, index }: { rate: typeof pricingRates[0]; index: number }) {
+function PricingCard({ rate, index }: { rate: PricingRate; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -335,7 +358,7 @@ function PricingCard({ rate, index }: { rate: typeof pricingRates[0]; index: num
   )
 }
 
-function BespokeCard({ experience, index }: { experience: typeof bespokeExperiences[0]; index: number }) {
+function BespokeCard({ experience, index }: { experience: BespokeExperience; index: number }) {
   const defaultImage = "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1200"
   return (
     <motion.div
