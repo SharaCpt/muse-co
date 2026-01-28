@@ -31,7 +31,7 @@ export default function HomePage() {
   const [images, setImages] = useState<Record<string, string>>({
     hero: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=2400',
     service_card_1: 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200',
-    service_card_2: 'https://images.unsplash.com/photo-1540039155733-5cbe8a88f0cd?q=80&w=1200',
+    service_card_2: 'https://images.unsplash.com/photo-1522255272218-7ac5249be344?q=80&w=1200',
     service_card_3: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200',
     service_card_4: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200',
   })
