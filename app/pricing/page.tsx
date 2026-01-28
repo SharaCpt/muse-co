@@ -155,8 +155,8 @@ export default function PricingPage() {
             transition={{ delay: 0.7 }}
             className="text-off-white/80 text-lg md:text-xl leading-relaxed font-light"
           >
-            Elite professionals and bespoke luxury experiences curated worldwide.<br className="hidden md:block" />
-            From intimate events to international brand activations. Luxury, discretion, excellence.
+            South Africa's most sophisticated companions and bespoke luxury experiences.<br className="hidden md:block" />
+            From intimate dinner dates to international travel. Elegance, discretion, excellence.
           </motion.p>
         </motion.div>
       </section>
