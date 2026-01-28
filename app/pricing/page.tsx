@@ -168,11 +168,16 @@ export default function PricingPage() {
             </p>
           </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {pricingRates.map((rate, index) => (
-            <PricingCard key={index} rate={rate} index={index} />
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {pricingRates.map((rate, index) => (
+              <PricingCard key={index} rate={rate} index={index} />
+            ))}
+          </div>
         </div>
+      </section>
+
+      {/* Bespoke Experiences */}
+      <section className="py-32 px-6 md:px-12 relative bg-gradient-to-b from-deep-black to-charcoal/20">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -189,11 +194,14 @@ export default function PricingPage() {
             </p>
           </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {bespokeExperiences.map((experience, index) => (
-            <BespokeCard key={index} experience={experience} index={index} />
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {bespokeExperiences.map((experience, index) => (
+              <BespokeCard key={index} experience={experience} index={index} />
+            ))}
+          </div>
         </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-32 px-6 bg-deep-black relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
