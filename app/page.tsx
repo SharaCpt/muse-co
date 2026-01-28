@@ -271,7 +271,7 @@ export default function HomePage() {
               Curated Experiences
             </h2>
             <p className="text-off-white/70 text-lg max-w-2xl mx-auto">
-              Tailored luxury staffing for the world's most discerning clientele
+              Bespoke companionship and private experiences for the world's most discerning clientele
             </p>
           </motion.div>
 
