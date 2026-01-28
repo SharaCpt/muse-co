@@ -155,7 +155,7 @@ export default function PricingPage() {
             transition={{ delay: 0.7 }}
             className="text-off-white/80 text-lg md:text-xl leading-relaxed font-light"
           >
-            South Africa's most sophisticated companions and bespoke luxury experiences.<br className="hidden md:block" />
+            The world's most sophisticated companions and bespoke luxury experiences.<br className="hidden md:block" />
             From intimate dinner dates to international travel. Elegance, discretion, excellence.
           </motion.p>
         </motion.div>
