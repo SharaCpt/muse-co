@@ -70,6 +70,7 @@ export default function HomePage() {
             src={images.hero}
             alt="Elite luxury companion services Cape Town"
             fill
+            unoptimized
             className="object-cover object-center"
             priority
           />
@@ -252,6 +253,7 @@ export default function HomePage() {
                     src={model.image}
                     alt={model.category}
                     fill
+                    unoptimized
                     className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/60 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500" />
@@ -482,6 +484,7 @@ export default function HomePage() {
             src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2400"
             alt="Luxury event background"
             fill
+            unoptimized
             className="object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-deep-black/80 to-deep-black" />
@@ -549,6 +552,7 @@ function ServiceCard({
           src={image}
           alt={title}
           fill
+          unoptimized
           className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/80 to-deep-black/40" />
