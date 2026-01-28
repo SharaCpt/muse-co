@@ -1,12 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Privacy Policy | MUSE & CO Elite Companions',
-  description: 'Privacy policy for MUSE & CO luxury companion services. How we protect your data and maintain discretion.',
-}
 
 export default function PrivacyPage() {
   return (

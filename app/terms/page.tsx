@@ -1,12 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Terms of Service | MUSE & CO Elite Companions',
-  description: 'Terms and conditions for MUSE & CO luxury companion services in Cape Town and worldwide.',
-}
 
 export default function TermsPage() {
   return (
