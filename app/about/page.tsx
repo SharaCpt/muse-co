@@ -2,6 +2,13 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About MUSE & CO | Elite Companion Agency Cape Town',
+  description: '13 years curating luxury companion experiences in Cape Town and worldwide. Premier VIP escort and elite travel companion services for discerning clients in South Africa.',
+  keywords: 'luxury companion Cape Town, elite escort agency, VIP companion services, high-class escort South Africa, executive companion',
+}
 
 export default function AboutPage() {
   return (
