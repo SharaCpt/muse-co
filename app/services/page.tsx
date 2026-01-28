@@ -27,7 +27,7 @@ export default function ServicesPage() {
             SERVICES
           </h1>
           <p className="text-off-white/70 font-inter tracking-wider text-lg">
-            ELITE LIFESTYLE MODELS • VIP STAFFING • LUXURY EXPERIENCES
+            ELITE LIFESTYLE MODELS • VIP STAFFING • GLOBAL LUXURY EXPERIENCES
           </p>
         </motion.div>
       </section>

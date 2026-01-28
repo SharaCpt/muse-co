@@ -44,34 +44,34 @@ const bespokeExperiences = [
   {
     experience_name: 'RIVIERA ESCAPE',
     tagline: 'Curated luxury coastal experiences',
-    description: 'Exclusive weekend getaways with South Africa\'s most sophisticated companions. Private villas, yacht charters, and bespoke itineraries along the Cape coast.',
+    description: 'Exclusive weekend getaways with the world\'s most sophisticated companions. Private villas, yacht charters, and bespoke itineraries from the Mediterranean to Cape Town\'s stunning coastline.',
     price_label: 'POA',
     image_url: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1200',
-    features: ['Private villa accommodation', 'Luxury yacht charter', 'Elite companion', 'Curated dining experiences', 'Complete travel coordination'],
+    features: ['Private villa accommodation worldwide', 'Luxury yacht charter', 'Elite companion', 'Curated dining experiences', 'Complete international travel coordination'],
   },
   {
     experience_name: 'YACHT WEEKEND',
     tagline: 'Ultimate maritime luxury',
-    description: 'Premium yacht experiences with professional companions. Multi-day charters featuring gourmet dining, water sports, and unforgettable coastal adventures.',
+    description: 'Premium yacht experiences with professional companions across the globe. Multi-day charters featuring gourmet dining, water sports, and unforgettable coastal adventures from Monaco to the Maldives.',
     price_label: 'POA',
     image_url: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
-    features: ['Private yacht charter', 'Professional crew', 'VIP companions', 'Gourmet catering', 'Water sports & activities'],
+    features: ['Private yacht charter globally', 'Professional crew', 'VIP companions', 'Gourmet catering', 'Water sports & activities'],
   },
   {
-    experience_name: 'SAFARI LUXURY',
+    experience_name: 'INTERNATIONAL SAFARI',
     tagline: 'Wilderness meets sophistication',
-    description: 'Exclusive safari experiences paired with elite companionship. Five-star lodges, private game drives, and curated bush experiences.',
+    description: 'Exclusive safari experiences paired with elite companionship. Five-star lodges, private game drives, and curated bush experiences across Africa and beyond.',
     price_label: 'POA',
     image_url: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1200',
-    features: ['5-star safari lodge', 'Private game drives', 'Elite travel companion', 'Fine dining', 'Complete safari coordination'],
+    features: ['5-star safari lodges worldwide', 'Private game drives', 'Elite travel companion', 'Fine dining experiences', 'Complete safari coordination'],
   },
   {
-    experience_name: 'CORPORATE RETREAT',
+    experience_name: 'GLOBAL CORPORATE RETREAT',
     tagline: 'Executive excellence redefined',
-    description: 'Bespoke corporate events and executive retreats with professional VIP staffing. From intimate boardroom meetings to luxury team-building experiences.',
+    description: 'Bespoke corporate events and executive retreats with professional VIP staffing anywhere in the world. From intimate boardroom meetings to luxury team-building experiences across continents.',
     price_label: 'POA',
     image_url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200',
-    features: ['VIP event staffing', 'Professional coordination', 'Luxury venue arrangements', 'Catering management', 'Discretion guaranteed'],
+    features: ['International VIP event staffing', 'Professional coordination worldwide', 'Luxury venue arrangements globally', 'Catering management', 'Discretion guaranteed'],
   },
 ]
 
@@ -145,8 +145,8 @@ export default function PricingPage() {
             transition={{ delay: 0.7 }}
             className="text-off-white/80 text-lg md:text-xl leading-relaxed font-light"
           >
-            Elite companionship with South Africa's most sophisticated models,<br className="hidden md:block" />
-            influencers, and public personalities. Luxury, discretion, excellence.
+            Elite professionals and bespoke luxury experiences curated worldwide.<br className="hidden md:block" />
+            From intimate events to international brand activations. Luxury, discretion, excellence.
           </motion.p>
         </motion.div>
       </section>

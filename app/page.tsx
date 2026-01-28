@@ -69,7 +69,7 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <p className="text-champagne-gold/80 text-sm tracking-[0.3em] mb-6 uppercase font-light">
-              Cape Town's Premier Agency
+              Global Luxury • Based in Cape Town
             </p>
           </motion.div>
           
@@ -97,8 +97,8 @@ export default function HomePage() {
             transition={{ duration: 1, delay: 1.2 }}
             className="text-off-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
           >
-            Curated female professionals for luxury brand launches, exclusive VIP experiences, and intimate private events. 
-            Cape Town's most sophisticated agency for discerning clientele seeking beauty, elegance, and absolute discretion.
+            Curating elite professionals and bespoke luxury experiences worldwide. From exclusive brand launches to private international events, 
+            we deliver beauty, elegance, and absolute discretion to discerning clientele across the globe.
           </motion.p>
 
           <motion.div

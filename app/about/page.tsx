@@ -45,7 +45,7 @@ export default function AboutPage() {
             </p>
 
             <p>
-              Based in <span className="text-champagne-gold font-semibold">Cape Town, South Africa</span>, MUSE & CO has become the trusted name for luxury brands, exclusive events, elite lifestyle experiences, and VIP venues across the region.
+              Based in <span className="text-champagne-gold font-semibold">Cape Town, South Africa</span>, MUSE & CO serves discerning clients <span className="text-champagne-gold font-semibold">worldwide</span>. From intimate gatherings in European villas to luxury brand activations across international markets, we curate exceptional experiences and elite staffing solutions globally.
             </p>
 
             <p>
@@ -65,10 +65,10 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-off-white/80 font-inter leading-relaxed">
               <p>
-                Founder and curator of MUSE & CO, Shara brings over a decade of expertise in lifestyle staffing and event curation. Her meticulous approach to matching clients with the perfect team has made MUSE & CO the go-to agency for Cape Town's most exclusive experiences.
+                Founder and curator of MUSE & CO, Shara brings over a decade of expertise in lifestyle staffing and international event curation. Her meticulous approach to matching clients with the perfect team has made MUSE & CO the go-to agency for exclusive experiences across continents.
               </p>
               <p>
-                From intimate villa gatherings to large-scale brand activations, Shara's commitment to excellence ensures every event exceeds expectations.
+                From intimate villa gatherings in the Mediterranean to large-scale brand activations worldwide, Shara's commitment to excellence and global network ensures every event exceeds expectations, wherever you are.
               </p>
             </div>
           </motion.div>
@@ -90,7 +90,7 @@ export default function AboutPage() {
               />
               <ValueCard
                 title="PROFESSIONAL"
-                description="13 years of experience delivering flawless service to Cape Town's most discerning clients."
+                description="13 years of experience delivering flawless service to discerning clients worldwide."
               />
               <ValueCard
                 title="DISCREET"
