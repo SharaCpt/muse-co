@@ -292,9 +292,9 @@ export default function HomePage() {
             
             <ServiceCard
               image="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200"
-              title="Brand Launches & Activations"
-              description="Make your brand unforgettable. Our sophisticated brand ambassadors embody luxury and elegance, creating powerful connections with your target audience at product launches and high-profile events."
-              features={["Luxury Brand Ambassadors", "Product Launch Models", "Fashion Show Coordination", "Corporate Event Hosting"]}
+              title="Elite Travel Companionship"
+              description="Sophisticated companions for business and leisure travel worldwide. Our refined models provide elegant companionship, cultural insight, and discretion for international journeys and exclusive destinations."
+              features={["International Travel Companions", "Executive Business Travel", "Luxury Destination Experiences", "VIP Airport & Event Escorts"]}
             />
             
             <ServiceCard
