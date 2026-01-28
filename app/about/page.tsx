@@ -37,19 +37,19 @@ export default function AboutPage() {
             className="space-y-6 text-off-white/80 font-inter leading-relaxed"
           >
             <p className="text-lg md:text-xl">
-              MUSE & CO was founded on the principle that luxury is in the details.
+              MUSE & CO was founded on the principle that true luxury is found in beauty, elegance, and unforgettable moments.
             </p>
             
             <p>
-              With over <span className="text-champagne-gold font-semibold">13 years of experience</span> in high-end event staffing and nightlife curation, we connect discerning clients with elite professionals who embody sophistication, discretion, and impeccable service.
+              With over <span className="text-champagne-gold font-semibold">13 years of experience</span> curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa's most beautiful and refined models, influencers, and private companions.
             </p>
 
             <p>
-              Based in <span className="text-champagne-gold font-semibold">Cape Town, South Africa</span>, MUSE & CO serves discerning clients <span className="text-champagne-gold font-semibold">worldwide</span>. From intimate gatherings in European villas to luxury brand activations across international markets, we curate exceptional experiences and elite staffing solutions globally.
+              Based in <span className="text-champagne-gold font-semibold">Cape Town, South Africa</span>, MUSE & CO serves high-net-worth individuals and exclusive clientele <span className="text-champagne-gold font-semibold">across the globe</span>. From intimate private gatherings to luxury international experiences, we curate bespoke encounters with exceptional women who embody grace, intelligence, and absolute discretion.
             </p>
 
             <p>
-              Whether you're launching a luxury brand, hosting an exclusive VIP event, seeking elite staffing for your venue, or curating a bespoke private experience, MUSE & CO delivers excellence without compromise.
+              Whether you're seeking a sophisticated companion for business travel, an elegant presence for exclusive events, or arranging long-term private experiences, MUSE & CO delivers unparalleled beauty and refinement.
             </p>
           </motion.div>
 
@@ -65,10 +65,10 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-off-white/80 font-inter leading-relaxed">
               <p>
-                Founder and curator of MUSE & CO, Shara brings over a decade of expertise in lifestyle staffing and international event curation. Her meticulous approach to matching clients with the perfect team has made MUSE & CO the go-to agency for exclusive experiences across continents.
+                Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional women has made MUSE & CO the premier choice for sophisticated companionship worldwide.
               </p>
               <p>
-                From intimate villa gatherings in the Mediterranean to large-scale brand activations worldwide, Shara's commitment to excellence and global network ensures every event exceeds expectations, wherever you are.
+                From intimate private encounters to exclusive international arrangements, Shara's commitment to beauty, elegance, and discretion ensures every experience is extraordinary, wherever in the world you may be.
               </p>
             </div>
           </motion.div>
@@ -86,11 +86,11 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <ValueCard
                 title="EXCLUSIVE"
-                description="Curated portfolio of elite professionals, handpicked for their talent and professionalism."
+                description="Curated portfolio of elite models and companions, handpicked for their beauty, intelligence, and sophistication."
               />
               <ValueCard
-                title="PROFESSIONAL"
-                description="13 years of experience delivering flawless service to discerning clients worldwide."
+                title="REFINED"
+                description="13 years of experience curating unforgettable encounters with the world's most elegant women."
               />
               <ValueCard
                 title="DISCREET"

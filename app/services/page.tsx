@@ -37,15 +37,15 @@ export default function ServicesPage() {
         <div className="max-w-6xl mx-auto space-y-24">
           {/* Luxury Concierge - FIRST */}
           <ServiceDetail
-            title="LUXURY CONCIERGE SERVICES"
+            title="LUXURY LIFESTYLE EXPERIENCES"
             image="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200"
-            description="Bespoke staffing for exclusive private experiences, luxury venues, and elite events. Our professionals deliver impeccable service with absolute discretion for the most discerning clients."
+            description="Exquisite models and sophisticated companions for exclusive private experiences and luxury occasions. Our elite women deliver beauty, elegance, and impeccable presence with absolute discretion."
             features={[
-              'Private villa and estate event staffing',
-              'Luxury yacht and boat party professionals',
-              'Golf event and tournament hostesses',
-              'VIP travel and executive companions',
-              'Champagne and caviar service specialists',
+              'Private villa and estate companions',
+              'Luxury yacht and coastal experience models',
+              'Golf and leisure event companions',
+              'VIP travel and executive companionship',
+              'Exclusive dinner and intimate gathering companions',
             ]}
             reverse={false}
           />
@@ -67,15 +67,15 @@ export default function ServicesPage() {
 
           {/* Nightlife */}
           <ServiceDetail
-            title="VIP NIGHTLIFE STAFFING"
+            title="VIP NIGHTLIFE EXPERIENCES"
             image="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200"
-            description="Transform your venue into Cape Town's most exclusive destination. Our elite VIP hostesses and entertainment staff bring sophistication, energy, and glamour to upscale clubs and private parties."
+            description="Elevate your evening with stunning models and charismatic companions. Our elite women bring sophistication, energy, and undeniable presence to exclusive clubs, private parties, and VIP experiences."
             features={[
-              'VIP hostesses and greeters',
-              'Professional go-go dancers and entertainers',
-              'Bottle service models',
-              'Event coordination for nightlife venues',
-              'Promotional teams for club events',
+              'VIP nightlife companions and models',
+              'Professional dancers and entertainers',
+              'Bottle service and table companions',
+              'Private party and club experiences',
+              'Exclusive event companions',
             ]}
             reverse={false}
           />

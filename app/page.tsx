@@ -97,8 +97,8 @@ export default function HomePage() {
             transition={{ duration: 1, delay: 1.2 }}
             className="text-off-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
           >
-            Curating elite professionals and bespoke luxury experiences worldwide. From exclusive brand launches to private international events, 
-            we deliver beauty, elegance, and absolute discretion to discerning clientele across the globe.
+            Curating South Africa's most beautiful models and sophisticated companions for luxury experiences worldwide. From intimate private encounters to exclusive international arrangements, 
+            we deliver unparalleled beauty, elegance, and absolute discretion to discerning clientele across the globe.
           </motion.p>
 
           <motion.div
@@ -163,13 +163,13 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Our Talent</p>
+            <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Our Models</p>
             <h2 className="font-playfair text-5xl md:text-7xl text-off-white mb-6 tracking-wide">
-              Elite Professionals
+              Elite Beauty
             </h2>
             <p className="text-off-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
-              Handpicked models and hostesses for luxury events, VIP experiences, and exclusive brand activations. 
-              Beauty, sophistication, and absolute discretion.
+              Exceptional models and sophisticated companions for luxury experiences, private arrangements, and exclusive international encounters. 
+              Beauty, intelligence, and absolute discretion.
             </p>
           </motion.div>
 
