@@ -227,7 +227,7 @@ export default function HomePage() {
                 description: "Professional elegance for corporate galas"
               },
               {
-                image: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?q=80&w=800",
+                image: "https://images.unsplash.com/photo-1540316264016-aeb7538f4d6f?q=80&w=800",
                 category: "Private Companion",
                 name: "Available on Request",
                 description: "Intimate elegance for discerning clientele"
