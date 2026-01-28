@@ -134,6 +134,46 @@ export default function AdminDashboard() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+        {/* Quick Links Section */}
+        <div className="mb-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a
+            href="/admin/dashboard/pricing-rates"
+            className="bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 border-2 border-[#D4AF37]/40 rounded-xl p-6 hover:border-[#D4AF37] transition-all group"
+          >
+            <h3 className="text-[#D4AF37] text-xl font-playfair mb-2 group-hover:scale-105 transition-transform">
+              Pricing Rates
+            </h3>
+            <p className="text-[#F5F5F0]/60 text-sm">
+              Manage standard hourly/daily rates
+            </p>
+          </a>
+
+          <a
+            href="/admin/dashboard/bespoke-experiences"
+            className="bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 border-2 border-[#D4AF37]/40 rounded-xl p-6 hover:border-[#D4AF37] transition-all group"
+          >
+            <h3 className="text-[#D4AF37] text-xl font-playfair mb-2 group-hover:scale-105 transition-transform">
+              Bespoke Experiences
+            </h3>
+            <p className="text-[#F5F5F0]/60 text-sm">
+              Manage luxury packages & experiences
+            </p>
+          </a>
+
+          <a
+            href="/pricing"
+            target="_blank"
+            className="bg-gradient-to-br from-[#D4AF37]/10 to-transparent border-2 border-[#D4AF37]/20 rounded-xl p-6 hover:border-[#D4AF37]/40 transition-all group"
+          >
+            <h3 className="text-[#F5F5F0] text-xl font-playfair mb-2 group-hover:scale-105 transition-transform">
+              View Pricing Page
+            </h3>
+            <p className="text-[#F5F5F0]/60 text-sm">
+              See how it looks live →
+            </p>
+          </a>
+        </div>
+
         <div className="mb-8">
           <h2 className="text-xl md:text-2xl font-semibold text-[#F5F5F0] mb-2">
             Manage Website Images
