@@ -20,7 +20,7 @@ const pricingRates = [
     price: 15000,
     description: 'Ideal for sophisticated dinner parties and private functions',
     features: ['Premium model or VIP hostess', 'Extended professional service', 'Elegant presence', 'Discretion guaranteed'],
-    is_featured: true,
+    is_featured: false,
   },
   {
     package_name: 'ELITE PACKAGE',
