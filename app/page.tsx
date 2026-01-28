@@ -402,9 +402,9 @@ export default function HomePage() {
                 role: "Luxury Hotel Manager"
               },
               {
-                quote: "The caliber of talent is exceptional. Our brand launches have never looked better. MUSE & CO brings that high-fashion editorial edge we need.",
-                author: "Isabella R.",
-                role: "Marketing Director"
+                quote: "From intimate gatherings to international arrangements, MUSE & CO delivers exceptional beauty and absolute discretion. Their refined companions truly understand the art of luxury companionship.",
+                author: "Alessandro M.",
+                role: "Private Client"
               }
             ].map((testimonial, index) => (
               <motion.div

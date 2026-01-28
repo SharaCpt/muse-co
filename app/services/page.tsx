@@ -35,26 +35,30 @@ export default function ServicesPage() {
   return (
     <main className="bg-deep-black pt-24">
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src={headerImage}
             alt="Elite Companion Services Cape Town - Luxury VIP Escort"
             fill
-            className="object-cover opacity-30"
+            className="object-cover"
+            priority
           />
-          <div className="absolute inset-0 bg-deep-black/70" />
+          <div className="absolute inset-0 bg-deep-black/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center px-6"
+          transition={{ duration: 0.8 }}
+          className="relative z-10 text-center px-6 max-w-4xl"
         >
-          <h1 className="font-playfair text-5xl md:text-7xl tracking-widest text-champagne-gold mb-4">
+          <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Curated Excellence</p>
+          <h1 className="font-playfair text-6xl md:text-8xl tracking-[0.2em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
             SERVICES
           </h1>
-          <p className="text-off-white/70 font-inter tracking-wider text-lg">
+          <p className="text-off-white/80 text-lg md:text-xl tracking-wide mb-8">
             ELITE LIFESTYLE MODELS • VIP STAFFING • GLOBAL LUXURY EXPERIENCES
           </p>
         </motion.div>

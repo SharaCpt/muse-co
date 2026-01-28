@@ -96,10 +96,11 @@ export default function PricingPage() {
             src={headerImage}
             alt="Luxury Companion Pricing - Elite Escort Rates Cape Town"
             fill
-            className="object-cover opacity-20"
+            className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-deep-black/60 to-deep-black" />
+          <div className="absolute inset-0 bg-deep-black/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
         </div>
 
         <motion.div
@@ -112,16 +113,16 @@ export default function PricingPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-champagne-gold/80 text-sm tracking-[0.3em] mb-6 uppercase font-light"
+            className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase"
           >
-            Curated Experiences
+            Curated Excellence
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="font-playfair text-6xl md:text-8xl tracking-[0.15em] text-off-white mb-8 luxury-text-shadow"
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="font-playfair text-6xl md:text-8xl tracking-[0.2em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]"
           >
             PRICING
           </motion.h1>
@@ -130,10 +131,9 @@ export default function PricingPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
-            className="text-off-white/80 text-lg md:text-xl leading-relaxed font-light"
+            className="text-off-white/80 text-lg md:text-xl tracking-wide mb-8"
           >
-            The world's most sophisticated companions and bespoke luxury experiences.<br className="hidden md:block" />
-            From intimate dinner dates to international travel. Elegance, discretion, excellence.
+            Elite Companionship • Bespoke Arrangements • Worldwide Excellence
           </motion.p>
         </motion.div>
       </section>
