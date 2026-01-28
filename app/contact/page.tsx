@@ -52,8 +52,8 @@ export default function ContactPage() {
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1551431009-a802eeec77b1?q=80&w=2000"
-            alt="Contact"
+            src={headerImage}
+            alt="Contact MUSE & CO - Book Elite Companion Services Cape Town"
             fill
             className="object-cover opacity-30"
           />

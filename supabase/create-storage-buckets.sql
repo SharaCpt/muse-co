@@ -40,14 +40,14 @@ ON storage.objects FOR SELECT
 TO public
 USING (bucket_id = 'portfolio');
 
-CREATE POLICY "Authenticated users can upload to Portfolio"
+CREATE POLICY "Anyone can upload to Portfolio"
 ON storage.objects FOR INSERT
-TO authenticated
+TO public
 WITH CHECK (bucket_id = 'portfolio');
 
-CREATE POLICY "Authenticated users can delete from Portfolio"
+CREATE POLICY "Anyone can delete from Portfolio"
 ON storage.objects FOR DELETE
-TO authenticated
+TO public
 USING (bucket_id = 'portfolio');
 
 CREATE POLICY "Public Access to Homepage Images"
@@ -55,14 +55,14 @@ ON storage.objects FOR SELECT
 TO public
 USING (bucket_id = 'homepage');
 
-CREATE POLICY "Authenticated users can upload to Homepage"
+CREATE POLICY "Anyone can upload to Homepage"
 ON storage.objects FOR INSERT
-TO authenticated
+TO public
 WITH CHECK (bucket_id = 'homepage');
 
-CREATE POLICY "Authenticated users can delete from Homepage"
+CREATE POLICY "Anyone can delete from Homepage"
 ON storage.objects FOR DELETE
-TO authenticated
+TO public
 USING (bucket_id = 'homepage');
 
 CREATE POLICY "Public Access to Header Images"
@@ -70,12 +70,12 @@ ON storage.objects FOR SELECT
 TO public
 USING (bucket_id = 'headers');
 
-CREATE POLICY "Authenticated users can upload to Headers"
+CREATE POLICY "Anyone can upload to Headers"
 ON storage.objects FOR INSERT
-TO authenticated
+TO public
 WITH CHECK (bucket_id = 'headers');
 
-CREATE POLICY "Authenticated users can delete from Headers"
+CREATE POLICY "Anyone can delete from Headers"
 ON storage.objects FOR DELETE
-TO authenticated
+TO public
 USING (bucket_id = 'headers');

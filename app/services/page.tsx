@@ -2,16 +2,44 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
 export default function ServicesPage() {
+  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2000')
+
+  useEffect(() => {
+    fetchHeaderImage()
+  }, [])
+
+  async function fetchHeaderImage() {
+    try {
+      const { data, error } = await supabase
+        .from('page_headers')
+        .select('image_url')
+        .eq('page_name', 'services')
+        .single()
+
+      if (error) throw error
+      if (data) setHeaderImage(data.image_url)
+    } catch (error) {
+      console.error('Error fetching header:', error)
+    }
+  }
+
   return (
     <main className="bg-deep-black pt-24">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000"
-            alt="Services"
+            src={headerImage}
+            alt="Elite Companion Services Cape Town - Luxury VIP Escort"
             fill
             className="object-cover opacity-30"
           />

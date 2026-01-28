@@ -3,7 +3,20 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
+
+interface HomepageImage {
+  id: string
+  section: string
+  image_url: string
+  alt_text: string | null
+}
 
 export default function HomePage() {
   const heroRef = useRef(null)
@@ -15,6 +28,38 @@ export default function HomePage() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2])
 
+  const [images, setImages] = useState<Record<string, string>>({
+    hero: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=2400',
+    service_card_1: 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200',
+    service_card_2: 'https://images.unsplash.com/photo-1540039155733-5cbe8a88f0cd?q=80&w=1200',
+    service_card_3: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200',
+    service_card_4: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200',
+  })
+
+  useEffect(() => {
+    fetchImages()
+  }, [])
+
+  async function fetchImages() {
+    try {
+      const { data, error } = await supabase
+        .from('homepage_images')
+        .select('*')
+
+      if (error) throw error
+
+      if (data && data.length > 0) {
+        const imageMap: Record<string, string> = {}
+        data.forEach((img: HomepageImage) => {
+          imageMap[img.section] = img.image_url
+        })
+        setImages(prev => ({ ...prev, ...imageMap }))
+      }
+    } catch (error) {
+      console.error('Error fetching homepage images:', error)
+    }
+  }
+
   return (
     <main className="bg-deep-black">
       {/* Hero Section - Ultra Premium */}
@@ -22,8 +67,8 @@ export default function HomePage() {
         {/* Parallax Background */}
         <motion.div style={{ scale }} className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=2400"
-            alt="Elite fashion model"
+            src={images.hero}
+            alt="Elite luxury companion services Cape Town"
             fill
             className="object-cover object-center"
             priority
@@ -277,28 +322,28 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ServiceCard
-              image="https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200"
+              image={images.service_card_1}
               title="VIP Nightlife & Events"
               description="Transform your venue into an exclusive destination. Our elite VIP hostesses bring sophistication and magnetic energy to Cape Town's most prestigious clubs, galas, and private celebrations."
               features={["Elite VIP Hostesses", "Professional Bottle Service", "Event Entertainment", "Private Party Staffing"]}
             />
             
             <ServiceCard
-              image="https://images.unsplash.com/photo-1540039155733-5cbe8a88f0cd?q=80&w=1200"
+              image={images.service_card_2}
               title="Luxury Concierge Services"
               description="Elevated experiences for yachts, villas, and exclusive estates. Our lifestyle models provide sophisticated companionship and professional service for your most intimate gatherings."
               features={["Yacht Staffing & Models", "Private Villa Events", "Golf Event Hostesses", "Executive Companions"]}
             />
             
             <ServiceCard
-              image="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200"
+              image={images.service_card_3}
               title="Elite Travel Companionship"
               description="Sophisticated companions for business and leisure travel worldwide. Our refined models provide elegant companionship, cultural insight, and discretion for international journeys and exclusive destinations."
               features={["International Travel Companions", "Executive Business Travel", "Luxury Destination Experiences", "VIP Airport & Event Escorts"]}
             />
             
             <ServiceCard
-              image="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200"
+              image={images.service_card_4}
               title="Bespoke Private Events"
               description="Personalized elegance for your exclusive occasions. From intimate dinner parties to grand celebrations, our hand-selected professionals ensure every detail exceeds expectations."
               features={["Private Dinner Hosting", "Luxury Party Staffing", "VIP Guest Services", "Personalized Experiences"]}

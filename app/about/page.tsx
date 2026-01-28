@@ -2,23 +2,44 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import type { Metadata } from 'next'
+import { useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
 
-export const metadata: Metadata = {
-  title: 'About MUSE & CO | Elite Companion Agency Cape Town',
-  description: '13 years curating luxury companion experiences in Cape Town and worldwide. Premier VIP escort and elite travel companion services for discerning clients in South Africa.',
-  keywords: 'luxury companion Cape Town, elite escort agency, VIP companion services, high-class escort South Africa, executive companion',
-}
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
 export default function AboutPage() {
+  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1519167758481-83f29da8c14c?q=80&w=2000')
+
+  useEffect(() => {
+    fetchHeaderImage()
+  }, [])
+
+  async function fetchHeaderImage() {
+    try {
+      const { data, error } = await supabase
+        .from('page_headers')
+        .select('image_url')
+        .eq('page_name', 'about')
+        .single()
+
+      if (error) throw error
+      if (data) setHeaderImage(data.image_url)
+    } catch (error) {
+      console.error('Error fetching header:', error)
+    }
+  }
+
   return (
     <main className="bg-deep-black pt-24">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1519167758481-83f29da8c14c?q=80&w=2000"
-            alt="About MUSE & CO"
+            src={headerImage}
+            alt="About MUSE & CO - Elite Companion Agency Cape Town"
             fill
             className="object-cover opacity-30"
           />

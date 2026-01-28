@@ -3,6 +3,35 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
+
+export default function PricingPage() {
+  const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2000')
+
+  useEffect(() => {
+    fetchHeaderImage()
+  }, [])
+
+  async function fetchHeaderImage() {
+    try {
+      const { data, error } = await supabase
+        .from('page_headers')
+        .select('image_url')
+        .eq('page_name', 'pricing')
+        .single()
+
+      if (error) throw error
+      if (data) setHeaderImage(data.image_url)
+    } catch (error) {
+      console.error('Error fetching header:', error)
+    }
+  }
 
 // Hardcoded pricing data - easy to edit!
 const pricingRates = [
@@ -84,8 +113,8 @@ export default function PricingPage() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1582719471137-c3967ffb0c42?q=80&w=2400"
-            alt="Luxury pricing"
+            src={headerImage}
+            alt="Luxury Companion Pricing - Elite Escort Rates Cape Town"
             fill
             className="object-cover opacity-20"
             priority
