@@ -50,17 +50,17 @@ export default function ServicesPage() {
             reverse={false}
           />
 
-          {/* Brand Launches & Events */}
+          {/* Exclusive Private Arrangements */}
           <ServiceDetail
-            title="LUXURY BRAND LAUNCHES"
-            image="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200"
-            description="Elevate your brand with stunning female professionals who embody luxury. From intimate product reveals to high-profile fashion events and VIP activations, we provide elite staff who enhance your brand aesthetic."
+            title="EXCLUSIVE PRIVATE ARRANGEMENTS"
+            image="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200"
+            description="Bespoke long-term arrangements for discerning clients seeking sophisticated companionship. From ongoing business travel to extended private experiences, we curate exclusive relationships built on trust, elegance, and absolute discretion."
             features={[
-              'Luxury brand activations and product launches',
-              'Fashion events and runway support',
-              'VIP corporate functions and galas',
-              'Brand ambassador programs',
-              'Professional promotional models',
+              'Long-term companionship for business executives and travelers',
+              'Extended international travel companions',
+              'Ongoing private event curation and lifestyle management',
+              'Discreet VIP arrangement coordination',
+              'Tailored experiences for high-net-worth individuals',
             ]}
             reverse={true}
           />
