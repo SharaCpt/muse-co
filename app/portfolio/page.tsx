@@ -63,10 +63,6 @@ export default function PortfolioPage() {
     }
   }
 
-  const [filter, setFilter] = useState('all')
-
-  const filteredModels = filter === 'all' 
-    ? models 
   const filteredModels = filter === 'all' 
     ? models 
     : models.filter(m => m.category.toLowerCase() === filter.toLowerCase())
