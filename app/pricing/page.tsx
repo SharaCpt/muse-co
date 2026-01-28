@@ -13,9 +13,13 @@ const supabase = createClient(
 
 export default function PricingPage() {
   const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2000')
+  const [pricingRates, setPricingRates] = useState<any[]>([])
+  const [bespokeExperiences, setBespokeExperiences] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetchHeaderImage()
+    fetchPricingData()
   }, [])
 
   async function fetchHeaderImage() {
@@ -33,79 +37,32 @@ export default function PricingPage() {
     }
   }
 
-// Hardcoded pricing data - easy to edit!
-const pricingRates = [
-  {
-    package_name: 'EXCLUSIVE HOUR',
-    duration: '1 Hour',
-    price: 8000,
-    description: 'Perfect for intimate gatherings and brief exclusive events',
-    features: ['Elite model or hostess', 'Professional presentation', 'Absolute discretion', 'Premium service'],
-    is_featured: false,
-  },
-  {
-    package_name: 'PREMIUM EXPERIENCE',
-    duration: '2 Hours',
-    price: 15000,
-    description: 'Ideal for sophisticated dinner parties and private functions',
-    features: ['Premium model or VIP hostess', 'Extended professional service', 'Elegant presence', 'Discretion guaranteed'],
-    is_featured: false,
-  },
-  {
-    package_name: 'ELITE PACKAGE',
-    duration: '5 Hours',
-    price: 30000,
-    description: 'Comprehensive coverage for exclusive events and luxury occasions',
-    features: ['Top-tier model or hostess', 'Full event support', 'VIP treatment', 'Complete professionalism'],
-    is_featured: false,
-  },
-  {
-    package_name: 'FULL DAY LUXURY',
-    duration: 'Up to 12 Hours',
-    price: 45000,
-    description: 'Ultimate luxury experience for all-day events and private engagements',
-    features: ['Elite companion or VIP staffing', 'Complete day coverage', 'Luxury service excellence', 'Unmatched discretion'],
-    is_featured: false,
-    max_hours: 12,
-  },
-]
+  async function fetchPricingData() {
+    try {
+      // Fetch pricing rates
+      const { data: rates, error: ratesError } = await supabase
+        .from('pricing_rates')
+        .select('*')
+        .order('display_order', { ascending: true })
 
-const bespokeExperiences = [
-  {
-    experience_name: 'RIVIERA ESCAPE',
-    tagline: 'Curated luxury coastal experiences',
-    description: 'Exclusive weekend getaways with the world\'s most sophisticated companions. Private villas, yacht charters, and bespoke itineraries from the Mediterranean to Cape Town\'s stunning coastline.',
-    price_label: 'POA',
-    image_url: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1200',
-    features: ['Private villa accommodation worldwide', 'Luxury yacht charter', 'Elite companion', 'Curated dining experiences', 'Complete international travel coordination'],
-  },
-  {
-    experience_name: 'YACHT WEEKEND',
-    tagline: 'Ultimate maritime luxury',
-    description: 'Premium yacht experiences with professional companions across the globe. Multi-day charters featuring gourmet dining, water sports, and unforgettable coastal adventures from Monaco to the Maldives.',
-    price_label: 'POA',
-    image_url: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
-    features: ['Private yacht charter globally', 'Professional crew', 'VIP companions', 'Gourmet catering', 'Water sports & activities'],
-  },
-  {
-    experience_name: 'INTERNATIONAL SAFARI',
-    tagline: 'Wilderness meets sophistication',
-    description: 'Exclusive safari experiences paired with elite companionship. Five-star lodges, private game drives, and curated bush experiences across Africa and beyond.',
-    price_label: 'POA',
-    image_url: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1200',
-    features: ['5-star safari lodges worldwide', 'Private game drives', 'Elite travel companion', 'Fine dining experiences', 'Complete safari coordination'],
-  },
-  {
-    experience_name: 'GLOBAL CORPORATE RETREAT',
-    tagline: 'Executive excellence redefined',
-    description: 'Bespoke corporate events and executive retreats with professional VIP staffing anywhere in the world. From intimate boardroom meetings to luxury team-building experiences across continents.',
-    price_label: 'POA',
-    image_url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200',
-    features: ['International VIP event staffing', 'Professional coordination worldwide', 'Luxury venue arrangements globally', 'Catering management', 'Discretion guaranteed'],
-  },
-]
+      if (ratesError) throw ratesError
 
-export default function PricingPage() {
+      // Fetch bespoke experiences
+      const { data: experiences, error: experiencesError } = await supabase
+        .from('bespoke_experiences')
+        .select('*')
+        .order('display_order', { ascending: true })
+
+      if (experiencesError) throw experiencesError
+
+      setPricingRates(rates || [])
+      setBespokeExperiences(experiences || [])
+    } catch (error) {
+      console.error('Error fetching pricing:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <main className="bg-deep-black pt-24">
