@@ -25,18 +25,19 @@ const pricingRates = [
   {
     package_name: 'ELITE PACKAGE',
     duration: '5 Hours',
-    price: 20000,
+    price: 30000,
     description: 'Comprehensive coverage for exclusive events and luxury occasions',
     features: ['Top-tier model or hostess', 'Full event support', 'VIP treatment', 'Complete professionalism'],
     is_featured: false,
   },
   {
     package_name: 'FULL DAY LUXURY',
-    duration: 'Full Day',
-    price: 30000,
+    duration: 'Up to 12 Hours',
+    price: 45000,
     description: 'Ultimate luxury experience for all-day events and private engagements',
     features: ['Elite companion or VIP staffing', 'Complete day coverage', 'Luxury service excellence', 'Unmatched discretion'],
     is_featured: false,
+    max_hours: 12,
   },
 ]
 
@@ -275,6 +276,13 @@ function PricingCard({ rate, index }: { rate: typeof pricingRates[0]; index: num
         {rate.is_featured && (
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-champagne-gold to-yellow-600 text-deep-black text-xs font-bold tracking-wider px-6 py-1.5 shadow-lg">
             MOST POPULAR
+          </div>
+        )}
+
+        {/* 12 Hour max badge - subtle */}
+        {rate.max_hours && (
+          <div className="absolute top-4 right-4 text-champagne-gold/20 text-xs tracking-wider font-light">
+            MAX {rate.max_hours}H
           </div>
         )}
 
