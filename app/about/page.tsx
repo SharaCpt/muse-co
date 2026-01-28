@@ -10,17 +10,39 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-// Reliable header image - elegant emerald aesthetic
-const HEADER_IMAGE = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
+// Default header image
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
 
 export default function AboutPage() {
+  const [headerImage, setHeaderImage] = useState(DEFAULT_HEADER)
+
+  useEffect(() => {
+    fetchHeaderImage()
+  }, [])
+
+  async function fetchHeaderImage() {
+    try {
+      const { data, error } = await supabase
+        .from('site_images')
+        .select('image_url')
+        .eq('id', 'header_about')
+        .single()
+
+      if (data?.image_url) {
+        setHeaderImage(data.image_url)
+      }
+    } catch (error) {
+      // Use default
+    }
+  }
+
   return (
     <main className="bg-deep-black pt-24">
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={HEADER_IMAGE}
+            src={headerImage}
             alt="About MUSE & CO - Elite Companion Agency Cape Town"
             fill
             className="object-cover"

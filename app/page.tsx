@@ -11,11 +11,10 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-interface HomepageImage {
+interface SiteImage {
   id: string
   section: string
   image_url: string
-  alt_text: string | null
 }
 
 export default function HomePage() {
@@ -36,27 +35,49 @@ export default function HomePage() {
     service_card_4: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200',
   })
 
+  const [modelImages, setModelImages] = useState({
+    model_card_1: 'https://images.unsplash.com/photo-1612874470096-d93a610de87b?q=80&w=800',
+    model_card_2: 'https://images.unsplash.com/photo-1540316264016-aeb7538f4d6f?q=80&w=800',
+    model_card_3: 'https://images.unsplash.com/photo-1604004555489-723a93d6ce74?q=80&w=800',
+  })
+
   useEffect(() => {
     fetchImages()
   }, [])
 
   async function fetchImages() {
     try {
+      // Fetch from site_images table
       const { data, error } = await supabase
-        .from('homepage_images')
+        .from('site_images')
         .select('*')
+        .eq('page', 'Homepage')
 
       if (error) throw error
 
       if (data && data.length > 0) {
-        const imageMap: Record<string, string> = {}
-        data.forEach((img: HomepageImage) => {
-          imageMap[img.section] = img.image_url
+        const serviceImages: Record<string, string> = {}
+        const modelImgs: Record<string, string> = {}
+        
+        data.forEach((img: SiteImage) => {
+          if (img.section === 'hero') {
+            serviceImages.hero = img.image_url
+          } else if (img.section.startsWith('service_card_')) {
+            serviceImages[img.section] = img.image_url
+          } else if (img.section.startsWith('model_card_')) {
+            modelImgs[img.section] = img.image_url
+          }
         })
-        setImages(prev => ({ ...prev, ...imageMap }))
+        
+        if (Object.keys(serviceImages).length > 0) {
+          setImages(prev => ({ ...prev, ...serviceImages }))
+        }
+        if (Object.keys(modelImgs).length > 0) {
+          setModelImages(prev => ({ ...prev, ...modelImgs }))
+        }
       }
     } catch (error) {
-      console.error('Error fetching homepage images:', error)
+      console.error('Error fetching site images:', error)
     }
   }
 
@@ -222,19 +243,19 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                image: "https://images.unsplash.com/photo-1612874470096-d93a610de87b?q=80&w=800",
+                image: modelImages.model_card_1,
                 category: "Event Hostess",
                 name: "Available on Request",
                 description: "Professional elegance for corporate galas"
               },
               {
-                image: "https://images.unsplash.com/photo-1540316264016-aeb7538f4d6f?q=80&w=800",
+                image: modelImages.model_card_2,
                 category: "Private Companion",
                 name: "Available on Request",
                 description: "Intimate elegance for discerning clientele"
               },
               {
-                image: "https://images.unsplash.com/photo-1604004555489-723a93d6ce74?q=80&w=800",
+                image: modelImages.model_card_3,
                 category: "VIP Hostess",
                 name: "Available on Request",
                 description: "Exclusive companionship for high-profile events"

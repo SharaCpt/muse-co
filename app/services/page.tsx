@@ -10,17 +10,52 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-// Reliable header image - elegant woman in luxury setting
-const HEADER_IMAGE = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
+// Default images
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
+const DEFAULT_IMAGES = {
+  luxury_lifestyle: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
+  private_arrangements: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200',
+  nightlife: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200',
+}
 
 export default function ServicesPage() {
+  const [headerImage, setHeaderImage] = useState(DEFAULT_HEADER)
+  const [serviceImages, setServiceImages] = useState(DEFAULT_IMAGES)
+
+  useEffect(() => {
+    fetchImages()
+  }, [])
+
+  async function fetchImages() {
+    try {
+      const { data, error } = await supabase
+        .from('site_images')
+        .select('*')
+        .in('page', ['Services', 'Headers'])
+
+      if (error) throw error
+
+      if (data && data.length > 0) {
+        data.forEach((img: any) => {
+          if (img.section === 'services' && img.page === 'Headers') {
+            setHeaderImage(img.image_url)
+          } else if (img.page === 'Services') {
+            setServiceImages(prev => ({ ...prev, [img.section]: img.image_url }))
+          }
+        })
+      }
+    } catch (error) {
+      console.error('Error fetching images:', error)
+    }
+  }
+
   return (
     <main className="bg-deep-black pt-24">
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={HEADER_IMAGE}
+            src={headerImage}
             alt="Elite Companion Services Cape Town - Luxury VIP Escort"
             fill
             className="object-cover"
@@ -53,7 +88,7 @@ export default function ServicesPage() {
           {/* Luxury Concierge - FIRST */}
           <ServiceDetail
             title="LUXURY LIFESTYLE EXPERIENCES"
-            image="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200"
+            image={serviceImages.luxury_lifestyle}
             description="Exquisite models and sophisticated companions for exclusive private experiences and luxury occasions. Our elite women deliver beauty, elegance, and impeccable presence with absolute discretion."
             features={[
               'Private villa and estate companions',
@@ -68,7 +103,7 @@ export default function ServicesPage() {
           {/* Exclusive Private Arrangements */}
           <ServiceDetail
             title="EXCLUSIVE PRIVATE ARRANGEMENTS"
-            image="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200"
+            image={serviceImages.private_arrangements}
             description="Bespoke long-term arrangements for discerning clients seeking sophisticated companionship. From ongoing business travel to extended private experiences, we curate exclusive relationships built on trust, elegance, and absolute discretion."
             features={[
               'Long-term companionship for business executives and travelers',
@@ -83,7 +118,7 @@ export default function ServicesPage() {
           {/* Nightlife */}
           <ServiceDetail
             title="VIP NIGHTLIFE EXPERIENCES"
-            image="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200"
+            image={serviceImages.nightlife}
             description="Elevate your evening with stunning models and charismatic companions. Our elite women bring sophistication, energy, and undeniable presence to exclusive clubs, private parties, and VIP experiences."
             features={[
               'VIP nightlife companions and models',

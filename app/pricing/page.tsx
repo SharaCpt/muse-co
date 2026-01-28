@@ -34,17 +34,35 @@ interface BespokeExperience {
   display_order?: number
 }
 
+// Default header image
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
+
 export default function PricingPage() {
-  // Reliable header image - elegant emerald aesthetic (same as portfolio)
-  const HEADER_IMAGE = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
-  
+  const [headerImage, setHeaderImage] = useState(DEFAULT_HEADER)
   const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
   const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetchPricingData()
+    fetchHeaderImage()
   }, [])
+
+  async function fetchHeaderImage() {
+    try {
+      const { data, error } = await supabase
+        .from('site_images')
+        .select('image_url')
+        .eq('id', 'header_pricing')
+        .single()
+
+      if (data?.image_url) {
+        setHeaderImage(data.image_url)
+      }
+    } catch (error) {
+      // Use default
+    }
+  }
 
   async function fetchPricingData() {
     try {
@@ -79,7 +97,7 @@ export default function PricingPage() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={HEADER_IMAGE}
+            src={headerImage}
             alt="Luxury Companion Pricing - Elite Escort Rates Cape Town"
             fill
             className="object-cover"

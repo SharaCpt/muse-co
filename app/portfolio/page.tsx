@@ -19,17 +19,35 @@ interface PortfolioImage {
   display_order: number
 }
 
-// Reliable header image - the stunning emerald aesthetic everyone loves
-const HEADER_IMAGE = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
+// Default header image
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
 
 export default function PortfolioPage() {
+  const [headerImage, setHeaderImage] = useState(DEFAULT_HEADER)
   const [filter, setFilter] = useState('all')
   const [models, setModels] = useState<PortfolioImage[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetchPortfolioImages()
+    fetchHeaderImage()
   }, [])
+
+  async function fetchHeaderImage() {
+    try {
+      const { data, error } = await supabase
+        .from('site_images')
+        .select('image_url')
+        .eq('id', 'header_portfolio')
+        .single()
+
+      if (data?.image_url) {
+        setHeaderImage(data.image_url)
+      }
+    } catch (error) {
+      // Use default
+    }
+  }
 
   async function fetchPortfolioImages() {
     try {
@@ -60,7 +78,7 @@ export default function PortfolioPage() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={HEADER_IMAGE}
+            src={headerImage}
             alt="Elite Portfolio"
             fill
             className="object-cover"

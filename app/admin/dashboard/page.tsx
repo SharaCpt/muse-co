@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ImagePlus, Image as ImageIcon, Layout, LogOut } from 'lucide-react'
+import { ImagePlus, Image as ImageIcon, LogOut } from 'lucide-react'
 
 export default function AdminDashboard() {
   const router = useRouter()
@@ -26,17 +26,10 @@ export default function AdminDashboard() {
       color: 'from-champagne-gold to-yellow-600'
     },
     {
-      title: 'Homepage Images',
-      description: 'Manage hero and service card images',
-      icon: Layout,
-      href: '/admin/dashboard/homepage-images',
-      color: 'from-champagne-gold to-yellow-500'
-    },
-    {
-      title: 'Page Headers',
-      description: 'Update header backgrounds for all pages',
+      title: 'Site Images',
+      description: 'Replace images across all pages',
       icon: ImageIcon,
-      href: '/admin/dashboard/page-headers',
+      href: '/admin/dashboard/site-images',
       color: 'from-yellow-600 to-champagne-gold'
     },
   ]
