@@ -72,7 +72,7 @@ export default function RootLayout({
     name: 'MUSE & CO',
     description: 'Premier luxury companion and elite escort services in Cape Town, South Africa',
     url: 'https://museco.co.za',
-    telephone: '+27-79-898-8555',
+    telephone: '+27-60-776-9793',
     priceRange: 'R$$$',
     address: {
       '@type': 'PostalAddress',

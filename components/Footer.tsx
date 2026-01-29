@@ -14,7 +14,7 @@ export default function Footer() {
               MUSE & CO
             </h3>
             <p className="text-off-white/60 text-sm font-inter leading-relaxed">
-              Elite lifestyle staffing & concierge services. 13 years of excellence in Cape Town.
+              Elite lifestyle staffing & concierge services. 15 years of excellence in Cape Town.
             </p>
           </div>
 
@@ -46,7 +46,7 @@ export default function Footer() {
             </h4>
             <div className="flex items-center space-x-4 mb-6">
               <a
-                href="#"
+                href="https://www.instagram.com/musaboratories"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-champagne-gold hover:text-champagne-gold/80 transition-smooth text-2xl"
