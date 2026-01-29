@@ -289,51 +289,16 @@ function PricingCard({ rate, index }: { rate: PricingRate; index: number }) {
           </h3>
 
           {/* Price with gradient effect */}
-          <div className="mb-6">
+          <div className="flex-grow flex items-center justify-center">
             <motion.div 
-              whileHover={{ scale: 1.1 }}
-              className="inline-block"
+              whileHover={{ scale: 1.05 }}
+              className="inline-block text-center"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-champagne-gold via-yellow-400 to-champagne-gold text-6xl font-light">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-champagne-gold via-yellow-400 to-champagne-gold text-6xl md:text-7xl font-light">
                 R{rate.price.toLocaleString('en-ZA')}
               </span>
             </motion.div>
           </div>
-
-          {/* Description */}
-          <p className="text-off-white/70 text-sm leading-relaxed mb-8 font-light">
-            {rate.description}
-          </p>
-
-          {/* Features */}
-          <ul className="space-y-3 mb-8 flex-grow">
-            {rate.features.map((feature, i) => (
-              <motion.li 
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 + i * 0.1 }}
-                className="flex items-start text-off-white/80 text-sm"
-              >
-                <span className="text-champagne-gold mr-3 mt-1 text-lg">✓</span>
-                <span className="font-light">{feature}</span>
-              </motion.li>
-            ))}
-          </ul>
-
-          {/* CTA Button */}
-          <Link
-            href="/contact"
-            className="relative block text-center py-4 bg-gradient-to-r from-champagne-gold/10 to-champagne-gold/5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-wider text-sm font-semibold overflow-hidden group/btn"
-          >
-            <span className="relative z-10">BOOK NOW</span>
-            <motion.div
-              className="absolute inset-0 bg-champagne-gold"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: '0%' }}
-              transition={{ duration: 0.3 }}
-            />
-          </Link>
         </div>
       </div>
     </motion.div>
