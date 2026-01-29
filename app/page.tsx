@@ -33,7 +33,7 @@ export default function HomePage() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2])
 
   const [images, setImages] = useState<Record<string, string>>({
-    hero: 'https://images.unsplash.com/photo-1754751477999-821708330f79?q=80&w=2400',
+    hero: 'https://images.unsplash.com/flagged/photo-1556151994-b611e5ab3675?q=80&w=2400',
     service_card_1: 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200',
     service_card_2: 'https://images.unsplash.com/photo-1522255272218-7ac5249be344?q=80&w=1200',
     service_card_3: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200',
