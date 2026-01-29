@@ -12,7 +12,7 @@ const supabase = createClient(
 )
 
 // Default header image
-const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1647428028787-e004b0d00775?q=80&w=2000'
 
 interface SiteContent {
   id: string

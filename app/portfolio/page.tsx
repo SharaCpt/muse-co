@@ -28,7 +28,7 @@ interface SiteContent {
 }
 
 // Default header image
-const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1557244056-ac3033d17d9a?q=80&w=2000'
 
 export default function PortfolioPage() {
   const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
