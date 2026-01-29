@@ -346,9 +346,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ServiceCard
               image={images.service_card_1}
-              title="VIP Nightlife & Events"
-              description="Transform your venue into an exclusive destination. Our elite VIP hostesses bring sophistication and magnetic energy to Cape Town's most prestigious clubs, galas, and private celebrations."
-              features={["Elite VIP Hostesses", "Professional Bottle Service", "Event Entertainment", "Private Party Staffing"]}
+              title="VIP Nightlife & Private Entertainment"
+              description="Transform any setting into an exclusive destination. From luxury clubs and grand galas to private estates and intimate villa gatherings, our sophisticated entertainers bring magnetic energy and refined allure to your most discreet celebrations."
+              features={["Elite VIP Hostesses & Entertainers", "Professional Casino Dealers (Topless Available)", "Sophisticated Exotic Performances", "Private Estate & Villa Events", "Premium Bottle Service", "Bespoke Adult Entertainment"]}
             />
             
             <ServiceCard
@@ -362,7 +362,7 @@ export default function HomePage() {
               image={images.service_card_3}
               title="Elite Travel Companionship"
               description="Sophisticated companions for business and leisure travel worldwide. Our refined models provide elegant companionship, cultural insight, and discretion for international journeys and exclusive destinations."
-              features={["International Travel Companions", "Executive Business Travel", "Luxury Destination Experiences", "VIP Airport & Event Escorts"]}
+              features={["International Travel Companions", "Executive Business Travel", "Luxury Destination Experiences", "VIP Event Escorts"]}
             />
             
             <ServiceCard
