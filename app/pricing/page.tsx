@@ -43,8 +43,13 @@ interface SiteContent {
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
 
 export default function PricingPage() {
-  const [headerImage, setHeaderImage] = useState<string | null>(null)
-  const [imageReady, setImageReady] = useState(false)
+  // Initialize with cached or default image for instant render
+  const [headerImage, setHeaderImage] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('header_pricing') || DEFAULT_HEADER
+    }
+    return DEFAULT_HEADER
+  })
   const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
   const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
   const [loading, setLoading] = useState(true)
@@ -86,11 +91,10 @@ export default function PricingPage() {
 
       if (data?.image_url) {
         setHeaderImage(data.image_url)
-      } else {
-        setHeaderImage(DEFAULT_HEADER)
+        localStorage.setItem('header_pricing', data.image_url)
       }
     } catch (error) {
-      setHeaderImage(DEFAULT_HEADER)
+      // Keep current image on error
     }
   }
 
@@ -126,21 +130,14 @@ export default function PricingPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* Shimmer placeholder while loading */}
-          {!imageReady && (
-            <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/50 to-charcoal animate-pulse" />
-          )}
-          {headerImage && (
-            <Image
-              src={headerImage}
-              alt="Luxury Companion Pricing - Elite Escort Rates Cape Town"
-              fill
-              className={`object-cover transition-opacity duration-500 ${imageReady ? 'opacity-100' : 'opacity-0'}`}
-              priority
-              unoptimized
-              onLoad={() => setImageReady(true)}
-            />
-          )}
+          <Image
+            src={headerImage}
+            alt="Luxury Companion Pricing - Elite Escort Rates Cape Town"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
           <div className="absolute inset-0 bg-deep-black/75" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
         </div>

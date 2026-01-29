@@ -20,8 +20,13 @@ interface SiteContent {
 }
 
 export default function ContactPage() {
-  const [headerImage, setHeaderImage] = useState<string | null>(null)
-  const [imageReady, setImageReady] = useState(false)
+  // Initialize with cached or default image for instant render
+  const [headerImage, setHeaderImage] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('header_contact') || DEFAULT_HEADER
+    }
+    return DEFAULT_HEADER
+  })
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -67,11 +72,10 @@ export default function ContactPage() {
 
       if (data?.image_url) {
         setHeaderImage(data.image_url)
-      } else {
-        setHeaderImage(DEFAULT_HEADER)
+        localStorage.setItem('header_contact', data.image_url)
       }
     } catch (error) {
-      setHeaderImage(DEFAULT_HEADER)
+      // Keep current image on error
     }
   }
 
@@ -111,21 +115,14 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* Shimmer placeholder while loading */}
-          {!imageReady && (
-            <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/50 to-charcoal animate-pulse" />
-          )}
-          {headerImage && (
-            <Image
-              src={headerImage}
-              alt="Contact MUSE & CO - Book Elite Companion Services Cape Town"
-              fill
-              className={`object-cover transition-opacity duration-500 ${imageReady ? 'opacity-100' : 'opacity-0'}`}
-              priority
-              unoptimized
-              onLoad={() => setImageReady(true)}
-            />
-          )}
+          <Image
+            src={headerImage}
+            alt="Contact MUSE & CO - Book Elite Companion Services Cape Town"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
           <div className="absolute inset-0 bg-deep-black/75" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
         </div>

@@ -24,8 +24,13 @@ interface SiteContent {
 }
 
 export default function ServicesPage() {
-  const [headerImage, setHeaderImage] = useState<string | null>(null)
-  const [imageReady, setImageReady] = useState(false)
+  // Initialize with cached or default image for instant render
+  const [headerImage, setHeaderImage] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('header_services') || DEFAULT_HEADER
+    }
+    return DEFAULT_HEADER
+  })
   const [serviceImages, setServiceImages] = useState(DEFAULT_IMAGES)
   
   // Editable content with defaults
@@ -75,22 +80,17 @@ export default function ServicesPage() {
       if (error) throw error
 
       if (data && data.length > 0) {
-        let foundHeader = false
         data.forEach((img: any) => {
           if (img.section === 'services' && img.page === 'Headers') {
             setHeaderImage(img.image_url)
-            foundHeader = true
+            localStorage.setItem('header_services', img.image_url)
           } else if (img.page === 'Services') {
             setServiceImages(prev => ({ ...prev, [img.section]: img.image_url }))
           }
         })
-        if (!foundHeader) setHeaderImage(DEFAULT_HEADER)
-      } else {
-        setHeaderImage(DEFAULT_HEADER)
       }
     } catch (error) {
       console.error('Error fetching images:', error)
-      setHeaderImage(DEFAULT_HEADER)
     }
   }
 
@@ -99,21 +99,14 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* Shimmer placeholder while loading */}
-          {!imageReady && (
-            <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/50 to-charcoal animate-pulse" />
-          )}
-          {headerImage && (
-            <Image
-              src={headerImage}
-              alt="Elite Companion Services Cape Town - Luxury VIP Escort"
-              fill
-              className={`object-cover transition-opacity duration-500 ${imageReady ? 'opacity-100' : 'opacity-0'}`}
-              priority
-              unoptimized
-              onLoad={() => setImageReady(true)}
-            />
-          )}
+          <Image
+            src={headerImage}
+            alt="Elite Companion Services Cape Town - Luxury VIP Escort"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
           <div className="absolute inset-0 bg-deep-black/75" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
         </div>
