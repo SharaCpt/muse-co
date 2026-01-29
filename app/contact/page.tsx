@@ -20,13 +20,7 @@ interface SiteContent {
 }
 
 export default function ContactPage() {
-  // Initialize with cached or default image for instant render
-  const [headerImage, setHeaderImage] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('header_contact') || DEFAULT_HEADER
-    }
-    return DEFAULT_HEADER
-  })
+  const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -72,10 +66,9 @@ export default function ContactPage() {
 
       if (data?.image_url) {
         setHeaderImage(data.image_url)
-        localStorage.setItem('header_contact', data.image_url)
       }
     } catch (error) {
-      // Keep current image on error
+      // Keep default on error
     }
   }
 

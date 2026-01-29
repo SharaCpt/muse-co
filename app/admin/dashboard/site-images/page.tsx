@@ -112,47 +112,7 @@ const DEFAULT_IMAGES: SiteImage[] = [
     image_url: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200',
     description: 'VIP Nightlife Experiences image'
   },
-  // Page Headers
-  {
-    id: 'header_portfolio',
-    page: 'Headers',
-    section: 'portfolio',
-    label: 'Portfolio Header',
-    image_url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000',
-    description: 'Portfolio page header background'
-  },
-  {
-    id: 'header_services',
-    page: 'Headers',
-    section: 'services',
-    label: 'Services Header',
-    image_url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000',
-    description: 'Services page header background'
-  },
-  {
-    id: 'header_pricing',
-    page: 'Headers',
-    section: 'pricing',
-    label: 'Pricing Header',
-    image_url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000',
-    description: 'Pricing page header background'
-  },
-  {
-    id: 'header_contact',
-    page: 'Headers',
-    section: 'contact',
-    label: 'Contact Header',
-    image_url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000',
-    description: 'Contact page header background'
-  },
-  {
-    id: 'header_about',
-    page: 'Headers',
-    section: 'about',
-    label: 'About Header',
-    image_url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000',
-    description: 'About page header background'
-  },
+  // NOTE: Header images removed from admin editor - managed via SQL only
 ]
 
 export default function SiteImagesManager() {

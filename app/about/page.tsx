@@ -19,13 +19,7 @@ interface SiteContent {
 }
 
 export default function AboutPage() {
-  // Initialize with cached or default image for instant render
-  const [headerImage, setHeaderImage] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('header_about') || DEFAULT_HEADER
-    }
-    return DEFAULT_HEADER
-  })
+  const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
   
   // Editable content with defaults
   const [content, setContent] = useState({
@@ -72,10 +66,9 @@ export default function AboutPage() {
 
       if (data?.image_url) {
         setHeaderImage(data.image_url)
-        localStorage.setItem('header_about', data.image_url)
       }
     } catch (error) {
-      // Keep current image on error
+      // Keep default on error
     }
   }
 

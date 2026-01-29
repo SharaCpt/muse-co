@@ -43,13 +43,7 @@ interface SiteContent {
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
 
 export default function PricingPage() {
-  // Initialize with cached or default image for instant render
-  const [headerImage, setHeaderImage] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('header_pricing') || DEFAULT_HEADER
-    }
-    return DEFAULT_HEADER
-  })
+  const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
   const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
   const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
   const [loading, setLoading] = useState(true)
@@ -91,10 +85,9 @@ export default function PricingPage() {
 
       if (data?.image_url) {
         setHeaderImage(data.image_url)
-        localStorage.setItem('header_pricing', data.image_url)
       }
     } catch (error) {
-      // Keep current image on error
+      // Keep default on error
     }
   }
 

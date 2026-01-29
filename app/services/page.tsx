@@ -24,13 +24,7 @@ interface SiteContent {
 }
 
 export default function ServicesPage() {
-  // Initialize with cached or default image for instant render
-  const [headerImage, setHeaderImage] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('header_services') || DEFAULT_HEADER
-    }
-    return DEFAULT_HEADER
-  })
+  const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
   const [serviceImages, setServiceImages] = useState(DEFAULT_IMAGES)
   
   // Editable content with defaults
@@ -83,7 +77,6 @@ export default function ServicesPage() {
         data.forEach((img: any) => {
           if (img.section === 'services' && img.page === 'Headers') {
             setHeaderImage(img.image_url)
-            localStorage.setItem('header_services', img.image_url)
           } else if (img.page === 'Services') {
             setServiceImages(prev => ({ ...prev, [img.section]: img.image_url }))
           }
