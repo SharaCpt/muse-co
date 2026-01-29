@@ -388,7 +388,7 @@ export default function HomePage() {
               image={images.service_card_2}
               title="Luxury Concierge Services"
               description="Elevated experiences for yachts, villas, and exclusive estates. Our lifestyle models provide sophisticated companionship and professional service for your most intimate gatherings."
-              features={["Yacht Staffing & Models", "Private Villa Events", "Golf Event Hostesses", "Executive Companions"]}
+              features={["Private Villa Events", "Golf Event Hostesses", "Executive Companions"]}
             />
             
             <ServiceCard
