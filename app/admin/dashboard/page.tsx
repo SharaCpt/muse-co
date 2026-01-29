@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ImagePlus, Image as ImageIcon, LogOut, Type } from 'lucide-react'
+import { ImagePlus, Image as ImageIcon, LogOut, Type, DollarSign, Sparkles } from 'lucide-react'
 
 export default function AdminDashboard() {
   const router = useRouter()
@@ -24,6 +24,20 @@ export default function AdminDashboard() {
       icon: ImagePlus,
       href: '/admin/dashboard/portfolio-manager',
       color: 'from-champagne-gold to-yellow-600'
+    },
+    {
+      title: 'Pricing Manager',
+      description: 'Update your standard rates and packages',
+      icon: DollarSign,
+      href: '/admin/dashboard/pricing-manager',
+      color: 'from-green-500 to-emerald-600'
+    },
+    {
+      title: 'Bespoke Experiences',
+      description: 'Manage premium luxury packages & images',
+      icon: Sparkles,
+      href: '/admin/dashboard/bespoke-manager',
+      color: 'from-purple-500 to-violet-600'
     },
     {
       title: 'Site Images',
