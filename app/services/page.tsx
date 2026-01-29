@@ -11,7 +11,7 @@ const supabase = createClient(
 )
 
 // Default images
-const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1585250047310-592b1805a8aa?q=80&w=2000'
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1640947109541-ad13a917ba45?q=80&w=2000'
 const DEFAULT_IMAGES = {
   luxury_lifestyle: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
   private_arrangements: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200',
