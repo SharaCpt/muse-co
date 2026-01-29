@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Plus, Trash2, X, Camera, Check, ArrowLeft, Loader2 } from 'lucide-react'
+import { Plus, Trash2, X, Camera, Check, ArrowLeft, Loader2, Pencil } from 'lucide-react'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -19,6 +19,9 @@ interface PortfolioImage {
   image_url: string
   display_order: number
   is_active: boolean
+  age: number | null
+  height: number | null
+  weight: number | null
 }
 
 const CATEGORIES = [
@@ -36,16 +39,21 @@ export default function PortfolioManager() {
   const [uploading, setUploading] = useState(false)
   const [deleting, setDeleting] = useState<string | null>(null)
   const [showAddForm, setShowAddForm] = useState(false)
+  const [showEditForm, setShowEditForm] = useState<PortfolioImage | null>(null)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<PortfolioImage | null>(null)
   const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const editFileInputRef = useRef<HTMLInputElement>(null)
 
-  // New image form
-  const [newImage, setNewImage] = useState({
+  // New/Edit image form
+  const [formData, setFormData] = useState({
     name: '',
     category: 'Elite Model',
     description: '',
+    age: '',
+    height: '',
+    weight: '',
   })
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
@@ -88,7 +96,7 @@ export default function PortfolioManager() {
       showMessage('Please select a photo first', 'error')
       return
     }
-    if (!newImage.name.trim()) {
+    if (!formData.name.trim()) {
       showMessage('Please enter a name', 'error')
       return
     }
@@ -115,11 +123,14 @@ export default function PortfolioManager() {
       const { error: dbError } = await supabase
         .from('portfolio_images')
         .insert({
-          name: newImage.name.trim(),
-          category: newImage.category,
-          description: newImage.description.trim(),
+          name: formData.name.trim(),
+          category: formData.category,
+          description: formData.description.trim(),
           image_url: urlData.publicUrl,
           display_order: images.length,
+          age: formData.age ? parseInt(formData.age) : null,
+          height: formData.height ? parseInt(formData.height) : null,
+          weight: formData.weight ? parseInt(formData.weight) : null,
         })
 
       if (dbError) throw dbError
@@ -129,6 +140,69 @@ export default function PortfolioManager() {
       fetchImages()
     } catch (error: any) {
       showMessage('Upload failed. Please try again.', 'error')
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  async function updateProfile() {
+    if (!showEditForm) return
+    if (!formData.name.trim()) {
+      showMessage('Please enter a name', 'error')
+      return
+    }
+
+    setUploading(true)
+
+    try {
+      let imageUrl = showEditForm.image_url
+
+      // If new file selected, upload it
+      if (selectedFile) {
+        const fileExt = selectedFile.name.split('.').pop()
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`
+
+        const { error: uploadError } = await supabase.storage
+          .from('portfolio')
+          .upload(fileName, selectedFile)
+
+        if (uploadError) throw uploadError
+
+        // Get public URL
+        const { data: urlData } = supabase.storage
+          .from('portfolio')
+          .getPublicUrl(fileName)
+
+        imageUrl = urlData.publicUrl
+
+        // Delete old image from storage
+        const oldUrlParts = showEditForm.image_url.split('/portfolio/')
+        if (oldUrlParts.length > 1) {
+          await supabase.storage.from('portfolio').remove([oldUrlParts[1]])
+        }
+      }
+
+      // Update database
+      const { error: dbError } = await supabase
+        .from('portfolio_images')
+        .update({
+          name: formData.name.trim(),
+          category: formData.category,
+          description: formData.description.trim(),
+          image_url: imageUrl,
+          age: formData.age ? parseInt(formData.age) : null,
+          height: formData.height ? parseInt(formData.height) : null,
+          weight: formData.weight ? parseInt(formData.weight) : null,
+        })
+        .eq('id', showEditForm.id)
+
+      if (dbError) throw dbError
+
+      showMessage('✓ Profile updated successfully!', 'success')
+      resetForm()
+      fetchImages()
+    } catch (error: any) {
+      showMessage('Update failed. Please try again.', 'error')
     } finally {
       setUploading(false)
     }
@@ -165,12 +239,28 @@ export default function PortfolioManager() {
     }
   }
 
+  function openEditForm(profile: PortfolioImage) {
+    setFormData({
+      name: profile.name,
+      category: profile.category,
+      description: profile.description || '',
+      age: profile.age?.toString() || '',
+      height: profile.height?.toString() || '',
+      weight: profile.weight?.toString() || '',
+    })
+    setPreviewUrl(profile.image_url)
+    setSelectedFile(null)
+    setShowEditForm(profile)
+  }
+
   function resetForm() {
-    setNewImage({ name: '', category: 'Elite Model', description: '' })
+    setFormData({ name: '', category: 'Elite Model', description: '', age: '', height: '', weight: '' })
     setSelectedFile(null)
     setPreviewUrl(null)
     setShowAddForm(false)
+    setShowEditForm(null)
     if (fileInputRef.current) fileInputRef.current.value = ''
+    if (editFileInputRef.current) editFileInputRef.current.value = ''
   }
 
   function showMessage(text: string, type: 'success' | 'error') {
@@ -204,11 +294,11 @@ export default function PortfolioManager() {
               <h1 className="font-playfair text-2xl md:text-3xl text-champagne-gold">
                 Profiles
               </h1>
-              <p className="text-off-white/50 text-sm">{images.length} models</p>
+              <p className="text-off-white/50 text-sm">{images.length} models • Tap to edit</p>
             </div>
           </div>
           
-          {!showAddForm && (
+          {!showAddForm && !showEditForm && (
             <button
               onClick={() => setShowAddForm(true)}
               className="bg-champagne-gold text-deep-black px-5 py-3 rounded-full font-semibold 
@@ -278,13 +368,15 @@ export default function PortfolioManager() {
         </div>
       )}
 
-      {/* Add Profile Form (Full Screen on Mobile) */}
-      {showAddForm && (
+      {/* Add/Edit Profile Form (Full Screen on Mobile) */}
+      {(showAddForm || showEditForm) && (
         <div className="fixed inset-0 z-50 bg-deep-black overflow-y-auto">
           <div className="min-h-screen p-4">
             {/* Form Header */}
             <div className="flex items-center justify-between mb-6">
-              <h2 className="font-playfair text-2xl text-champagne-gold">Add New Profile</h2>
+              <h2 className="font-playfair text-2xl text-champagne-gold">
+                {showEditForm ? 'Edit Profile' : 'Add New Profile'}
+              </h2>
               <button
                 onClick={resetForm}
                 className="p-2 rounded-full hover:bg-champagne-gold/10 transition"
@@ -295,7 +387,7 @@ export default function PortfolioManager() {
 
             {/* Photo Upload - BIG and OBVIOUS */}
             <div 
-              onClick={() => fileInputRef.current?.click()}
+              onClick={() => showEditForm ? editFileInputRef.current?.click() : fileInputRef.current?.click()}
               className={`relative aspect-[3/4] max-w-sm mx-auto mb-6 rounded-2xl overflow-hidden cursor-pointer
                          border-2 border-dashed transition-all duration-300
                          ${previewUrl 
@@ -321,7 +413,7 @@ export default function PortfolioManager() {
                 </div>
               )}
               <input
-                ref={fileInputRef}
+                ref={showEditForm ? editFileInputRef : fileInputRef}
                 type="file"
                 accept="image/*"
                 onChange={handleFileSelect}
@@ -338,13 +430,59 @@ export default function PortfolioManager() {
                 </label>
                 <input
                   type="text"
-                  value={newImage.name}
-                  onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full bg-charcoal/50 border-2 border-champagne-gold/30 p-4 rounded-xl 
                            text-lg text-off-white placeholder-off-white/40
                            focus:border-champagne-gold focus:outline-none transition"
                   placeholder="e.g., Sophia"
                 />
+              </div>
+
+              {/* Stats Row - Age, Height, Weight */}
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <label className="block text-champagne-gold text-xs font-medium mb-2">
+                    Age
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.age}
+                    onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                    className="w-full bg-charcoal/50 border-2 border-champagne-gold/30 p-3 rounded-xl 
+                             text-lg text-off-white placeholder-off-white/40 text-center
+                             focus:border-champagne-gold focus:outline-none transition"
+                    placeholder="25"
+                  />
+                </div>
+                <div>
+                  <label className="block text-champagne-gold text-xs font-medium mb-2">
+                    Height (cm)
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.height}
+                    onChange={(e) => setFormData({ ...formData, height: e.target.value })}
+                    className="w-full bg-charcoal/50 border-2 border-champagne-gold/30 p-3 rounded-xl 
+                             text-lg text-off-white placeholder-off-white/40 text-center
+                             focus:border-champagne-gold focus:outline-none transition"
+                    placeholder="175"
+                  />
+                </div>
+                <div>
+                  <label className="block text-champagne-gold text-xs font-medium mb-2">
+                    Weight (kg)
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.weight}
+                    onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+                    className="w-full bg-charcoal/50 border-2 border-champagne-gold/30 p-3 rounded-xl 
+                             text-lg text-off-white placeholder-off-white/40 text-center
+                             focus:border-champagne-gold focus:outline-none transition"
+                    placeholder="55"
+                  />
+                </div>
               </div>
 
               {/* Category - Big Buttons */}
@@ -357,9 +495,9 @@ export default function PortfolioManager() {
                     <button
                       key={cat}
                       type="button"
-                      onClick={() => setNewImage({ ...newImage, category: cat })}
+                      onClick={() => setFormData({ ...formData, category: cat })}
                       className={`p-3 rounded-xl text-sm font-medium transition-all
-                        ${newImage.category === cat
+                        ${formData.category === cat
                           ? 'bg-champagne-gold text-deep-black'
                           : 'bg-charcoal/50 border border-champagne-gold/30 text-off-white hover:border-champagne-gold/60'
                         }`}
@@ -376,8 +514,8 @@ export default function PortfolioManager() {
                   Description <span className="text-off-white/40">(optional)</span>
                 </label>
                 <textarea
-                  value={newImage.description}
-                  onChange={(e) => setNewImage({ ...newImage, description: e.target.value })}
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   className="w-full bg-charcoal/50 border-2 border-champagne-gold/30 p-4 rounded-xl 
                            text-lg text-off-white placeholder-off-white/40
                            focus:border-champagne-gold focus:outline-none transition resize-none"
@@ -388,8 +526,8 @@ export default function PortfolioManager() {
 
               {/* Submit Button - HUGE */}
               <button
-                onClick={uploadImage}
-                disabled={uploading || !selectedFile || !newImage.name.trim()}
+                onClick={showEditForm ? updateProfile : uploadImage}
+                disabled={uploading || (!showEditForm && !selectedFile) || !formData.name.trim()}
                 className="w-full bg-champagne-gold text-deep-black py-5 rounded-xl font-bold text-xl
                          hover:bg-champagne-gold/90 active:scale-[0.98] transition-all duration-200
                          disabled:opacity-40 disabled:cursor-not-allowed
@@ -399,12 +537,12 @@ export default function PortfolioManager() {
                 {uploading ? (
                   <>
                     <Loader2 className="w-6 h-6 animate-spin" />
-                    Uploading...
+                    {showEditForm ? 'Saving...' : 'Uploading...'}
                   </>
                 ) : (
                   <>
                     <Check className="w-6 h-6" />
-                    Add Profile
+                    {showEditForm ? 'Save Changes' : 'Add Profile'}
                   </>
                 )}
               </button>
@@ -442,8 +580,9 @@ export default function PortfolioManager() {
             {images.map((img) => (
               <div 
                 key={img.id} 
+                onClick={() => openEditForm(img)}
                 className="group relative bg-charcoal/30 rounded-xl overflow-hidden
-                         border border-champagne-gold/10 hover:border-champagne-gold/30 transition"
+                         border border-champagne-gold/10 hover:border-champagne-gold/30 transition cursor-pointer"
               >
                 {/* Image */}
                 <div className="relative aspect-[3/4]">
@@ -455,17 +594,35 @@ export default function PortfolioManager() {
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-deep-black/80 via-transparent to-transparent" />
+                  
+                  {/* Edit overlay on hover */}
+                  <div className="absolute inset-0 bg-champagne-gold/0 group-hover:bg-champagne-gold/10 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div className="bg-deep-black/80 rounded-full p-3">
+                      <Pencil className="w-5 h-5 text-champagne-gold" />
+                    </div>
+                  </div>
                 </div>
                 
                 {/* Info Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <p className="text-champagne-gold text-xs uppercase tracking-wider mb-0.5">{img.category}</p>
                   <p className="text-white font-semibold text-sm truncate">{img.name}</p>
+                  {/* Stats */}
+                  {(img.age || img.height || img.weight) && (
+                    <div className="flex gap-2 mt-1 text-off-white/60 text-xs">
+                      {img.age && <span>{img.age}y</span>}
+                      {img.height && <span>{img.height}cm</span>}
+                      {img.weight && <span>{img.weight}kg</span>}
+                    </div>
+                  )}
                 </div>
 
                 {/* Delete Button - Always visible on mobile */}
                 <button
-                  onClick={() => setShowDeleteConfirm(img)}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setShowDeleteConfirm(img)
+                  }}
                   className="absolute top-2 right-2 p-2.5 bg-red-500/90 hover:bg-red-500 rounded-full
                            transition-all active:scale-90 shadow-lg"
                   aria-label={`Delete ${img.name}`}
@@ -479,7 +636,7 @@ export default function PortfolioManager() {
       </div>
 
       {/* Floating Add Button (Mobile) */}
-      {!showAddForm && images.length > 0 && (
+      {!showAddForm && !showEditForm && images.length > 0 && (
         <div className="fixed bottom-6 right-6 md:hidden">
           <button
             onClick={() => setShowAddForm(true)}

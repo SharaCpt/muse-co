@@ -17,6 +17,14 @@ interface PortfolioImage {
   description: string
   image_url: string
   display_order: number
+  age: number | null
+  height: number | null
+  weight: number | null
+}
+
+interface SiteContent {
+  id: string
+  content: string
 }
 
 // Default header image
@@ -27,11 +35,33 @@ export default function PortfolioPage() {
   const [filter, setFilter] = useState('all')
   const [models, setModels] = useState<PortfolioImage[]>([])
   const [loading, setLoading] = useState(true)
+  
+  // Editable content with defaults
+  const [content, setContent] = useState({
+    intro: 'Handpicked professionals for luxury events, sophisticated gatherings, and exclusive private experiences across Cape Town',
+  })
 
   useEffect(() => {
     fetchPortfolioImages()
     fetchHeaderImage()
+    fetchContent()
   }, [])
+
+  async function fetchContent() {
+    try {
+      const { data, error } = await supabase
+        .from('site_content')
+        .select('*')
+        .eq('id', 'portfolio_intro')
+        .single()
+
+      if (data?.content) {
+        setContent({ intro: data.content })
+      }
+    } catch (error) {
+      // Use default
+    }
+  }
 
   async function fetchHeaderImage() {
     try {
@@ -103,7 +133,7 @@ export default function PortfolioPage() {
             Elite Lifestyle Models • VIP Hostesses • Private Companions
           </p>
           <p className="text-off-white/60 max-w-2xl mx-auto">
-            Handpicked professionals for luxury events, sophisticated gatherings, and exclusive private experiences across Cape Town
+            {content.intro}
           </p>
         </motion.div>
       </section>
@@ -233,8 +263,16 @@ function ModelCard({ model, index }: { model: PortfolioImage; index: number }) {
             <p className="text-off-white text-base font-semibold">
               {model.name}
             </p>
+            {/* Stats Row */}
+            {(model.age || model.height || model.weight) && (
+              <div className="flex gap-3 text-off-white/70 text-sm pt-1">
+                {model.age && <span>{model.age} years</span>}
+                {model.height && <span>{model.height}cm</span>}
+                {model.weight && <span>{model.weight}kg</span>}
+              </div>
+            )}
             {model.description && (
-              <p className="text-off-white/60 text-xs">
+              <p className="text-off-white/60 text-xs pt-1">
                 {model.description}
               </p>
             )}

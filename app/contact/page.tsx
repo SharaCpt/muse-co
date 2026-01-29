@@ -14,6 +14,11 @@ const supabase = createClient(
 // Default header image
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
 
+interface SiteContent {
+  id: string
+  content: string
+}
+
 export default function ContactPage() {
   const [headerImage, setHeaderImage] = useState(DEFAULT_HEADER)
   const [formData, setFormData] = useState({
@@ -24,10 +29,32 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  
+  // Editable content with defaults
+  const [content, setContent] = useState({
+    intro: 'Ready to elevate your next event? Contact us for a personalized consultation and discover how MUSE & CO can bring your vision to life.',
+  })
 
   useEffect(() => {
     fetchHeaderImage()
+    fetchContent()
   }, [])
+
+  async function fetchContent() {
+    try {
+      const { data, error } = await supabase
+        .from('site_content')
+        .select('*')
+        .eq('id', 'contact_intro')
+        .single()
+
+      if (data?.content) {
+        setContent({ intro: data.content })
+      }
+    } catch (error) {
+      // Use default
+    }
+  }
 
   async function fetchHeaderImage() {
     try {
@@ -124,7 +151,7 @@ export default function ContactPage() {
                 Get In Touch
               </h2>
               <p className="text-off-white/80 font-inter leading-relaxed mb-8">
-                Ready to elevate your next event? Contact us for a personalized consultation and discover how MUSE & CO can bring your vision to life.
+                {content.intro}
               </p>
             </div>
 

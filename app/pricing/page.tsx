@@ -34,6 +34,11 @@ interface BespokeExperience {
   display_order?: number
 }
 
+interface SiteContent {
+  id: string
+  content: string
+}
+
 // Default header image
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
 
@@ -42,11 +47,33 @@ export default function PricingPage() {
   const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
   const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
   const [loading, setLoading] = useState(true)
+  
+  // Editable content with defaults
+  const [content, setContent] = useState({
+    intro: 'Transparent pricing for exceptional service. All rates are starting prices and may vary based on specific requirements and arrangements.',
+  })
 
   useEffect(() => {
     fetchPricingData()
     fetchHeaderImage()
+    fetchContent()
   }, [])
+
+  async function fetchContent() {
+    try {
+      const { data, error } = await supabase
+        .from('site_content')
+        .select('*')
+        .eq('id', 'pricing_intro')
+        .single()
+
+      if (data?.content) {
+        setContent({ intro: data.content })
+      }
+    } catch (error) {
+      // Use default
+    }
+  }
 
   async function fetchHeaderImage() {
     try {
@@ -156,7 +183,7 @@ export default function PricingPage() {
               STANDARD RATES
             </h2>
             <p className="text-off-white/70 text-lg max-w-2xl mx-auto font-light">
-              Transparent pricing for exclusive companionship and elite hosting services
+              {content.intro}
             </p>
           </motion.div>
 

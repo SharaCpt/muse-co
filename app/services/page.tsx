@@ -18,13 +18,51 @@ const DEFAULT_IMAGES = {
   nightlife: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200',
 }
 
+interface SiteContent {
+  id: string
+  content: string
+}
+
 export default function ServicesPage() {
   const [headerImage, setHeaderImage] = useState(DEFAULT_HEADER)
   const [serviceImages, setServiceImages] = useState(DEFAULT_IMAGES)
+  
+  // Editable content with defaults
+  const [content, setContent] = useState({
+    intro: 'From intimate gatherings to grand celebrations, we provide bespoke companionship and lifestyle services tailored to your exact preferences.',
+    luxury: 'Exquisite models and sophisticated companions for exclusive private experiences and luxury occasions. Our elite women deliver beauty, elegance, and impeccable presence with absolute discretion.',
+    private: 'Bespoke long-term arrangements for discerning clients seeking sophisticated companionship. From ongoing business travel to extended private experiences, we curate exclusive relationships built on trust, elegance, and absolute discretion.',
+    nightlife: 'Elevate your evening with stunning models and charismatic companions. Our elite women bring sophistication, energy, and undeniable presence to exclusive clubs, private parties, and VIP experiences.',
+  })
 
   useEffect(() => {
     fetchImages()
+    fetchContent()
   }, [])
+
+  async function fetchContent() {
+    try {
+      const { data, error } = await supabase
+        .from('site_content')
+        .select('*')
+        .in('id', ['services_intro', 'services_luxury', 'services_private', 'services_nightlife'])
+
+      if (error) throw error
+
+      if (data && data.length > 0) {
+        const newContent: Record<string, string> = {}
+        data.forEach((item: SiteContent) => {
+          if (item.id === 'services_intro') newContent.intro = item.content
+          if (item.id === 'services_luxury') newContent.luxury = item.content
+          if (item.id === 'services_private') newContent.private = item.content
+          if (item.id === 'services_nightlife') newContent.nightlife = item.content
+        })
+        setContent(prev => ({ ...prev, ...newContent }))
+      }
+    } catch (error) {
+      console.error('Error fetching content:', error)
+    }
+  }
 
   async function fetchImages() {
     try {
@@ -89,7 +127,7 @@ export default function ServicesPage() {
           <ServiceDetail
             title="LUXURY LIFESTYLE EXPERIENCES"
             image={serviceImages.luxury_lifestyle}
-            description="Exquisite models and sophisticated companions for exclusive private experiences and luxury occasions. Our elite women deliver beauty, elegance, and impeccable presence with absolute discretion."
+            description={content.luxury}
             features={[
               'Private villa and estate companions',
               'Luxury yacht and coastal experience models',
@@ -104,7 +142,7 @@ export default function ServicesPage() {
           <ServiceDetail
             title="EXCLUSIVE PRIVATE ARRANGEMENTS"
             image={serviceImages.private_arrangements}
-            description="Bespoke long-term arrangements for discerning clients seeking sophisticated companionship. From ongoing business travel to extended private experiences, we curate exclusive relationships built on trust, elegance, and absolute discretion."
+            description={content.private}
             features={[
               'Long-term companionship for business executives and travelers',
               'Extended international travel companions',
@@ -119,7 +157,7 @@ export default function ServicesPage() {
           <ServiceDetail
             title="VIP NIGHTLIFE EXPERIENCES"
             image={serviceImages.nightlife}
-            description="Elevate your evening with stunning models and charismatic companions. Our elite women bring sophistication, energy, and undeniable presence to exclusive clubs, private parties, and VIP experiences."
+            description={content.nightlife}
             features={[
               'VIP nightlife companions and models',
               'Professional dancers and entertainers',

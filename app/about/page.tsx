@@ -13,12 +13,48 @@ const supabase = createClient(
 // Default header image
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
 
+interface SiteContent {
+  id: string
+  content: string
+}
+
 export default function AboutPage() {
   const [headerImage, setHeaderImage] = useState(DEFAULT_HEADER)
+  
+  // Editable content with defaults
+  const [content, setContent] = useState({
+    intro: 'MUSE & CO was founded on the principle that true luxury is found in beauty, elegance, and unforgettable moments.',
+    story: 'With over 13 years of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa\'s most beautiful and refined models, influencers, and private companions.',
+    shara: 'Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional women has made MUSE & CO the premier choice for sophisticated companionship worldwide.',
+  })
 
   useEffect(() => {
     fetchHeaderImage()
+    fetchContent()
   }, [])
+
+  async function fetchContent() {
+    try {
+      const { data, error } = await supabase
+        .from('site_content')
+        .select('*')
+        .in('id', ['about_intro', 'about_story', 'about_shara'])
+
+      if (error) throw error
+
+      if (data && data.length > 0) {
+        const newContent: Record<string, string> = {}
+        data.forEach((item: SiteContent) => {
+          if (item.id === 'about_intro') newContent.intro = item.content
+          if (item.id === 'about_story') newContent.story = item.content
+          if (item.id === 'about_shara') newContent.shara = item.content
+        })
+        setContent(prev => ({ ...prev, ...newContent }))
+      }
+    } catch (error) {
+      console.error('Error fetching content:', error)
+    }
+  }
 
   async function fetchHeaderImage() {
     try {
@@ -77,11 +113,11 @@ export default function AboutPage() {
             className="space-y-6 text-off-white/80 font-inter leading-relaxed"
           >
             <p className="text-lg md:text-xl">
-              MUSE & CO was founded on the principle that true luxury is found in beauty, elegance, and unforgettable moments.
+              {content.intro}
             </p>
             
             <p>
-              With over <span className="text-champagne-gold font-semibold">13 years of experience</span> curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa's most beautiful and refined models, influencers, and private companions.
+              {content.story}
             </p>
 
             <p>
@@ -105,7 +141,7 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-off-white/80 font-inter leading-relaxed">
               <p>
-                Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional women has made MUSE & CO the premier choice for sophisticated companionship worldwide.
+                {content.shara}
               </p>
               <p>
                 From intimate private encounters to exclusive international arrangements, Shara's commitment to beauty, elegance, and discretion ensures every experience is extraordinary, wherever in the world you may be.

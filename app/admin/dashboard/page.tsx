@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ImagePlus, Image as ImageIcon, LogOut } from 'lucide-react'
+import { ImagePlus, Image as ImageIcon, LogOut, Type } from 'lucide-react'
 
 export default function AdminDashboard() {
   const router = useRouter()
@@ -20,7 +20,7 @@ export default function AdminDashboard() {
   const managementSections = [
     {
       title: 'Portfolio Manager',
-      description: 'Upload and manage model portfolio images',
+      description: 'Add, edit & manage model profiles with photos, stats & categories',
       icon: ImagePlus,
       href: '/admin/dashboard/portfolio-manager',
       color: 'from-champagne-gold to-yellow-600'
@@ -31,6 +31,13 @@ export default function AdminDashboard() {
       icon: ImageIcon,
       href: '/admin/dashboard/site-images',
       color: 'from-yellow-600 to-champagne-gold'
+    },
+    {
+      title: 'Site Text',
+      description: 'Edit key text & descriptions across pages',
+      icon: Type,
+      href: '/admin/dashboard/site-content',
+      color: 'from-champagne-gold to-amber-600'
     },
   ]
 

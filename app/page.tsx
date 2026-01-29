@@ -17,6 +17,11 @@ interface SiteImage {
   image_url: string
 }
 
+interface SiteContent {
+  id: string
+  content: string
+}
+
 export default function HomePage() {
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -41,9 +46,38 @@ export default function HomePage() {
     model_card_3: 'https://images.unsplash.com/photo-1604004555489-723a93d6ce74?q=80&w=800',
   })
 
+  // Editable content with defaults
+  const [content, setContent] = useState({
+    heroTagline: 'Elite Companions • VIP Experiences • Global Luxury',
+    heroSubtitle: 'Curating South Africa\'s most beautiful models and sophisticated companions for luxury experiences worldwide. From intimate private encounters to exclusive international arrangements, we deliver unparalleled beauty, elegance, and absolute discretion to discerning clientele across the globe.',
+  })
+
   useEffect(() => {
     fetchImages()
+    fetchContent()
   }, [])
+
+  async function fetchContent() {
+    try {
+      const { data, error } = await supabase
+        .from('site_content')
+        .select('*')
+        .in('id', ['home_hero_tagline', 'home_hero_subtitle'])
+
+      if (error) throw error
+
+      if (data && data.length > 0) {
+        const newContent: Record<string, string> = {}
+        data.forEach((item: SiteContent) => {
+          if (item.id === 'home_hero_tagline') newContent.heroTagline = item.content
+          if (item.id === 'home_hero_subtitle') newContent.heroSubtitle = item.content
+        })
+        setContent(prev => ({ ...prev, ...newContent }))
+      }
+    } catch (error) {
+      console.error('Error fetching content:', error)
+    }
+  }
 
   async function fetchImages() {
     try {
@@ -155,7 +189,7 @@ export default function HomePage() {
             transition={{ duration: 1, delay: 1 }}
             className="font-inter text-xl md:text-2xl tracking-[0.2em] text-off-white/90 mb-6 uppercase font-light"
           >
-            Elite Companions • VIP Experiences • Global Luxury
+            {content.heroTagline}
           </motion.p>
           
           <motion.p
@@ -164,8 +198,7 @@ export default function HomePage() {
             transition={{ duration: 1, delay: 1.2 }}
             className="text-off-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
           >
-            Curating South Africa's most beautiful models and sophisticated companions for luxury experiences worldwide. From intimate private encounters to exclusive international arrangements, 
-            we deliver unparalleled beauty, elegance, and absolute discretion to discerning clientele across the globe.
+            {content.heroSubtitle}
           </motion.p>
 
           <motion.div
