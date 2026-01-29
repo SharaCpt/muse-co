@@ -40,7 +40,7 @@ interface SiteContent {
 }
 
 // Default header image
-const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1611145434336-2324aa4079cd?q=80&w=2000'
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?q=80&w=2000'
 
 export default function PricingPage() {
   const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
