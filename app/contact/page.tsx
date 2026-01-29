@@ -20,7 +20,8 @@ interface SiteContent {
 }
 
 export default function ContactPage() {
-  const [headerImage, setHeaderImage] = useState(DEFAULT_HEADER)
+  const [headerImage, setHeaderImage] = useState<string | null>(null)
+  const [imageReady, setImageReady] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -66,9 +67,11 @@ export default function ContactPage() {
 
       if (data?.image_url) {
         setHeaderImage(data.image_url)
+      } else {
+        setHeaderImage(DEFAULT_HEADER)
       }
     } catch (error) {
-      // Use default
+      setHeaderImage(DEFAULT_HEADER)
     }
   }
 
@@ -108,14 +111,21 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src={headerImage}
-            alt="Contact MUSE & CO - Book Elite Companion Services Cape Town"
-            fill
-            className="object-cover"
-            priority
-            unoptimized
-          />
+          {/* Shimmer placeholder while loading */}
+          {!imageReady && (
+            <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/50 to-charcoal animate-pulse" />
+          )}
+          {headerImage && (
+            <Image
+              src={headerImage}
+              alt="Contact MUSE & CO - Book Elite Companion Services Cape Town"
+              fill
+              className={`object-cover transition-opacity duration-500 ${imageReady ? 'opacity-100' : 'opacity-0'}`}
+              priority
+              unoptimized
+              onLoad={() => setImageReady(true)}
+            />
+          )}
           <div className="absolute inset-0 bg-deep-black/75" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
         </div>

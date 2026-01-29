@@ -31,7 +31,8 @@ interface SiteContent {
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000'
 
 export default function PortfolioPage() {
-  const [headerImage, setHeaderImage] = useState(DEFAULT_HEADER)
+  const [headerImage, setHeaderImage] = useState<string | null>(null)
+  const [imageReady, setImageReady] = useState(false)
   const [filter, setFilter] = useState('all')
   const [models, setModels] = useState<PortfolioImage[]>([])
   const [loading, setLoading] = useState(true)
@@ -73,9 +74,11 @@ export default function PortfolioPage() {
 
       if (data?.image_url) {
         setHeaderImage(data.image_url)
+      } else {
+        setHeaderImage(DEFAULT_HEADER)
       }
     } catch (error) {
-      // Use default
+      setHeaderImage(DEFAULT_HEADER)
     }
   }
 
@@ -107,14 +110,21 @@ export default function PortfolioPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src={headerImage}
-            alt="Elite Portfolio"
-            fill
-            className="object-cover"
-            priority
-            unoptimized
-          />
+          {/* Shimmer placeholder while loading */}
+          {!imageReady && (
+            <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/50 to-charcoal animate-pulse" />
+          )}
+          {headerImage && (
+            <Image
+              src={headerImage}
+              alt="Elite Portfolio"
+              fill
+              className={`object-cover transition-opacity duration-500 ${imageReady ? 'opacity-100' : 'opacity-0'}`}
+              priority
+              unoptimized
+              onLoad={() => setImageReady(true)}
+            />
+          )}
           <div className="absolute inset-0 bg-deep-black/75" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
         </div>

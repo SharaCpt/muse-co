@@ -203,6 +203,24 @@ CREATE POLICY "Public website-images update" ON storage.objects FOR UPDATE USING
 CREATE POLICY "Public website-images delete" ON storage.objects FOR DELETE USING (bucket_id = 'website-images');
 
 -- ============================================
+-- 8. UPDATE BESPOKE EXPERIENCE IMAGES
+-- ============================================
+-- Curated luxury images for each bespoke experience
+
+-- Temporarily allow public updates to bypass RLS for this update
+DROP POLICY IF EXISTS "temp_bespoke_update" ON bespoke_experiences;
+CREATE POLICY "temp_bespoke_update" ON bespoke_experiences FOR UPDATE TO public USING (true) WITH CHECK (true);
+
+-- Update each bespoke experience with relevant luxury images
+UPDATE bespoke_experiences SET image_url = 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200', updated_at = NOW() WHERE experience_name = 'WEEKEND ESCAPE';
+UPDATE bespoke_experiences SET image_url = 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200', updated_at = NOW() WHERE experience_name = 'YACHT EXPERIENCE';
+UPDATE bespoke_experiences SET image_url = 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=1200', updated_at = NOW() WHERE experience_name = 'INTERNATIONAL TRAVEL';
+UPDATE bespoke_experiences SET image_url = 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200', updated_at = NOW() WHERE experience_name = 'EXCLUSIVE DINNER DATE';
+
+-- Remove temporary policy
+DROP POLICY IF EXISTS "temp_bespoke_update" ON bespoke_experiences;
+
+-- ============================================
 -- SETUP COMPLETE!
 -- ============================================
 -- 
