@@ -277,7 +277,7 @@ export default function HomePage() {
             {[
               {
                 image: modelImages.model_card_1,
-                category: "Event Hostess",
+                category: "Dancers & Entertainers",
                 name: "Available on Request",
                 description: "Sophisticated elegance for exclusive events"
               },
