@@ -87,9 +87,11 @@ export default function AdminLoginPage() {
               </motion.div>
             )}
 
-            <button
+            <motion.button
               type="submit"
               disabled={isLoading}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.1 }}
               className="w-full bg-gradient-to-r from-[#D4AF37] to-[#C5A028] text-black font-semibold py-4 rounded-lg hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider text-sm"
             >
               {isLoading ? (
@@ -103,7 +105,7 @@ export default function AdminLoginPage() {
               ) : (
                 'Access Dashboard'
               )}
-            </button>
+            </motion.button>
           </form>
 
           {/* Footer Note */}

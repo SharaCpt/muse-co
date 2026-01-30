@@ -259,9 +259,11 @@ export default function ContactPage() {
                 />
               </div>
 
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.1 }}
                 className="w-full px-8 py-4 bg-champagne-gold text-deep-black font-inter tracking-widest hover:bg-opacity-90 transition-smooth gold-glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
@@ -273,7 +275,7 @@ export default function ContactPage() {
                     SENDING...
                   </>
                 ) : 'SEND INQUIRY'}
-              </button>
+              </motion.button>
 
               {submitStatus === 'success' && (
                 <motion.p
@@ -306,10 +308,12 @@ function ContactMethod({
   primary?: boolean
 }) {
   return (
-    <a
+    <motion.a
       href={href}
       target={href.startsWith('http') ? '_blank' : undefined}
       rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.1 }}
       className={`flex items-center space-x-4 p-6 border ${
         primary
           ? 'border-champagne-gold bg-champagne-gold/10'
@@ -327,6 +331,6 @@ function ContactMethod({
           {value}
         </p>
       </div>
-    </a>
+    </motion.a>
   )
 }

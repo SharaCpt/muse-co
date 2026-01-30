@@ -246,21 +246,25 @@ export default function PricingPage() {
               Contact us for a private consultation and bespoke package tailored to your vision.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-6">
+              <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
               <Link
                 href="/contact"
-                className="group relative px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)]"
+                className="group relative px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] block"
               >
                 <span className="relative z-10">BOOK CONSULTATION</span>
               </Link>
+              </motion.div>
               
-              <a
+              <motion.a
                 href="https://wa.me/+27607769793"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em]"
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.1 }}
+                className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] inline-block"
               >
                 WHATSAPP US
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         </div>
