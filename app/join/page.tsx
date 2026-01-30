@@ -11,7 +11,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000'
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1621290181122-f23227645392?q=80&w=2000&auto=format&fit=crop'
 
 export default function JoinPage() {
   const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
