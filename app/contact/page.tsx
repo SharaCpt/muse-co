@@ -173,6 +173,69 @@ export default function ContactPage() {
               />
             </div>
 
+            {/* Model Recruitment CTA */}
+            <motion.a
+              href="https://wa.me/+27607769793?text=Hi%20Shara!%20I'm%20interested%20in%20joining%20Muse%20%26%20Co%20as%20a%20model.%20I'd%20love%20to%20learn%20more%20about%20this%20opportunity%20and%20see%20if%20I'd%20be%20a%20good%20fit.%20Looking%20forward%20to%20hearing%20from%20you!%20✨"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="block mt-8 group"
+            >
+              <motion.div
+                animate={{
+                  boxShadow: [
+                    '0 0 20px rgba(255, 182, 193, 0.4)',
+                    '0 0 30px rgba(255, 182, 193, 0.6)',
+                    '0 0 20px rgba(255, 182, 193, 0.4)',
+                  ],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="bg-gradient-to-r from-pink-300 to-rose-300 p-6 rounded-lg hover:from-pink-400 hover:to-rose-400 transition-all duration-300 relative overflow-hidden"
+              >
+                {/* Shimmer effect */}
+                <motion.div
+                  animate={{
+                    x: ['-100%', '200%'],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    repeatDelay: 1,
+                  }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                />
+                
+                <div className="relative z-10 flex items-center justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-2xl">✨</span>
+                      <p className="font-playfair text-xl text-deep-black font-semibold">
+                        Become a Model
+                      </p>
+                    </div>
+                    <p className="text-deep-black/80 text-sm font-inter">
+                      Join South Africa's most exclusive agency
+                    </p>
+                  </div>
+                  <motion.div
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <svg className="w-6 h-6 text-deep-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </motion.a>
+
             {/* Business Hours */}
             <div className="pt-8 border-t border-champagne-gold/20">
               <h3 className="font-inter text-champagne-gold mb-4 tracking-wider">
