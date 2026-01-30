@@ -36,28 +36,80 @@ export default function JoinPage() {
     }
   }
 
+  const phoneNumber = '+27607769793'
+  const message = "Hey Shara! ✨ I saw the Join page and I'm interested in learning more about Muse & Co. Would love to chat!"
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+
   return (
     <>
       <ModelRecruitmentButton />
       <main className="bg-deep-black pt-24">
         {/* Hero */}
-        <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <Image src={headerImage} alt="Join Muse & Co" fill className="object-cover" priority unoptimized />
-            <div className="absolute inset-0 bg-deep-black/70" />
-            <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
+            <div className="absolute inset-0 bg-deep-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-deep-black/80 via-transparent to-deep-black" />
           </div>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="relative z-10 text-center px-6 max-w-5xl">
-            <h1 className="font-playfair text-7xl md:text-9xl text-champagne-gold mb-8 tracking-[0.2em]">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-champagne-gold/80 text-sm tracking-[0.4em] mb-6 uppercase"
+            >
+              Your Next Chapter Starts Here
+            </motion.p>
+            <h1 className="font-playfair text-6xl md:text-8xl text-champagne-gold mb-6 tracking-[0.15em]">
               JOIN MUSE & CO
             </h1>
-            <p className="text-off-white text-2xl md:text-3xl font-light mb-4">
+            <p className="text-off-white/90 text-xl md:text-2xl font-light">
               Travel the World. Live Luxuriously. Be Extraordinary.
             </p>
-            <p className="text-champagne-gold/90 text-xl font-playfair italic">
-              South Africa's most exclusive girls
-            </p>
+          </motion.div>
+        </section>
+
+        {/* Premium Contact Box */}
+        <section className="relative -mt-16 z-20 px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="max-w-2xl mx-auto"
+          >
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-rose-900/90 via-rose-800/90 to-pink-900/90 border-2 border-champagne-gold/50 shadow-[0_0_60px_rgba(199,91,122,0.3)]">
+              {/* Shimmer effect */}
+              <motion.div
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-champagne-gold/10 to-transparent"
+              />
+              
+              {/* Content */}
+              <div className="relative z-10 p-8 md:p-10 text-center">
+                <p className="text-champagne-gold font-playfair text-lg mb-2">Ready to Begin?</p>
+                <p className="text-off-white/80 text-sm mb-6">
+                  I'm Shara. Let's have a chat and see if we're the right fit for each other.
+                </p>
+                
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-champagne-gold to-[#B8962E] text-deep-black font-semibold rounded-full hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-all duration-300 group"
+                >
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  <span>Message Shara on WhatsApp</span>
+                </a>
+                
+                <p className="text-off-white/50 text-xs mt-5 italic">
+                  100% confidential • Usually replies within a few hours
+                </p>
+              </div>
+            </div>
           </motion.div>
         </section>
 
@@ -127,57 +179,69 @@ export default function JoinPage() {
               </p>
             </motion.div>
 
-            <div className="space-y-4 mb-12">
-              <RequirementBox text="You're absolutely gorgeous and you know how to work it" />
-              <RequirementBox text="You can hold a conversation about anything - current affairs, travel, wine, whatever. You're smart and interesting." />
-              <RequirementBox text="You're reliable. If you say you'll be there, you'll be there. Looking fabulous." />
-              <RequirementBox text="You get discretion. What happens stays private - always." />
-              <RequirementBox text="You're comfortable in 5-star hotels, fancy restaurants, luxury settings. Or ready to be." />
-              <RequirementBox text="You're 18+ and ready to commit to working exclusively through Muse & Co" />
+            <div className="grid md:grid-cols-2 gap-4 mb-12">
+              <RequirementBox text="You're gorgeous and you know how to work it" />
+              <RequirementBox text="Smart, interesting, can talk about anything" />
+              <RequirementBox text="Reliable - you show up looking fabulous" />
+              <RequirementBox text="Discretion is second nature to you" />
+              <RequirementBox text="Comfortable in luxury settings (or ready to be)" />
+              <RequirementBox text="18+ and ready for exclusive partnership" />
             </div>
 
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="bg-charcoal p-8 rounded-lg border border-champagne-gold/30 text-center">
               <p className="text-champagne-gold font-playfair text-xl mb-3">Real Talk</p>
-              <p className="text-off-white/80 leading-relaxed mb-3">
+              <p className="text-off-white/80 leading-relaxed">
                 I turn down way more girls than I accept. This isn't for everyone - and that's the point. 
-                My clients expect the absolute best, so that's exactly who I represent.
-              </p>
-              <p className="text-off-white/60 text-sm italic">
                 If you're bubbly, beautiful, and brilliant - you're exactly who I'm looking for.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* How It Works */}
+        {/* Simple Process + Final CTA */}
         <section className="py-24 px-6 md:px-12 bg-gradient-to-b from-deep-black to-charcoal">
           <div className="max-w-3xl mx-auto">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-12">
               <h2 className="font-playfair text-4xl text-champagne-gold mb-6">
-                Ready to Start?
+                How It Works
               </h2>
-              <p className="text-off-white/80 text-lg leading-relaxed">
-                Click that sparkling button at the bottom left to message me directly on WhatsApp. 
-                We'll have a quick chat, and if we vibe, we'll meet for coffee and I'll tell you everything.
-              </p>
+              <div className="flex flex-wrap justify-center gap-4 text-off-white/70 text-sm">
+                <span className="flex items-center gap-2"><span className="text-champagne-gold">1.</span> Message me</span>
+                <span className="text-champagne-gold/50">→</span>
+                <span className="flex items-center gap-2"><span className="text-champagne-gold">2.</span> Coffee chat</span>
+                <span className="text-champagne-gold/50">→</span>
+                <span className="flex items-center gap-2"><span className="text-champagne-gold">3.</span> Photos</span>
+                <span className="text-champagne-gold/50">→</span>
+                <span className="flex items-center gap-2"><span className="text-champagne-gold">4.</span> Start living ✨</span>
+              </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-4">
-              <ProcessBox number="1" text="Message me → We chat about you, what you're looking for, answer any questions" />
-              <ProcessBox number="2" text="Meet for coffee → Get to know each other, I explain everything in detail" />
-              <ProcessBox number="3" text="Professional photos → We get you looking incredible for client intros" />
-              <ProcessBox number="4" text="First booking → You start living this life" />
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-12 text-center">
-              <p className="text-champagne-gold/90 font-playfair text-xl mb-2">
-                See that sparkle? ✨
+            {/* Final CTA Box */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center p-10 bg-gradient-to-br from-charcoal via-deep-black to-charcoal border border-champagne-gold/40 rounded-2xl"
+            >
+              <p className="text-champagne-gold font-playfair text-2xl mb-3">
+                Ready to Change Your Life?
               </p>
-              <p className="text-off-white/70 mb-4">
-                Click the glowing button at the bottom left to start this conversation
+              <p className="text-off-white/70 mb-8">
+                The sparkling button in the corner is your direct line to me. Or tap below.
               </p>
-              <p className="text-off-white/50 text-sm italic">
-                Everything we discuss is 100% confidential - always
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-rose-800 to-rose-900 text-off-white font-semibold rounded-full border border-champagne-gold/50 hover:border-champagne-gold hover:shadow-[0_0_30px_rgba(199,91,122,0.4)] transition-all duration-300"
+              >
+                <svg className="w-5 h-5 text-champagne-gold" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span>Let's Chat, Beautiful</span>
+              </a>
+              <p className="text-off-white/40 text-xs mt-6 italic">
+                Everything we discuss stays between us - always
               </p>
             </motion.div>
           </div>
@@ -208,218 +272,9 @@ function RequirementBox({ text }: { text: string }) {
       initial={{ opacity: 0, x: -10 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      className="flex items-start gap-4 p-4 bg-charcoal/50 border border-champagne-gold/20 rounded-lg"
+      className="flex items-center gap-3 p-4 bg-charcoal/50 border border-champagne-gold/20 rounded-lg"
     >
-      <div className="text-champagne-gold text-xl mt-0.5">✓</div>
-      <p className="text-off-white/80">{text}</p>
-    </motion.div>
-  )
-}
-
-function ProcessBox({ number, text }: { number: string; text: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -10 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      className="flex gap-4 items-start p-5 bg-charcoal border border-champagne-gold/30 rounded-lg"
-    >
-      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-champagne-gold/20 border-2 border-champagne-gold flex items-center justify-center">
-        <span className="text-champagne-gold font-bold">{number}</span>
-      </div>
-      <p className="text-off-white/80 pt-1.5">{text}</p>
-    </motion.div>
-  )
-}
-
-              className="object-cover"
-              priority
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-deep-black/70" />
-            <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative z-10 text-center px-6 max-w-5xl"
-          >
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-6 uppercase"
-            >
-              Elite Opportunity
-            </motion.p>
-            <h1 className="font-playfair text-6xl md:text-9xl tracking-[0.2em] text-champagne-gold mb-8 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
-              JOIN MUSE & CO
-            </h1>
-            <p className="text-off-white/90 text-xl md:text-2xl font-light leading-relaxed max-w-3xl mx-auto mb-8">
-              Become part of South Africa's most exclusive modeling and companion agency.
-            </p>
-            <p className="text-champagne-gold/90 text-2xl md:text-3xl font-playfair italic">
-              We represent the cream of the crop.
-            </p>
-          </motion.div>
-        </section>
-
-        {/* Why Join - Streamlined */}
-        <section className="py-24 px-6 md:px-12 bg-gradient-to-b from-deep-black to-charcoal">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-5xl mx-auto"
-          >
-            <div className="text-center mb-16">
-              <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-6 tracking-wide">
-                Premium Earnings • Global Travel • Elite Clientele
-              </h2>
-              <p className="text-off-white/80 text-lg leading-relaxed max-w-3xl mx-auto">
-                Join South Africa's most selective agency. Work exclusively with vetted high-net-worth clients, 
-                earn top-tier rates, and travel internationally while maintaining complete safety and discretion.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FeaturePoint
-                icon="💰"
-                title="Top 1% Earnings"
-                description="Premium compensation because our clients demand excellence"
-              />
-              <FeaturePoint
-                icon="✈️"
-                title="International Experiences"
-                description="Dubai, Monaco, London - travel the world in luxury"
-              />
-              <FeaturePoint
-                icon="🔒"
-                title="Exclusive Partnership"
-                description="Work solely through Muse & Co for higher rates & safety"
-              />
-              <FeaturePoint
-                icon="👑"
-                title="VIP Treatment"
-                description="Professional photos, styling, 24/7 support included"
-              />
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Requirements - Condensed */}
-        <section className="py-24 px-6 md:px-12 bg-charcoal relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(212,175,55,0.05),transparent_50%)]" />
-          
-          <div className="max-w-4xl mx-auto relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-4 tracking-wide">
-                Are You the Cream of the Crop?
-              </h2>
-              <p className="text-off-white/70 text-lg">
-                We're selective by design - beauty, intelligence, sophistication, and exclusive commitment required.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-              <QuickRequirement text="Stunning beauty & elegant presence" />
-              <QuickRequirement text="Articulate & sophisticated charm" />
-              <QuickRequirement text="Professional & reliable (18+)" />
-              <QuickRequirement text="Absolute discretion & maturity" />
-              <QuickRequirement text="Comfortable in luxury settings" />
-              <QuickRequirement text="Exclusive partnership commitment" />
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="p-6 border-2 border-champagne-gold/40 rounded-lg bg-gradient-to-br from-rose-900/20 to-deep-black text-center"
-            >
-              <p className="text-champagne-gold text-lg font-playfair mb-2">
-                Not For Everyone
-              </p>
-              <p className="text-off-white/70 text-sm">
-                We reject far more applicants than we accept. If you're exceptional, we want to meet you.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* How It Works - Simple */}
-        <section className="py-24 px-6 md:px-12 bg-deep-black">
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-4 tracking-wide">
-                Simple Process
-              </h2>
-              <p className="text-off-white/70">
-                Message Shara → Interview → Professional Photos → Start Earning
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="text-center p-8 bg-gradient-to-br from-charcoal to-deep-black border border-champagne-gold/30 rounded-lg"
-            >
-              <p className="text-off-white/80 mb-6 leading-relaxed">
-                Ready to join South Africa's most exclusive modeling agency? 
-                <span className="block mt-2 text-champagne-gold font-semibold">
-                  Click the sparkling button at bottom left to begin.
-                </span>
-              </p>
-              <p className="text-off-white/50 text-sm italic">
-                All inquiries handled with complete confidentiality
-              </p>
-            </motion.div>
-          </div>
-        </section>
-      </main>
-    </>
-  )
-}
-
-// Streamlined Components
-function FeaturePoint({ icon, title, description }: { icon: string; title: string; description: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="flex gap-4 items-start p-6 glass-effect border border-champagne-gold/20 rounded-lg hover:border-champagne-gold/40 transition-all duration-300"
-    >
-      <span className="text-3xl flex-shrink-0">{icon}</span>
-      <div>
-        <h3 className="text-champagne-gold font-semibold mb-1 tracking-wide">{title}</h3>
-        <p className="text-off-white/70 text-sm font-light">{description}</p>
-      </div>
-    </motion.div>
-  )
-}
-
-function QuickRequirement({ text }: { text: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -10 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      className="flex items-center gap-3 p-4 bg-deep-black/50 border border-champagne-gold/20 rounded-lg"
-    >
-      <div className="w-2 h-2 bg-champagne-gold rounded-full flex-shrink-0" />
+      <div className="text-champagne-gold text-lg">✓</div>
       <p className="text-off-white/80 text-sm">{text}</p>
     </motion.div>
   )
