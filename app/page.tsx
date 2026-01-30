@@ -443,13 +443,13 @@ export default function HomePage() {
           className="max-w-4xl mx-auto text-center relative z-10"
         >
           <p className="text-champagne-gold/80 text-sm tracking-[0.3em] mb-6 uppercase font-light">
-            Ready to Elevate Your Event?
+            Exclusive Access
           </p>
           <h2 className="font-playfair text-5xl md:text-7xl text-off-white mb-8 tracking-wide">
-            Let's Create Something Extraordinary
+            Experience Unparalleled Elegance
           </h2>
           <p className="text-off-white/70 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-            Experience the MUSE & CO difference. Elite staffing for discerning clients who demand nothing but perfection.
+            Discover South Africa's most sophisticated companions. Curated beauty, refined intelligence, and absolute discretion for the world's most discerning clientele.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -457,7 +457,7 @@ export default function HomePage() {
               href="/contact"
               className="px-12 py-5 bg-champagne-gold text-deep-black font-semibold tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] text-sm uppercase"
             >
-              Book Consultation
+              Private Inquiry
             </Link>
             
             <Link
