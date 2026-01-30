@@ -2,7 +2,7 @@
 -- Run this in Supabase SQL Editor
 
 UPDATE site_images 
-SET image_url = 'https://images.unsplash.com/photo-1623039497550-c4f2ccc7b875?q=80&w=2400', 
+SET image_url = 'https://images.unsplash.com/photo-1608896772441-5a0d6fdd2acf?q=80&w=2400', 
     updated_at = NOW() 
 WHERE id = 'homepage_hero';
 
