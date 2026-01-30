@@ -16,6 +16,7 @@ export default function Navigation() {
     { href: '/pricing', label: 'PRICING' },
     { href: '/portfolio', label: 'PORTFOLIO' },
     { href: '/contact', label: 'CONTACT' },
+    { href: '/join', label: 'JOIN MUSE', special: true },
   ]
 
   return (
@@ -33,7 +34,9 @@ export default function Navigation() {
               key={link.href}
               href={link.href}
               className={`font-inter text-sm tracking-wider transition-smooth ${
-                pathname === link.href
+                link.special
+                  ? 'text-champagne-gold font-semibold hover:text-champagne-gold/80'
+                  : pathname === link.href
                   ? 'text-champagne-gold'
                   : 'text-off-white/80 hover:text-champagne-gold'
               }`}
@@ -46,20 +49,16 @@ export default function Navigation() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex flex-col space-y-1.5 w-8 h-8 justify-center"
+          className="md:hidden flex flex-col space-y-2 w-8 h-8 justify-center"
           aria-label="Toggle menu"
         >
           <motion.span
-            animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-            className="block h-0.5 w-8 bg-champagne-gold transition-smooth"
+            animate={isOpen ? { rotate: 45, y: 5, backgroundColor: '#A8ADB3' } : { rotate: 0, y: 0, backgroundColor: '#D4AF37' }}
+            className="block h-0.5 w-8 transition-smooth"
           />
           <motion.span
-            animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="block h-0.5 w-8 bg-champagne-gold transition-smooth"
-          />
-          <motion.span
-            animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-            className="block h-0.5 w-8 bg-champagne-gold transition-smooth"
+            animate={isOpen ? { rotate: -45, y: -5, backgroundColor: '#A8ADB3' } : { rotate: 0, y: 0, backgroundColor: '#D4AF37' }}
+            className="block h-0.5 w-8 transition-smooth"
           />
         </button>
       </div>
@@ -85,7 +84,9 @@ export default function Navigation() {
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={`block font-inter text-lg tracking-wider transition-smooth ${
-                      pathname === link.href
+                      link.special
+                        ? 'text-champagne-gold font-semibold'
+                        : pathname === link.href
                         ? 'text-champagne-gold'
                         : 'text-off-white/80 hover:text-champagne-gold'
                     }`}
