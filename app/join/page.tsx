@@ -48,8 +48,8 @@ export default function JoinPage() {
         <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <Image src={headerImage} alt="Join Muse & Co" fill className="object-cover" priority unoptimized />
-            <div className="absolute inset-0 bg-deep-black/60" />
-            <div className="absolute inset-0 bg-gradient-to-b from-deep-black/80 via-transparent to-deep-black" />
+            <div className="absolute inset-0 bg-deep-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-b from-deep-black/30 via-transparent to-deep-black" />
           </div>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="relative z-10 text-center px-6 max-w-5xl">

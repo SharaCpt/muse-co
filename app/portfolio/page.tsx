@@ -115,8 +115,8 @@ export default function PortfolioPage() {
             priority
             unoptimized
           />
-          <div className="absolute inset-0 bg-deep-black/75" />
-          <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-transparent to-deep-black" />
+          <div className="absolute inset-0 bg-deep-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-black/30 via-transparent to-deep-black" />
         </div>
 
         <motion.div

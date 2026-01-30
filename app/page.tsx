@@ -33,7 +33,7 @@ export default function HomePage() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2])
 
   const [images, setImages] = useState<Record<string, string>>({
-    hero: 'https://images.unsplash.com/photo-1568819317551-31051b37f69f?q=80&w=2400&auto=format&fit=crop',
+    hero: '',
     service_card_1: 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200',
     service_card_2: 'https://images.unsplash.com/photo-1522255272218-7ac5249be344?q=80&w=1200',
     service_card_3: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200',
@@ -121,16 +121,18 @@ export default function HomePage() {
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Parallax Background */}
         <motion.div style={{ scale }} className="absolute inset-0 z-0">
-          <Image
-            src={images.hero}
-            alt="Elite luxury companion services Cape Town"
-            fill
-            unoptimized
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-deep-black/50 via-deep-black/30 to-deep-black" />
-          <div className="absolute inset-0 bg-gradient-to-r from-deep-black/40 via-transparent to-deep-black/40" />
+          {images.hero && (
+            <Image
+              src={images.hero}
+              alt="Elite luxury companion services Cape Town"
+              fill
+              unoptimized
+              className="object-cover object-center"
+              priority
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-black/40 via-deep-black/25 to-deep-black" />
+          <div className="absolute inset-0 bg-gradient-to-r from-deep-black/30 via-transparent to-deep-black/30" />
         </motion.div>
 
         {/* Floating particles effect */}
