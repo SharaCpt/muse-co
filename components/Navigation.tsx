@@ -30,29 +30,40 @@ export default function Navigation() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`font-inter text-sm tracking-wider transition-all duration-300 ${
-                link.special
-                  ? 'text-[#C75B7A] font-semibold hover:text-rose-800 join-muse-link'
-                  : pathname === link.href
+            link.special ? (
+              <motion.div
+                key={link.href}
+                animate={{
+                  textShadow: [
+                    '0 0 8px rgba(199,91,122,0.4)',
+                    '0 0 16px rgba(199,91,122,0.6)',
+                    '0 0 8px rgba(199,91,122,0.4)',
+                  ]
+                }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Link
+                  href={link.href}
+                  className="font-inter text-sm tracking-wider transition-all duration-300 text-[#C75B7A] font-semibold hover:text-rose-300"
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`font-inter text-sm tracking-wider transition-all duration-300 ${
+                  pathname === link.href
                   ? 'text-champagne-gold'
                   : 'text-off-white/80 hover:text-champagne-gold'
-              }`}
-              style={link.special ? {
-                textShadow: '-0.5px -0.5px 0 rgba(0,0,0,0.6), 0.5px -0.5px 0 rgba(0,0,0,0.6), -0.5px 0.5px 0 rgba(0,0,0,0.6), 0.5px 0.5px 0 rgba(0,0,0,0.6)'
-              } : undefined}
-            >
-              {link.label}
-            </Link>
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
           ))}
         </div>
-        <style jsx>{`
-          .join-muse-link:hover {
-            text-shadow: -0.8px -0.8px 0 rgba(0,0,0,0.9), 0.8px -0.8px 0 rgba(0,0,0,0.9), -0.8px 0.8px 0 rgba(0,0,0,0.9), 0.8px 0.8px 0 rgba(0,0,0,0.9) !important;
-          }
-        `}</style>
 
         {/* Mobile Menu Button */}
         <button
@@ -87,21 +98,17 @@ export default function Navigation() {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: index * 0.1 }}
-                  className={link.special ? 'opacity-90' : ''}
                 >
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={`block font-inter text-lg tracking-wider transition-all duration-300 ${
                       link.special
-                        ? 'text-[#C75B7A] font-semibold join-muse-link-mobile'
+                        ? 'text-[#C75B7A] font-semibold'
                         : pathname === link.href
                         ? 'text-champagne-gold'
                         : 'text-off-white/80 hover:text-champagne-gold'
                     }`}
-                    style={link.special ? {
-                      textShadow: '-0.5px -0.5px 0 rgba(0,0,0,0.6), 0.5px -0.5px 0 rgba(0,0,0,0.6), -0.5px 0.5px 0 rgba(0,0,0,0.6), 0.5px 0.5px 0 rgba(0,0,0,0.6)'
-                    } : undefined}
                   >
                     {link.label}
                   </Link>
