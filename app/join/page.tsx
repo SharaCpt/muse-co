@@ -161,7 +161,7 @@ export default function JoinPage() {
             />
             <RequirementCard
               title="Professionalism"
-              description="Reliable, punctual, and committed to excellence. You understand this is a premium service requiring the highest standards."
+              description="Reliable, punctual, and committed to excellence. You understand this is a premium service requiring the highest standards and exclusive partnership with our agency."
             />
             <RequirementCard
               title="Discretion & Maturity"
@@ -190,6 +190,74 @@ export default function JoinPage() {
               We're selective by design. We reject far more applicants than we accept. 
               If you're looking for volume bookings or standard escort work, we're not the right fit. 
               We specialize in exclusive, high-end arrangements with elite clientele who expect extraordinary companions.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Exclusive Partnership */}
+      <section className="py-32 px-6 md:px-12 bg-gradient-to-b from-charcoal to-deep-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(212,175,55,0.06),transparent_60%)]" />
+        
+        <div className="max-w-4xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Our Commitment to You</p>
+            <h2 className="font-playfair text-5xl md:text-6xl text-champagne-gold mb-8 tracking-wide">
+              Exclusive Partnership
+            </h2>
+            <p className="text-off-white/80 text-lg leading-relaxed">
+              Success in the luxury companion industry requires a strategic approach. 
+              Here's why our exclusive representation model benefits you.
+            </p>
+          </motion.div>
+
+          <div className="space-y-8 mb-12">
+            <PartnershipPoint
+              title="Higher, Consistent Rates"
+              description="When you work exclusively through Muse & Co, we maintain premium pricing. No price wars, no competition from other agents representing you differently. Our clients know your rates are firm, protecting your earning potential and our shared reputation."
+            />
+            <PartnershipPoint
+              title="Comprehensive Safety & Vetting"
+              description="Exclusive representation means we track every booking, know where you are, and maintain complete oversight of client interactions. When models work through multiple agencies, safety protocols break down. We can't protect you if we don't know where you are."
+            />
+            <PartnershipPoint
+              title="Brand Investment & Marketing"
+              description="We invest heavily in your success - professional photography, client relationship building, personal brand positioning. This investment only makes sense when we're your sole representative. You get better marketing because we're confident in the partnership."
+            />
+            <PartnershipPoint
+              title="Client Trust & Discretion"
+              description="Elite clients demand reliability and discretion. They work with Muse & Co because they trust our processes. When models work through multiple agencies, it creates confusion, damages trust, and compromises the confidentiality our clientele require."
+            />
+            <PartnershipPoint
+              title="Professional Growth"
+              description="We develop long-term careers, not quick bookings. Exclusive models receive ongoing support, styling guidance, international opportunities, and strategic placements that build sustainable success."
+            />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="p-8 border-2 border-champagne-gold/40 rounded-lg bg-gradient-to-br from-rose-900/20 to-deep-black relative overflow-hidden"
+          >
+            {/* Decorative sparkles */}
+            <div className="absolute top-4 right-4 text-champagne-gold text-2xl">✨</div>
+            <div className="absolute bottom-4 left-4 text-champagne-gold text-2xl">✨</div>
+            
+            <h3 className="font-playfair text-2xl text-champagne-gold mb-4 text-center">
+              Quality Over Quantity
+            </h3>
+            <p className="text-off-white/80 text-center leading-relaxed mb-4">
+              This isn't a restriction - it's a strategic choice. Models who partner exclusively with Muse & Co earn more, 
+              work safer, and build better reputations than those spreading themselves across multiple agencies.
+            </p>
+            <p className="text-champagne-gold/80 text-center text-sm italic">
+              We're building careers, not just filling calendars. That requires commitment from both sides.
             </p>
           </motion.div>
         </div>
@@ -423,6 +491,24 @@ function ProcessStep({ number, title, description }: { number: string; title: st
       <div className="flex-shrink-0 w-16 h-16 rounded-full border-2 border-champagne-gold flex items-center justify-center bg-deep-black group-hover:bg-champagne-gold/10 transition-all duration-300">
         <span className="font-playfair text-champagne-gold text-lg">{number}</span>
       </div>
+      <div>
+        <h3 className="text-champagne-gold text-xl font-semibold mb-2 tracking-wide">{title}</h3>
+        <p className="text-off-white/70 leading-relaxed font-light">{description}</p>
+      </div>
+    </motion.div>
+  )
+}
+
+// Partnership Point Component
+function PartnershipPoint({ title, description }: { title: string; description: string }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      className="flex gap-4 items-start"
+    >
+      <div className="flex-shrink-0 w-3 h-3 bg-champagne-gold rounded-full mt-2" />
       <div>
         <h3 className="text-champagne-gold text-xl font-semibold mb-2 tracking-wide">{title}</h3>
         <p className="text-off-white/70 leading-relaxed font-light">{description}</p>

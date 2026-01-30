@@ -36,6 +36,9 @@ export default function Footer() {
               <Link href="/contact" className="block text-off-white/60 hover:text-champagne-gold text-sm transition-smooth">
                 Contact
               </Link>
+              <Link href="/join" className="block text-champagne-gold/80 hover:text-champagne-gold text-sm transition-smooth font-semibold">
+                Join Muse & Co
+              </Link>
             </div>
           </div>
 
