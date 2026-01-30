@@ -59,13 +59,13 @@ export default function JoinPage() {
               transition={{ delay: 0.2 }}
               className="text-champagne-gold/80 text-sm tracking-[0.4em] mb-6 uppercase"
             >
-              Exclusive • International • Extraordinary
+              Cape Town's Elite Companion Standard
             </motion.p>
             <h1 className="font-playfair text-6xl md:text-8xl text-champagne-gold mb-6 tracking-[0.15em]">
               JOIN MUSE & CO
             </h1>
             <p className="text-off-white/90 text-xl md:text-2xl font-light">
-              Travel the World. Live Luxuriously. Be Extraordinary.
+              Where Exceptional Becomes Elite
             </p>
           </motion.div>
         </section>
@@ -79,17 +79,15 @@ export default function JoinPage() {
               </h2>
               <div className="text-off-white/90 text-lg leading-relaxed space-y-4">
                 <p>
-                  I'm Shara, and I run Cape Town's most exclusive companion agency. Let me be real with you - 
-                  this isn't your typical modeling gig. This is about stepping into a world where beauty meets luxury, 
-                  where you're valued not just for how you look, but for who you are.
+                  I'm Shara, and I represent Cape Town's most exclusive companions. This isn't for everyone - 
+                  and honestly, that's the point.
                 </p>
                 <p>
-                  Picture this: Dubai penthouses. Yacht parties in the Mediterranean. Private jets to London for shopping weekends. 
-                  My girls live lives most people only dream about - all while being treated like absolute royalty by successful, 
-                  generous men who appreciate intelligence, sophistication, and real connection.
+                  My girls move through Cape Town's elite circles with confidence. Private dinners, high-profile events, 
+                  sophisticated company. They're valued not just for beauty, but for who they are - intelligent, captivating, extraordinary.
                 </p>
                 <p className="text-champagne-gold/90 italic">
-                  If you're that stunning, smart Cape Town girl ready for an extraordinary life - I want to hear from you.
+                  If you're that rare combination of stunning and sophisticated, we should talk.
                 </p>
               </div>
             </motion.div>
@@ -109,18 +107,16 @@ export default function JoinPage() {
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-6 mb-12">
-              <BenefitBox emoji="✈️" title="Travel the World" text="Dubai, Monaco, Paris, London, the Maldives - all expenses paid. Five-star hotels, first class flights, Michelin-star dining. Live like you've always imagined." />
-              <BenefitBox emoji="💰" title="Financial Freedom" text="My girls earn R50k-R150k+ per trip. Build your dream life - buy property, travel off-duty, invest in your future. This isn't pocket money, it's life-changing income." />
-              <BenefitBox emoji="👗" title="Full Support" text="Professional photoshoots, styling guidance, 24/7 personal support from me. I'm invested in your success - when you thrive, we both win." />
-              <BenefitBox emoji="🔒" title="Safety Guaranteed" text="Every single client is thoroughly vetted. I know exactly where you are, who you're with, when you land. Your safety is my #1 priority - always." />
+              <BenefitBox emoji="💎" title="Elite Status" text="You're not just beautiful - you're Cape Town's premium tier. The companion of choice for business leaders, entrepreneurs, and discerning clients who value sophistication." />
+              <BenefitBox emoji="🌟" title="The Lifestyle" text="Experience the city's most exclusive events, finest establishments, and elite circles. Occasionally international opportunities for exceptional companions. Always premium. Always on your terms." />
+              <BenefitBox emoji="🔒" title="Protected Always" text="Every client personally vetted. Total discretion guaranteed. Your safety isn't negotiable - it's the foundation of everything." />
             </div>
 
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="bg-gradient-to-br from-rose-900/30 to-deep-black p-8 rounded-lg border-2 border-champagne-gold/40 text-center">
-              <p className="text-champagne-gold text-xl font-playfair mb-3">The Deal</p>
+              <p className="text-champagne-gold text-xl font-playfair mb-3">The Elite Standard</p>
               <p className="text-off-white/80 leading-relaxed">
-                You work exclusively with me. No other agents, no undercutting rates, no drama. 
-                This keeps your rates premium, your bookings consistent, and honestly - it keeps you safer. 
-                I can't protect you if I don't know where you are.
+                My companions work exclusively with Muse & Co - it's what maintains our premium positioning and ensures your safety. 
+                If you understand why exclusivity equals value, you're exactly who I'm looking for.
               </p>
             </motion.div>
           </div>
@@ -131,10 +127,10 @@ export default function JoinPage() {
           <div className="max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-12">
               <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-4">
-                Are You the Girl?
+                Are You Truly Elite?
               </h2>
               <p className="text-off-white/70 text-lg">
-                I'm picky - but if this sounds like you, we should definitely chat
+                I'm selective. But if this describes you, let's talk.
               </p>
             </motion.div>
 
@@ -150,8 +146,8 @@ export default function JoinPage() {
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="bg-charcoal p-8 rounded-lg border border-champagne-gold/30 text-center">
               <p className="text-champagne-gold font-playfair text-xl mb-3">Real Talk</p>
               <p className="text-off-white/80 leading-relaxed">
-                I'm selective - but that's what keeps this special. 
-                If you're confident, captivating, and ready for more - let's talk.
+                Not everyone makes the cut - and that's what makes this the top tier. 
+                If you're confident, exceptional, and understand your worth - you're exactly who this is for.
               </p>
             </motion.div>
           </div>
@@ -183,10 +179,10 @@ export default function JoinPage() {
               className="text-center p-10 bg-gradient-to-br from-charcoal via-deep-black to-charcoal border border-champagne-gold/40 rounded-2xl"
             >
               <p className="text-champagne-gold font-playfair text-2xl mb-3">
-                Ready to Begin?
+                Think You're Ready?
               </p>
               <p className="text-off-white/70 mb-8">
-                Send me a message. Let's see if we're the right fit.
+                If you're confident, captivating, and exceptional - I want to hear from you. Let's see if you're the right fit for Cape Town's elite.
               </p>
               <motion.a
                 href={whatsappUrl}
