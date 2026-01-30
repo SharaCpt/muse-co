@@ -207,9 +207,10 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 1.4 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
+            <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
             <Link
               href="/portfolio"
-              className="group relative px-12 py-4 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)]"
+              className="group relative px-12 py-4 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] block"
             >
               <span className="relative z-10">VIEW PORTFOLIO</span>
               <motion.div
@@ -219,13 +220,16 @@ export default function HomePage() {
                 transition={{ duration: 0.3 }}
               />
             </Link>
+            </motion.div>
             
+            <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
             <Link
               href="/contact"
-              className="px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)]"
+              className="px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] block"
             >
               BOOK NOW
             </Link>
+            </motion.div>
           </motion.div>
         </motion.div>
 

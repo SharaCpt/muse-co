@@ -15,8 +15,8 @@ export default function ModelRecruitmentButton() {
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.3 }}
+      whileTap={{ scale: 0.92 }}
+      transition={{ duration: 0.4, delay: 1.5 }}
       className="fixed bottom-8 left-8 z-50 group"
       aria-label="Join Muse & Co as a model"
     >
