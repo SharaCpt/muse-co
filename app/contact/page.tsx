@@ -173,7 +173,7 @@ export default function ContactPage() {
               />
             </div>
 
-            {/* Model Recruitment CTA */}
+            {/* Model Recruitment CTA - Premium */}
             <motion.a
               href="https://wa.me/+27607769793?text=Hi%20Shara!%20I'm%20interested%20in%20joining%20Muse%20%26%20Co%20as%20a%20model.%20I'd%20love%20to%20learn%20more%20about%20this%20opportunity%20and%20see%20if%20I'd%20be%20a%20good%20fit.%20Looking%20forward%20to%20hearing%20from%20you!%20✨"
               target="_blank"
@@ -186,19 +186,42 @@ export default function ContactPage() {
               <motion.div
                 animate={{
                   boxShadow: [
-                    '0 0 20px rgba(255, 182, 193, 0.4)',
-                    '0 0 30px rgba(255, 182, 193, 0.6)',
-                    '0 0 20px rgba(255, 182, 193, 0.4)',
+                    '0 0 25px rgba(212, 175, 55, 0.4), 0 0 40px rgba(199, 91, 122, 0.2)',
+                    '0 0 35px rgba(212, 175, 55, 0.6), 0 0 50px rgba(199, 91, 122, 0.3)',
+                    '0 0 25px rgba(212, 175, 55, 0.4), 0 0 40px rgba(199, 91, 122, 0.2)',
                   ],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 2.5,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="bg-gradient-to-r from-pink-300 to-rose-300 p-6 rounded-lg hover:from-pink-400 hover:to-rose-400 transition-all duration-300 relative overflow-hidden"
+                className="bg-gradient-to-br from-rose-900 via-rose-800 to-pink-900 p-6 rounded-lg border-2 border-champagne-gold hover:border-champagne-gold/80 transition-all duration-300 relative overflow-hidden group-hover:scale-[1.02] shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
               >
-                {/* Shimmer effect */}
+                {/* Champagne gold sparkle particles */}
+                <div className="absolute inset-0">
+                  {[...Array(12)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 bg-champagne-gold rounded-full"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                      }}
+                      animate={{
+                        opacity: [0.2, 0.8, 0.2],
+                        scale: [0.8, 1.2, 0.8],
+                      }}
+                      transition={{
+                        duration: 2 + Math.random() * 2,
+                        repeat: Infinity,
+                        delay: Math.random() * 2,
+                      }}
+                    />
+                  ))}
+                </div>
+
+                {/* Gold shimmer sweep */}
                 <motion.div
                   animate={{
                     x: ['-100%', '200%'],
@@ -207,32 +230,48 @@ export default function ContactPage() {
                     duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    repeatDelay: 1,
+                    repeatDelay: 1.5,
                   }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-champagne-gold/20 to-transparent"
                 />
                 
                 <div className="relative z-10 flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-2xl">✨</span>
-                      <p className="font-playfair text-xl text-deep-black font-semibold">
+                      <motion.span 
+                        className="text-2xl"
+                        animate={{
+                          rotate: [0, 10, -10, 0],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          repeatDelay: 2,
+                        }}
+                      >
+                        ✨
+                      </motion.span>
+                      <p className="font-playfair text-xl text-champagne-gold font-semibold tracking-wide">
                         Become a Model
                       </p>
                     </div>
-                    <p className="text-deep-black/80 text-sm font-inter">
+                    <p className="text-off-white/90 text-sm font-inter font-light">
                       Join South Africa's most exclusive agency
                     </p>
                   </div>
                   <motion.div
-                    animate={{ x: [0, 4, 0] }}
+                    animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   >
-                    <svg className="w-6 h-6 text-deep-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-champagne-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </motion.div>
                 </div>
+
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-champagne-gold/10 rounded-bl-full" />
+                <div className="absolute bottom-0 left-0 w-16 h-16 bg-champagne-gold/10 rounded-tr-full" />
               </motion.div>
             </motion.a>
 
