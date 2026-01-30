@@ -171,13 +171,6 @@ export default function ContactPage() {
                 value="+27 60 776 9793"
                 href="tel:+27607769793"
               />
-              
-              <ContactMethod
-                icon={<FaEnvelope />}
-                title="Email"
-                value="Contact via form"
-                href="#contact-form"
-              />
             </div>
 
             {/* Business Hours */}
