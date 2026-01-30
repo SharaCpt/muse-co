@@ -33,18 +33,26 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className={`font-inter text-sm tracking-wider transition-smooth ${
+              className={`font-inter text-sm tracking-wider transition-all duration-300 ${
                 link.special
-                  ? 'text-champagne-gold font-semibold hover:text-champagne-gold/80'
+                  ? 'text-[#C75B7A] font-semibold hover:text-rose-800 join-muse-link'
                   : pathname === link.href
                   ? 'text-champagne-gold'
                   : 'text-off-white/80 hover:text-champagne-gold'
               }`}
+              style={link.special ? {
+                textShadow: '-0.5px -0.5px 0 rgba(0,0,0,0.6), 0.5px -0.5px 0 rgba(0,0,0,0.6), -0.5px 0.5px 0 rgba(0,0,0,0.6), 0.5px 0.5px 0 rgba(0,0,0,0.6)'
+              } : undefined}
             >
               {link.label}
             </Link>
           ))}
         </div>
+        <style jsx>{`
+          .join-muse-link:hover {
+            text-shadow: -0.8px -0.8px 0 rgba(0,0,0,0.9), 0.8px -0.8px 0 rgba(0,0,0,0.9), -0.8px 0.8px 0 rgba(0,0,0,0.9), 0.8px 0.8px 0 rgba(0,0,0,0.9) !important;
+          }
+        `}</style>
 
         {/* Mobile Menu Button */}
         <button
@@ -79,17 +87,21 @@ export default function Navigation() {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: index * 0.1 }}
+                  className={link.special ? 'opacity-90' : ''}
                 >
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className={`block font-inter text-lg tracking-wider transition-smooth ${
+                    className={`block font-inter text-lg tracking-wider transition-all duration-300 ${
                       link.special
-                        ? 'text-champagne-gold font-semibold'
+                        ? 'text-[#C75B7A] font-semibold join-muse-link-mobile'
                         : pathname === link.href
                         ? 'text-champagne-gold'
                         : 'text-off-white/80 hover:text-champagne-gold'
                     }`}
+                    style={link.special ? {
+                      textShadow: '-0.5px -0.5px 0 rgba(0,0,0,0.6), 0.5px -0.5px 0 rgba(0,0,0,0.6), -0.5px 0.5px 0 rgba(0,0,0,0.6), 0.5px 0.5px 0 rgba(0,0,0,0.6)'
+                    } : undefined}
                   >
                     {link.label}
                   </Link>
