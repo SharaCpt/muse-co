@@ -129,8 +129,8 @@ export default function HomePage() {
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-deep-black/80 via-deep-black/50 to-deep-black" />
-          <div className="absolute inset-0 bg-gradient-to-r from-deep-black/60 via-transparent to-deep-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-black/50 via-deep-black/30 to-deep-black" />
+          <div className="absolute inset-0 bg-gradient-to-r from-deep-black/40 via-transparent to-deep-black/40" />
         </motion.div>
 
         {/* Floating particles effect */}
