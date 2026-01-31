@@ -263,7 +263,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.1 }}
                 className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] inline-block"
               >
-                WHATSAPP US
+                MESSAGE US
               </motion.a>
             </div>
           </motion.div>

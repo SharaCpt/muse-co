@@ -206,7 +206,7 @@ export default function PortfolioPage() {
                 rel="noopener noreferrer"
                 className="group px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 text-lg shadow-[0_0_50px_rgba(212,175,55,0.4)] hover:shadow-[0_0_70px_rgba(212,175,55,0.6)] relative overflow-hidden"
               >
-                <span className="relative z-10">WHATSAPP INQUIRY</span>
+                <span className="relative z-10">MESSAGE US</span>
                 <motion.div
                   className="absolute inset-0 bg-white"
                   initial={{ x: '-100%' }}

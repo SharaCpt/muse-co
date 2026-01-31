@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { FaWhatsapp, FaEnvelope, FaPhone } from 'react-icons/fa'
+import { FaEnvelope, FaPhone } from 'react-icons/fa'
 import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(
@@ -156,21 +156,30 @@ export default function ContactPage() {
             </div>
 
             {/* Direct Contact Methods */}
-            <div className="space-y-6">
-              <ContactMethod
-                icon={<FaWhatsapp />}
-                title="WhatsApp"
-                value="+27 60 776 9793"
+            <div className="space-y-4">
+              <motion.a
                 href="https://wa.me/+27607769793"
-                primary
-              />
+                target="_blank"
+                rel="noopener noreferrer"
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.1 }}
+                className="block px-8 py-5 bg-gradient-to-r from-champagne-gold to-[#B8962E] text-deep-black font-semibold tracking-wider hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-all duration-300 text-center"
+              >
+                MESSAGE ON WHATSAPP
+              </motion.a>
               
-              <ContactMethod
-                icon={<FaPhone />}
-                title="Phone"
-                value="+27 60 776 9793"
+              <motion.a
                 href="tel:+27607769793"
-              />
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.1 }}
+                className="block px-8 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 text-center font-semibold tracking-wider"
+              >
+                CALL SHARA
+              </motion.a>
+              
+              <p className="text-off-white/50 text-xs text-center mt-4 italic">
+                Fully confidential • Response within 24 hours
+              </p>
             </div>
 
             {/* Business Hours */}
@@ -291,46 +300,5 @@ export default function ContactPage() {
         </div>
       </section>
     </main>
-  )
-}
-
-function ContactMethod({
-  icon,
-  title,
-  value,
-  href,
-  primary = false,
-}: {
-  icon: React.ReactNode
-  title: string
-  value: string
-  href: string
-  primary?: boolean
-}) {
-  return (
-    <motion.a
-      href={href}
-      target={href.startsWith('http') ? '_blank' : undefined}
-      rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.1 }}
-      className={`flex items-center space-x-4 p-6 border ${
-        primary
-          ? 'border-champagne-gold bg-champagne-gold/10'
-          : 'border-champagne-gold/20 bg-charcoal/30'
-      } hover:border-champagne-gold transition-smooth group`}
-    >
-      <div className={`text-3xl ${primary ? 'text-champagne-gold' : 'text-champagne-gold/60'} group-hover:text-champagne-gold transition-smooth`}>
-        {icon}
-      </div>
-      <div>
-        <p className="text-off-white/60 text-xs font-inter tracking-wider mb-1">
-          {title}
-        </p>
-        <p className="text-off-white font-inter">
-          {value}
-        </p>
-      </div>
-    </motion.a>
   )
 }
