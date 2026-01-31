@@ -106,11 +106,18 @@ export default function JoinPage() {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <BenefitBox emoji="💎" title="Elite Status" text="You're not just beautiful - you're Cape Town's premium tier. The companion of choice for business leaders, entrepreneurs, and discerning clients who value sophistication." />
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
               <BenefitBox emoji="🌟" title="The Lifestyle" text="Experience the city's most exclusive events, finest establishments, and elite circles. Occasionally international opportunities for exceptional companions. Always premium. Always on your terms." />
               <BenefitBox emoji="🔒" title="Protected Always" text="Every client personally vetted. Total discretion guaranteed. Your safety isn't negotiable - it's the foundation of everything." />
             </div>
+
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="bg-gradient-to-br from-rose-900/30 to-deep-black p-8 rounded-lg border-2 border-champagne-gold/40 text-center">
+              <p className="text-champagne-gold text-xl font-playfair mb-3">The Elite Standard</p>
+              <p className="text-off-white/80 leading-relaxed">
+                My companions work exclusively with Muse & Co - it's what maintains our premium positioning and ensures your safety. 
+                If you understand why exclusivity equals value, you're exactly who I'm looking for.
+              </p>
+            </motion.div>
           </div>
         </section>
 
