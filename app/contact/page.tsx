@@ -158,7 +158,7 @@ export default function ContactPage() {
             {/* Direct Contact Methods */}
             <div className="space-y-4">
               <motion.a
-                href="https://wa.me/+27607769793"
+                href="https://wa.me/+27607769793?text=Hi%20Shara!%20I%20found%20your%20contact%20details%20on%20the%20MUSE%20%26%20CO%20website.%20I%27d%20like%20to%20inquire%20about%20your%20elite%20companion%20services.%20Looking%20forward%20to%20discussing%20an%20exclusive%20arrangement.%20%E2%9C%A8"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileTap={{ scale: 0.98 }}
