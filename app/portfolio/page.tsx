@@ -196,7 +196,7 @@ export default function PortfolioPage() {
             </h2>
             <p className="text-off-white/70 text-lg leading-relaxed max-w-2xl mx-auto">
               For privacy and exclusivity, detailed profiles are shared directly with serious inquiries only. 
-              Contact us to discuss your brand launch, VIP event, or exclusive staffing requirements.
+              Contact us to discuss your exclusive companion preferences and bespoke arrangements.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
