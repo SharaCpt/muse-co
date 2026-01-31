@@ -17,7 +17,7 @@ export default function ModelRecruitmentButton() {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.4, delay: 1.5 }}
-      className="fixed bottom-6 left-6 md:bottom-8 md:left-8 z-50 group"
+      className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 group"
       aria-label="Chat with Shara on WhatsApp"
     >
       {/* Main Button */}
@@ -112,9 +112,9 @@ export default function ModelRecruitmentButton() {
 
       {/* Enhanced tooltip on hover (desktop only) */}
       <motion.div
-        initial={{ opacity: 0, x: 10, scale: 0.9 }}
+        initial={{ opacity: 0, x: -10, scale: 0.9 }}
         whileHover={{ opacity: 1, x: 0, scale: 1 }}
-        className="hidden md:block absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-gradient-to-br from-charcoal to-deep-black border-2 border-champagne-gold/50 px-5 py-3 rounded-xl whitespace-nowrap pointer-events-none shadow-2xl"
+        className="hidden md:block absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-gradient-to-br from-charcoal to-deep-black border-2 border-champagne-gold/50 px-5 py-3 rounded-xl whitespace-nowrap pointer-events-none shadow-2xl"
       >
         <p className="text-champagne-gold text-sm font-semibold mb-0.5">💬 WhatsApp Shara Now</p>
         <p className="text-off-white/60 text-xs">Start your luxury lifestyle journey</p>
