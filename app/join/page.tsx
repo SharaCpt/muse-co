@@ -75,19 +75,19 @@ export default function JoinPage() {
           <div className="max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
               <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-6">
-                A Private Invitation
+                A Personal Invitation
               </h2>
               <div className="text-off-white/90 text-lg leading-relaxed space-y-4">
                 <p>
-                  I'm Shara, and I represent Cape Town's most exclusive companions. This isn't for everyone - 
-                  and honestly, that's the point.
+                  I'm Shara, and I work with Cape Town's most exceptional companions. If you're reading this, 
+                  I'm glad you found me - because I genuinely love helping remarkable women access the lifestyle they deserve.
                 </p>
                 <p>
-                  My girls move through Cape Town's elite circles with confidence. Private dinners, high-profile events, 
-                  sophisticated company. They're valued not just for beauty, but for who they are - intelligent, captivating, extraordinary.
+                  My companions move through Cape Town's elite circles with grace and confidence. They're valued not just 
+                  for their beauty, but for their intelligence, warmth, and authenticity. These are women who enhance every room they enter.
                 </p>
                 <p className="text-champagne-gold/90 italic">
-                  If you're that rare combination of stunning and sophisticated, we should talk.
+                  If this resonates with you, I'd love to hear from you.
                 </p>
               </div>
             </motion.div>
