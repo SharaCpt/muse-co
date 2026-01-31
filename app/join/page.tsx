@@ -126,14 +126,15 @@ export default function JoinPage() {
           <div className="max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-12">
               <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-4">
-                Are You Truly Elite?
+                Are You Ready?
               </h2>
-              <p className="text-off-white/70 text-lg">
-                I'm selective. But if this describes you, let's talk.
+              <p className="text-off-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
+                I'm looking for exceptional women who embody elegance, intelligence, and warmth. 
+                If this sounds like you, I'd love to hear from you.
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-4 mb-12">
+            <div className="grid md:grid-cols-2 gap-4">
               <RequirementBox text="Naturally beautiful - you turn heads when you walk into a room" />
               <RequirementBox text="Intelligent & articulate - can discuss anything from art to current affairs" />
               <RequirementBox text="Bubbly personality - warm, engaging, genuinely fun to be around" />
@@ -141,14 +142,6 @@ export default function JoinPage() {
               <RequirementBox text="Discreet by nature - what happens stays private, always" />
               <RequirementBox text="18+, based in Cape Town, ready for something extraordinary" />
             </div>
-
-            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="bg-charcoal p-8 rounded-lg border border-champagne-gold/30 text-center">
-              <p className="text-champagne-gold font-playfair text-xl mb-3">Real Talk</p>
-              <p className="text-off-white/80 leading-relaxed">
-                Not everyone makes the cut - and that's what makes this the top tier. 
-                If you're confident, exceptional, and understand your worth - you're exactly who this is for.
-              </p>
-            </motion.div>
           </div>
         </section>
 
