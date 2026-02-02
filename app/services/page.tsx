@@ -94,7 +94,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={headerImage}
-            alt="Elite Companion Services Cape Town - Luxury VIP Escort"
+            alt="Elite Companion Services Cape Town - Luxury VIP Companionship"
             fill
             className="object-cover"
             priority

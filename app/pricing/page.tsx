@@ -125,7 +125,7 @@ export default function PricingPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={headerImage}
-            alt="Luxury Companion Pricing - Elite Escort Rates Cape Town"
+            alt="Luxury Companion Pricing - Elite Companionship Rates Cape Town"
             fill
             className="object-cover"
             priority

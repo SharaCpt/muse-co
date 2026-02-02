@@ -49,7 +49,7 @@ export default function HomePage() {
   // Editable content with defaults
   const [content, setContent] = useState({
     heroTagline: 'Elite Companions • VIP Experiences • Global Luxury',
-    heroSubtitle: 'Curating South Africa\'s most beautiful models and sophisticated companions for luxury experiences worldwide. From intimate private encounters to exclusive international arrangements, we deliver unparalleled beauty, elegance, and absolute discretion to discerning clientele across the globe.',
+    heroSubtitle: 'Curating South Africa\'s most beautiful models and sophisticated companions for luxury experiences worldwide. From exclusive private arrangements to international lifestyle experiences, we deliver unparalleled beauty, elegance, and absolute discretion to discerning clientele across the globe.',
   })
 
   useEffect(() => {
@@ -385,9 +385,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ServiceCard
               image={images.service_card_1}
-              title="VIP Nightlife & Private Entertainment"
+              title="Premium Entertainment & Exclusive Events"
               description="Transform any setting into an exclusive destination. From luxury clubs and grand galas to private estates and intimate villa gatherings, our sophisticated entertainers bring magnetic energy and refined allure to your most discreet celebrations."
-              features={["Elite VIP Hostesses & Entertainers", "Professional Casino Dealers (Topless Available)", "Sophisticated Exotic Performances", "Private Estate & Villa Events", "Premium Bottle Service", "Bespoke Adult Entertainment"]}
+              features={["Elite VIP Hostesses & Entertainers", "Professional Gaming Services", "Sophisticated Performance Artists", "Private Estate & Villa Events", "Premium Bottle Service", "Bespoke Event Experiences"]}
             />
             
             <ServiceCard
@@ -401,7 +401,7 @@ export default function HomePage() {
               image={images.service_card_3}
               title="Elite Travel Companionship"
               description="Sophisticated companions for business and leisure travel worldwide. Our refined models provide elegant companionship, cultural insight, and discretion for international journeys and exclusive destinations."
-              features={["International Travel Companions", "Executive Business Travel", "Luxury Destination Experiences", "VIP Event Escorts"]}
+              features={["International Travel Companions", "Executive Business Travel", "Luxury Destination Experiences", "VIP Event Companions"]}
             />
             
             <ServiceCard
