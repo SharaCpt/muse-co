@@ -100,7 +100,7 @@ export default function PortfolioPage() {
     <main className="bg-deep-black pt-24">
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-charcoal">
           <Image
             src={headerImage}
             alt="Elite Portfolio"
@@ -108,6 +108,8 @@ export default function PortfolioPage() {
             className="object-cover"
             priority
             unoptimized
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDBAMBAAAAAAAAAAAAAQIDAAQRBQYSIRMxQWH/xAAVAQEBAAAAAAAAAAAAAAAAAAADBP/EABsRAAICAwEAAAAAAAAAAAAAAAECABEDBCFB/9oADAMBAAIRAxEAPwCvp+4b2C8v1j0+GSNGVFeZikhBGckKOIP0HNVk3nq7Rq76RCrkAlBKSoP4D60pVB3ZAVpz1EPZ/9k="
           />
           <div className="absolute inset-0 bg-deep-black/40" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black/30 via-transparent to-deep-black" />
