@@ -140,7 +140,7 @@ export default function JoinPage() {
               <RequirementBox text="Bubbly personality - warm, engaging, genuinely fun to be around" />
               <RequirementBox text="100% reliable - when you commit, you show up flawlessly" />
               <RequirementBox text="Discreet by nature - what happens stays private, always" />
-              <RequirementBox text="18+, based in Cape Town, ready for something extraordinary" />
+              <RequirementBox text="21+, based in Cape Town, ready for something extraordinary" />
             </div>
           </div>
         </section>

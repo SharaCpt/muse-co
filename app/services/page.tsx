@@ -111,7 +111,7 @@ export default function ServicesPage() {
           className="relative z-10 text-center px-6 max-w-4xl"
         >
           <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Curated Excellence</p>
-          <h1 className="font-playfair text-6xl md:text-8xl tracking-[0.2em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+          <h1 className="font-playfair text-6xl md:text-8xl tracking-[0.15em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
             SERVICES
           </h1>
           <p className="text-off-white/80 text-lg md:text-xl tracking-wide mb-8">

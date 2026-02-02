@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSE & CO - Banner 300x250</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .banner {
+            width: 300px;
+            height: 250px;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1C1C1C 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0.25;
+        }
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(28,28,28,0.9) 100%);
+        }
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        .banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: #D4AF37;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            margin-bottom: 12px;
+        }
+        .tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: #F5F5F0;
+            opacity: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: #D4AF37;
+            margin: 20px 0;
+            opacity: 0.6;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .website {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #D4AF37;
+            letter-spacing: 0.05em;
+        }
+        .phone {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #F5F5F0;
+            opacity: 0.85;
+        }
+        .accent-corner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            border-top: 2px solid #D4AF37;
+            border-left: 2px solid #D4AF37;
+            opacity: 0.3;
+        }
+        .accent-corner-bottom {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border-bottom: 2px solid #D4AF37;
+            border-right: 2px solid #D4AF37;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <img class="banner-image" src="https://images.unsplash.com/photo-1640433195555-f8ecd62effe9?q=80&w=751&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury">
+        <div class="banner-overlay"></div>
+        <div class="accent-corner"></div>
+        <div class="accent-corner-bottom"></div>
+        <div class="content">
+            <div class="brand">MUSE<br>& CO</div>
+            <div class="tagline">Elite Companions<br>Luxury Experiences<br>VIP Discretion</div>
+            <div class="divider"></div>
+            <div class="contact-info">
+                <div class="website">museco.co.za</div>
+                <div class="phone">+27 60 776 9793</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -27,8 +27,8 @@ interface SiteContent {
   content: string
 }
 
-// Default header image
-const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1557244056-ac3033d17d9a?q=80&w=2000'
+// Default header image - using actual header to prevent flash
+const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1628336358317-0582bfa7519d?q=100&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0'
 
 export default function PortfolioPage() {
   const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
@@ -126,7 +126,7 @@ export default function PortfolioPage() {
           className="relative z-10 text-center px-6 max-w-4xl"
         >
           <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Curated Excellence</p>
-          <h1 className="font-playfair text-6xl md:text-8xl tracking-[0.2em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+          <h1 className="font-playfair text-5xl md:text-7xl tracking-[0.15em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
             PORTFOLIO
           </h1>
           <p className="text-off-white/80 text-lg md:text-xl tracking-wide mb-8">
