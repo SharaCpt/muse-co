@@ -21,16 +21,9 @@ interface SiteImage {
 }
 
 // Define all site images with their current URLs
+// NOTE: Hero/Header images are hardcoded in frontend - not editable via admin
 const DEFAULT_IMAGES: SiteImage[] = [
-  // Homepage
-  {
-    id: 'homepage_hero',
-    page: 'Homepage',
-    section: 'hero',
-    label: 'Hero Background',
-    image_url: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=2400',
-    description: 'Main hero image on homepage'
-  },
+  // Homepage Service Cards
   {
     id: 'homepage_service_1',
     page: 'Homepage',
