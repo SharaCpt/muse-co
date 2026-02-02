@@ -21,19 +21,8 @@ export default function JoinPage() {
   }, [])
 
   async function fetchHeaderImage() {
-    try {
-      const { data, error } = await supabase
-        .from('site_images')
-        .select('image_url')
-        .eq('id', 'header_join')
-        .single()
-
-      if (data?.image_url) {
-        setHeaderImage(data.image_url)
-      }
-    } catch (error) {
-      // Keep default
-    }
+    // Header image is hardcoded - no database fetch to prevent flash
+    return
   }
 
   const phoneNumber = '+27607769793'

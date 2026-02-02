@@ -75,8 +75,9 @@ export default function ServicesPage() {
 
       if (data && data.length > 0) {
         data.forEach((img: any) => {
+          // Skip header - hardcoded to prevent flash
           if (img.section === 'services' && img.page === 'Headers') {
-            setHeaderImage(img.image_url)
+            return
           } else if (img.page === 'Services') {
             setServiceImages(prev => ({ ...prev, [img.section]: img.image_url }))
           }

@@ -64,15 +64,9 @@ export default function PortfolioPage() {
   }
 
   async function fetchHeaderImage() {
-    try {
-      const { data, error } = await supabase
-        .from('site_images')
-        .select('image_url')
-        .eq('id', 'header_portfolio')
-        .single()
-
-      if (data?.image_url) {
-        setHeaderImage(data.image_url)
+    // Header image is hardcoded - no database fetch to prevent flash
+    return
+  }
       }
     } catch (error) {
       // Keep default on error

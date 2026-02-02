@@ -76,19 +76,8 @@ export default function PricingPage() {
   }
 
   async function fetchHeaderImage() {
-    try {
-      const { data, error } = await supabase
-        .from('site_images')
-        .select('image_url')
-        .eq('id', 'header_pricing')
-        .single()
-
-      if (data?.image_url) {
-        setHeaderImage(data.image_url)
-      }
-    } catch (error) {
-      // Keep default on error
-    }
+    // Header image is hardcoded - no database fetch to prevent flash
+    return
   }
 
   async function fetchPricingData() {
