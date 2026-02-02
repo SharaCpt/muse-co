@@ -94,8 +94,9 @@ export default function HomePage() {
         const modelImgs: Record<string, string> = {}
         
         data.forEach((img: SiteImage) => {
+          // Skip hero - it's hardcoded, not from database
           if (img.section === 'hero') {
-            serviceImages.hero = img.image_url
+            return
           } else if (img.section.startsWith('service_card_')) {
             serviceImages[img.section] = img.image_url
           } else if (img.section.startsWith('model_card_')) {
