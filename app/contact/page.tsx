@@ -139,24 +139,24 @@ export default function ContactPage() {
 
       {/* Contact Section */}
       <section className="py-24 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="max-w-3xl mx-auto">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="space-y-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-12 text-center"
           >
             <div>
-              <h2 className="font-playfair text-4xl text-champagne-gold mb-6">
+              <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-6">
                 Get In Touch
               </h2>
-              <p className="text-off-white/80 font-inter leading-relaxed mb-8">
+              <p className="text-off-white/80 font-inter leading-relaxed mb-8 text-lg">
                 {content.intro}
               </p>
             </div>
 
             {/* Direct Contact Methods */}
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-md mx-auto">
               <motion.a
                 href="https://wa.me/+27607769793?text=Hi%20Shara!%20I%20found%20your%20contact%20details%20on%20the%20MUSE%20%26%20CO%20website.%20I%27d%20like%20to%20inquire%20about%20your%20elite%20companion%20services.%20Looking%20forward%20to%20discussing%20an%20exclusive%20arrangement.%20%E2%9C%A8"
                 target="_blank"
@@ -191,88 +191,6 @@ export default function ContactPage() {
                 We respond to all inquiries within 24 hours.
               </p>
             </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            id="contact-form"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-off-white/80 font-inter text-sm mb-2">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-smooth"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-off-white/80 font-inter text-sm mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-smooth"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-off-white/80 font-inter text-sm mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-charcoal border border-champagne-gold/20 focus:border-champagne-gold text-off-white font-inter outline-none transition-smooth resize-none"
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.1 }}
-                className="w-full px-8 py-4 bg-champagne-gold text-deep-black font-inter tracking-widest hover:bg-opacity-90 transition-smooth gold-glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                    </svg>
-                    SENDING...
-                  </>
-                ) : 'SEND INQUIRY'}
-              </motion.button>
-
-              {submitStatus === 'success' && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-champagne-gold text-center font-inter text-sm"
-                >
-                  Thank you! We'll be in touch within 24 hours.
-                </motion.p>
-              )}
-            </form>
           </motion.div>
         </div>
       </section>
