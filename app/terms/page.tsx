@@ -1,16 +1,8 @@
-'use client'
-
-import { motion } from 'framer-motion'
-
 export default function TermsPage() {
   return (
     <main className="bg-deep-black pt-24 pb-24">
       <div className="max-w-4xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="space-y-8"
-        >
+        <div className="space-y-8 animate-[fadeIn_0.5s_ease-in]">
           <h1 className="font-playfair text-4xl md:text-5xl text-champagne-gold tracking-wider mb-12">
             Terms of Service
           </h1>
@@ -26,21 +18,21 @@ export default function TermsPage() {
             <section>
               <h2 className="text-champagne-gold text-xl mb-4">Services</h2>
               <p>
-                MUSE & CO provides elite lifestyle staffing and concierge services for private events, nightlife venues, and luxury experiences. All bookings are subject to availability and our standard terms and conditions.
+                MUSE & CO provides elite companionship and curated luxury experiences for private events, exclusive gatherings, and bespoke arrangements. All bookings are subject to availability and our standard terms and conditions.
               </p>
             </section>
 
             <section>
               <h2 className="text-champagne-gold text-xl mb-4">Bookings</h2>
               <p>
-                All staffing bookings must be confirmed in writing. Cancellation policies apply and will be communicated at the time of booking.
+                All bookings must be confirmed in writing. Cancellation policies apply and will be communicated at the time of booking.
               </p>
             </section>
 
             <section>
               <h2 className="text-champagne-gold text-xl mb-4">Confidentiality</h2>
               <p>
-                We maintain strict confidentiality regarding all client information and events. We expect the same discretion from our clients regarding our staff.
+                We maintain strict confidentiality regarding all client information and arrangements. We expect the same discretion from our clients regarding our companions.
               </p>
             </section>
 
@@ -55,7 +47,7 @@ export default function TermsPage() {
               Last updated: January 2026
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </main>
   )

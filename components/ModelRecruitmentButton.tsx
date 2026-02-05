@@ -43,17 +43,17 @@ export default function ModelRecruitmentButton() {
               key={i}
               className="absolute w-1 h-1 bg-champagne-gold rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: `${(i * 13 + 5) % 100}%`,
+                top: `${(i * 11 + 10) % 100}%`,
               }}
               animate={{
                 opacity: [0.2, 0.8, 0.2],
                 scale: [0.8, 1.2, 0.8],
               }}
               transition={{
-                duration: 2 + Math.random() * 2,
+                duration: 2 + (i % 3),
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: (i % 4) * 0.5,
               }}
             />
           ))}

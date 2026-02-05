@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -8,6 +8,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
 
   const links = [
     { href: '/', label: 'HOME' },
@@ -68,16 +73,20 @@ export default function Navigation() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex flex-col space-y-2 w-8 h-8 justify-center"
-          aria-label="Toggle menu"
+          className="md:hidden flex flex-col space-y-1.5 w-8 h-8 justify-center items-center"
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
           <motion.span
-            animate={isOpen ? { rotate: 45, y: 5, backgroundColor: '#A8ADB3' } : { rotate: 0, y: 0, backgroundColor: '#D4AF37' }}
-            className="block h-0.5 w-8 transition-smooth"
+            animate={isOpen ? { rotate: 45, y: 8, backgroundColor: '#A8ADB3' } : { rotate: 0, y: 0, backgroundColor: '#D4AF37' }}
+            className="block h-0.5 w-7 transition-smooth"
           />
           <motion.span
-            animate={isOpen ? { rotate: -45, y: -5, backgroundColor: '#A8ADB3' } : { rotate: 0, y: 0, backgroundColor: '#D4AF37' }}
-            className="block h-0.5 w-8 transition-smooth"
+            animate={isOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+            className="block h-0.5 w-7 bg-champagne-gold transition-smooth"
+          />
+          <motion.span
+            animate={isOpen ? { rotate: -45, y: -8, backgroundColor: '#A8ADB3' } : { rotate: 0, y: 0, backgroundColor: '#D4AF37' }}
+            className="block h-0.5 w-7 transition-smooth"
           />
         </button>
       </div>

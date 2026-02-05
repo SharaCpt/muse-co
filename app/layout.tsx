@@ -55,9 +55,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code', // Add when you get it from Google Search Console
-  }
 }
 
 export default function RootLayout({
@@ -116,9 +113,14 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${playfair.variable} font-inter`}>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-champagne-gold focus:text-deep-black focus:font-semibold focus:tracking-wider">
+          Skip to content
+        </a>
         <AgeGate />
         <Navigation />
-        {children}
+        <div id="main-content">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

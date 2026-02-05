@@ -1,30 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { createClient } from '@supabase/supabase-js'
 import ModelRecruitmentButton from '@/components/ModelRecruitmentButton'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
 
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1621290181122-f23227645392?q=80&w=2000&auto=format&fit=crop'
 
 export default function JoinPage() {
-  const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
-
-  useEffect(() => {
-    fetchHeaderImage()
-  }, [])
-
-  async function fetchHeaderImage() {
-    // Header image is hardcoded - no database fetch to prevent flash
-    return
-  }
-
   const phoneNumber = '+27607769793'
   const message = "Hey Shara! ✨ I saw the Join page and I'm interested in learning more about Muse & Co. Would love to chat!"
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
@@ -36,7 +18,7 @@ export default function JoinPage() {
         {/* Hero */}
         <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
-            <Image src={headerImage} alt="Join Muse & Co" fill className="object-cover" priority unoptimized />
+            <Image src={DEFAULT_HEADER} alt="Join Muse & Co" fill className="object-cover" priority unoptimized />
             <div className="absolute inset-0 bg-deep-black/40" />
             <div className="absolute inset-0 bg-gradient-to-b from-deep-black/30 via-transparent to-deep-black" />
           </div>

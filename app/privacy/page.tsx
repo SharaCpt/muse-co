@@ -1,16 +1,8 @@
-'use client'
-
-import { motion } from 'framer-motion'
-
 export default function PrivacyPage() {
   return (
     <main className="bg-deep-black pt-24 pb-24">
       <div className="max-w-4xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="space-y-8"
-        >
+        <div className="space-y-8 animate-[fadeIn_0.5s_ease-in]">
           <h1 className="font-playfair text-4xl md:text-5xl text-champagne-gold tracking-wider mb-12">
             Privacy Policy
           </h1>
@@ -53,7 +45,7 @@ export default function PrivacyPage() {
               Last updated: January 2026
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </main>
   )

@@ -43,7 +43,6 @@ interface SiteContent {
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?q=80&w=2000'
 
 export default function PricingPage() {
-  const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
   const [pricingRates, setPricingRates] = useState<PricingRate[]>([])
   const [bespokeExperiences, setBespokeExperiences] = useState<BespokeExperience[]>([])
   const [loading, setLoading] = useState(true)
@@ -55,7 +54,6 @@ export default function PricingPage() {
 
   useEffect(() => {
     fetchPricingData()
-    fetchHeaderImage()
     fetchContent()
   }, [])
 
@@ -73,11 +71,6 @@ export default function PricingPage() {
     } catch (error) {
       // Use default
     }
-  }
-
-  async function fetchHeaderImage() {
-    // Header image is hardcoded - no database fetch to prevent flash
-    return
   }
 
   async function fetchPricingData() {
@@ -113,7 +106,7 @@ export default function PricingPage() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={headerImage}
+            src={DEFAULT_HEADER}
             alt="Luxury Companion Pricing - Elite Companionship Rates Cape Town"
             fill
             className="object-cover"

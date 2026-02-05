@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { FaEnvelope, FaPhone } from 'react-icons/fa'
 import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(
@@ -20,23 +19,12 @@ interface SiteContent {
 }
 
 export default function ContactPage() {
-  const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    eventType: '',
-    message: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  
   // Editable content with defaults
   const [content, setContent] = useState({
     intro: 'Ready to elevate your next event? Contact us for a personalized consultation and discover how MUSE & CO can bring your vision to life.',
   })
 
   useEffect(() => {
-    fetchHeaderImage()
     fetchContent()
   }, [])
 
@@ -56,49 +44,13 @@ export default function ContactPage() {
     }
   }
 
-  async function fetchHeaderImage() {
-    // Header image is hardcoded - no database fetch to prevent flash
-    return
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    try {
-      // Send email notification to Shara
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-
-      if (!response.ok) throw new Error('Failed to send email')
-
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', eventType: '', message: '' })
-      
-      setTimeout(() => setSubmitStatus('idle'), 5000)
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      setSubmitStatus('error')
-      setTimeout(() => setSubmitStatus('idle'), 5000)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
   return (
     <main className="bg-deep-black pt-24">
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={headerImage}
+            src={DEFAULT_HEADER}
             alt="Contact MUSE & CO - Book Elite Companion Services Cape Town"
             fill
             className="object-cover"

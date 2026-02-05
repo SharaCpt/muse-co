@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
 
@@ -31,7 +32,6 @@ interface SiteContent {
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1628336358317-0582bfa7519d?q=100&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0'
 
 export default function PortfolioPage() {
-  const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
   const [filter, setFilter] = useState('all')
   const [models, setModels] = useState<PortfolioImage[]>([])
   const [loading, setLoading] = useState(true)
@@ -43,7 +43,6 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     fetchPortfolioImages()
-    fetchHeaderImage()
     fetchContent()
   }, [])
 
@@ -60,16 +59,6 @@ export default function PortfolioPage() {
       }
     } catch (error) {
       // Use default
-    }
-  }
-
-  async function fetchHeaderImage() {
-    // Header image is hardcoded - no database fetch to prevent flash
-    return
-  }
-      }
-    } catch (error) {
-      // Keep default on error
     }
   }
 
@@ -102,7 +91,7 @@ export default function PortfolioPage() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 bg-charcoal">
           <Image
-            src={headerImage}
+            src={DEFAULT_HEADER}
             alt="Elite Portfolio"
             fill
             className="object-cover"
@@ -133,7 +122,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Filter Bar */}
-      <section className="py-8 px-6 bg-charcoal/50 sticky top-20 z-20 backdrop-blur-md border-b border-champagne-gold/10">
+      <section className="py-8 px-6 bg-charcoal/50 sticky top-[72px] z-20 backdrop-blur-md border-b border-champagne-gold/10">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((cat) => (
@@ -195,7 +184,7 @@ export default function PortfolioPage() {
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
               <a
-                href="https://wa.me/27607769793"
+                href="https://wa.me/27607769793?text=Hi%20Shara!%20I%20found%20you%20on%20the%20MUSE%20%26%20CO%20website.%20I%27d%20like%20to%20inquire%20about%20your%20portfolio%20and%20services."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 text-lg shadow-[0_0_50px_rgba(212,175,55,0.4)] hover:shadow-[0_0_70px_rgba(212,175,55,0.6)] relative overflow-hidden"
@@ -209,12 +198,12 @@ export default function PortfolioPage() {
                   style={{ opacity: 0.15 }}
                 />
               </a>
-              <a
+              <Link
                 href="/contact"
                 className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] text-lg shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)]"
               >
-                CONTACT FORM
-              </a>
+                CONTACT US
+              </Link>
             </div>
           </motion.div>
         </div>

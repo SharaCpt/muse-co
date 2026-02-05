@@ -19,17 +19,14 @@ interface SiteContent {
 }
 
 export default function AboutPage() {
-  const [headerImage, setHeaderImage] = useState<string>(DEFAULT_HEADER)
-  
   // Editable content with defaults
   const [content, setContent] = useState({
     intro: 'MUSE & CO was founded on the principle that true luxury is found in beauty, elegance, and unforgettable moments.',
-    story: 'With over 13 years of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa\'s most beautiful and refined models, influencers, and private companions.',
+    story: 'With over 15 years of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa\'s most beautiful and refined models, influencers, and private companions.',
     shara: 'Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional women has made MUSE & CO the premier choice for sophisticated companionship worldwide.',
   })
 
   useEffect(() => {
-    fetchHeaderImage()
     fetchContent()
   }, [])
 
@@ -56,18 +53,13 @@ export default function AboutPage() {
     }
   }
 
-  async function fetchHeaderImage() {
-    // Header image is hardcoded - no database fetch to prevent flash
-    return
-  }
-
   return (
     <main className="bg-deep-black pt-24">
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={headerImage}
+            src={DEFAULT_HEADER}
             alt="About MUSE & CO - Elite Companion Agency Cape Town"
             fill
             className="object-cover"
@@ -155,7 +147,7 @@ export default function AboutPage() {
               />
               <ValueCard
                 title="REFINED"
-                description="13 years of experience curating unforgettable encounters with the world's most elegant women."
+                description="15 years of experience curating unforgettable encounters with the world's most elegant women."
               />
               <ValueCard
                 title="DISCREET"

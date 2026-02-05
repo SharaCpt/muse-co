@@ -51,19 +51,28 @@ export default function AgeGate() {
               
               <div className="space-y-4 text-off-white/90 font-inter text-sm leading-relaxed">
                 <p>
-                  This platform is private. Access is restricted to approved models and collaborators of MUSE & CO.
+                  This website contains content intended for mature audiences only.
                 </p>
                 <p className="font-semibold">
-                  You must be 18 years or older to enter.
+                  You must be 21 years or older to enter.
                 </p>
               </div>
 
-              <button
-                onClick={handleEnter}
-                className="w-full mt-8 px-8 py-4 bg-champagne-gold text-deep-black font-inter tracking-widest hover:bg-opacity-90 transition-smooth gold-glow text-lg"
-              >
-                ENTER
-              </button>
+              <div className="space-y-3 pt-4">
+                <button
+                  onClick={handleEnter}
+                  className="w-full px-8 py-4 bg-champagne-gold text-deep-black font-inter tracking-widest hover:bg-opacity-90 transition-smooth gold-glow text-lg"
+                >
+                  I AM 21+ — ENTER
+                </button>
+                
+                <button
+                  onClick={() => window.location.href = 'https://www.google.com'}
+                  className="w-full px-8 py-3 border border-off-white/20 text-off-white/50 font-inter tracking-wider hover:border-off-white/40 hover:text-off-white/70 transition-smooth text-sm"
+                >
+                  I AM UNDER 21 — EXIT
+                </button>
+              </div>
             </div>
           </motion.div>
         </motion.div>
