@@ -40,7 +40,7 @@ export default function JoinPage() {
               custom={heroStagger.label}
               className="text-champagne-gold/80 text-sm tracking-[0.4em] mb-6 uppercase"
             >
-              Cape Town's Elite Companion Standard
+              South Africa's Elite Companion Standard
             </motion.p>
             <motion.h1 variants={heroVariants} custom={heroStagger.title} className="font-playfair text-6xl md:text-8xl text-champagne-gold mb-6 tracking-[0.15em]">
               JOIN MUSE & CO
@@ -49,7 +49,7 @@ export default function JoinPage() {
               Where Exceptional Becomes Elite
             </motion.p>
             <motion.p variants={heroFadeIn} custom={heroStagger.subtitle} className="text-off-white/50 text-sm tracking-widest">
-              NOW RECRUITING IN CAPE TOWN • JOHANNESBURG • DURBAN
+              NOW RECRUITING ACROSS SOUTH AFRICA
             </motion.p>
           </motion.div>
         </section>
@@ -63,11 +63,11 @@ export default function JoinPage() {
               </h2>
               <div className="text-off-white/90 text-lg leading-relaxed space-y-4">
                 <p>
-                  I'm Shara, and I work with Cape Town's most exceptional companions. If you're reading this, 
+                  I'm Shara, and I work with South Africa's most exceptional companions. If you're reading this, 
                   I'm glad you found me - because I genuinely love helping remarkable women access the lifestyle they deserve.
                 </p>
                 <p>
-                  My companions move through Cape Town's elite circles with grace and confidence. They're valued not just 
+                  My companions move through South Africa's elite circles with grace and confidence — from Cape Town to Johannesburg to Durban. They're valued not just 
                   for their beauty, but for their intelligence, warmth, and authenticity. These are women who enhance every room they enter.
                 </p>
                 <p className="text-champagne-gold/90 italic">
@@ -124,7 +124,7 @@ export default function JoinPage() {
               <RequirementBox text="Bubbly personality - warm, engaging, genuinely fun to be around" />
               <RequirementBox text="100% reliable - when you commit, you show up flawlessly" />
               <RequirementBox text="Discreet by nature - what happens stays private, always" />
-              <RequirementBox text="21+, based in Cape Town, ready for something extraordinary" />
+              <RequirementBox text="21+, based in South Africa, ready for something extraordinary" />
             </div>
           </div>
         </section>
@@ -159,7 +159,7 @@ export default function JoinPage() {
                 Think You're Ready?
               </p>
               <p className="text-off-white/70 mb-8">
-                If you're confident, captivating, and exceptional - I want to hear from you. Let's see if you're the right fit for Cape Town's elite.
+                If you're confident, captivating, and exceptional - I want to hear from you. Let's see if you're the right fit for South Africa's elite.
               </p>
               <motion.a
                 href={whatsappUrl}

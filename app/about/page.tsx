@@ -32,7 +32,7 @@ export default function AboutPage() {
   // Editable content with defaults
   const [content, setContent] = useState({
     intro: 'MUSE & CO was founded on the principle that true luxury is found in beauty, elegance, and unforgettable moments.',
-    story: 'With over 15 years of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa\'s most beautiful and refined models, influencers, and private companions.',
+    story: 'With over a decade of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa\'s most beautiful and refined models, influencers, and private companions.',
     shara: 'Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional women has made MUSE & CO the premier choice for sophisticated companionship worldwide.',
   })
 
@@ -169,7 +169,7 @@ export default function AboutPage() {
               />
               <ValueCard
                 title="REFINED"
-                description="15 years of experience curating unforgettable encounters with the world's most elegant women."
+                description="Over a decade of experience curating unforgettable encounters with the world's most elegant women."
               />
               <ValueCard
                 title="DISCREET"

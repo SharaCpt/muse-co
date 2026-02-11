@@ -41,7 +41,7 @@ const DEFAULT_CONTENT: SiteContent[] = [
     id: 'about_story',
     page: 'About',
     section: 'Our Story',
-    content: "With over 13 years of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa's most beautiful and refined models, influencers, and private companions."
+    content: "With over a decade of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa's most beautiful and refined models, influencers, and private companions."
   },
   {
     id: 'about_shara',

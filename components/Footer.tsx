@@ -14,7 +14,7 @@ export default function Footer() {
               MUSE & CO
             </h3>
             <p className="text-off-white/60 text-sm font-inter leading-relaxed">
-              Curated elite companionship. 15 years of excellence in Cape Town.
+              Curated elite companionship. A decade of excellence in Cape Town.
             </p>
           </div>
 

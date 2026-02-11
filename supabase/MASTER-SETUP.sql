@@ -94,7 +94,7 @@ INSERT INTO site_content (id, page, section, content) VALUES
 
 -- About Page
 ('about_intro', 'About', 'Introduction', 'MUSE & CO was founded on the principle that true luxury is found in beauty, elegance, and unforgettable moments.'),
-('about_story', 'About', 'Our Story', 'With over 13 years of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa''s most beautiful and refined models, influencers, and private companions.'),
+('about_story', 'About', 'Our Story', 'With over a decade of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa''s most beautiful and refined models, influencers, and private companions.'),
 ('about_shara', 'About', 'Meet Shara', 'Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional women has made MUSE & CO the premier choice for sophisticated companionship worldwide.'),
 
 -- Services Page
