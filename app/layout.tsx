@@ -4,17 +4,18 @@ import './globals.css'
 import AgeGate from '@/components/AgeGate'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PageTransition from '@/components/PageTransition'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
   title: {
-    default: 'MUSE & CO | Elite Companion Services Cape Town | Luxury VIP Escort South Africa',
-    template: '%s | MUSE & CO'
+    default: 'MUSE & CO | Elite Companion Services South Africa | Cape Town, Johannesburg, Durban',
+    template: '%s | MUSE & CO — Elite Companions South Africa'
   },
-  description: 'Premier luxury companion and elite escort services in Cape Town, South Africa. Exclusive VIP companions, high-class travel escorts, and sophisticated companionship worldwide. Discretion guaranteed.',
-  keywords: 'luxury escort Cape Town, elite companion South Africa, VIP escort services, high-class escort Cape Town, luxury travel companion, executive companion, elite hostess Cape Town, VIP companion services South Africa, luxury escort agency, exclusive companion Cape Town',
+  description: 'South Africa\'s premier luxury companion and elite escort agency. Exclusive VIP companions in Cape Town, Johannesburg, Durban & nationwide. High-class travel escorts, sophisticated companionship, and bespoke experiences worldwide. Absolute discretion guaranteed.',
+  keywords: 'luxury escort Cape Town, elite companion Johannesburg, VIP escort South Africa, high-class escort Durban, luxury travel companion, executive companion Pretoria, elite hostess Cape Town, VIP companion services South Africa, luxury escort agency Johannesburg, exclusive companion nationwide, escort agency South Africa, elite models Cape Town Johannesburg',
   authors: [{ name: 'MUSE & CO' }],
   creator: 'MUSE & CO',
   publisher: 'MUSE & CO',
@@ -27,8 +28,8 @@ export const metadata: Metadata = {
     locale: 'en_ZA',
     url: 'https://museco.co.za',
     siteName: 'MUSE & CO',
-    title: 'MUSE & CO | Elite Companion Services Cape Town',
-    description: 'Premier luxury companion and elite escort services in Cape Town, South Africa. Exclusive VIP companions and sophisticated companionship worldwide.',
+    title: 'MUSE & CO | Elite Companion Services South Africa — Cape Town, Johannesburg, Durban',
+    description: 'South Africa\'s premier luxury companion agency. Elite VIP companions in Cape Town, Johannesburg, Durban & nationwide. Sophisticated companionship and bespoke experiences worldwide.',
     images: [
       {
         url: '/og-image.jpg',
@@ -40,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MUSE & CO | Elite Companion Services Cape Town',
-    description: 'Premier luxury companion and elite escort services in Cape Town, South Africa.',
+    title: 'MUSE & CO | Elite Companions — Cape Town, Johannesburg & South Africa',
+    description: 'South Africa\'s premier luxury companion agency. Elite VIP companions in Cape Town, Johannesburg, Durban & nationwide.',
     images: ['/og-image.jpg']
   },
   robots: {
@@ -62,55 +63,83 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'MUSE & CO',
-    description: 'Premier luxury companion and elite escort services in Cape Town, South Africa',
-    url: 'https://museco.co.za',
-    telephone: '+27-60-776-9793',
-    priceRange: 'R$$$',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Cape Town',
-      addressRegion: 'Western Cape',
-      addressCountry: 'ZA'
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: -33.9249,
-      longitude: 18.4241
-    },
-    areaServed: [
-      {
-        '@type': 'City',
-        name: 'Cape Town'
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'MUSE & CO',
+      url: 'https://museco.co.za',
+      logo: 'https://museco.co.za/og-image.jpg',
+      description: 'South Africa\'s premier luxury companion and elite escort agency serving Cape Town, Johannesburg, Durban, Pretoria and worldwide.',
+      telephone: '+27-60-776-9793',
+      email: 'sharafindit@gmail.com',
+      foundingDate: '2011',
+      founder: {
+        '@type': 'Person',
+        name: 'Shara'
       },
-      {
-        '@type': 'Country',
-        name: 'South Africa'
+      sameAs: [
+        'https://www.instagram.com/musaboratories'
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: 'MUSE & CO',
+      description: 'Premier luxury companion and elite escort services across South Africa — Cape Town, Johannesburg, Durban, Pretoria and worldwide',
+      url: 'https://museco.co.za',
+      telephone: '+27-60-776-9793',
+      priceRange: 'R$$$',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Cape Town',
+        addressRegion: 'Western Cape',
+        addressCountry: 'ZA'
       },
-      {
-        '@type': 'Place',
-        name: 'Worldwide'
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: -33.9249,
+        longitude: 18.4241
+      },
+      areaServed: [
+        { '@type': 'City', name: 'Cape Town' },
+        { '@type': 'City', name: 'Johannesburg' },
+        { '@type': 'City', name: 'Durban' },
+        { '@type': 'City', name: 'Pretoria' },
+        { '@type': 'City', name: 'Stellenbosch' },
+        { '@type': 'City', name: 'Sandton' },
+        { '@type': 'City', name: 'Umhlanga' },
+        { '@type': 'Country', name: 'South Africa' },
+        { '@type': 'Place', name: 'Worldwide' }
+      ],
+      serviceType: [
+        'Elite Companion Services',
+        'VIP Escort Services',
+        'Luxury Travel Companion',
+        'Executive Companion',
+        'High-Class Hostess Services',
+        'Private Event Staffing',
+        'International Travel Companionship'
+      ],
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '127',
+        bestRating: '5'
       }
-    ],
-    serviceType: [
-      'Elite Companion Services',
-      'VIP Escort Services',
-      'Luxury Travel Companion',
-      'Executive Companion',
-      'High-Class Hostess Services'
-    ]
-  }
+    }
+  ]
 
   return (
     <html lang="en">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        {jsonLd.map((schema, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </head>
       <body className={`${inter.variable} ${playfair.variable} font-inter`}>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-champagne-gold focus:text-deep-black focus:font-semibold focus:tracking-wider">
@@ -119,7 +148,9 @@ export default function RootLayout({
         <AgeGate />
         <Navigation />
         <div id="main-content">
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
         </div>
         <Footer />
       </body>

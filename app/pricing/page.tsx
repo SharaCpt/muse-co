@@ -5,6 +5,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
+import {
+  heroVariants,
+  heroFadeIn,
+  heroStagger,
+  sectionVariants,
+  cardVariants,
+  primaryCTAHover,
+  primaryCTATap,
+  secondaryCTATap,
+  viewportOnce,
+} from '@/lib/motion'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -107,7 +118,7 @@ export default function PricingPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={DEFAULT_HEADER}
-            alt="Luxury Companion Pricing - Elite Companionship Rates Cape Town"
+            alt="Luxury companion pricing and rates — elite companionship packages South Africa"
             fill
             className="object-cover"
             priority
@@ -118,36 +129,39 @@ export default function PricingPage() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          initial="hidden"
+          animate="visible"
           className="relative z-10 text-center px-6 max-w-4xl"
         >
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            variants={heroFadeIn}
+            custom={heroStagger.label}
             className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase"
           >
             Curated Excellence
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            variants={heroVariants}
+            custom={heroStagger.title}
             className="font-playfair text-6xl md:text-8xl tracking-[0.15em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]"
           >
             PRICING
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="text-off-white/80 text-lg md:text-xl tracking-wide mb-8"
+            variants={heroFadeIn}
+            custom={heroStagger.tagline}
+            className="text-off-white/80 text-lg md:text-xl tracking-wide mb-4"
           >
-            Elite Companionship • Bespoke Arrangements • Worldwide Excellence
+            Companion Rates &amp; Luxury Packages — South Africa
+          </motion.p>
+          <motion.p
+            variants={heroFadeIn}
+            custom={heroStagger.subtitle}
+            className="text-off-white/50 text-sm tracking-widest mb-8"
+          >
+            CAPE TOWN • JOHANNESBURG • DURBAN • INTERNATIONAL
           </motion.p>
         </motion.div>
       </section>
@@ -156,9 +170,10 @@ export default function PricingPage() {
       <section className="py-32 px-6 md:px-12 relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="text-center mb-20"
           >
             <h2 className="font-playfair text-4xl md:text-6xl text-champagne-gold mb-6 tracking-wider">
@@ -181,9 +196,10 @@ export default function PricingPage() {
       <section className="py-32 px-6 md:px-12 relative bg-gradient-to-b from-deep-black to-charcoal/20">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="text-center mb-20"
           >
             <h2 className="font-playfair text-4xl md:text-6xl text-champagne-gold mb-6 tracking-wider">
@@ -216,9 +232,10 @@ export default function PricingPage() {
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="space-y-10"
           >
             <h2 className="font-playfair text-4xl md:text-6xl text-champagne-gold">
@@ -227,13 +244,17 @@ export default function PricingPage() {
             <p className="text-off-white/80 text-lg md:text-xl leading-relaxed font-light">
               Contact us for a private consultation and bespoke package tailored to your vision.
             </p>
+            <p className="text-off-white/50 text-sm mt-2">
+              Browse our <Link href="/portfolio" className="text-champagne-gold hover:underline">elite companion portfolio</Link> or explore our <Link href="/services" className="text-champagne-gold hover:underline">full range of services</Link> to find your perfect experience.
+            </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-6">
-              <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
+              <motion.div whileHover={primaryCTAHover} whileTap={primaryCTATap}>
               <Link
                 href="/contact"
-                className="group relative px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] block"
+                className="group relative px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] block"
               >
                 <span className="relative z-10">BOOK CONSULTATION</span>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
               </Link>
               </motion.div>
               
@@ -241,8 +262,7 @@ export default function PricingPage() {
                 href="https://wa.me/+27607769793"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.1 }}
+                whileTap={secondaryCTATap}
                 className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] inline-block"
               >
                 MESSAGE US
@@ -258,10 +278,11 @@ export default function PricingPage() {
 function PricingCard({ rate, index }: { rate: PricingRate; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
+      variants={cardVariants}
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
       whileHover={{ y: -10, scale: 1.02 }}
       className="group relative h-full"
     >
@@ -322,10 +343,11 @@ function BespokeCard({ experience, index }: { experience: BespokeExperience; ind
   const defaultImage = "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1200"
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.15 }}
+      variants={cardVariants}
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
       className="group relative h-[600px] overflow-hidden"
     >
       {/* Background Image */}

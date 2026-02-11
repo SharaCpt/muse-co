@@ -1,11 +1,12 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Pricing',
-  description: 'MUSE & CO companion service rates and bespoke luxury experience packages. Transparent pricing for elite companionship, VIP arrangements, and curated luxury experiences in Cape Town.',
+  title: 'Companion Service Rates & Luxury Packages — South Africa',
+  description: 'MUSE & CO companion rates and bespoke luxury packages. Transparent pricing for elite companionship, VIP arrangements, yacht charters, safari experiences and curated luxury events across Cape Town, Johannesburg, Durban & South Africa.',
+  keywords: 'companion rates South Africa, escort pricing Cape Town, luxury companion cost Johannesburg, VIP escort rates Durban, bespoke luxury packages, yacht companion pricing',
   openGraph: {
-    title: 'Pricing | MUSE & CO Elite Companion Rates',
-    description: 'Transparent pricing for elite companionship and bespoke luxury experiences in Cape Town.',
+    title: 'Pricing | MUSE & CO Elite Companion Rates — South Africa',
+    description: 'Transparent pricing for elite companionship and bespoke luxury experiences across Cape Town, Johannesburg & South Africa.',
   },
 }
 

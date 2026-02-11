@@ -2,8 +2,18 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
+import {
+  heroVariants,
+  heroFadeIn,
+  heroStagger,
+  sectionVariants,
+  sectionFadeIn,
+  cardVariants,
+  viewportOnce,
+} from '@/lib/motion'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -60,7 +70,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={DEFAULT_HEADER}
-            alt="About MUSE & CO - Elite Companion Agency Cape Town"
+            alt="About MUSE & CO — South Africa's premier luxury companion agency based in Cape Town"
             fill
             className="object-cover"
             priority
@@ -71,16 +81,21 @@ export default function AboutPage() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial="hidden"
+          animate="visible"
           className="relative z-10 text-center px-6 max-w-4xl"
         >
-          <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Our Story</p>
-          <h1 className="font-playfair text-6xl md:text-8xl tracking-[0.15em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+          <motion.p variants={heroFadeIn} custom={heroStagger.label} className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Our Story</motion.p>
+          <motion.h1
+            variants={heroVariants}
+            custom={heroStagger.title}
+            className="font-playfair text-6xl md:text-8xl tracking-[0.15em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]"
           >
             ABOUT US
-          </h1>
+          </motion.h1>
+          <motion.p variants={heroFadeIn} custom={heroStagger.tagline} className="text-off-white/80 text-lg md:text-xl tracking-wide">
+            South Africa&apos;s Premier Luxury Companion Agency
+          </motion.p>
         </motion.div>
       </section>
 
@@ -88,9 +103,10 @@ export default function AboutPage() {
       <section className="py-24 px-6 md:px-12">
         <div className="max-w-4xl mx-auto space-y-12">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            variants={sectionFadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="space-y-6 text-off-white/80 font-inter leading-relaxed"
           >
             <p className="text-lg md:text-xl">
@@ -108,13 +124,18 @@ export default function AboutPage() {
             <p>
               Whether you're seeking a sophisticated companion for business travel, an elegant presence for exclusive events, or arranging long-term private experiences, MUSE & CO delivers unparalleled beauty and refinement.
             </p>
+
+            <p className="pt-2">
+              Explore our <Link href="/services" className="text-champagne-gold hover:underline">full range of services</Link>, or if you&apos;re an exceptional model, <Link href="/join" className="text-champagne-gold hover:underline">apply to join our exclusive roster</Link>. Ready to connect? <Link href="/contact" className="text-champagne-gold hover:underline">Contact us</Link> for a discreet consultation.
+            </p>
           </motion.div>
 
           {/* Founder Section */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="pt-12 border-t border-champagne-gold/20"
           >
             <h2 className="font-playfair text-3xl text-champagne-gold mb-6 tracking-wider">
@@ -132,9 +153,10 @@ export default function AboutPage() {
 
           {/* Values */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="pt-12"
           >
             <h2 className="font-playfair text-3xl text-champagne-gold mb-8 tracking-wider text-center">

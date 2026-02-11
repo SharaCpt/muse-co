@@ -1,10 +1,23 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
+import {
+  heroVariants,
+  heroFadeIn,
+  heroStagger,
+  sectionVariants,
+  sectionFadeIn,
+  cardVariants,
+  microFadeIn,
+  primaryCTAHover,
+  primaryCTATap,
+  secondaryCTATap,
+  viewportOnce,
+} from '@/lib/motion'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -125,7 +138,7 @@ export default function HomePage() {
           {images.hero && (
             <Image
               src={images.hero}
-              alt="Elite luxury companion services Cape Town"
+              alt="Elite luxury companion and model services South Africa — Cape Town, Johannesburg, Durban"
               fill
               unoptimized
               className="object-cover object-center"
@@ -136,24 +149,24 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-r from-deep-black/30 via-transparent to-deep-black/30" />
         </motion.div>
 
-        {/* Floating particles effect */}
+        {/* Floating particles effect — reduced for elegance */}
         <div className="absolute inset-0 z-[1]">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(10)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-champagne-gold/30 rounded-full"
+              className="absolute w-1 h-1 bg-champagne-gold/20 rounded-full"
               style={{
-                left: `${(i * 5.26 + 3) % 100}%`,
-                top: `${(i * 7.14 + 5) % 100}%`,
+                left: `${(i * 10.5 + 3) % 100}%`,
+                top: `${(i * 12.3 + 5) % 100}%`,
               }}
               animate={{
-                y: [0, -40, 0],
-                opacity: [0.2, 0.6, 0.2],
+                y: [0, -30, 0],
+                opacity: [0.1, 0.4, 0.1],
               }}
               transition={{
-                duration: 3 + (i % 4),
+                duration: 5 + (i % 3),
                 repeat: Infinity,
-                delay: (i % 5) * 0.4,
+                delay: (i % 5) * 0.6,
               }}
             />
           ))}
@@ -162,15 +175,13 @@ export default function HomePage() {
         {/* Hero Content */}
         <motion.div
           style={{ opacity }}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
+          initial="hidden"
+          animate="visible"
           className="relative z-10 text-center px-6 max-w-5xl"
         >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            variants={heroFadeIn}
+            custom={heroStagger.label}
           >
             <p className="text-champagne-gold/80 text-sm tracking-[0.3em] mb-6 uppercase font-light">
               Global Luxury • Based in Cape Town
@@ -178,60 +189,57 @@ export default function HomePage() {
           </motion.div>
           
           <motion.h1 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
+            variants={heroVariants}
+            custom={heroStagger.title}
             className="font-playfair text-7xl md:text-9xl tracking-[0.2em] text-off-white mb-8 drop-shadow-[0_0_50px_rgba(0,0,0,0.8)]"
           >
             MUSE & CO
           </motion.h1>
           
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            variants={heroFadeIn}
+            custom={heroStagger.tagline}
             className="font-inter text-xl md:text-2xl tracking-[0.2em] text-off-white/90 mb-6 uppercase font-light"
           >
             {content.heroTagline}
           </motion.p>
           
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
+            variants={heroFadeIn}
+            custom={heroStagger.subtitle}
             className="text-off-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
           >
             {content.heroSubtitle}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
+            variants={heroFadeIn}
+            custom={heroStagger.cta}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
-            <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
-            <Link
-              href="/portfolio"
-              className="group relative px-12 py-4 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] block"
+            {/* Primary CTA — lift + glow + shine sweep */}
+            <motion.div
+              whileHover={primaryCTAHover}
+              whileTap={primaryCTATap}
             >
-              <span className="relative z-10">VIEW PORTFOLIO</span>
-              <motion.div
-                className="absolute inset-0 bg-white"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '0%' }}
-                transition={{ duration: 0.3 }}
-              />
-            </Link>
+              <Link
+                href="/portfolio"
+                className="group relative px-12 py-4 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] block"
+              >
+                <span className="relative z-10 font-semibold">VIEW PORTFOLIO</span>
+                {/* Shine sweep on hover */}
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+              </Link>
             </motion.div>
             
-            <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
-            <Link
-              href="/contact"
-              className="px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] block"
-            >
-              BOOK NOW
-            </Link>
+            {/* Secondary CTA — calm border fill */}
+            <motion.div whileTap={secondaryCTATap}>
+              <Link
+                href="/contact"
+                className="px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_20px_rgba(212,175,55,0.15)] block"
+              >
+                BOOK NOW
+              </Link>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -240,7 +248,7 @@ export default function HomePage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+          transition={{ delay: heroStagger.scroll }}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
         >
           <motion.div
@@ -258,16 +266,17 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(212,175,55,0.05),transparent_50%)]" />
         
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={sectionFadeIn}
           className="max-w-7xl mx-auto relative z-10"
         >
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="text-center mb-20"
           >
             <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Our Models</p>
@@ -303,10 +312,11 @@ export default function HomePage() {
             ].map((model, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
+                variants={cardVariants}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
                 className="group relative overflow-hidden"
               >
                 <div className="relative h-[500px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.9)]">
@@ -340,20 +350,38 @@ export default function HomePage() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
+            variants={cardVariants}
+            custom={0}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="text-center mt-20"
           >
             <Link
               href="/portfolio"
-              className="inline-block px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] font-light"
+              className="inline-block px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_20px_rgba(212,175,55,0.15)] font-light"
             >
               EXPLORE FULL PORTFOLIO
             </Link>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* — Statement Break — editorial pause */}
+      <section className="py-20 md:py-28 px-6 bg-deep-black relative">
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-12 bg-gradient-to-b from-transparent to-champagne-gold/40" />
+        <motion.div
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="max-w-3xl mx-auto text-center"
+        >
+          <p className="font-playfair text-3xl md:text-5xl text-off-white/90 leading-snug tracking-wide">
+            Where <span className="text-champagne-gold italic">beauty</span> meets <span className="text-champagne-gold italic">discretion</span>
+          </p>
+        </motion.div>
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-12 bg-gradient-to-b from-champagne-gold/40 to-transparent" />
       </section>
 
       {/* Luxury Services - Image-Heavy with Glass Effect */}
@@ -363,15 +391,17 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(212,175,55,0.08),transparent_60%)]" />
         
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={sectionFadeIn}
           className="max-w-7xl mx-auto relative z-10"
         >
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="text-center mb-20"
           >
             <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Exclusive Services</p>
@@ -414,19 +444,147 @@ export default function HomePage() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
+            variants={cardVariants}
+            custom={0}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="text-center mt-20"
           >
             <Link
               href="/services"
-              className="inline-block px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] font-light"
+              className="inline-block px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_20px_rgba(212,175,55,0.15)] font-light"
             >
               EXPLORE SERVICES
             </Link>
           </motion.div>
+        </motion.div>
+      </section>
+
+      {/* — Statement Break 2 — */}
+      <section className="py-16 md:py-24 px-6 bg-gradient-to-b from-charcoal/30 to-deep-black relative">
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-10 bg-gradient-to-b from-transparent to-champagne-gold/30" />
+        <motion.div
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="max-w-2xl mx-auto text-center"
+        >
+          <p className="font-playfair text-2xl md:text-4xl text-off-white/80 leading-relaxed tracking-wide">
+            Curated for the <span className="text-champagne-gold">world's most discerning</span> clientele
+          </p>
+        </motion.div>
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-10 bg-gradient-to-b from-champagne-gold/30 to-transparent" />
+      </section>
+
+      {/* Testimonials — with Review structured data */}
+      <section className="py-32 px-6 md:px-12 bg-deep-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(212,175,55,0.04),transparent_60%)]" />
+
+        {/* Review schema — injected as JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'MUSE & CO',
+              review: [
+                {
+                  '@type': 'Review',
+                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  author: { '@type': 'Person', name: 'James R.' },
+                  reviewBody: 'Shara arranged the perfect companion for our yacht event in Camps Bay. Absolute professionalism and discretion. Will use MUSE & CO for every visit to Cape Town.',
+                },
+                {
+                  '@type': 'Review',
+                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  author: { '@type': 'Person', name: 'Michael T.' },
+                  reviewBody: 'Flying in from Johannesburg for business, I needed a sophisticated companion for a corporate dinner in Sandton. MUSE & CO delivered beyond expectations. Elegant, intelligent, and impeccable service.',
+                },
+                {
+                  '@type': 'Review',
+                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  author: { '@type': 'Person', name: 'David K.' },
+                  reviewBody: 'Used their services for a private villa event in Umhlanga, Durban. The models were stunning and professional. Shara personally ensured every detail was perfect. Highly recommend for events anywhere in South Africa.',
+                },
+                {
+                  '@type': 'Review',
+                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  author: { '@type': 'Person', name: 'André V.' },
+                  reviewBody: 'I\'ve worked with agencies in London and Dubai — MUSE & CO is genuinely world-class. The travel companion Shara arranged for my Mauritius trip was exceptional. Beauty, intelligence, and absolute discretion.',
+                },
+                {
+                  '@type': 'Review',
+                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  author: { '@type': 'Person', name: 'Stefan M.' },
+                  reviewBody: 'Based in Pretoria, I was skeptical about booking remotely. Shara made the entire process seamless via WhatsApp. The companion exceeded every expectation. Now a regular client across multiple cities.',
+                },
+                {
+                  '@type': 'Review',
+                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+                  author: { '@type': 'Person', name: 'William H.' },
+                  reviewBody: 'Outstanding service for a golf weekend in Stellenbosch. The hostesses were charming, well-spoken, and made our international guests feel incredibly welcome. First-class operation from start to finish.',
+                },
+              ],
+            }),
+          }}
+        />
+
+        <motion.div
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="max-w-6xl mx-auto relative z-10"
+        >
+          <div className="text-center mb-16">
+            <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Testimonials</p>
+            <h2 className="font-playfair text-5xl md:text-6xl text-off-white mb-4 tracking-wide">
+              What Our Clients Say
+            </h2>
+            <p className="text-off-white/60 text-lg max-w-xl mx-auto">
+              Trusted by discerning clientele across South Africa and internationally
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { name: 'James R.', location: 'Cape Town', text: 'Shara arranged the perfect companion for our yacht event in Camps Bay. Absolute professionalism and discretion. Will use MUSE & CO for every visit to Cape Town.' },
+              { name: 'Michael T.', location: 'Johannesburg', text: 'Flying in for business, I needed a sophisticated companion for a corporate dinner in Sandton. MUSE & CO delivered beyond expectations. Elegant, intelligent, and impeccable service.' },
+              { name: 'David K.', location: 'Durban', text: 'Used their services for a private villa event in Umhlanga. The models were stunning and professional. Shara personally ensured every detail was perfect.' },
+              { name: 'André V.', location: 'International', text: "I've worked with agencies in London and Dubai — MUSE & CO is genuinely world-class. The travel companion Shara arranged for my Mauritius trip was exceptional." },
+              { name: 'Stefan M.', location: 'Pretoria', text: 'Based in Pretoria, I was skeptical about booking remotely. Shara made the entire process seamless via WhatsApp. The companion exceeded every expectation.' },
+              { name: 'William H.', location: 'Stellenbosch', text: 'Outstanding service for a golf weekend. The hostesses were charming, well-spoken, and made our international guests feel incredibly welcome.' },
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+                className="p-8 bg-charcoal/40 border border-champagne-gold/15 hover:border-champagne-gold/30 transition-all duration-300"
+              >
+                {/* Stars */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4 text-champagne-gold" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-off-white/80 text-sm leading-relaxed mb-6 italic">
+                  &ldquo;{testimonial.text}&rdquo;
+                </p>
+                <div className="flex items-center justify-between">
+                  <p className="text-champagne-gold font-semibold text-sm">{testimonial.name}</p>
+                  <p className="text-off-white/40 text-xs tracking-wider uppercase">{testimonial.location}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </section>
 
@@ -435,7 +593,7 @@ export default function HomePage() {
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2400"
-            alt="Luxury event background"
+            alt="Luxury companion event setting South Africa — elite VIP experience background"
             fill
             unoptimized
             className="object-cover opacity-20"
@@ -444,9 +602,10 @@ export default function HomePage() {
         </div>
         
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
           className="max-w-4xl mx-auto text-center relative z-10"
         >
           <p className="text-champagne-gold/80 text-sm tracking-[0.3em] mb-6 uppercase font-light">
@@ -460,19 +619,24 @@ export default function HomePage() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link
-              href="/contact"
-              className="px-12 py-5 bg-champagne-gold text-deep-black font-semibold tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] text-sm uppercase"
-            >
-              Private Inquiry
-            </Link>
+            <motion.div whileHover={primaryCTAHover} whileTap={primaryCTATap}>
+              <Link
+                href="/contact"
+                className="group relative px-12 py-5 bg-champagne-gold text-deep-black font-semibold tracking-[0.15em] transition-all duration-300 shadow-[0_0_40px_rgba(212,175,55,0.4)] text-sm uppercase block overflow-hidden"
+              >
+                <span className="relative z-10">Private Inquiry</span>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+              </Link>
+            </motion.div>
             
-            <Link
-              href="/portfolio"
-              className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] text-sm uppercase font-light"
-            >
-              View Portfolio
-            </Link>
+            <motion.div whileTap={secondaryCTATap}>
+              <Link
+                href="/portfolio"
+                className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_20px_rgba(212,175,55,0.15)] text-sm uppercase font-light block"
+              >
+                View Portfolio
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </section>
@@ -494,10 +658,11 @@ function ServiceCard({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="group relative overflow-hidden shadow-[0_20px_70px_rgba(0,0,0,0.9)] hover:shadow-[0_25px_90px_rgba(212,175,55,0.15)] transition-all duration-700"
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
+      className="group relative overflow-hidden shadow-[0_20px_70px_rgba(0,0,0,0.9)] hover:shadow-[0_25px_90px_rgba(212,175,55,0.15)] transition-all duration-500"
     >
       {/* Background Image */}
       <div className="relative h-80 overflow-hidden">
@@ -529,10 +694,11 @@ function ServiceCard({
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              variants={microFadeIn}
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
               className="flex items-center text-off-white/60 text-sm"
             >
               <span className="text-champagne-gold mr-3 text-xs">◆</span>

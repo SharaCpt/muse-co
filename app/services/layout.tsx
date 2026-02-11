@@ -1,11 +1,12 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Services',
-  description: 'Explore MUSE & CO elite companion services - luxury lifestyle experiences, exclusive private arrangements, VIP nightlife companions, and bespoke events in Cape Town.',
+  title: 'Elite Companion Services — Cape Town, Johannesburg & Nationwide',
+  description: 'Luxury companion services across South Africa. VIP hostesses, private companions, travel escorts & bespoke event staffing in Cape Town, Johannesburg, Durban, Pretoria. International arrangements available worldwide.',
+  keywords: 'companion services Cape Town, VIP escort Johannesburg, luxury hostess Durban, private companion South Africa, travel escort Pretoria, bespoke events, elite nightlife companions',
   openGraph: {
-    title: 'Services | MUSE & CO Elite Companion Services',
-    description: 'Luxury lifestyle experiences, exclusive private arrangements, and VIP nightlife companions in Cape Town, South Africa.',
+    title: 'Elite Companion Services | MUSE & CO — Cape Town, Johannesburg & South Africa',
+    description: 'Luxury companion services across South Africa. VIP hostesses, private companions, travel escorts & bespoke events in Cape Town, Johannesburg, Durban.',
   },
 }
 

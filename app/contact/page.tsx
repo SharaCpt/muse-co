@@ -4,6 +4,16 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { createClient } from '@supabase/supabase-js'
+import {
+  heroVariants,
+  heroFadeIn,
+  heroStagger,
+  sectionVariants,
+  primaryCTAHover,
+  primaryCTATap,
+  secondaryCTATap,
+  viewportOnce,
+} from '@/lib/motion'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -51,7 +61,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={DEFAULT_HEADER}
-            alt="Contact MUSE & CO - Book Elite Companion Services Cape Town"
+            alt="Contact MUSE & CO — book elite companion services Cape Town Johannesburg South Africa"
             fill
             className="object-cover"
             priority
@@ -62,19 +72,24 @@ export default function ContactPage() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial="hidden"
+          animate="visible"
           className="relative z-10 text-center px-6 max-w-4xl"
         >
-          <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Get in Touch</p>
-          <h1 className="font-playfair text-6xl md:text-8xl tracking-[0.15em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+          <motion.p variants={heroFadeIn} custom={heroStagger.label} className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Get in Touch</motion.p>
+          <motion.h1
+            variants={heroVariants}
+            custom={heroStagger.title}
+            className="font-playfair text-6xl md:text-8xl tracking-[0.15em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]"
           >
             CONTACT
-          </h1>
-          <p className="text-off-white/80 text-lg md:text-xl tracking-wide mb-8">
-            Exclusive Arrangements • VIP Booking • Worldwide Service
-          </p>
+          </motion.h1>
+          <motion.p variants={heroFadeIn} custom={heroStagger.tagline} className="text-off-white/80 text-lg md:text-xl tracking-wide mb-4">
+            VIP Booking &amp; Private Arrangements — South Africa &amp; Worldwide
+          </motion.p>
+          <motion.p variants={heroFadeIn} custom={heroStagger.subtitle} className="text-off-white/50 text-sm tracking-widest mb-8">
+            CAPE TOWN • JOHANNESBURG • DURBAN • PRETORIA • INTERNATIONAL
+          </motion.p>
         </motion.div>
       </section>
 
@@ -83,8 +98,10 @@ export default function ContactPage() {
         <div className="max-w-3xl mx-auto">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="space-y-12 text-center"
           >
             <div>
@@ -102,17 +119,17 @@ export default function ContactPage() {
                 href="https://wa.me/+27607769793?text=Hi%20Shara!%20I%20found%20your%20contact%20details%20on%20the%20MUSE%20%26%20CO%20website.%20I%27d%20like%20to%20inquire%20about%20your%20elite%20companion%20services.%20Looking%20forward%20to%20discussing%20an%20exclusive%20arrangement.%20%E2%9C%A8"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.1 }}
-                className="block px-8 py-5 bg-gradient-to-r from-champagne-gold to-[#B8962E] text-deep-black font-semibold tracking-wider hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-all duration-300 text-center"
+                whileHover={primaryCTAHover}
+                whileTap={primaryCTATap}
+                className="group relative block px-8 py-5 bg-gradient-to-r from-champagne-gold to-[#B8962E] text-deep-black font-semibold tracking-wider transition-all duration-300 text-center overflow-hidden"
               >
-                MESSAGE ON WHATSAPP
+                <span className="relative z-10">MESSAGE ON WHATSAPP</span>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
               </motion.a>
               
               <motion.a
                 href="tel:+27607769793"
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.1 }}
+                whileTap={secondaryCTATap}
                 className="block px-8 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 text-center font-semibold tracking-wider"
               >
                 CALL SHARA

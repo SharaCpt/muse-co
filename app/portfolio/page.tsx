@@ -5,6 +5,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
+import {
+  heroVariants,
+  heroFadeIn,
+  heroStagger,
+  sectionVariants,
+  cardVariants,
+  primaryCTAHover,
+  primaryCTATap,
+  secondaryCTATap,
+  viewportOnce,
+} from '@/lib/motion'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -92,7 +103,7 @@ export default function PortfolioPage() {
         <div className="absolute inset-0 z-0 bg-charcoal">
           <Image
             src={DEFAULT_HEADER}
-            alt="Elite Portfolio"
+            alt="Elite model portfolio — luxury companions Cape Town Johannesburg South Africa"
             fill
             className="object-cover"
             priority
@@ -103,21 +114,27 @@ export default function PortfolioPage() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial="hidden"
+          animate="visible"
           className="relative z-10 text-center px-6 max-w-4xl"
         >
-          <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Curated Excellence</p>
-          <h1 className="font-playfair text-5xl md:text-7xl tracking-[0.15em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+          <motion.p variants={heroFadeIn} custom={heroStagger.label} className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Curated Excellence</motion.p>
+          <motion.h1
+            variants={heroVariants}
+            custom={heroStagger.title}
+            className="font-playfair text-5xl md:text-7xl tracking-[0.15em] text-champagne-gold mb-6 drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+          >
             PORTFOLIO
-          </h1>
-          <p className="text-off-white/80 text-lg md:text-xl tracking-wide mb-8">
-            Elite Lifestyle Models • VIP Hostesses • Private Companions
-          </p>
-          <p className="text-off-white/60 max-w-2xl mx-auto">
+          </motion.h1>
+          <motion.p variants={heroFadeIn} custom={heroStagger.tagline} className="text-off-white/80 text-lg md:text-xl tracking-wide mb-4">
+            Elite Models &amp; Luxury Companions — South Africa
+          </motion.p>
+          <motion.p variants={heroFadeIn} custom={heroStagger.subtitle} className="text-off-white/50 text-sm tracking-widest mb-6">
+            CAPE TOWN • JOHANNESBURG • DURBAN • NATIONWIDE
+          </motion.p>
+          <motion.p variants={heroFadeIn} custom={heroStagger.cta} className="text-off-white/60 max-w-2xl mx-auto">
             {content.intro}
-          </p>
+          </motion.p>
         </motion.div>
       </section>
 
@@ -169,9 +186,10 @@ export default function PortfolioPage() {
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
             className="space-y-8"
           >
             <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-4 tracking-wide drop-shadow-[0_0_20px_rgba(212,175,55,0.2)]">
@@ -181,29 +199,30 @@ export default function PortfolioPage() {
               For privacy and exclusivity, detailed profiles are shared directly with serious inquiries only. 
               Contact us to discuss your exclusive companion preferences and bespoke arrangements.
             </p>
+            <p className="text-off-white/50 text-sm mt-4">
+              Discover our <Link href="/services" className="text-champagne-gold hover:underline">full range of services</Link> or review our <Link href="/pricing" className="text-champagne-gold hover:underline">transparent pricing</Link> before reaching out.
+            </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
-              <a
+              <motion.a
                 href="https://wa.me/27607769793?text=Hi%20Shara!%20I%20found%20you%20on%20the%20MUSE%20%26%20CO%20website.%20I%27d%20like%20to%20inquire%20about%20your%20portfolio%20and%20services."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] hover:bg-champagne-gold/90 transition-all duration-300 text-lg shadow-[0_0_50px_rgba(212,175,55,0.4)] hover:shadow-[0_0_70px_rgba(212,175,55,0.6)] relative overflow-hidden"
+                whileHover={primaryCTAHover}
+                whileTap={primaryCTATap}
+                className="group px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 text-lg shadow-[0_0_40px_rgba(212,175,55,0.4)] relative overflow-hidden inline-block"
               >
                 <span className="relative z-10">MESSAGE US</span>
-                <motion.div
-                  className="absolute inset-0 bg-white"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6 }}
-                  style={{ opacity: 0.15 }}
-                />
-              </a>
-              <Link
-                href="/contact"
-                className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] text-lg shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)]"
-              >
-                CONTACT US
-              </Link>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+              </motion.a>
+              <motion.div whileTap={secondaryCTATap}>
+                <Link
+                  href="/contact"
+                  className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] text-lg shadow-[0_0_20px_rgba(212,175,55,0.15)] inline-block"
+                >
+                  CONTACT US
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -215,9 +234,11 @@ export default function PortfolioPage() {
 function ModelCard({ model, index }: { model: PortfolioImage; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
+      variants={cardVariants}
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
       className="group relative overflow-hidden h-[500px] shadow-[0_10px_60px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_80px_rgba(212,175,55,0.3)] transition-all duration-500"
     >
       {/* Image */}
