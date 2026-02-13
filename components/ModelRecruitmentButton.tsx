@@ -37,7 +37,7 @@ export default function ModelRecruitmentButton({ ctaBoxRef }: ModelRecruitmentBu
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.4 }}
-          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 group"
+          className="fixed top-24 right-6 md:top-28 md:right-8 z-50 group"
           aria-label="Chat with Shara on WhatsApp"
         >
       {/* Main Button */}
