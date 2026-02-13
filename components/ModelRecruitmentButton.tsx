@@ -1,25 +1,45 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, RefObject } from 'react'
 
-export default function ModelRecruitmentButton() {
+interface ModelRecruitmentButtonProps {
+  ctaBoxRef?: RefObject<HTMLDivElement>
+}
+
+export default function ModelRecruitmentButton({ ctaBoxRef }: ModelRecruitmentButtonProps) {
   const phoneNumber = '+27607769793'
   const message = "Hi Shara! I'm interested in joining Muse & Co as a model. I'd love to learn more about this opportunity and see if I'd be a good fit. Looking forward to hearing from you! ✨"
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  const [showButton, setShowButton] = useState(true)
+
+  useEffect(() => {
+    if (!ctaBoxRef?.current) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowButton(!entry.isIntersecting),
+      { threshold: 0.3 }
+    )
+    observer.observe(ctaBoxRef.current)
+    return () => observer.disconnect()
+  }, [ctaBoxRef])
 
   return (
-    <motion.a
-      href={whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.4, delay: 1.5 }}
-      className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 group"
-      aria-label="Chat with Shara on WhatsApp"
-    >
+    <AnimatePresence>
+      {showButton && (
+        <motion.a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0, opacity: 0 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.4 }}
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 group"
+          aria-label="Chat with Shara on WhatsApp"
+        >
       {/* Main Button */}
       <motion.div
         animate={{
@@ -120,5 +140,7 @@ export default function ModelRecruitmentButton() {
         <p className="text-off-white/60 text-xs">Start your luxury lifestyle journey</p>
       </motion.div>
     </motion.a>
+      )}
+    </AnimatePresence>
   )
 }
