@@ -11,11 +11,10 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfa
 
 export const metadata: Metadata = {
   title: {
-    default: 'MUSE & CO | Elite Companion Services South Africa | Cape Town, Johannesburg, Durban',
-    template: '%s | MUSE & CO — Elite Companions South Africa'
+    default: 'MUSE & CO | Elite Companions Cape Town',
+    template: '%s | MUSE & CO'
   },
-  description: 'South Africa\'s premier luxury companion and elite escort agency. Exclusive VIP companions in Cape Town, Johannesburg, Durban & nationwide. High-class travel escorts, sophisticated companionship, and bespoke experiences worldwide. Absolute discretion guaranteed.',
-  keywords: 'luxury escort Cape Town, elite companion Johannesburg, VIP escort South Africa, high-class escort Durban, luxury travel companion, executive companion Pretoria, elite hostess Cape Town, VIP companion services South Africa, luxury escort agency Johannesburg, exclusive companion nationwide, escort agency South Africa, elite models Cape Town Johannesburg',
+  description: 'MUSE & CO is a luxury companion agency based in Cape Town, South Africa. We connect discerning clients with elegant, sophisticated companions for private arrangements and bespoke experiences. Absolute discretion guaranteed.',
   authors: [{ name: 'MUSE & CO' }],
   creator: 'MUSE & CO',
   publisher: 'MUSE & CO',
@@ -28,8 +27,8 @@ export const metadata: Metadata = {
     locale: 'en_ZA',
     url: 'https://museco.co.za',
     siteName: 'MUSE & CO',
-    title: 'MUSE & CO | Elite Companion Services South Africa — Cape Town, Johannesburg, Durban',
-    description: 'South Africa\'s premier luxury companion agency. Elite VIP companions in Cape Town, Johannesburg, Durban & nationwide. Sophisticated companionship and bespoke experiences worldwide.',
+    title: 'MUSE & CO | Elite Companions Cape Town',
+    description: 'Luxury companion agency based in Cape Town. Elegant, sophisticated companions for private arrangements and bespoke experiences across South Africa.',
     images: [
       {
         url: '/og-image.jpg',
@@ -41,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MUSE & CO | Elite Companions — Cape Town, Johannesburg & South Africa',
-    description: 'South Africa\'s premier luxury companion agency. Elite VIP companions in Cape Town, Johannesburg, Durban & nationwide.',
+    title: 'MUSE & CO | Elite Companions Cape Town',
+    description: 'Luxury companion agency based in Cape Town. Elegant companions for private arrangements and bespoke experiences.',
     images: ['/og-image.jpg']
   },
   robots: {
@@ -70,7 +69,7 @@ export default function RootLayout({
       name: 'MUSE & CO',
       url: 'https://museco.co.za',
       logo: 'https://museco.co.za/og-image.jpg',
-      description: 'South Africa\'s premier luxury companion and elite escort agency serving Cape Town, Johannesburg, Durban, Pretoria and worldwide.',
+      description: 'Luxury companion agency based in Cape Town, serving clients across South Africa and internationally.',
       telephone: '+27-60-776-9793',
       email: 'sharafindit@gmail.com',
       foundingDate: '2011',
@@ -86,7 +85,7 @@ export default function RootLayout({
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       name: 'MUSE & CO',
-      description: 'Premier luxury companion and elite escort services across South Africa — Cape Town, Johannesburg, Durban, Pretoria and worldwide',
+      description: 'Luxury companion agency in Cape Town offering private arrangements and bespoke experiences across South Africa',
       url: 'https://museco.co.za',
       telephone: '+27-60-776-9793',
       priceRange: 'R$$$',
@@ -113,20 +112,11 @@ export default function RootLayout({
         { '@type': 'Place', name: 'Worldwide' }
       ],
       serviceType: [
-        'Elite Companion Services',
-        'VIP Escort Services',
-        'Luxury Travel Companion',
-        'Executive Companion',
-        'High-Class Hostess Services',
-        'Private Event Staffing',
-        'International Travel Companionship'
-      ],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '127',
-        bestRating: '5'
-      }
+        'Companion Services',
+        'Private Arrangements',
+        'Travel Companionship',
+        'Event Companionship'
+      ]
     }
   ]
 

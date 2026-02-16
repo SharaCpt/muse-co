@@ -1,12 +1,11 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Elite Model Portfolio — Cape Town & Johannesburg Companions',
-  description: 'Browse MUSE & CO\'s curated portfolio of elite models and luxury companions across South Africa. Handpicked professionals for VIP events, private arrangements and exclusive experiences in Cape Town, Johannesburg, Durban & worldwide.',
-  keywords: 'elite models Cape Town, luxury companions Johannesburg, VIP hostess South Africa, model portfolio Durban, private companion gallery, exclusive escorts',
+  title: 'Our Models — Meet Our Companions',
+  description: 'Browse MUSE & CO\'s curated selection of elegant companions. Each woman is personally vetted for beauty, sophistication, and professionalism. Based in Cape Town with companions available across South Africa.',
   openGraph: {
-    title: 'Portfolio | MUSE & CO Elite Models — Cape Town, Johannesburg & South Africa',
-    description: 'Curated portfolio of elite models and luxury companions across South Africa for VIP events and exclusive experiences.',
+    title: 'Portfolio | MUSE & CO',
+    description: 'Meet our curated selection of elegant companions based in Cape Town and available across South Africa.',
   },
 }
 

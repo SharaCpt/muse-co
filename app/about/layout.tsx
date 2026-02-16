@@ -1,12 +1,11 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About Us — South Africa\'s Premier Companion Agency',
-  description: 'MUSE & CO is South Africa\'s leading luxury companion agency. 15+ years curating elite companionship in Cape Town, Johannesburg, Durban and worldwide. Founded by Shara — exceptional women, absolute discretion.',
-  keywords: 'luxury companion agency South Africa, elite escort Cape Town, about MUSE & CO, companion agency Johannesburg, Shara founder, luxury escorts Durban',
+  title: 'About MUSE & CO — Cape Town Companion Agency Since 2011',
+  description: 'MUSE & CO has been connecting discerning clients with elegant companions since 2011. Based in Cape Town, serving clients across South Africa. Founded by Shara — exceptional women, absolute discretion.',
   openGraph: {
-    title: 'About MUSE & CO | South Africa\'s Premier Luxury Companion Agency',
-    description: '15+ years curating elite companionship across South Africa — Cape Town, Johannesburg, Durban and worldwide. Exceptional women, absolute discretion.',
+    title: 'About | MUSE & CO',
+    description: 'Cape Town\'s trusted companion agency since 2011. Exceptional women, absolute discretion.',
   },
 }
 

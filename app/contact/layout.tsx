@@ -1,12 +1,11 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact & VIP Booking — Cape Town, Johannesburg & Nationwide',
-  description: 'Contact MUSE & CO for exclusive companion arrangements and VIP bookings across South Africa. Serving Cape Town, Johannesburg, Durban, Pretoria & internationally. Reach Shara directly via WhatsApp for discreet, personalised service.',
-  keywords: 'contact companion agency South Africa, book escort Cape Town, VIP booking Johannesburg, WhatsApp companion Durban, discreet escort booking',
+  title: 'Contact & Bookings — Get in Touch',
+  description: 'Contact MUSE & CO for companion arrangements and bookings. Reach Shara directly via WhatsApp for a discreet, personalised consultation. Available in Cape Town and across South Africa.',
   openGraph: {
-    title: 'Contact & Book | MUSE & CO — Cape Town, Johannesburg & South Africa',
-    description: 'Contact us for exclusive companion arrangements across South Africa. Discreet, personalised VIP service.',
+    title: 'Contact | MUSE & CO',
+    description: 'Get in touch for companion bookings. Discreet, personalised service via WhatsApp.',
   },
 }
 
