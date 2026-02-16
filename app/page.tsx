@@ -478,59 +478,9 @@ export default function HomePage() {
         <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-10 bg-gradient-to-b from-champagne-gold/30 to-transparent" />
       </section>
 
-      {/* Testimonials — with Review structured data */}
+      {/* Testimonials */}
       <section className="py-32 px-6 md:px-12 bg-deep-black relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(212,175,55,0.04),transparent_60%)]" />
-
-        {/* Review schema — injected as JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
-              name: 'MUSE & CO',
-              review: [
-                {
-                  '@type': 'Review',
-                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                  author: { '@type': 'Person', name: 'James R.' },
-                  reviewBody: 'Shara arranged the perfect companion for our yacht event in Camps Bay. Absolute professionalism and discretion. Will use MUSE & CO for every visit to Cape Town.',
-                },
-                {
-                  '@type': 'Review',
-                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                  author: { '@type': 'Person', name: 'Michael T.' },
-                  reviewBody: 'Flying in from Johannesburg for business, I needed a sophisticated companion for a corporate dinner in Sandton. MUSE & CO delivered beyond expectations. Elegant, intelligent, and impeccable service.',
-                },
-                {
-                  '@type': 'Review',
-                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                  author: { '@type': 'Person', name: 'David K.' },
-                  reviewBody: 'Used their services for a private villa event in Umhlanga, Durban. The models were stunning and professional. Shara personally ensured every detail was perfect. Highly recommend for events anywhere in South Africa.',
-                },
-                {
-                  '@type': 'Review',
-                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                  author: { '@type': 'Person', name: 'André V.' },
-                  reviewBody: 'I\'ve worked with agencies in London and Dubai — MUSE & CO is genuinely world-class. The travel companion Shara arranged for my Mauritius trip was exceptional. Beauty, intelligence, and absolute discretion.',
-                },
-                {
-                  '@type': 'Review',
-                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                  author: { '@type': 'Person', name: 'Stefan M.' },
-                  reviewBody: 'Based in Pretoria, I was skeptical about booking remotely. Shara made the entire process seamless via WhatsApp. The companion exceeded every expectation. Now a regular client across multiple cities.',
-                },
-                {
-                  '@type': 'Review',
-                  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-                  author: { '@type': 'Person', name: 'William H.' },
-                  reviewBody: 'Outstanding service for a golf weekend in Stellenbosch. The hostesses were charming, well-spoken, and made our international guests feel incredibly welcome. First-class operation from start to finish.',
-                },
-              ],
-            }),
-          }}
-        />
 
         <motion.div
           variants={sectionVariants}
