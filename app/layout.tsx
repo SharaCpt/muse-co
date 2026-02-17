@@ -18,14 +18,14 @@ export const metadata: Metadata = {
   authors: [{ name: 'MUSE & CO' }],
   creator: 'MUSE & CO',
   publisher: 'MUSE & CO',
-  metadataBase: new URL('https://museco.co.za'),
+  metadataBase: new URL('https://www.museco.co.za'),
   alternates: {
     canonical: '/'
   },
   openGraph: {
     type: 'website',
     locale: 'en_ZA',
-    url: 'https://museco.co.za',
+    url: 'https://www.museco.co.za',
     siteName: 'MUSE & CO',
     title: 'MUSE & CO | Elite Companions Cape Town',
     description: 'Luxury companion agency based in Cape Town. Elegant, sophisticated companions for private arrangements and bespoke experiences across South Africa.',
@@ -67,8 +67,8 @@ export default function RootLayout({
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'MUSE & CO',
-      url: 'https://museco.co.za',
-      logo: 'https://museco.co.za/og-image.jpg',
+      url: 'https://www.museco.co.za',
+      logo: 'https://www.museco.co.za/og-image.jpg',
       description: 'Luxury companion agency based in Cape Town, serving clients across South Africa and internationally.',
       telephone: '+27-60-776-9793',
       email: 'sharafindit@gmail.com',
@@ -86,7 +86,7 @@ export default function RootLayout({
       '@type': 'LocalBusiness',
       name: 'MUSE & CO',
       description: 'Luxury companion agency in Cape Town offering private arrangements and bespoke experiences across South Africa',
-      url: 'https://museco.co.za',
+      url: 'https://www.museco.co.za',
       telephone: '+27-60-776-9793',
       priceRange: 'R$$$',
       address: {
