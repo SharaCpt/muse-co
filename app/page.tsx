@@ -478,66 +478,6 @@ export default function HomePage() {
         <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-10 bg-gradient-to-b from-champagne-gold/30 to-transparent" />
       </section>
 
-      {/* Testimonials */}
-      <section className="py-32 px-6 md:px-12 bg-deep-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(212,175,55,0.04),transparent_60%)]" />
-
-        <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="max-w-6xl mx-auto relative z-10"
-        >
-          <div className="text-center mb-16">
-            <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Testimonials</p>
-            <h2 className="font-playfair text-5xl md:text-6xl text-off-white mb-4 tracking-wide">
-              What Our Clients Say
-            </h2>
-            <p className="text-off-white/60 text-lg max-w-xl mx-auto">
-              Trusted by discerning clientele across South Africa and internationally
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { name: 'James R.', location: 'Cape Town', text: 'Shara arranged the perfect companion for our yacht event in Camps Bay. Absolute professionalism and discretion. Will use MUSE & CO for every visit to Cape Town.' },
-              { name: 'Michael T.', location: 'Johannesburg', text: 'Flying in for business, I needed a sophisticated companion for a corporate dinner in Sandton. MUSE & CO delivered beyond expectations. Elegant, intelligent, and impeccable service.' },
-              { name: 'David K.', location: 'Durban', text: 'Used their services for a private villa event in Umhlanga. The models were stunning and professional. Shara personally ensured every detail was perfect.' },
-              { name: 'André V.', location: 'International', text: "I've worked with agencies in London and Dubai — MUSE & CO is genuinely world-class. The travel companion Shara arranged for my Mauritius trip was exceptional." },
-              { name: 'Stefan M.', location: 'Pretoria', text: 'Based in Pretoria, I was skeptical about booking remotely. Shara made the entire process seamless via WhatsApp. The companion exceeded every expectation.' },
-              { name: 'William H.', location: 'Stellenbosch', text: 'Outstanding service for a golf weekend. The hostesses were charming, well-spoken, and made our international guests feel incredibly welcome.' },
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                custom={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportOnce}
-                className="p-8 bg-charcoal/40 border border-champagne-gold/15 hover:border-champagne-gold/30 transition-all duration-300"
-              >
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4 text-champagne-gold" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-off-white/80 text-sm leading-relaxed mb-6 italic">
-                  &ldquo;{testimonial.text}&rdquo;
-                </p>
-                <div className="flex items-center justify-between">
-                  <p className="text-champagne-gold font-semibold text-sm">{testimonial.name}</p>
-                  <p className="text-off-white/40 text-xs tracking-wider uppercase">{testimonial.location}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
       {/* CTA Section - Premium */}
       <section className="py-32 px-6 md:px-12 bg-deep-black relative overflow-hidden">
         <div className="absolute inset-0">
