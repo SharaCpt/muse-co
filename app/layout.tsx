@@ -88,7 +88,7 @@ export default function RootLayout({
       description: 'Luxury companion agency in Cape Town offering private arrangements and bespoke experiences across South Africa',
       url: 'https://www.museco.co.za',
       telephone: '+27-60-776-9793',
-      priceRange: 'R$$$',
+      priceRange: '$$$$',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Cape Town',

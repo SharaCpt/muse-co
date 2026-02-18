@@ -31,7 +31,7 @@ interface SiteContent {
 export default function ContactPage() {
   // Editable content with defaults
   const [content, setContent] = useState({
-    intro: 'Ready to elevate your next event? Contact us for a personalized consultation and discover how MUSE & CO can bring your vision to life.',
+    intro: 'Ready to arrange your next experience? Contact us for a discreet, personalised consultation.',
   })
 
   useEffect(() => {

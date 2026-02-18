@@ -29,7 +29,7 @@ const DEFAULT_CONTENT: SiteContent[] = [
     id: 'home_hero_subtitle',
     page: 'Homepage',
     section: 'Hero Subtitle',
-    content: "Curating South Africa's most beautiful models and sophisticated companions for luxury experiences worldwide. From intimate private encounters to exclusive international arrangements, we deliver unparalleled beauty, elegance, and absolute discretion to discerning clientele across the globe."
+    content: "Curating South Africa's most beautiful models and sophisticated companions for luxury experiences worldwide. From exclusive private arrangements to international lifestyle experiences, we deliver unparalleled beauty, elegance, and absolute discretion to discerning clientele across the globe."
   },
   {
     id: 'about_intro',
@@ -53,25 +53,43 @@ const DEFAULT_CONTENT: SiteContent[] = [
     id: 'services_intro',
     page: 'Services',
     section: 'Introduction',
-    content: 'From intimate gatherings to grand celebrations, we provide bespoke companionship and lifestyle services tailored to your exact preferences.'
+    content: 'Browse our portfolio, choose your companion or model, and let us arrange the perfect experience \u2014 from private dinners and yacht days to exclusive companionship and travel.'
   },
   {
-    id: 'services_luxury',
+    id: 'services_dining',
     page: 'Services',
-    section: 'Luxury Lifestyle',
-    content: 'Exquisite models and sophisticated companions for exclusive private experiences and luxury occasions. Our elite models deliver beauty, elegance, and impeccable presence with absolute discretion.'
+    section: 'Private Dining',
+    content: 'Choose an elegant companion for restaurant dinners, wine tastings, and social occasions. Our sophisticated companions enhance any dining experience with beauty, intelligence, and effortless conversation \u2014 perfect for business entertaining or private evenings.'
   },
   {
-    id: 'services_private',
+    id: 'services_yacht',
     page: 'Services',
-    section: 'Private Arrangements',
-    content: 'Bespoke long-term arrangements for discerning clients seeking sophisticated companionship. From ongoing business travel to extended private experiences, we curate exclusive relationships built on trust, elegance, and absolute discretion.'
+    section: 'Yacht & Villa',
+    content: 'Select stunning models and hostesses for your yacht day, villa event, pool party, or coastal celebration. Our models bring energy, glamour, and refined allure to your most exclusive gatherings.'
+  },
+  {
+    id: 'services_events',
+    page: 'Services',
+    section: 'Private Events',
+    content: 'Book professional hostesses and companions for your corporate dinner, golf day, poker evening, or private celebration. Impeccable presentation, social grace, and absolute discretion for your most important occasions.'
   },
   {
     id: 'services_nightlife',
     page: 'Services',
-    section: 'VIP Nightlife',
-    content: 'Elevate your evening with stunning models and charismatic companions. Our elite companions bring sophistication, energy, and undeniable presence to exclusive clubs, private parties, and VIP experiences.'
+    section: 'Party & Nightlife',
+    content: 'Choose your ideal companions for club nights, private parties, celebrations, and nightlife experiences. Beautiful, engaging companions who bring magnetic energy to any evening out.'
+  },
+  {
+    id: 'services_private',
+    page: 'Services',
+    section: 'Private Companionship',
+    content: 'Curated private companionship for discerning clients seeking ongoing, bespoke arrangements. Browse our portfolio, choose who you connect with, and enjoy absolute confidentiality.'
+  },
+  {
+    id: 'services_travel',
+    page: 'Services',
+    section: 'Travel Companions',
+    content: 'Select a sophisticated travel companion for domestic and international trips. Whether business or leisure \u2014 our refined companions provide elegance, cultural awareness, and discretion for journeys to Mauritius, Dubai, London, and beyond.'
   },
   {
     id: 'portfolio_intro',
@@ -89,7 +107,7 @@ const DEFAULT_CONTENT: SiteContent[] = [
     id: 'contact_intro',
     page: 'Contact',
     section: 'Introduction',
-    content: 'Ready to elevate your next event? Contact us for a personalized consultation and discover how MUSE & CO can bring your vision to life.'
+    content: 'Ready to arrange your next experience? Contact us for a discreet, personalised consultation.'
   },
 ]
 

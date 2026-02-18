@@ -11,7 +11,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-champagne-gold text-xl mb-4">Age Restriction</h2>
               <p>
-                This website and our services are restricted to individuals 18 years of age or older. By accessing this site, you confirm that you meet this age requirement.
+                This website and our services are restricted to individuals 21 years of age or older. By accessing this site, you confirm that you meet this age requirement.
               </p>
             </section>
 
