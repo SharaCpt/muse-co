@@ -25,9 +25,12 @@ const supabase = createClient(
 // Default images
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1640947109541-ad13a917ba45?q=80&w=2000'
 const DEFAULT_IMAGES = {
-  luxury_lifestyle: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
-  private_arrangements: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200',
-  nightlife: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200',
+  dining_companions: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
+  yacht_villa: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200',
+  corporate_events: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200',
+  promo_models: 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200',
+  private_companionship: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200',
+  travel_companions: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
 }
 
 interface SiteContent {
@@ -41,10 +44,13 @@ export default function ServicesPage() {
   
   // Editable content with defaults
   const [content, setContent] = useState({
-    intro: 'From intimate gatherings to grand celebrations, we provide bespoke companionship and lifestyle services tailored to your exact preferences.',
-    luxury: 'Exquisite models and sophisticated companions for exclusive private experiences and luxury occasions. Our elite women deliver beauty, elegance, and impeccable presence with absolute discretion.',
-    private: 'Bespoke long-term arrangements for discerning clients seeking sophisticated companionship. From ongoing business travel to extended private experiences, we curate exclusive relationships built on trust, elegance, and absolute discretion.',
-    nightlife: 'Elevate your evening with stunning models and charismatic companions. Our elite women bring sophistication, energy, and undeniable presence to exclusive clubs, private parties, and VIP experiences.',
+    intro: 'From private dinners and yacht events to corporate occasions and exclusive companionship — one agency, one standard of excellence.',
+    dining: 'Elegant companions for restaurant dinners, wine tastings, and social occasions. Our sophisticated women enhance any dining experience with beauty, intelligence, and effortless conversation — perfect for business entertaining or private evenings.',
+    yacht: 'Stunning models and hostesses for yacht parties, villa events, pool parties, and coastal celebrations. Our women bring energy, glamour, and refined allure to your most exclusive gatherings.',
+    corporate: 'Professional hostesses and event companions for corporate dinners, deal-closing celebrations, golf days, and VIP business occasions. Impeccable presentation, social grace, and absolute discretion for high-profile events.',
+    promo: 'Premium promotional models for venue launches, brand activations, club appearances, and marketing events. Beautiful, professional, and on-brand — our models elevate any promotional occasion.',
+    private: 'Curated private companionship for discerning clients seeking ongoing, bespoke arrangements. From intimate experiences to long-term exclusive relationships, built on trust, elegance, and absolute confidentiality.',
+    travel: 'Sophisticated travel companions for domestic and international trips. Whether business or leisure — our refined companions provide elegance, cultural awareness, and discretion for journeys to Mauritius, Dubai, London, and beyond.',
   })
 
   useEffect(() => {
@@ -57,7 +63,7 @@ export default function ServicesPage() {
       const { data, error } = await supabase
         .from('site_content')
         .select('*')
-        .in('id', ['services_intro', 'services_luxury', 'services_private', 'services_nightlife'])
+        .in('id', ['services_intro', 'services_dining', 'services_yacht', 'services_corporate', 'services_promo', 'services_private', 'services_travel'])
 
       if (error) throw error
 
@@ -65,9 +71,12 @@ export default function ServicesPage() {
         const newContent: Record<string, string> = {}
         data.forEach((item: SiteContent) => {
           if (item.id === 'services_intro') newContent.intro = item.content
-          if (item.id === 'services_luxury') newContent.luxury = item.content
+          if (item.id === 'services_dining') newContent.dining = item.content
+          if (item.id === 'services_yacht') newContent.yacht = item.content
+          if (item.id === 'services_corporate') newContent.corporate = item.content
+          if (item.id === 'services_promo') newContent.promo = item.content
           if (item.id === 'services_private') newContent.private = item.content
-          if (item.id === 'services_nightlife') newContent.nightlife = item.content
+          if (item.id === 'services_travel') newContent.travel = item.content
         })
         setContent(prev => ({ ...prev, ...newContent }))
       }
@@ -131,7 +140,7 @@ export default function ServicesPage() {
             SERVICES
           </motion.h1>
           <motion.p variants={heroFadeIn} custom={heroStagger.tagline} className="text-off-white/80 text-lg md:text-xl tracking-wide mb-4">
-            Elite Companion Services Across South Africa &amp; Worldwide
+            Elite Companions, Private Event Models &amp; VIP Hostesses
           </motion.p>
           <motion.p variants={heroFadeIn} custom={heroStagger.subtitle} className="text-off-white/50 text-sm tracking-widest mb-8">
             CAPE TOWN • JOHANNESBURG • DURBAN • PRETORIA • INTERNATIONAL
@@ -139,52 +148,112 @@ export default function ServicesPage() {
         </motion.div>
       </section>
 
+      {/* Intro */}
+      <section className="py-16 px-6 md:px-12 bg-deep-black">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.p
+            variants={sectionFadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="text-off-white/80 text-lg md:text-xl font-inter leading-relaxed"
+          >
+            {content.intro}
+          </motion.p>
+        </div>
+      </section>
+
       {/* Services Detail */}
       <section className="py-24 px-6 md:px-12">
         <div className="max-w-6xl mx-auto space-y-24">
-          {/* Luxury Concierge - FIRST */}
+          {/* 1. Private Dining & Social Companions */}
           <ServiceDetail
-            title="LUXURY LIFESTYLE EXPERIENCES"
-            image={serviceImages.luxury_lifestyle}
-            description={content.luxury}
+            title="PRIVATE DINING & SOCIAL COMPANIONS"
+            image={serviceImages.dining_companions}
+            description={content.dining}
             features={[
-              'Private villa and estate companions',
-              'Luxury yacht and coastal experience models',
-              'Golf and leisure event companions',
-              'VIP travel and executive companionship',
-              'Exclusive dinner and intimate gathering companions',
+              'Restaurant dinner companions for business or pleasure',
+              'Wine tasting and fine dining event partners',
+              'Social event and gala companions',
+              'After-dinner lounge and nightlife company',
+              'Discreet, intelligent conversation partners',
             ]}
             reverse={false}
           />
 
-          {/* Exclusive Private Arrangements */}
+          {/* 2. Yacht & Villa Event Models */}
           <ServiceDetail
-            title="EXCLUSIVE PRIVATE ARRANGEMENTS"
-            image={serviceImages.private_arrangements}
-            description={content.private}
+            title="YACHT & VILLA EVENT MODELS"
+            image={serviceImages.yacht_villa}
+            description={content.yacht}
             features={[
-              'Long-term companionship for business executives and travelers',
-              'Extended international travel companions',
-              'Ongoing private event curation and lifestyle management',
-              'Discreet VIP arrangement coordination',
-              'Tailored experiences for high-net-worth individuals',
+              'Yacht party models and hostesses',
+              'Private villa and estate event staff',
+              'Pool party and coastal celebration models',
+              'Luxury boat day companions',
+              'Bespoke event entertainment',
             ]}
             reverse={true}
           />
 
-          {/* Nightlife */}
+          {/* 3. Corporate & VIP Event Hostesses */}
           <ServiceDetail
-            title="VIP NIGHTLIFE EXPERIENCES"
-            image={serviceImages.nightlife}
-            description={content.nightlife}
+            title="CORPORATE & VIP EVENT HOSTESSES"
+            image={serviceImages.corporate_events}
+            description={content.corporate}
             features={[
-              'VIP nightlife companions and models',
-              'Professional dancers and entertainers',
-              'Bottle service and table companions',
-              'Private party and club experiences',
-              'Exclusive event companions',
+              'Corporate dinner and deal-closing companions',
+              'Golf day and sporting event hostesses',
+              'Conference and exhibition models',
+              'VIP client entertainment',
+              'Professional poker and gaming dealers',
             ]}
             reverse={false}
+          />
+
+          {/* 4. Promotional Models */}
+          <ServiceDetail
+            title="PROMOTIONAL MODELS"
+            image={serviceImages.promo_models}
+            description={content.promo}
+            features={[
+              'Brand launch and activation models',
+              'Venue and club promotional models',
+              'Product launch and experiential staff',
+              'Trade show and exhibition hostesses',
+              'Social media and content models',
+            ]}
+            reverse={true}
+          />
+
+          {/* 5. Elite Private Companionship */}
+          <ServiceDetail
+            title="ELITE PRIVATE COMPANIONSHIP"
+            image={serviceImages.private_companionship}
+            description={content.private}
+            features={[
+              'Exclusive private arrangements',
+              'Ongoing bespoke companionship',
+              'Long-term discreet relationships',
+              'Personalised companion matching',
+              'Absolute confidentiality guaranteed',
+            ]}
+            reverse={false}
+          />
+
+          {/* 6. Travel Companions */}
+          <ServiceDetail
+            title="TRAVEL COMPANIONS"
+            image={serviceImages.travel_companions}
+            description={content.travel}
+            features={[
+              'Domestic travel companions across South Africa',
+              'International travel to Mauritius, Dubai, London and beyond',
+              'Business trip companionship',
+              'Luxury holiday and safari companions',
+              'Experienced, well-travelled women',
+            ]}
+            reverse={true}
           />
         </div>
       </section>
@@ -200,34 +269,34 @@ export default function ServicesPage() {
               mainEntity: [
                 {
                   '@type': 'Question',
-                  name: 'Do you serve clients in Johannesburg and Durban?',
+                  name: 'What services does MUSE & CO offer?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Yes. While MUSE & CO is based in Cape Town, we serve clients across South Africa including Johannesburg, Sandton, Durban, Umhlanga, Pretoria, Stellenbosch and nationwide. We also arrange international travel companions worldwide.',
+                    text: 'MUSE & CO provides private dining and social companions, yacht and villa event models, corporate and VIP event hostesses, promotional models, elite private companionship, and travel companions across South Africa and internationally.',
                   },
                 },
                 {
                   '@type': 'Question',
-                  name: 'How do I book a companion through MUSE & CO?',
+                  name: 'Do you provide models for private events and yacht parties?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Simply contact Shara directly via WhatsApp or phone. Describe your preferences, dates, and location, and she will personally curate the perfect companion for your experience. All enquiries are handled with absolute discretion.',
+                    text: 'Yes. We supply professional models and hostesses for yacht parties, villa events, pool parties, corporate functions, product launches, and private celebrations. Our models are experienced, professional, and discreet.',
                   },
                 },
                 {
                   '@type': 'Question',
-                  name: 'What types of companion services do you offer?',
+                  name: 'Can I book a dinner companion in Cape Town or Johannesburg?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'MUSE & CO offers luxury lifestyle experiences, VIP event companionship, elite travel companions for business and leisure, private dinner and villa hosting, nightlife and entertainment, yacht and safari experiences, and bespoke long-term arrangements.',
+                    text: 'Absolutely. MUSE & CO arranges elegant dinner companions for restaurants, wine tastings, galas and social events in Cape Town, Johannesburg, Sandton, Durban, Pretoria, Stellenbosch, and nationwide.',
                   },
                 },
                 {
                   '@type': 'Question',
-                  name: 'Is your service completely confidential?',
+                  name: 'Do you offer promotional models for brand activations?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Absolute discretion is the foundation of everything we do. Every client is personally vetted, and all interactions remain strictly confidential. We never share client information under any circumstances.',
+                    text: 'Yes. We provide professional promotional models for brand launches, activations, trade shows, exhibitions, venue promotions, and experiential marketing campaigns across South Africa.',
                   },
                 },
                 {
@@ -240,10 +309,26 @@ export default function ServicesPage() {
                 },
                 {
                   '@type': 'Question',
-                  name: 'What are your rates for companion services?',
+                  name: 'Is your service completely confidential?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Visit our Pricing page for transparent starting rates. Bespoke experiences such as yacht charters, safari adventures, and international travel are quoted individually. Contact Shara for a personalised quote tailored to your specific requirements.',
+                    text: 'Absolute discretion is the foundation of everything we do. Every client is personally vetted, and all interactions remain strictly confidential. We never share client information under any circumstances.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How do I book through MUSE & CO?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Simply contact Shara directly via WhatsApp or phone. Describe your preferences, dates, and location, and she will personally curate the perfect companion or model for your experience. All enquiries are handled with absolute discretion.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What are your rates?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Visit our Pricing page for transparent starting rates. Bespoke experiences such as yacht charters, event models, international travel, and corporate packages are quoted individually. Contact Shara for a personalised quote.',
                   },
                 },
               ],
@@ -270,12 +355,14 @@ export default function ServicesPage() {
 
           <div className="space-y-4">
             {[
-              { q: 'Do you serve clients in Johannesburg and Durban?', a: 'Yes. While MUSE & CO is based in Cape Town, we serve clients across South Africa including Johannesburg, Sandton, Durban, Umhlanga, Pretoria, Stellenbosch and nationwide. We also arrange international travel companions worldwide.' },
-              { q: 'How do I book a companion through MUSE & CO?', a: 'Simply contact Shara directly via WhatsApp or phone. Describe your preferences, dates, and location, and she will personally curate the perfect companion for your experience. All enquiries are handled with absolute discretion.' },
-              { q: 'What types of companion services do you offer?', a: 'We offer luxury lifestyle experiences, VIP event companionship, elite travel companions for business and leisure, private dinner and villa hosting, nightlife and entertainment, yacht and safari experiences, and bespoke long-term arrangements.' },
-              { q: 'Is your service completely confidential?', a: 'Absolute discretion is the foundation of everything we do. Every client is personally vetted, and all interactions remain strictly confidential. We never share client information under any circumstances.' },
+              { q: 'What services does MUSE & CO offer?', a: 'We provide private dining and social companions, yacht and villa event models, corporate and VIP event hostesses, promotional models, elite private companionship, and travel companions across South Africa and internationally.' },
+              { q: 'Do you provide models for private events and yacht parties?', a: 'Yes. We supply professional models and hostesses for yacht parties, villa events, pool parties, corporate functions, product launches, and private celebrations. Our models are experienced, professional, and discreet.' },
+              { q: 'Can I book a dinner companion in Cape Town or Johannesburg?', a: 'Absolutely. MUSE & CO arranges elegant dinner companions for restaurants, wine tastings, galas and social events in Cape Town, Johannesburg, Sandton, Durban, Pretoria, Stellenbosch, and nationwide.' },
+              { q: 'Do you offer promotional models for brand activations?', a: 'Yes. We provide professional promotional models for brand launches, activations, trade shows, exhibitions, venue promotions, and experiential marketing campaigns across South Africa.' },
               { q: 'Can I request a companion for international travel?', a: 'Yes. MUSE & CO arranges sophisticated travel companions for international trips including Mauritius, Dubai, London, and other worldwide destinations. Our companions are experienced travellers who provide elegant companionship anywhere in the world.' },
-              { q: 'What are your rates for companion services?', a: 'Visit our Pricing page for transparent starting rates. Bespoke experiences such as yacht charters, safari adventures, and international travel are quoted individually. Contact Shara for a personalised quote tailored to your specific requirements.' },
+              { q: 'Is your service completely confidential?', a: 'Absolute discretion is the foundation of everything we do. Every client is personally vetted, and all interactions remain strictly confidential. We never share client information under any circumstances.' },
+              { q: 'How do I book through MUSE & CO?', a: 'Simply contact Shara directly via WhatsApp or phone. Describe your preferences, dates, and location, and she will personally curate the perfect companion or model for your experience. All enquiries are handled with absolute discretion.' },
+              { q: 'What are your rates?', a: 'Visit our Pricing page for transparent starting rates. Bespoke experiences such as yacht charters, event models, international travel, and corporate packages are quoted individually. Contact Shara for a personalised quote.' },
             ].map((faq, index) => (
               <motion.details
                 key={index}

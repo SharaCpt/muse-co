@@ -113,9 +113,12 @@ export default function RootLayout({
       ],
       serviceType: [
         'Companion Services',
-        'Private Arrangements',
+        'Private Event Models',
+        'Yacht Party Models',
+        'Corporate Event Hostesses',
+        'Promotional Models',
         'Travel Companionship',
-        'Event Companionship'
+        'Dinner Companions',
       ]
     }
   ]

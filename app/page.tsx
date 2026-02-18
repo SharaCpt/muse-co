@@ -51,6 +51,8 @@ export default function HomePage() {
     service_card_2: 'https://images.unsplash.com/photo-1522255272218-7ac5249be344?q=80&w=1200',
     service_card_3: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200',
     service_card_4: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200',
+    service_card_5: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200',
+    service_card_6: 'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=1200',
   })
 
   const [modelImages, setModelImages] = useState({
@@ -188,21 +190,22 @@ export default function HomePage() {
             </p>
           </motion.div>
           
-          <motion.h1 
+          <motion.p 
             variants={heroVariants}
             custom={heroStagger.title}
-            className="font-playfair text-7xl md:text-9xl tracking-[0.2em] text-off-white mb-8 drop-shadow-[0_0_50px_rgba(0,0,0,0.8)]"
+            className="font-playfair text-7xl md:text-9xl tracking-[0.2em] text-off-white mb-4 drop-shadow-[0_0_50px_rgba(0,0,0,0.8)]"
+            aria-hidden="true"
           >
             MUSE & CO
-          </motion.h1>
-          
-          <motion.p
+          </motion.p>
+
+          <motion.h1
             variants={heroFadeIn}
             custom={heroStagger.tagline}
             className="font-inter text-xl md:text-2xl tracking-[0.2em] text-off-white/90 mb-6 uppercase font-light"
           >
-            {content.heroTagline}
-          </motion.p>
+            Elite Companions & Private Event Models — Cape Town
+          </motion.h1>
           
           <motion.p
             variants={heroFadeIn}
@@ -413,33 +416,47 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ServiceCard
               image={images.service_card_1}
-              title="Premium Entertainment & Exclusive Events"
-              description="Transform any setting into an exclusive destination. From luxury clubs and grand galas to private estates and intimate villa gatherings, our sophisticated entertainers bring magnetic energy and refined allure to your most discreet celebrations."
-              features={["Elite VIP Hostesses & Entertainers", "Professional Gaming Services", "Sophisticated Performance Artists", "Private Estate & Villa Events", "Premium Bottle Service", "Bespoke Event Experiences"]}
+              title="Private Dining & Social Companions"
+              description="Elegant dinner companions for restaurants, wine tastings, galas, and social events. Intelligent, refined women who elevate any occasion."
+              features={["Restaurant Dinner Companions", "Wine Tasting Partners", "Social Event & Gala Dates"]}
             />
             
             <ServiceCard
               image={images.service_card_2}
-              title="Luxury Concierge Services"
-              description="Elevated experiences for yachts, villas, and exclusive estates. Our lifestyle models provide sophisticated companionship and professional service for your most intimate gatherings."
-              features={["Private Villa Events", "Golf Event Hostesses", "Executive Companions"]}
+              title="Yacht & Villa Event Models"
+              description="Professional models and hostesses for yacht parties, villa events, pool parties, and luxury coastal celebrations."
+              features={["Yacht Party Models", "Villa Event Hostesses", "Pool Party & Coastal Events"]}
             />
             
             <ServiceCard
               image={images.service_card_3}
-              title="Elite Travel Companionship"
-              description="Sophisticated companions for business and leisure travel worldwide. Our refined models provide elegant companionship, cultural insight, and discretion for international journeys and exclusive destinations."
-              features={["International Travel Companions", "Executive Business Travel", "Luxury Destination Experiences", "VIP Event Companions"]}
+              title="Corporate & VIP Hostesses"
+              description="Polished hostesses for corporate dinners, golf days, conferences, and VIP client entertainment across South Africa."
+              features={["Corporate Event Hostesses", "Golf Day Companions", "Conference & Exhibition Models"]}
             />
             
             <ServiceCard
               image={images.service_card_4}
-              title="Bespoke Private Events"
-              description="Personalized elegance for your exclusive occasions. From intimate dinner parties to grand celebrations, our hand-selected professionals ensure every detail exceeds expectations."
-              features={["Private Dinner Hosting", "Luxury Party Staffing", "VIP Guest Services", "Personalized Experiences"]}
+              title="Promotional Models"
+              description="Brand activation models, venue promo staff, and experiential marketing professionals for launches and trade shows."
+              features={["Brand Launch Models", "Venue Promotional Models", "Trade Show Hostesses"]}
+            />
+            
+            <ServiceCard
+              image={images.service_card_5}
+              title="Elite Private Companionship"
+              description="Exclusive private arrangements and ongoing bespoke companionship. Personalised matching with absolute confidentiality."
+              features={["Private Arrangements", "Ongoing Companionship", "Bespoke Matching"]}
+            />
+            
+            <ServiceCard
+              image={images.service_card_6}
+              title="Travel Companions"
+              description="Sophisticated travel companions for domestic and international trips. Experienced, well-travelled women for business or leisure."
+              features={["International Travel", "Business Trip Companions", "Safari & Holiday Partners"]}
             />
           </div>
 
