@@ -433,16 +433,16 @@ export default function HomePage() {
             
             <ServiceCard
               image={images.service_card_3}
-              title="Corporate & VIP Hostesses"
-              description="Polished hostesses for corporate dinners, golf days, conferences, and VIP client entertainment across South Africa."
-              features={["Corporate Event Hostesses", "Golf Day Companions", "Conference & Exhibition Models"]}
+              title="Private Event Hostesses"
+              description="Professional hostesses for your corporate dinner, golf day, poker evening, or private celebration. You choose — we arrange."
+              features={["Corporate Dinner Companions", "Golf Day Hostesses", "Private Party Models"]}
             />
             
             <ServiceCard
               image={images.service_card_4}
-              title="Promotional Models"
-              description="Brand activation models, venue promo staff, and experiential marketing professionals for launches and trade shows."
-              features={["Brand Launch Models", "Venue Promotional Models", "Trade Show Hostesses"]}
+              title="Party & Nightlife Companions"
+              description="Choose your ideal companions for club nights, private parties, celebrations, and VIP nightlife experiences."
+              features={["Club Night Companions", "Private Party Models", "VIP Nightlife Dates"]}
             />
             
             <ServiceCard

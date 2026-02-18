@@ -23,39 +23,56 @@ interface SiteImage {
 // Define all site images with their current URLs
 // NOTE: Hero/Header images are hardcoded in frontend - not editable via admin
 const DEFAULT_IMAGES: SiteImage[] = [
-  // Homepage Service Cards
+  // Homepage Service Cards (6 cards matching homepage grid)
   {
     id: 'homepage_service_1',
     page: 'Homepage',
     section: 'service_card_1',
-    label: 'VIP Nightlife',
+    label: 'Dining Companions',
     image_url: 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200',
-    description: 'VIP Nightlife & Events card'
+    description: 'Private Dining & Social Companions card'
   },
   {
     id: 'homepage_service_2',
     page: 'Homepage',
     section: 'service_card_2',
-    label: 'Luxury Concierge',
+    label: 'Yacht & Villa',
     image_url: 'https://images.unsplash.com/photo-1522255272218-7ac5249be344?q=80&w=1200',
-    description: 'Luxury Concierge Services card'
+    description: 'Yacht & Villa Event Models card'
   },
   {
     id: 'homepage_service_3',
     page: 'Homepage',
     section: 'service_card_3',
-    label: 'Travel Companion',
+    label: 'Private Events',
     image_url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200',
-    description: 'Elite Travel Companionship card'
+    description: 'Private Event Hostesses card'
   },
   {
     id: 'homepage_service_4',
     page: 'Homepage',
     section: 'service_card_4',
-    label: 'Private Events',
+    label: 'Party & Nightlife',
     image_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200',
-    description: 'Bespoke Private Events card'
+    description: 'Party & Nightlife Companions card'
   },
+  {
+    id: 'homepage_service_5',
+    page: 'Homepage',
+    section: 'service_card_5',
+    label: 'Private Companionship',
+    image_url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200',
+    description: 'Elite Private Companionship card'
+  },
+  {
+    id: 'homepage_service_6',
+    page: 'Homepage',
+    section: 'service_card_6',
+    label: 'Travel Companions',
+    image_url: 'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=1200',
+    description: 'Travel Companions card'
+  },
+  // Homepage Model Cards
   {
     id: 'homepage_model_1',
     page: 'Homepage',
@@ -80,30 +97,54 @@ const DEFAULT_IMAGES: SiteImage[] = [
     image_url: 'https://images.unsplash.com/photo-1604004555489-723a93d6ce74?q=80&w=800',
     description: 'VIP Hostess model card'
   },
-  // Services Page
+  // Services Page Detail Images (6 sections matching services page)
   {
     id: 'services_detail_1',
     page: 'Services',
-    section: 'luxury_lifestyle',
-    label: 'Luxury Lifestyle',
+    section: 'dining_companions',
+    label: 'Dining Companions',
     image_url: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
-    description: 'Luxury Lifestyle Experiences image'
+    description: 'Private Dining & Social Companions image'
   },
   {
     id: 'services_detail_2',
     page: 'Services',
-    section: 'private_arrangements',
-    label: 'Private Arrangements',
-    image_url: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200',
-    description: 'Exclusive Private Arrangements image'
+    section: 'yacht_villa',
+    label: 'Yacht & Villa',
+    image_url: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200',
+    description: 'Yacht & Villa Event Models image'
   },
   {
     id: 'services_detail_3',
     page: 'Services',
-    section: 'nightlife',
-    label: 'VIP Nightlife',
-    image_url: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200',
-    description: 'VIP Nightlife Experiences image'
+    section: 'private_events',
+    label: 'Private Events',
+    image_url: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200',
+    description: 'Private Event Hostesses image'
+  },
+  {
+    id: 'services_detail_4',
+    page: 'Services',
+    section: 'party_nightlife',
+    label: 'Party & Nightlife',
+    image_url: 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200',
+    description: 'Party & Nightlife Companions image'
+  },
+  {
+    id: 'services_detail_5',
+    page: 'Services',
+    section: 'private_companionship',
+    label: 'Private Companionship',
+    image_url: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200',
+    description: 'Elite Private Companionship image'
+  },
+  {
+    id: 'services_detail_6',
+    page: 'Services',
+    section: 'travel_companions',
+    label: 'Travel Companions',
+    image_url: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200',
+    description: 'Travel Companions image'
   },
   // NOTE: Header images removed from admin editor - managed via SQL only
 ]

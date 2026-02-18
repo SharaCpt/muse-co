@@ -115,8 +115,8 @@ export default function RootLayout({
         'Companion Services',
         'Private Event Models',
         'Yacht Party Models',
-        'Corporate Event Hostesses',
-        'Promotional Models',
+        'Private Event Hostesses',
+        'Party & Nightlife Companions',
         'Travel Companionship',
         'Dinner Companions',
       ]
