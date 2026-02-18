@@ -47,7 +47,7 @@ const DEFAULT_CONTENT: SiteContent[] = [
     id: 'about_shara',
     page: 'About',
     section: 'Meet Shara',
-    content: "Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional women has made MUSE & CO the premier choice for sophisticated companionship worldwide."
+    content: "Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional models has made MUSE & CO the premier choice for sophisticated companionship worldwide."
   },
   {
     id: 'services_intro',
@@ -59,7 +59,7 @@ const DEFAULT_CONTENT: SiteContent[] = [
     id: 'services_luxury',
     page: 'Services',
     section: 'Luxury Lifestyle',
-    content: 'Exquisite models and sophisticated companions for exclusive private experiences and luxury occasions. Our elite women deliver beauty, elegance, and impeccable presence with absolute discretion.'
+    content: 'Exquisite models and sophisticated companions for exclusive private experiences and luxury occasions. Our elite models deliver beauty, elegance, and impeccable presence with absolute discretion.'
   },
   {
     id: 'services_private',
@@ -71,7 +71,7 @@ const DEFAULT_CONTENT: SiteContent[] = [
     id: 'services_nightlife',
     page: 'Services',
     section: 'VIP Nightlife',
-    content: 'Elevate your evening with stunning models and charismatic companions. Our elite women bring sophistication, energy, and undeniable presence to exclusive clubs, private parties, and VIP experiences.'
+    content: 'Elevate your evening with stunning models and charismatic companions. Our elite companions bring sophistication, energy, and undeniable presence to exclusive clubs, private parties, and VIP experiences.'
   },
   {
     id: 'portfolio_intro',

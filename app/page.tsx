@@ -420,7 +420,7 @@ export default function HomePage() {
             <ServiceCard
               image={images.service_card_1}
               title="Private Dining & Social Companions"
-              description="Elegant dinner companions for restaurants, wine tastings, galas, and social events. Intelligent, refined women who elevate any occasion."
+              description="Elegant dinner companions for restaurants, wine tastings, galas, and social events. Intelligent, refined companions who elevate any occasion."
               features={["Restaurant Dinner Companions", "Wine Tasting Partners", "Social Event & Gala Dates"]}
             />
             
@@ -455,7 +455,7 @@ export default function HomePage() {
             <ServiceCard
               image={images.service_card_6}
               title="Travel Companions"
-              description="Sophisticated travel companions for domestic and international trips. Experienced, well-travelled women for business or leisure."
+              description="Sophisticated travel companions for domestic and international trips. Experienced, well-travelled models for business or leisure."
               features={["International Travel", "Business Trip Companions", "Safari & Holiday Partners"]}
             />
           </div>

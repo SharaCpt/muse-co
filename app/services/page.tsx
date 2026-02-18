@@ -45,10 +45,10 @@ export default function ServicesPage() {
   // Editable content with defaults
   const [content, setContent] = useState({
     intro: 'Browse our portfolio, choose your companion or model, and let us arrange the perfect experience — from private dinners and yacht days to exclusive companionship and travel.',
-    dining: 'Choose an elegant companion for restaurant dinners, wine tastings, and social occasions. Our sophisticated women enhance any dining experience with beauty, intelligence, and effortless conversation — perfect for business entertaining or private evenings.',
-    yacht: 'Select stunning models and hostesses for your yacht day, villa event, pool party, or coastal celebration. Our women bring energy, glamour, and refined allure to your most exclusive gatherings.',
+    dining: 'Choose an elegant companion for restaurant dinners, wine tastings, and social occasions. Our sophisticated companions enhance any dining experience with beauty, intelligence, and effortless conversation — perfect for business entertaining or private evenings.',
+    yacht: 'Select stunning models and hostesses for your yacht day, villa event, pool party, or coastal celebration. Our models bring energy, glamour, and refined allure to your most exclusive gatherings.',
     events: 'Book professional hostesses and companions for your corporate dinner, golf day, poker evening, or private celebration. Impeccable presentation, social grace, and absolute discretion for your most important occasions.',
-    nightlife: 'Choose your ideal companions for club nights, private parties, celebrations, and nightlife experiences. Beautiful, engaging women who bring magnetic energy to any evening out.',
+    nightlife: 'Choose your ideal companions for club nights, private parties, celebrations, and nightlife experiences. Beautiful, engaging companions who bring magnetic energy to any evening out.',
     private: 'Curated private companionship for discerning clients seeking ongoing, bespoke arrangements. Browse our portfolio, choose who you connect with, and enjoy absolute confidentiality.',
     travel: 'Select a sophisticated travel companion for domestic and international trips. Whether business or leisure — our refined companions provide elegance, cultural awareness, and discretion for journeys to Mauritius, Dubai, London, and beyond.',
   })
@@ -251,7 +251,7 @@ export default function ServicesPage() {
               'International travel to Mauritius, Dubai, London and beyond',
               'Business trip companionship',
               'Luxury holiday and safari companions',
-              'Experienced, well-travelled women',
+              'Experienced, well-travelled companions',
             ]}
             reverse={true}
           />

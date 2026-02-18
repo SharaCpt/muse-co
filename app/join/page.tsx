@@ -65,11 +65,11 @@ export default function JoinPage() {
               <div className="text-off-white/90 text-lg leading-relaxed space-y-4">
                 <p>
                   I'm Shara, and I work with South Africa's most exceptional companions. If you're reading this, 
-                  I'm glad you found me - because I genuinely love helping remarkable women access the lifestyle they deserve.
+                  I'm glad you found me - because I genuinely love helping remarkable ladies access the lifestyle they deserve.
                 </p>
                 <p>
                   My companions move through South Africa's elite circles with grace and confidence — from Cape Town to Johannesburg to Durban. They're valued not just 
-                  for their beauty, but for their intelligence, warmth, and authenticity. These are women who enhance every room they enter.
+                  for their beauty, but for their intelligence, warmth, and authenticity. These are ladies who enhance every room they enter.
                 </p>
                 <p className="text-champagne-gold/90 italic">
                   If this resonates with you, I'd love to hear from you.
@@ -114,7 +114,7 @@ export default function JoinPage() {
                 Are You Ready?
               </h2>
               <p className="text-off-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
-                I'm looking for exceptional women who embody elegance, intelligence, and warmth. 
+                I'm looking for exceptional ladies who embody elegance, intelligence, and warmth. 
                 If this sounds like you, I'd love to hear from you.
               </p>
             </motion.div>

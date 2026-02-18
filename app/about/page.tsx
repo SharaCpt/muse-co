@@ -33,7 +33,7 @@ export default function AboutPage() {
   const [content, setContent] = useState({
     intro: 'MUSE & CO was founded on the principle that true luxury is found in beauty, elegance, and unforgettable moments.',
     story: 'With over a decade of experience curating elite companionship and sophisticated lifestyle experiences, we connect discerning clients worldwide with South Africa\'s most beautiful and refined models, influencers, and private companions.',
-    shara: 'Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional women has made MUSE & CO the premier choice for sophisticated companionship worldwide.',
+    shara: 'Founder and curator of MUSE & CO, Shara brings over a decade of expertise in elite companionship curation and luxury lifestyle experiences. Her meticulous approach to connecting discerning clients with exceptional models has made MUSE & CO the premier choice for sophisticated companionship worldwide.',
   })
 
   useEffect(() => {
@@ -118,7 +118,7 @@ export default function AboutPage() {
             </p>
 
             <p>
-              Based in <span className="text-champagne-gold font-semibold">Cape Town, South Africa</span>, MUSE & CO serves high-net-worth individuals and exclusive clientele <span className="text-champagne-gold font-semibold">across the globe</span>. From intimate private gatherings to luxury international experiences, we curate bespoke encounters with exceptional women who embody grace, intelligence, and absolute discretion.
+              Based in <span className="text-champagne-gold font-semibold">Cape Town, South Africa</span>, MUSE & CO serves high-net-worth individuals and exclusive clientele <span className="text-champagne-gold font-semibold">across the globe</span>. From intimate private gatherings to luxury international experiences, we curate bespoke encounters with exceptional companions who embody grace, intelligence, and absolute discretion.
             </p>
 
             <p>
@@ -169,7 +169,7 @@ export default function AboutPage() {
               />
               <ValueCard
                 title="REFINED"
-                description="Over a decade of experience curating unforgettable encounters with the world's most elegant women."
+                description="Over a decade of experience curating unforgettable encounters with the world's most elegant companions."
               />
               <ValueCard
                 title="DISCREET"
