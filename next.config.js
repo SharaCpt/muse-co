@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  trailingSlash: false,
   images: {
     remotePatterns: [
       {
@@ -11,6 +12,16 @@ const nextConfig = {
         hostname: 'lltxovwrdbrpueqwezkw.supabase.co',
       },
     ],
+  },
+  async redirects() {
+    return [
+      // Redirect trailing slashes to non-trailing (prevents duplicate URLs)
+      {
+        source: '/:path+/',
+        destination: '/:path+',
+        permanent: true,
+      },
+    ]
   },
 }
 
