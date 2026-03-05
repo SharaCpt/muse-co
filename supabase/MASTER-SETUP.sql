@@ -130,9 +130,12 @@ INSERT INTO site_images (id, page, section, label, image_url, description) VALUE
 ('homepage_model_3', 'Homepage', 'model_card_3', 'VIP Hostess', 'https://images.unsplash.com/photo-1604004555489-723a93d6ce74?q=80&w=800', 'VIP Hostess model'),
 
 -- Services Page Images
-('services_detail_1', 'Services', 'luxury_lifestyle', 'Luxury Lifestyle', 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200', 'Luxury Lifestyle section'),
-('services_detail_2', 'Services', 'private_arrangements', 'Private Arrangements', 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200', 'Private Arrangements section'),
-('services_detail_3', 'Services', 'nightlife', 'VIP Nightlife', 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200', 'VIP Nightlife section'),
+('services_detail_1', 'Services', 'dining_companions', 'Dining Companions', 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200', 'Private Dining & Social Companions image'),
+('services_detail_2', 'Services', 'yacht_villa', 'Yacht & Villa', 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200', 'Yacht & Villa Event Models image'),
+('services_detail_3', 'Services', 'private_events', 'Private Events', 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200', 'Private Event Hostesses image'),
+('services_detail_4', 'Services', 'party_nightlife', 'Party & Nightlife', 'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1200', 'Party & Nightlife Companions image'),
+('services_detail_5', 'Services', 'private_companionship', 'Private Companionship', 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200', 'Elite Private Companionship image'),
+('services_detail_6', 'Services', 'travel_companions', 'Travel Companions', 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?q=80&w=1200', 'Travel Companions image'),
 
 -- Page Headers
 ('header_portfolio', 'Headers', 'portfolio', 'Portfolio Header', 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2000', 'Portfolio page header'),

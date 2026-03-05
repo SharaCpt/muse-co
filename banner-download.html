@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSE & CO - Download Banners</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #111;
+            color: #F5F5F0;
+            font-family: 'Inter', sans-serif;
+            padding: 30px 16px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #D4AF37;
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 40px;
+        }
+        .banner-section {
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .banner-label {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: #D4AF37;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .banner-size {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 14px;
+        }
+        .banner-img {
+            border: 1px solid rgba(212,175,55,0.2);
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        canvas { display: none; }
+        .download-btn {
+            margin-top: 12px;
+            padding: 12px 36px;
+            background: #D4AF37;
+            color: #0A0A0A;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .download-btn:hover { background: #c9a030; }
+        .download-btn:active { background: #b8922a; }
+        .loading {
+            text-align: center;
+            color: #D4AF37;
+            font-size: 16px;
+            padding: 60px 0;
+        }
+        .tip {
+            text-align: center;
+            color: #888;
+            font-size: 11px;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid rgba(212,175,55,0.12);
+            margin: 10px 0 40px;
+            width: 100%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>MUSE & CO Banners</h1>
+    <p class="subtitle">Long-press any image to save · All rendered at 2× for crisp quality</p>
+
+    <div id="loading" class="loading">Loading fonts & images...</div>
+    <div id="banners" style="display:none;">
+
+        <div class="banner-section">
+            <div class="banner-label">Medium Rectangle</div>
+            <div class="banner-size">300 × 250 px (rendered 600 × 500)</div>
+            <canvas id="c300x250" width="600" height="500"></canvas>
+            <img id="img300x250" class="banner-img" alt="MUSE & CO 300x250 Banner">
+            <a id="dl300x250" class="download-btn">Download 300×250</a>
+            <div class="tip">On iPhone: long-press the image → "Add to Photos"</div>
+        </div>
+        <hr>
+
+        <div class="banner-section">
+            <div class="banner-label">Leaderboard</div>
+            <div class="banner-size">728 × 90 px (rendered 1456 × 180)</div>
+            <canvas id="c728x90" width="1456" height="180"></canvas>
+            <img id="img728x90" class="banner-img" alt="MUSE & CO 728x90 Banner">
+            <a id="dl728x90" class="download-btn">Download 728×90</a>
+        </div>
+        <hr>
+
+        <div class="banner-section">
+            <div class="banner-label">Mobile Banner</div>
+            <div class="banner-size">320 × 50 px (rendered 640 × 100)</div>
+            <canvas id="c320x50" width="640" height="100"></canvas>
+            <img id="img320x50" class="banner-img" alt="MUSE & CO 320x50 Banner">
+            <a id="dl320x50" class="download-btn">Download 320×50</a>
+        </div>
+        <hr>
+
+        <div class="banner-section">
+            <div class="banner-label">Large Mobile Banner</div>
+            <div class="banner-size">320 × 100 px (rendered 640 × 200)</div>
+            <canvas id="c320x100" width="640" height="200"></canvas>
+            <img id="img320x100" class="banner-img" alt="MUSE & CO 320x100 Banner">
+            <a id="dl320x100" class="download-btn">Download 320×100</a>
+        </div>
+        <hr>
+
+        <div class="banner-section">
+            <div class="banner-label">Wide Skyscraper</div>
+            <div class="banner-size">160 × 600 px (rendered 320 × 1200)</div>
+            <canvas id="c160x600" width="320" height="1200"></canvas>
+            <img id="img160x600" class="banner-img" alt="MUSE & CO 160x600 Banner">
+            <a id="dl160x600" class="download-btn">Download 160×600</a>
+        </div>
+    </div>
+
+    <script>
+        // ─── Config ───
+        var GOLD = '#D4AF37';
+        var BLACK = '#0A0A0A';
+        var WHITE = '#F5F5F0';
+        var S = 2; // scale factor for Retina-sharp output
+
+        // ─── Load assets ───
+        var bgImg = new Image();
+        bgImg.crossOrigin = 'anonymous';
+        bgImg.src = 'https://images.unsplash.com/photo-1640433195555-f8ecd62effe9?q=80&w=1200&auto=format&fit=crop';
+
+        var bgOK = false;
+        bgImg.onload = function() { bgOK = true; tryInit(); };
+        bgImg.onerror = function() { bgOK = false; tryInit(); };
+
+        var fontsOK = false;
+        document.fonts.ready.then(function() { fontsOK = true; tryInit(); });
+        setTimeout(function() { tryInit(true); }, 5000);
+
+        var started = false;
+        function tryInit(force) {
+            if (started) return;
+            if (!force && !fontsOK) return;
+            if (!force && !bgOK && !bgImg.complete) return;
+            started = true;
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('banners').style.display = 'block';
+            draw300x250();
+            draw728x90();
+            draw320x50();
+            draw320x100();
+            draw160x600();
+        }
+
+        // ─── Helpers ───
+
+        function drawBg(ctx, w, h, opacity) {
+            if (!bgOK) return;
+            ctx.save();
+            ctx.globalAlpha = opacity;
+            var iw = bgImg.naturalWidth, ih = bgImg.naturalHeight;
+            var sc = Math.max(w / iw, h / ih);
+            ctx.drawImage(bgImg, (w - iw * sc) / 2, (h - ih * sc) / 2, iw * sc, ih * sc);
+            ctx.restore();
+        }
+
+        function drawOverlay(ctx, w, h) {
+            var g = ctx.createLinearGradient(0, 0, w * 0.3, h);
+            g.addColorStop(0, 'rgba(10,10,10,0.94)');
+            g.addColorStop(0.5, 'rgba(10,10,10,0.83)');
+            g.addColorStop(1, 'rgba(10,10,10,0.92)');
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, w, h);
+        }
+
+        function drawGoldLines(ctx, w, h, t) {
+            var g = ctx.createLinearGradient(0, 0, w, 0);
+            g.addColorStop(0, 'transparent');
+            g.addColorStop(0.2, GOLD);
+            g.addColorStop(0.8, GOLD);
+            g.addColorStop(1, 'transparent');
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, w, t);
+            ctx.fillRect(0, h - t, w, t);
+        }
+
+        function drawCorners(ctx, w, h, sz, lw) {
+            ctx.strokeStyle = GOLD;
+            ctx.lineWidth = lw;
+            var m = Math.round(sz * 0.4);
+            ctx.beginPath();
+            ctx.moveTo(m, m + sz); ctx.lineTo(m, m); ctx.lineTo(m + sz, m);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(w - m, h - m - sz); ctx.lineTo(w - m, h - m); ctx.lineTo(w - m - sz, h - m);
+            ctx.stroke();
+        }
+
+        function drawCTA(ctx, cx, y, text, fs, px, py) {
+            ctx.save();
+            ctx.font = '600 ' + fs + 'px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            var tw = ctx.measureText(text).width;
+            var bw = tw + px * 2, bh = fs + py * 2;
+            // Subtle shadow
+            ctx.shadowColor = 'rgba(212,175,55,0.3)';
+            ctx.shadowBlur = 12;
+            ctx.fillStyle = GOLD;
+            ctx.fillRect(cx - bw / 2, y, bw, bh);
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = BLACK;
+            ctx.fillText(text, cx, y + bh / 2 + 1);
+            ctx.restore();
+        }
+
+        function finalize(canvasId, imgId, btnId, filename, displayW) {
+            var c = document.getElementById(canvasId);
+            var url;
+            try {
+                url = c.toDataURL('image/png');
+            } catch (e) {
+                // CORS fallback: redraw without BG
+                bgOK = false;
+                return;
+            }
+            var img = document.getElementById(imgId);
+            img.src = url;
+            img.style.width = displayW + 'px';
+            var btn = document.getElementById(btnId);
+            btn.href = url;
+            btn.download = filename;
+        }
+
+        // ─── 300 × 250 (canvas: 600 × 500) ───
+        function draw300x250() {
+            var c = document.getElementById('c300x250');
+            var ctx = c.getContext('2d');
+            var w = 600, h = 500;
+
+            ctx.fillStyle = BLACK;
+            ctx.fillRect(0, 0, w, h);
+            drawBg(ctx, w, h, 0.30);
+            drawOverlay(ctx, w, h);
+            drawGoldLines(ctx, w, h, S * 2);
+            drawCorners(ctx, w, h, S * 24, S * 1.2);
+
+            ctx.textAlign = 'center';
+
+            // Pre-title
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.65;
+            ctx.font = '500 ' + S * 8 + 'px Inter, sans-serif';
+            ctx.fillText("CAPE TOWN'S FINEST", w / 2, S * 76);
+            ctx.globalAlpha = 1;
+
+            // Brand
+            ctx.fillStyle = GOLD;
+            ctx.font = '700 ' + S * 38 + 'px Playfair Display, serif';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('MUSE & CO', w / 2, S * 112);
+            ctx.textBaseline = 'alphabetic';
+
+            // Divider
+            var dg = ctx.createLinearGradient(w / 2 - S * 35, 0, w / 2 + S * 35, 0);
+            dg.addColorStop(0, 'transparent');
+            dg.addColorStop(0.5, GOLD);
+            dg.addColorStop(1, 'transparent');
+            ctx.fillStyle = dg;
+            ctx.fillRect(w / 2 - S * 35, S * 130, S * 70, S * 1);
+
+            // Tagline
+            ctx.fillStyle = WHITE;
+            ctx.font = '300 ' + S * 10.5 + 'px Inter, sans-serif';
+            ctx.fillText('Elite Companions', w / 2, S * 150);
+            ctx.fillText('Luxury Experiences', w / 2, S * 166);
+
+            // CTA
+            drawCTA(ctx, w / 2, S * 182, 'EXPLORE NOW', S * 9, S * 22, S * 9);
+
+            // URL
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.45;
+            ctx.font = '400 ' + S * 7.5 + 'px Inter, sans-serif';
+            ctx.fillText('www.museco.co.za', w / 2, S * 222);
+            ctx.globalAlpha = 1;
+
+            finalize('c300x250', 'img300x250', 'dl300x250', 'museco-300x250.png', 300);
+        }
+
+        // ─── 728 × 90 (canvas: 1456 × 180) ───
+        function draw728x90() {
+            var c = document.getElementById('c728x90');
+            var ctx = c.getContext('2d');
+            var w = 1456, h = 180;
+
+            ctx.fillStyle = BLACK;
+            ctx.fillRect(0, 0, w, h);
+            drawBg(ctx, w, h, 0.20);
+            drawOverlay(ctx, w, h);
+            drawGoldLines(ctx, w, h, S * 2);
+
+            // Left gold accent
+            ctx.fillStyle = GOLD;
+            ctx.fillRect(0, 0, S * 2.5, h);
+
+            // Brand
+            ctx.textAlign = 'left';
+            ctx.fillStyle = GOLD;
+            ctx.font = '700 ' + S * 28 + 'px Playfair Display, serif';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('MUSE & CO', S * 28, h / 2 + S * 1);
+            ctx.textBaseline = 'alphabetic';
+
+            // Separator
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.35;
+            ctx.fillRect(S * 200, S * 16, S * 1, h - S * 32);
+            ctx.globalAlpha = 1;
+
+            // Tagline
+            ctx.fillStyle = WHITE;
+            ctx.font = '300 ' + S * 12 + 'px Inter, sans-serif';
+            ctx.fillText('Elite Companions  ·  Luxury Experiences', S * 220, h / 2 - S * 4);
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.55;
+            ctx.font = '400 ' + S * 9 + 'px Inter, sans-serif';
+            ctx.fillText("Cape Town's Finest", S * 220, h / 2 + S * 14);
+            ctx.globalAlpha = 1;
+
+            // CTA
+            drawCTA(ctx, w - S * 100, h / 2 - S * 14, 'EXPLORE NOW', S * 10, S * 24, S * 10);
+
+            // URL
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.4;
+            ctx.font = '400 ' + S * 7 + 'px Inter, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText('www.museco.co.za', w - S * 18, h - S * 8);
+            ctx.globalAlpha = 1;
+
+            finalize('c728x90', 'img728x90', 'dl728x90', 'museco-728x90.png', 728);
+        }
+
+        // ─── 320 × 50 (canvas: 640 × 100) ───
+        function draw320x50() {
+            var c = document.getElementById('c320x50');
+            var ctx = c.getContext('2d');
+            var w = 640, h = 100;
+
+            ctx.fillStyle = BLACK;
+            ctx.fillRect(0, 0, w, h);
+            drawBg(ctx, w, h, 0.10);
+            drawOverlay(ctx, w, h);
+
+            // Gold lines
+            ctx.fillStyle = GOLD;
+            ctx.fillRect(0, 0, w, S * 1.5);
+            ctx.fillRect(0, h - S * 1.5, w, S * 1.5);
+            ctx.fillRect(0, 0, S * 2.5, h);
+
+            // Brand
+            ctx.textAlign = 'left';
+            ctx.fillStyle = GOLD;
+            ctx.textBaseline = 'middle';
+            ctx.font = '700 ' + S * 16 + 'px Playfair Display, serif';
+            ctx.fillText('MUSE & CO', S * 14, h / 2);
+
+            // Separator dot
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.5;
+            ctx.font = '300 ' + S * 14 + 'px Inter, sans-serif';
+            ctx.fillText('·', S * 138, h / 2 - S * 1);
+            ctx.globalAlpha = 1;
+
+            // Tagline
+            ctx.fillStyle = WHITE;
+            ctx.font = '300 ' + S * 9.5 + 'px Inter, sans-serif';
+            ctx.fillText('Elite Luxury', S * 150, h / 2);
+            ctx.textBaseline = 'alphabetic';
+
+            // CTA
+            drawCTA(ctx, w - S * 55, h / 2 - S * 11, 'VISIT', S * 8, S * 14, S * 7);
+
+            finalize('c320x50', 'img320x50', 'dl320x50', 'museco-320x50.png', 320);
+        }
+
+        // ─── 320 × 100 (canvas: 640 × 200) ───
+        function draw320x100() {
+            var c = document.getElementById('c320x100');
+            var ctx = c.getContext('2d');
+            var w = 640, h = 200;
+
+            ctx.fillStyle = BLACK;
+            ctx.fillRect(0, 0, w, h);
+            drawBg(ctx, w, h, 0.20);
+            drawOverlay(ctx, w, h);
+            drawGoldLines(ctx, w, h, S * 1.5);
+
+            // Left accent
+            ctx.fillStyle = GOLD;
+            ctx.fillRect(0, 0, S * 2.5, h);
+
+            // Pre-title
+            ctx.textAlign = 'left';
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.6;
+            ctx.font = '500 ' + S * 7.5 + 'px Inter, sans-serif';
+            ctx.fillText("CAPE TOWN'S FINEST", S * 18, S * 24);
+            ctx.globalAlpha = 1;
+
+            // Brand
+            ctx.fillStyle = GOLD;
+            ctx.font = '700 ' + S * 22 + 'px Playfair Display, serif';
+            ctx.fillText('MUSE & CO', S * 18, S * 48);
+
+            // Tagline
+            ctx.fillStyle = WHITE;
+            ctx.font = '300 ' + S * 10 + 'px Inter, sans-serif';
+            ctx.fillText('Elite Companions · Luxury Experiences', S * 18, S * 65);
+
+            // CTA
+            drawCTA(ctx, S * 80, S * 76, 'EXPLORE NOW', S * 8, S * 20, S * 8);
+
+            // URL
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.4;
+            ctx.font = '400 ' + S * 7 + 'px Inter, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText('www.museco.co.za', w - S * 14, h - S * 8);
+            ctx.globalAlpha = 1;
+
+            finalize('c320x100', 'img320x100', 'dl320x100', 'museco-320x100.png', 320);
+        }
+
+        // ─── 160 × 600 (canvas: 320 × 1200) ───
+        function draw160x600() {
+            var c = document.getElementById('c160x600');
+            var ctx = c.getContext('2d');
+            var w = 320, h = 1200;
+
+            ctx.fillStyle = BLACK;
+            ctx.fillRect(0, 0, w, h);
+            drawBg(ctx, w, h, 0.25);
+            drawOverlay(ctx, w, h);
+            drawGoldLines(ctx, w, h, S * 2);
+
+            // Side accents
+            ctx.fillStyle = GOLD;
+            ctx.fillRect(0, 0, S * 1.5, h);
+            ctx.fillRect(w - S * 1.5, 0, S * 1.5, h);
+
+            drawCorners(ctx, w, h, S * 20, S * 1.2);
+
+            ctx.textAlign = 'center';
+
+            // Pre-title
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.65;
+            ctx.font = '500 ' + S * 7.5 + 'px Inter, sans-serif';
+            ctx.fillText("CAPE TOWN'S", w / 2, S * 90);
+            ctx.fillText("FINEST", w / 2, S * 103);
+            ctx.globalAlpha = 1;
+
+            // Brand stacked
+            ctx.fillStyle = GOLD;
+            ctx.font = '700 ' + S * 30 + 'px Playfair Display, serif';
+            ctx.fillText('MUSE', w / 2, S * 142);
+            ctx.font = '700 ' + S * 24 + 'px Playfair Display, serif';
+            ctx.fillText('&', w / 2, S * 170);
+            ctx.font = '700 ' + S * 30 + 'px Playfair Display, serif';
+            ctx.fillText('CO', w / 2, S * 200);
+
+            // Divider
+            var dg = ctx.createLinearGradient(w / 2 - S * 24, 0, w / 2 + S * 24, 0);
+            dg.addColorStop(0, 'transparent');
+            dg.addColorStop(0.5, GOLD);
+            dg.addColorStop(1, 'transparent');
+            ctx.fillStyle = dg;
+            ctx.fillRect(w / 2 - S * 24, S * 218, S * 48, S * 1);
+
+            // Taglines
+            ctx.fillStyle = WHITE;
+            ctx.font = '300 ' + S * 11 + 'px Inter, sans-serif';
+            ctx.fillText('Elite', w / 2, S * 242);
+            ctx.fillText('Companions', w / 2, S * 258);
+            ctx.globalAlpha = 0.6;
+            ctx.fillText('Luxury', w / 2, S * 282);
+            ctx.fillText('Experiences', w / 2, S * 298);
+            ctx.globalAlpha = 1;
+
+            // Divider 2
+            ctx.fillStyle = dg;
+            ctx.fillRect(w / 2 - S * 24, S * 316, S * 48, S * 1);
+
+            // Features list
+            var features = ['Private Dining', 'Yacht & Villa', 'Travel', 'Nightlife'];
+            features.forEach(function(f, i) {
+                var fy = S * 344 + i * S * 30;
+                ctx.fillStyle = GOLD;
+                ctx.globalAlpha = 0.45;
+                ctx.font = '400 ' + S * 6 + 'px Inter, sans-serif';
+                ctx.fillText('\u25C6', w / 2, fy);
+                ctx.globalAlpha = 0.85;
+                ctx.fillStyle = WHITE;
+                ctx.font = '400 ' + S * 9 + 'px Inter, sans-serif';
+                ctx.fillText(f, w / 2, fy + S * 14);
+                ctx.globalAlpha = 1;
+            });
+
+            // CTA
+            drawCTA(ctx, w / 2, S * 468, 'EXPLORE', S * 9, S * 22, S * 10);
+
+            // URL
+            ctx.fillStyle = GOLD;
+            ctx.globalAlpha = 0.45;
+            ctx.font = '400 ' + S * 7.5 + 'px Inter, sans-serif';
+            ctx.fillText('www.museco.co.za', w / 2, S * 548);
+            ctx.globalAlpha = 1;
+
+            finalize('c160x600', 'img160x600', 'dl160x600', 'museco-160x600.png', 160);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSE & CO - Premium Banner 300x250</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .banner-link {
+            display: block;
+            width: 300px;
+            height: 250px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .banner {
+            width: 300px;
+            height: 250px;
+            background: #0A0A0A;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        /* Background image */
+        .bg-image {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            opacity: 0;
+            animation: fadeInBg 1.5s ease 0.3s forwards;
+        }
+
+        /* Dark overlay */
+        .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(
+                160deg,
+                rgba(10,10,10,0.92) 0%,
+                rgba(10,10,10,0.75) 40%,
+                rgba(10,10,10,0.88) 100%
+            );
+            z-index: 1;
+        }
+
+        /* Gold shimmer sweep */
+        .shimmer {
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(
+                105deg,
+                transparent 40%,
+                rgba(212, 175, 55, 0.04) 45%,
+                rgba(212, 175, 55, 0.08) 50%,
+                rgba(212, 175, 55, 0.04) 55%,
+                transparent 60%
+            );
+            z-index: 2;
+            animation: shimmerSweep 4s ease-in-out 2s infinite;
+        }
+
+        /* Top gold line */
+        .gold-line-top {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            z-index: 3;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.5s forwards;
+        }
+
+        /* Bottom gold line */
+        .gold-line-bottom {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            z-index: 3;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.5s forwards;
+        }
+
+        /* Corner accents */
+        .corner-tl, .corner-br {
+            position: absolute;
+            width: 24px; height: 24px;
+            z-index: 3;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 1s forwards;
+        }
+        .corner-tl {
+            top: 8px; left: 8px;
+            border-top: 1px solid #D4AF37;
+            border-left: 1px solid #D4AF37;
+        }
+        .corner-br {
+            bottom: 8px; right: 8px;
+            border-bottom: 1px solid #D4AF37;
+            border-right: 1px solid #D4AF37;
+        }
+
+        /* Content */
+        .content {
+            position: relative;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 28px 24px;
+            text-align: center;
+        }
+
+        /* Subtitle above brand */
+        .pre-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 8px;
+            font-weight: 500;
+            letter-spacing: 0.35em;
+            color: #D4AF37;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: slideDown 0.8s ease 0.8s forwards;
+            margin-bottom: 8px;
+        }
+
+        /* Brand name */
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            color: #D4AF37;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.25);
+            opacity: 0;
+            animation: revealBrand 1s ease 1s forwards;
+            line-height: 1;
+        }
+
+        /* Divider */
+        .divider {
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            margin: 14px 0;
+            animation: expandLine 0.8s ease 1.5s forwards;
+        }
+
+        /* Tagline */
+        .tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 9.5px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: #F5F5F0;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 1.8s forwards;
+            line-height: 1.7;
+        }
+
+        /* CTA Button */
+        .cta {
+            margin-top: 16px;
+            padding: 8px 28px;
+            border: 1px solid #D4AF37;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: #D4AF37;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 2.2s forwards;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent);
+            animation: ctaShimmer 3s ease 3s infinite;
+        }
+
+        .banner-link:hover .cta {
+            background: #D4AF37;
+            color: #0A0A0A;
+        }
+
+        .banner-link:hover .banner {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInBg {
+            to { opacity: 0.35; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 0.7; transform: translateY(0); }
+        }
+
+        @keyframes revealBrand {
+            from { opacity: 0; letter-spacing: 0.4em; }
+            to { opacity: 1; letter-spacing: 0.18em; }
+        }
+
+        @keyframes expandLine {
+            to { width: 60px; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmerSweep {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        @keyframes ctaShimmer {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+    </style>
+</head>
+<body>
+    <a href="https://www.museco.co.za/?utm_source=banner&utm_medium=display&utm_campaign=brand" 
+       target="_blank" rel="noopener" class="banner-link">
+        <div class="banner">
+            <img class="bg-image" 
+                 src="https://images.unsplash.com/photo-1640433195555-f8ecd62effe9?q=80&w=751&auto=format&fit=crop" 
+                 alt="">
+            <div class="overlay"></div>
+            <div class="shimmer"></div>
+            <div class="gold-line-top"></div>
+            <div class="gold-line-bottom"></div>
+            <div class="corner-tl"></div>
+            <div class="corner-br"></div>
+            <div class="content">
+                <div class="pre-title">Cape Town's Finest</div>
+                <div class="brand">MUSE & CO</div>
+                <div class="divider"></div>
+                <div class="tagline">
+                    Elite Companions<br>
+                    Luxury Experiences
+                </div>
+                <div class="cta">Explore Now</div>
+            </div>
+        </div>
+    </a>
+</body>
+</html>
