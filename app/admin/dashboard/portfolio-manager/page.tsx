@@ -665,7 +665,7 @@ export default function PortfolioManager() {
               </div>
 
               {/* Gallery Images - Only show in edit mode */}
-              {showEditForm && (
+              {showEditForm ? (
                 <div>
                   <label className="block text-champagne-gold text-sm font-medium mb-2">
                     Gallery Images <span className="text-off-white/40">({galleryImages.length}/5)</span>
@@ -724,7 +724,13 @@ export default function PortfolioManager() {
                     className="hidden"
                   />
                 </div>
-              )}
+              ) : showAddForm ? (
+                <div className="p-3 rounded-xl bg-champagne-gold/5 border border-champagne-gold/20">
+                  <p className="text-off-white/50 text-sm text-center">
+                    💡 Save the profile first, then tap to edit it to add gallery images
+                  </p>
+                </div>
+              ) : null}
 
               {/* Submit Button - HUGE */}
               <button
