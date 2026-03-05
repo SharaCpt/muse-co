@@ -6,6 +6,7 @@ export const revalidate = 60
 interface PortfolioImage {
   id: string
   name: string
+  slug: string | null
   category: string
   description: string
   image_url: string

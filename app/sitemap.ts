@@ -1,10 +1,32 @@
 import { MetadataRoute } from 'next'
+import { createServerSupabase } from '@/lib/supabase-server'
  
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.museco.co.za'
-  // Use a fixed date that you update when content actually changes
   const lastUpdated = new Date('2026-02-20')
   
+  // Fetch all active models with slugs for individual pages
+  let modelEntries: MetadataRoute.Sitemap = []
+  try {
+    const supabase = createServerSupabase()
+    const { data } = await supabase
+      .from('portfolio_images')
+      .select('slug, name')
+      .eq('is_active', true)
+      .not('slug', 'is', null)
+
+    if (data) {
+      modelEntries = data.map((model) => ({
+        url: `${baseUrl}/portfolio/${model.slug}`,
+        lastModified: lastUpdated,
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      }))
+    }
+  } catch {
+    // Continue with static entries only
+  }
+
   return [
     // Core money pages — highest priority
     {
@@ -50,6 +72,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    // Individual model pages — dynamic
+    ...modelEntries,
     // Legal pages — low priority but included
     {
       url: `${baseUrl}/privacy`,

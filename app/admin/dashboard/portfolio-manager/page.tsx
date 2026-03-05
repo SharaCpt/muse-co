@@ -14,14 +14,23 @@ const supabase = createClient(
 interface PortfolioImage {
   id: string
   name: string
+  slug: string | null
   category: string
   description: string
+  bio: string | null
   image_url: string
   display_order: number
   is_active: boolean
   age: number | null
   height: number | null
   weight: number | null
+}
+
+interface GalleryImage {
+  id: string
+  model_id: string
+  image_url: string
+  display_order: number
 }
 
 const CATEGORIES = [
@@ -51,11 +60,27 @@ export default function PortfolioManager() {
     name: '',
     category: 'Elite Model',
     description: '',
+    bio: '',
     age: '',
     height: '',
     weight: '',
   })
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  
+  // Gallery state
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([])
+  const [galleryUploading, setGalleryUploading] = useState(false)
+  const galleryInputRef = useRef<HTMLInputElement>(null)
+
+  // Generate URL-safe slug from name
+  function generateSlug(name: string): string {
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim()
+  }
 
   useEffect(() => {
     fetchImages()
@@ -124,8 +149,10 @@ export default function PortfolioManager() {
         .from('portfolio_images')
         .insert({
           name: formData.name.trim(),
+          slug: generateSlug(formData.name.trim()),
           category: formData.category,
           description: formData.description.trim(),
+          bio: formData.bio.trim() || null,
           image_url: urlData.publicUrl,
           display_order: images.length,
           age: formData.age ? parseInt(formData.age) : null,
@@ -187,8 +214,10 @@ export default function PortfolioManager() {
         .from('portfolio_images')
         .update({
           name: formData.name.trim(),
+          slug: generateSlug(formData.name.trim()),
           category: formData.category,
           description: formData.description.trim(),
+          bio: formData.bio.trim() || null,
           image_url: imageUrl,
           age: formData.age ? parseInt(formData.age) : null,
           height: formData.height ? parseInt(formData.height) : null,
@@ -215,13 +244,29 @@ export default function PortfolioManager() {
     setDeleting(id)
 
     try {
+      // Delete gallery images from storage first
+      const { data: galleryData } = await supabase
+        .from('model_gallery')
+        .select('image_url')
+        .eq('model_id', id)
+
+      if (galleryData) {
+        const galleryPaths = galleryData
+          .map(g => g.image_url.split('/portfolio/'))
+          .filter(parts => parts.length > 1)
+          .map(parts => parts[1])
+        if (galleryPaths.length > 0) {
+          await supabase.storage.from('portfolio').remove(galleryPaths)
+        }
+      }
+
       // Extract file path from URL and delete from storage
       const urlParts = image_url.split('/portfolio/')
       if (urlParts.length > 1) {
         await supabase.storage.from('portfolio').remove([urlParts[1]])
       }
 
-      // Delete from database
+      // Delete from database (gallery deletes cascade)
       const { error } = await supabase
         .from('portfolio_images')
         .delete()
@@ -244,6 +289,7 @@ export default function PortfolioManager() {
       name: profile.name,
       category: profile.category,
       description: profile.description || '',
+      bio: profile.bio || '',
       age: profile.age?.toString() || '',
       height: profile.height?.toString() || '',
       weight: profile.weight?.toString() || '',
@@ -251,16 +297,94 @@ export default function PortfolioManager() {
     setPreviewUrl(profile.image_url)
     setSelectedFile(null)
     setShowEditForm(profile)
+    fetchGalleryImages(profile.id)
+  }
+
+  async function fetchGalleryImages(modelId: string) {
+    try {
+      const { data } = await supabase
+        .from('model_gallery')
+        .select('*')
+        .eq('model_id', modelId)
+        .order('display_order', { ascending: true })
+      setGalleryImages(data || [])
+    } catch {
+      setGalleryImages([])
+    }
+  }
+
+  async function uploadGalleryImage(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files || e.target.files.length === 0 || !showEditForm) return
+    const file = e.target.files[0]
+    
+    if (galleryImages.length >= 5) {
+      showMessage('Maximum 5 gallery images allowed', 'error')
+      return
+    }
+    
+    setGalleryUploading(true)
+    try {
+      const fileExt = file.name.split('.').pop()
+      const fileName = `gallery-${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('portfolio')
+        .upload(fileName, file)
+
+      if (uploadError) throw uploadError
+
+      const { data: urlData } = supabase.storage
+        .from('portfolio')
+        .getPublicUrl(fileName)
+
+      const { error: dbError } = await supabase
+        .from('model_gallery')
+        .insert({
+          model_id: showEditForm.id,
+          image_url: urlData.publicUrl,
+          display_order: galleryImages.length,
+        })
+
+      if (dbError) throw dbError
+
+      showMessage('✓ Gallery image added!', 'success')
+      fetchGalleryImages(showEditForm.id)
+    } catch {
+      showMessage('Gallery upload failed. Try again.', 'error')
+    } finally {
+      setGalleryUploading(false)
+      if (galleryInputRef.current) galleryInputRef.current.value = ''
+    }
+  }
+
+  async function deleteGalleryImage(galleryImg: GalleryImage) {
+    try {
+      const urlParts = galleryImg.image_url.split('/portfolio/')
+      if (urlParts.length > 1) {
+        await supabase.storage.from('portfolio').remove([urlParts[1]])
+      }
+
+      await supabase.from('model_gallery').delete().eq('id', galleryImg.id)
+
+      if (showEditForm) {
+        fetchGalleryImages(showEditForm.id)
+      }
+      showMessage('✓ Gallery image removed', 'success')
+    } catch {
+      showMessage('Could not delete gallery image', 'error')
+    }
   }
 
   function resetForm() {
-    setFormData({ name: '', category: 'Elite Model', description: '', age: '', height: '', weight: '' })
+    setFormData({ name: '', category: 'Elite Model', description: '', bio: '', age: '', height: '', weight: '' })
     setSelectedFile(null)
     setPreviewUrl(null)
     setShowAddForm(false)
     setShowEditForm(null)
+    setGalleryImages([])
     if (fileInputRef.current) fileInputRef.current.value = ''
     if (editFileInputRef.current) editFileInputRef.current.value = ''
+    if (galleryInputRef.current) galleryInputRef.current.value = ''
   }
 
   function showMessage(text: string, type: 'success' | 'error') {
@@ -523,6 +647,84 @@ export default function PortfolioManager() {
                   placeholder="Brief description..."
                 />
               </div>
+
+              {/* Bio - Longer description for individual page */}
+              <div>
+                <label className="block text-champagne-gold text-sm font-medium mb-2">
+                  Full Bio <span className="text-off-white/40">(shown on profile page)</span>
+                </label>
+                <textarea
+                  value={formData.bio}
+                  onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                  className="w-full bg-charcoal/50 border-2 border-champagne-gold/30 p-4 rounded-xl 
+                           text-lg text-off-white placeholder-off-white/40
+                           focus:border-champagne-gold focus:outline-none transition resize-none"
+                  rows={4}
+                  placeholder="Detailed bio for the individual profile page... (use Enter for paragraphs)"
+                />
+              </div>
+
+              {/* Gallery Images - Only show in edit mode */}
+              {showEditForm && (
+                <div>
+                  <label className="block text-champagne-gold text-sm font-medium mb-2">
+                    Gallery Images <span className="text-off-white/40">({galleryImages.length}/5)</span>
+                  </label>
+                  
+                  {/* Current gallery thumbnails */}
+                  {galleryImages.length > 0 && (
+                    <div className="grid grid-cols-3 gap-2 mb-3">
+                      {galleryImages.map((gImg) => (
+                        <div key={gImg.id} className="relative aspect-[3/4] rounded-lg overflow-hidden group">
+                          <Image 
+                            src={gImg.image_url} 
+                            alt="Gallery" 
+                            fill 
+                            className="object-cover" 
+                            unoptimized 
+                          />
+                          <button
+                            onClick={() => deleteGalleryImage(gImg)}
+                            className="absolute top-1 right-1 p-1.5 bg-red-500/90 rounded-full
+                                     opacity-70 hover:opacity-100 transition active:scale-90"
+                          >
+                            <Trash2 className="w-3 h-3 text-white" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Add gallery image button */}
+                  {galleryImages.length < 5 && (
+                    <button
+                      type="button"
+                      onClick={() => galleryInputRef.current?.click()}
+                      disabled={galleryUploading}
+                      className="w-full p-3 rounded-xl border-2 border-dashed border-champagne-gold/30 
+                               text-champagne-gold/60 hover:border-champagne-gold/60 hover:text-champagne-gold
+                               transition flex items-center justify-center gap-2
+                               disabled:opacity-40"
+                    >
+                      {galleryUploading ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <>
+                          <Plus className="w-4 h-4" />
+                          Add Gallery Photo
+                        </>
+                      )}
+                    </button>
+                  )}
+                  <input
+                    ref={galleryInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={uploadGalleryImage}
+                    className="hidden"
+                  />
+                </div>
+              )}
 
               {/* Submit Button - HUGE */}
               <button

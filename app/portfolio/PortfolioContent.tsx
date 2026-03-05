@@ -21,6 +21,7 @@ const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1628336358317-0582bfa7
 interface PortfolioImage {
   id: string
   name: string
+  slug: string | null
   category: string
   description: string
   image_url: string
@@ -178,6 +179,8 @@ export default function PortfolioContent({ models, content }: PortfolioContentPr
 }
 
 function ModelCard({ model, index }: { model: PortfolioImage; index: number }) {
+  const href = `/portfolio/${model.slug || model.id}`
+  
   return (
     <motion.div
       variants={cardVariants}
@@ -185,8 +188,11 @@ function ModelCard({ model, index }: { model: PortfolioImage; index: number }) {
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
-      className="group relative overflow-hidden h-[500px] shadow-[0_10px_60px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_80px_rgba(212,175,55,0.3)] transition-all duration-500"
     >
+      <Link
+        href={href}
+        className="group relative overflow-hidden h-[500px] block shadow-[0_10px_60px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_80px_rgba(212,175,55,0.3)] transition-all duration-500"
+      >
       {/* Image */}
       <div className="relative w-full h-full">
         <Image
@@ -232,6 +238,7 @@ function ModelCard({ model, index }: { model: PortfolioImage; index: number }) {
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-champagne-gold/0 group-hover:bg-champagne-gold/5 transition-all duration-500 pointer-events-none" />
       </div>
+      </Link>
     </motion.div>
   )
 }
