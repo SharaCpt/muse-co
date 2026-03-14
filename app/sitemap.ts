@@ -74,6 +74,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     // Individual model pages — dynamic
     ...modelEntries,
+    // Location pages — city-specific escort services
+    {
+      url: `${baseUrl}/cape-town-escorts`,
+      lastModified: lastUpdated,
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/johannesburg-escorts`,
+      lastModified: lastUpdated,
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/durban-escorts`,
+      lastModified: lastUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/pretoria-escorts`,
+      lastModified: lastUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
     // Legal pages — low priority but included
     {
       url: `${baseUrl}/privacy`,

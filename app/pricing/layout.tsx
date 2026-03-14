@@ -1,14 +1,14 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Rates & Packages — Companion Services',
-  description: 'MUSE & CO companion rates and luxury packages. Transparent pricing for private arrangements, travel companionship, and bespoke experiences across South Africa.',
+  title: 'Rates & Packages — Escort & Companion Services',
+  description: 'MUSE & CO escort rates and luxury companion packages. Transparent pricing for elite escorts, private arrangements, travel companionship, and bespoke experiences across South Africa.',
   alternates: {
     canonical: '/pricing',
   },
   openGraph: {
-    title: 'Pricing | MUSE & CO',
-    description: 'Transparent companion rates and luxury packages for private arrangements across South Africa.',
+    title: 'Escort Rates & Packages | MUSE & CO',
+    description: 'Transparent escort rates and luxury companion packages for private arrangements across South Africa.',
     url: '/pricing',
   },
 }

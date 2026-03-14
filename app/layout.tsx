@@ -11,10 +11,10 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfa
 
 export const metadata: Metadata = {
   title: {
-    default: 'MUSE & CO | Elite Companions Cape Town',
+    default: 'MUSE & CO | Elite Escorts & Companions Cape Town',
     template: '%s | MUSE & CO'
   },
-  description: 'MUSE & CO is a luxury companion agency based in Cape Town, South Africa. We connect discerning clients with elegant, sophisticated companions for private arrangements and bespoke experiences. Absolute discretion guaranteed.',
+  description: 'MUSE & CO is a premium escort and companion agency based in Cape Town, South Africa. We connect discerning clients with elegant, sophisticated escorts and companions for private arrangements and bespoke experiences. Elite escorts in Cape Town, Johannesburg, Durban & nationwide. Absolute discretion guaranteed.',
   authors: [{ name: 'MUSE & CO' }],
   creator: 'MUSE & CO',
   publisher: 'MUSE & CO',
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     locale: 'en_ZA',
     url: 'https://www.museco.co.za',
     siteName: 'MUSE & CO',
-    title: 'MUSE & CO | Elite Companions Cape Town',
-    description: 'Luxury companion agency based in Cape Town. Elegant, sophisticated companions for private arrangements and bespoke experiences across South Africa.',
+    title: 'MUSE & CO | Elite Escorts & Companions Cape Town',
+    description: 'Premium escort and companion agency based in Cape Town. Elite escorts and sophisticated companions for private arrangements and bespoke experiences across South Africa.',
     images: [
       {
         url: '/og-image.jpg',
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MUSE & CO | Elite Companions Cape Town',
-    description: 'Luxury companion agency based in Cape Town. Elegant companions for private arrangements and bespoke experiences.',
+    title: 'MUSE & CO | Elite Escorts & Companions Cape Town',
+    description: 'Premium escort and companion agency in Cape Town. Elite escorts for private arrangements and bespoke experiences across South Africa.',
     images: ['/og-image.jpg']
   },
   robots: {
@@ -69,7 +69,7 @@ export default function RootLayout({
       name: 'MUSE & CO',
       url: 'https://www.museco.co.za',
       logo: 'https://www.museco.co.za/og-image.jpg',
-      description: 'Luxury companion agency based in Cape Town, serving clients across South Africa and internationally.',
+      description: 'Premium escort and companion agency based in Cape Town, serving clients across South Africa and internationally.',
       telephone: '+27-60-776-9793',
       email: 'sharafindit@gmail.com',
       foundingDate: '2011',
@@ -85,7 +85,7 @@ export default function RootLayout({
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       name: 'MUSE & CO',
-      description: 'Luxury companion agency in Cape Town offering private arrangements and bespoke experiences across South Africa',
+      description: 'Premium escort and companion agency in Cape Town offering elite escort services, private arrangements and bespoke experiences across South Africa',
       url: 'https://www.museco.co.za',
       telephone: '+27-60-776-9793',
       priceRange: '$$$$',
@@ -112,13 +112,16 @@ export default function RootLayout({
         { '@type': 'Place', name: 'Worldwide' }
       ],
       serviceType: [
+        'Elite Escort Services',
+        'VIP Companions',
+        'Private Escort Arrangements',
         'Companion Services',
         'Private Event Models',
         'Yacht Party Models',
         'Private Event Hostesses',
-        'Party & Nightlife Companions',
-        'Travel Companionship',
-        'Dinner Companions',
+        'Party & Nightlife Escorts',
+        'Travel Escort Companionship',
+        'Dinner Escorts',
       ]
     }
   ]

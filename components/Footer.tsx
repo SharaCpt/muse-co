@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-charcoal border-t border-champagne-gold/20">
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
             <h3 className="font-playfair text-3xl tracking-widest text-off-white mb-4">
@@ -38,6 +38,27 @@ export default function Footer() {
               </Link>
               <Link href="/join" className="block text-champagne-gold/80 hover:text-champagne-gold text-sm transition-smooth font-semibold">
                 Join Muse & Co
+              </Link>
+            </div>
+          </div>
+
+          {/* Location Pages */}
+          <div>
+            <h4 className="text-champagne-gold font-inter tracking-wider mb-4 text-sm">
+              LOCATIONS
+            </h4>
+            <div className="space-y-2">
+              <Link href="/cape-town-escorts" className="block text-off-white/60 hover:text-champagne-gold text-sm transition-smooth">
+                Escorts Cape Town
+              </Link>
+              <Link href="/johannesburg-escorts" className="block text-off-white/60 hover:text-champagne-gold text-sm transition-smooth">
+                Escorts Johannesburg
+              </Link>
+              <Link href="/durban-escorts" className="block text-off-white/60 hover:text-champagne-gold text-sm transition-smooth">
+                Escorts Durban
+              </Link>
+              <Link href="/pretoria-escorts" className="block text-off-white/60 hover:text-champagne-gold text-sm transition-smooth">
+                Escorts Pretoria
               </Link>
             </div>
           </div>
