@@ -11,12 +11,12 @@ import {
   sectionVariants,
   sectionFadeIn,
   cardVariants,
-  microFadeIn,
   primaryCTAHover,
   primaryCTATap,
   secondaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
+import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
 
 interface HomeContentProps {
   images: Record<string, string>
@@ -48,9 +48,11 @@ export default function HomeContent({ images, modelImages, content }: HomeConten
               src={images.hero}
               alt="Elite luxury companion and model services South Africa — Cape Town, Johannesburg, Durban"
               fill
-              unoptimized
               className="object-cover object-center"
               priority
+              sizes={SIZES.hero}
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black/40 via-deep-black/25 to-deep-black" />
@@ -230,8 +232,10 @@ export default function HomeContent({ images, modelImages, content }: HomeConten
                     src={model.image}
                     alt={model.category}
                     fill
-                    unoptimized
                     className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    sizes={SIZES.threeCol}
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/60 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500" />
                   
@@ -403,8 +407,10 @@ export default function HomeContent({ images, modelImages, content }: HomeConten
             src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2400"
             alt="Luxury companion event setting South Africa — elite VIP experience background"
             fill
-            unoptimized
             className="object-cover opacity-20"
+            sizes={SIZES.hero}
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black via-deep-black/80 to-deep-black" />
         </div>
@@ -476,8 +482,10 @@ function ServiceCard({
           src={image}
           alt={title}
           fill
-          unoptimized
           className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+          sizes={SIZES.threeCol}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/80 to-deep-black/40" />
         <div className="absolute inset-0 glass-effect opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -495,18 +503,13 @@ function ServiceCard({
         
         <div className="space-y-2">
           {features.map((feature, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={microFadeIn}
-              custom={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportOnce}
               className="flex items-center text-off-white/60 text-sm"
             >
               <span className="text-champagne-gold mr-3 text-xs">◆</span>
               {feature}
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

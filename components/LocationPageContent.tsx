@@ -15,6 +15,7 @@ import {
   secondaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
+import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
 
 interface LocationModel {
   id: string
@@ -70,7 +71,9 @@ export default function LocationPageContent({
             fill
             className="object-cover"
             priority
-            unoptimized
+            sizes={SIZES.hero}
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
           <div className="absolute inset-0 bg-deep-black/50" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black/30 via-transparent to-deep-black" />
@@ -206,7 +209,9 @@ export default function LocationPageContent({
                         alt={`${model.name} — elite escort in ${city}`}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                        unoptimized
+                        sizes={SIZES.threeCol}
+                        placeholder="blur"
+                        blurDataURL={BLUR_DATA_URL}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/30 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
                       <div className="absolute inset-0 border-2 border-champagne-gold/0 group-hover:border-champagne-gold/40 transition-all duration-500" />

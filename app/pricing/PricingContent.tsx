@@ -14,6 +14,7 @@ import {
   secondaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
+import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
 
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?q=80&w=2000'
 
@@ -60,7 +61,9 @@ export default function PricingContent({ rates, experiences, content }: PricingC
             fill
             className="object-cover"
             priority
-            unoptimized
+            sizes={SIZES.hero}
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
           <div className="absolute inset-0 bg-deep-black/40" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black/30 via-transparent to-deep-black" />
@@ -285,8 +288,10 @@ function BespokeCard({ experience, index }: { experience: BespokeExperience; ind
           src={experience.image_url || defaultImage}
           alt={experience.experience_name}
           fill
-          unoptimized
           className="object-cover transition-transform duration-700 group-hover:scale-110"
+          sizes={SIZES.threeCol}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/80 to-deep-black/40" />
       </div>

@@ -14,6 +14,7 @@ import {
   primaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
+import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
 
 interface GalleryImage {
   id: string
@@ -130,7 +131,9 @@ export default function ModelPageContent({ model, gallery, relatedModels }: Mode
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                 priority
-                unoptimized
+                sizes={SIZES.twoCol}
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-deep-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute inset-0 border-2 border-champagne-gold/0 group-hover:border-champagne-gold/30 transition-all duration-500" />
@@ -266,7 +269,9 @@ export default function ModelPageContent({ model, gallery, relatedModels }: Mode
                     alt={`${model.name} gallery photo ${index + 1}`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    unoptimized
+                    sizes={SIZES.threeCol}
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
                   />
                   <div className="absolute inset-0 bg-deep-black/0 group-hover:bg-deep-black/20 transition-all duration-500" />
                   <div className="absolute inset-0 border-2 border-champagne-gold/0 group-hover:border-champagne-gold/40 transition-all duration-500" />
@@ -314,7 +319,9 @@ export default function ModelPageContent({ model, gallery, relatedModels }: Mode
                         alt={`${related.name} — ${related.category}`}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                        unoptimized
+                        sizes={SIZES.threeCol}
+                        placeholder="blur"
+                        blurDataURL={BLUR_DATA_URL}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/30 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
                       <div className="absolute inset-0 border-2 border-champagne-gold/0 group-hover:border-champagne-gold/40 transition-all duration-500" />

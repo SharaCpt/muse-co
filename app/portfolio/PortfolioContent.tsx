@@ -15,6 +15,7 @@ import {
   secondaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
+import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
 
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1628336358317-0582bfa7519d?q=100&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0'
 
@@ -58,7 +59,9 @@ export default function PortfolioContent({ models, content }: PortfolioContentPr
             fill
             className="object-cover"
             priority
-            unoptimized
+            sizes={SIZES.hero}
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
           <div className="absolute inset-0 bg-deep-black/40" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black/30 via-transparent to-deep-black" />
@@ -113,17 +116,24 @@ export default function PortfolioContent({ models, content }: PortfolioContentPr
       {/* Portfolio Grid */}
       <section className="py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          {filteredModels.length === 0 ? (
-            <div className="text-center text-off-white/60 py-20">
-              <p>No models available at this time. Please check back soon.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredModels.map((model, index) => (
-                <ModelCard key={model.id} model={model} index={index} />
-              ))}
-            </div>
-          )}
+          <motion.div
+            key={filter}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
+            {filteredModels.length === 0 ? (
+              <div className="text-center text-off-white/60 py-20">
+                <p>No models available at this time. Please check back soon.</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredModels.map((model, index) => (
+                  <ModelCard key={model.id} model={model} index={index} />
+                ))}
+              </div>
+            )}
+          </motion.div>
         </div>
       </section>
 
@@ -199,8 +209,10 @@ function ModelCard({ model, index }: { model: PortfolioImage; index: number }) {
           src={model.image_url}
           alt={model.name}
           fill
-          unoptimized
           className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+          sizes={SIZES.threeCol}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
         />
         
         {/* Gradient Overlays */}

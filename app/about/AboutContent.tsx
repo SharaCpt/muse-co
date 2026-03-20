@@ -11,6 +11,7 @@ import {
   sectionFadeIn,
   viewportOnce,
 } from '@/lib/motion'
+import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
 
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1617351165725-ec1c8ca2bf67?q=80&w=2000'
 
@@ -34,7 +35,9 @@ export default function AboutContent({ content }: AboutContentProps) {
             fill
             className="object-cover"
             priority
-            unoptimized
+            sizes={SIZES.hero}
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
           <div className="absolute inset-0 bg-deep-black/40" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black/30 via-transparent to-deep-black" />

@@ -14,6 +14,7 @@ import {
   primaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
+import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
 
 interface ServicesContentProps {
   headerImage: string
@@ -41,7 +42,9 @@ export default function ServicesContent({ headerImage, serviceImages, content }:
             fill
             className="object-cover"
             priority
-            unoptimized
+            sizes={SIZES.hero}
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
           <div className="absolute inset-0 bg-deep-black/40" />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black/30 via-transparent to-deep-black" />
@@ -364,8 +367,10 @@ function ServiceDetail({
           src={image}
           alt={title}
           fill
-          unoptimized
           className="object-cover"
+          sizes={SIZES.twoCol}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
         />
         <div className="absolute inset-0 border-2 border-champagne-gold/30" />
       </div>

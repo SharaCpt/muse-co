@@ -15,6 +15,7 @@ import {
   primaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
+import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
 
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1621290181122-f23227645392?q=80&w=2000&auto=format&fit=crop'
 
@@ -31,7 +32,7 @@ export default function JoinContent() {
         {/* Hero */}
         <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
-            <Image src={DEFAULT_HEADER} alt="Join MUSE & CO — model recruitment Cape Town Johannesburg Durban South Africa" fill className="object-cover" priority unoptimized />
+            <Image src={DEFAULT_HEADER} alt="Join MUSE & CO — model recruitment Cape Town Johannesburg Durban South Africa" fill className="object-cover" priority sizes={SIZES.hero} placeholder="blur" blurDataURL={BLUR_DATA_URL} />
             <div className="absolute inset-0 bg-gradient-to-b from-deep-black/60 via-deep-black/40 to-deep-black" />
           </div>
 
