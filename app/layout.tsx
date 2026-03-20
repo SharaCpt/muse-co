@@ -11,10 +11,10 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfa
 
 export const metadata: Metadata = {
   title: {
-    default: 'MUSE & CO | Elite Escorts & Companions Cape Town',
+    default: 'MUSE & CO | Elite Companions & Escort Agency Cape Town',
     template: '%s | MUSE & CO'
   },
-  description: 'MUSE & CO is a premium escort and companion agency based in Cape Town, South Africa. We connect discerning clients with elegant, sophisticated escorts and companions for private arrangements and bespoke experiences. Elite escorts in Cape Town, Johannesburg, Durban & nationwide. Absolute discretion guaranteed.',
+  description: 'MUSE & CO is South Africa\'s premier elite companion and escort agency. Stunning, sophisticated companions for private arrangements, luxury events, and bespoke experiences in Cape Town, Johannesburg, Durban & worldwide. Established 2011. Absolute discretion.',  
   authors: [{ name: 'MUSE & CO' }],
   creator: 'MUSE & CO',
   publisher: 'MUSE & CO',

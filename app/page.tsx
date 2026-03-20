@@ -1,7 +1,21 @@
+import { Metadata } from 'next'
 import { createServerSupabase } from '@/lib/supabase-server'
 import HomeContent from './HomeContent'
 
 export const revalidate = 300
+
+export const metadata: Metadata = {
+  title: 'Elite Companions Cape Town | MUSE & CO — Premium Escort Agency South Africa',
+  description: 'MUSE & CO is South Africa\'s premier elite companion and escort agency. Stunning, sophisticated companions for private arrangements, luxury events, yacht parties, and bespoke experiences in Cape Town, Johannesburg, Durban & worldwide. Established 2011. Absolute discretion.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Elite Companions Cape Town | MUSE & CO — Premium Escort Agency',
+    description: 'South Africa\'s premier elite companion and escort agency. Stunning companions for private arrangements, luxury events & bespoke experiences. Cape Town, Johannesburg, Durban & worldwide.',
+    url: '/',
+  },
+}
 
 // Default images — used when Supabase is unavailable
 const DEFAULT_IMAGES: Record<string, string> = {
