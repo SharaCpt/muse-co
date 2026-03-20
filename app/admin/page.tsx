@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { createBrowserSupabase } from '@/lib/supabase-browser'
 
 export default function AdminLoginPage() {
   const [password, setPassword] = useState('')
@@ -16,6 +17,7 @@ export default function AdminLoginPage() {
     setIsLoading(true)
 
     try {
+      // Step 1: Verify admin password via existing API route
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -28,6 +30,18 @@ export default function AdminLoginPage() {
         setError(data.error || 'Invalid password')
         setIsLoading(false)
         return
+      }
+
+      // Step 2: Also sign into Supabase Auth for RLS-protected write access
+      const supabase = createBrowserSupabase()
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email: 'admin@museco.co.za',
+        password: 'MuseCo_Admin_2026!Secure',
+      })
+
+      if (authError) {
+        console.warn('Supabase auth failed:', authError.message)
+        // Don't block login — admin session cookie still works for page access
       }
 
       // Success - redirect to dashboard

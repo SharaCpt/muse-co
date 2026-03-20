@@ -1,15 +1,12 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { createClient } from '@supabase/supabase-js'
+import { createBrowserSupabase } from '@/lib/supabase-browser'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Plus, Trash2, X, Camera, Check, ArrowLeft, Loader2, Pencil } from 'lucide-react'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createBrowserSupabase()
 
 interface PortfolioImage {
   id: string

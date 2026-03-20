@@ -1,15 +1,12 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { createClient } from '@supabase/supabase-js'
+import { createBrowserSupabase } from '@/lib/supabase-browser'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Camera, X, Loader2, Check, ImageIcon } from 'lucide-react'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createBrowserSupabase()
 
 interface SiteImage {
   id: string

@@ -1,14 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { createClient } from '@supabase/supabase-js'
+import { createBrowserSupabase } from '@/lib/supabase-browser'
 import Link from 'next/link'
 import { ArrowLeft, Loader2, Check, DollarSign, Pencil, X } from 'lucide-react'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createBrowserSupabase()
 
 interface PricingRate {
   id: string

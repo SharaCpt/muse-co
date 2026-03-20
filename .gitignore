@@ -26,6 +26,9 @@ yarn-error.log*
 .env*.local
 .env
 
+# vscode mcp config (contains tokens)
+.vscode/mcp.json
+
 # vercel
 .vercel
 
