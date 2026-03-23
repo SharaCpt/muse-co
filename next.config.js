@@ -13,16 +13,7 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      // Redirect trailing slashes to non-trailing (prevents duplicate URLs)
-      {
-        source: '/:path+/',
-        destination: '/:path+',
-        permanent: true,
-      },
-    ]
-  },
+  // trailingSlash: false already handles slash redirects — no custom redirects needed
 }
 
 module.exports = nextConfig

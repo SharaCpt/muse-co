@@ -2,23 +2,15 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  const { pathname, hostname, protocol } = request.nextUrl
+  const { pathname } = request.nextUrl
 
-  // Enforce www prefix (non-www → www redirect to prevent duplicate content)
-  if (
-    hostname === 'museco.co.za' &&
-    !hostname.startsWith('www.')
-  ) {
-    const url = request.nextUrl.clone()
-    url.hostname = 'www.museco.co.za'
-    return NextResponse.redirect(url, 301)
-  }
+  // Non-www → www is handled by Vercel at the infrastructure level (308).
+  // We don't duplicate that here to avoid redirect chains.
 
-  // Check if accessing admin dashboard
+  // Protect admin dashboard — require session cookie
   if (pathname.startsWith('/admin/dashboard')) {
     const session = request.cookies.get('admin_session')
 
-    // If no session or empty token, redirect to login
     if (!session || !session.value || session.value.length < 10) {
       return NextResponse.redirect(new URL('/admin', request.url))
     }
@@ -28,10 +20,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    // Match admin dashboard routes
-    '/admin/dashboard/:path*',
-    // Match all routes for www enforcement (exclude static files and API)
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
-  ]
+  // Only run middleware on admin routes — no need for broad matching
+  matcher: ['/admin/dashboard/:path*'],
 }

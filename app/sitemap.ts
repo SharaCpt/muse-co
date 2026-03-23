@@ -3,7 +3,8 @@ import { createServerSupabase } from '@/lib/supabase-server'
  
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.museco.co.za'
-  const lastUpdated = new Date('2026-02-20')
+  // Use the current build date so Google knows when content last changed
+  const lastUpdated = new Date()
   
   // Fetch all active models with slugs for individual pages
   let modelEntries: MetadataRoute.Sitemap = []
