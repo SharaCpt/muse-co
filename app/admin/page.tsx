@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { createBrowserSupabase } from '@/lib/supabase-browser'
 
 export default function AdminLoginPage() {
   const [password, setPassword] = useState('')
@@ -32,16 +31,14 @@ export default function AdminLoginPage() {
         return
       }
 
-      // Step 2: Also sign into Supabase Auth for RLS-protected write access
-      const supabase = createBrowserSupabase()
-      const { error: authError } = await supabase.auth.signInWithPassword({
-        email: 'admin@museco.co.za',
-        password: 'MuseCo_Admin_2026!Secure',
-      })
-
-      if (authError) {
-        console.warn('Supabase auth failed:', authError.message)
-        // Don't block login — admin session cookie still works for page access
+      // Step 2: Hydrate Supabase Auth session from server-side tokens (no credentials in client)
+      if (data.supabaseSession) {
+        const { createBrowserSupabase } = await import('@/lib/supabase-browser')
+        const supabase = createBrowserSupabase()
+        await supabase.auth.setSession({
+          access_token: data.supabaseSession.access_token,
+          refresh_token: data.supabaseSession.refresh_token,
+        })
       }
 
       // Success - redirect to dashboard

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import crypto from 'crypto'
+import { createClient } from '@supabase/supabase-js'
 
 // Simple in-memory rate limiting
 const loginAttempts = new Map<string, { count: number; lastAttempt: number }>()
@@ -75,10 +76,31 @@ export async function POST(request: NextRequest) {
       path: '/'
     })
 
+    // Sign into Supabase Auth server-side (credentials never sent to browser)
+    let supabaseSession = null
+    try {
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      )
+      const { data } = await supabase.auth.signInWithPassword({
+        email: process.env.SUPABASE_ADMIN_EMAIL || 'admin@museco.co.za',
+        password: process.env.SUPABASE_ADMIN_PASSWORD || '',
+      })
+      if (data?.session) {
+        supabaseSession = {
+          access_token: data.session.access_token,
+          refresh_token: data.session.refresh_token,
+        }
+      }
+    } catch {
+      // Supabase auth is optional — admin session cookie still works for page access
+    }
+
     // Clear failed attempts on success
     loginAttempts.delete(ip)
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true, supabaseSession })
   } catch (error) {
     return NextResponse.json(
       { error: 'Authentication failed' },
