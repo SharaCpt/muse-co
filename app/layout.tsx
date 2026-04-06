@@ -11,10 +11,10 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfa
 
 export const metadata: Metadata = {
   title: {
-    default: 'MUSE & CO | Elite Companions & Escort Agency Cape Town',
+    default: 'MUSE & CO | Elite Companions South Africa',
     template: '%s | MUSE & CO'
   },
-  description: 'MUSE & CO is South Africa\'s premier elite companion and escort agency. Stunning, sophisticated companions for private arrangements, luxury events, and bespoke experiences in Cape Town, Johannesburg, Durban & worldwide. Established 2011. Absolute discretion.',  
+  description: 'MUSE & CO — South Africa\'s most exclusive companion agency. Sophisticated, beautiful companions for private arrangements, luxury events, and bespoke experiences. Cape Town, Johannesburg, Durban & worldwide. Est. 2011.',  
   authors: [{ name: 'MUSE & CO' }],
   creator: 'MUSE & CO',
   publisher: 'MUSE & CO',
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     locale: 'en_ZA',
     url: 'https://www.museco.co.za',
     siteName: 'MUSE & CO',
-    title: 'MUSE & CO | Elite Escorts & Companions Cape Town',
-    description: 'Premium escort and companion agency based in Cape Town. Elite escorts and sophisticated companions for private arrangements and bespoke experiences across South Africa.',
+    title: 'MUSE & CO | Elite Companions South Africa',
+    description: 'South Africa\'s most exclusive companion agency. Sophisticated, beautiful companions for private arrangements and bespoke experiences. Est. 2011.',
     images: [
       {
         url: '/og-image.jpg',
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MUSE & CO | Elite Escorts & Companions Cape Town',
-    description: 'Premium escort and companion agency in Cape Town. Elite escorts for private arrangements and bespoke experiences across South Africa.',
+    title: 'MUSE & CO | Elite Companions South Africa',
+    description: 'South Africa\'s most exclusive companion agency. Beautiful companions for private arrangements and bespoke experiences. Est. 2011.',
     images: ['/og-image.jpg']
   },
   robots: {

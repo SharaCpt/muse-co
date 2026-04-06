@@ -1,14 +1,14 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Our Models — Meet Our Exclusive Escorts & VIP Models Cape Town',
-  description: 'Browse MUSE & CO\'s curated portfolio of exclusive escorts and VIP models. Each personally vetted for beauty, sophistication, and professionalism. Based in Cape Town, available across South Africa.',
+  title: 'Our Models — Meet Our Elite Companions & Models South Africa',
+  description: 'Browse MUSE & CO\'s curated portfolio of elite companions and professional models. Each personally vetted for beauty, sophistication, and charm. Based in Cape Town, available across South Africa and internationally.',
   alternates: {
     canonical: '/portfolio',
   },
   openGraph: {
-    title: 'Exclusive Escorts & VIP Models | MUSE & CO',
-    description: 'Meet our curated selection of exclusive escorts and VIP models based in Cape Town. Available across South Africa.',
+    title: 'Elite Companions & Models | MUSE & CO',
+    description: 'Meet our curated selection of elite companions and professional models. Based in Cape Town, available across South Africa.',
     url: '/portfolio',
   },
 }

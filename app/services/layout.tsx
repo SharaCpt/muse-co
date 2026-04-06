@@ -1,14 +1,14 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Our Services — Private Dining, Yacht Models, VIP Hostesses & Travel Escorts',
-  description: 'MUSE & CO escort services: private dining companions, yacht & villa models, VIP hostesses, nightlife escorts, travel companions. You choose — we arrange. Cape Town, Johannesburg, Durban & nationwide.',
+  title: 'Companion Services — Private Dining, Yacht Models, VIP Hostesses & Travel',
+  description: 'MUSE & CO companion services: private dining dates, yacht & villa models, VIP event hostesses, nightlife companions, travel partners. Bespoke arrangements tailored to you. Available in Cape Town, Johannesburg, Durban & nationwide.',
   alternates: {
     canonical: '/services',
   },
   openGraph: {
-    title: 'Escort & Model Services | MUSE & CO',
-    description: 'Premium escort services across South Africa. Dining companions, yacht models, VIP hostesses, nightlife & travel escorts. Cape Town, Johannesburg & Durban.',
+    title: 'Companion & Model Services | MUSE & CO',
+    description: 'Bespoke companion services across South Africa. Dining dates, yacht models, VIP hostesses, nightlife & travel companions.',
     url: '/services',
   },
 }

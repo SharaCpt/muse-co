@@ -1,14 +1,14 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Rates & Packages — Transparent Escort Pricing South Africa',
-  description: 'MUSE & CO rates and packages. Transparent pricing for escort services, private arrangements, travel bookings, and bespoke experiences. Cape Town, Johannesburg, Durban & nationwide.',
+  title: 'Rates & Packages — Companion Booking Prices South Africa',
+  description: 'MUSE & CO rates and packages. Transparent pricing for companion bookings, private arrangements, travel experiences, and bespoke packages. Hourly, overnight & multi-day rates available nationwide.',
   alternates: {
     canonical: '/pricing',
   },
   openGraph: {
     title: 'Rates & Packages | MUSE & CO',
-    description: 'Transparent pricing for escort services, private arrangements and bespoke experiences across South Africa.',
+    description: 'Transparent companion booking rates. Private arrangements, travel and bespoke experiences across South Africa.',
     url: '/pricing',
   },
 }

@@ -5,14 +5,14 @@ import HomeContent from './HomeContent'
 export const revalidate = 300
 
 export const metadata: Metadata = {
-  title: 'Elite Companions Cape Town | MUSE & CO — Premium Escort Agency South Africa',
-  description: 'MUSE & CO is South Africa\'s premier elite companion and escort agency. Stunning, sophisticated companions for private arrangements, luxury events, yacht parties, and bespoke experiences in Cape Town, Johannesburg, Durban & worldwide. Established 2011. Absolute discretion.',
+  title: 'Elite Companions Cape Town — Luxury Companion Agency | MUSE & CO South Africa',
+  description: 'MUSE & CO is Cape Town\'s premier elite companion agency. Stunning, sophisticated companions for private arrangements, luxury events, yacht parties, and bespoke experiences. Serving Cape Town, Johannesburg, Durban & worldwide since 2011. Absolute discretion guaranteed.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Elite Companions Cape Town | MUSE & CO — Premium Escort Agency',
-    description: 'South Africa\'s premier elite companion and escort agency. Stunning companions for private arrangements, luxury events & bespoke experiences. Cape Town, Johannesburg, Durban & worldwide.',
+    title: 'Elite Companions Cape Town | MUSE & CO',
+    description: 'Cape Town\'s premier elite companion agency. Stunning companions for private arrangements, luxury events & bespoke experiences across South Africa.',
     url: '/',
   },
 }
