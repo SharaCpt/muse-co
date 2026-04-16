@@ -3,11 +3,19 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+  const host = request.headers.get('host') || 'www.museco.co.za'
 
-  // Non-www → www is handled by Vercel at the infrastructure level (308).
-  // We don't duplicate that here to avoid redirect chains.
+  // 1. Strip trailing slashes with ABSOLUTE URL redirect (single hop for Google)
+  //    This runs AFTER Vercel's non-www→www redirect, so host is already www.
+  //    By handling it here, we return a full absolute URL instead of a relative path.
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    const cleanPath = pathname.slice(0, -1)
+    const url = new URL(`https://${host}${cleanPath}`)
+    url.search = request.nextUrl.search
+    return NextResponse.redirect(url, 308)
+  }
 
-  // Protect admin dashboard — require session cookie
+  // 2. Protect admin dashboard — require session cookie
   if (pathname.startsWith('/admin/dashboard')) {
     const session = request.cookies.get('admin_session')
 
@@ -20,6 +28,9 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Only run middleware on admin routes — no need for broad matching
-  matcher: ['/admin/dashboard/:path*'],
+  // Match all routes for trailing slash handling + admin protection
+  // Exclude static files and API routes
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|icon.svg|robots.txt|sitemap.xml).*)',
+  ],
 }

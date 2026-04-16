@@ -1,21 +1,21 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Escorts Cape Town — Elite Escort Agency & VIP Escort Services in Cape Town',
-  description: 'Looking for escorts in Cape Town? MUSE & CO is Cape Town\'s top-rated escort agency. Elite escorts for private dining, yacht parties, events, nightlife & travel. Available in Sea Point, Camps Bay, V&A Waterfront, Stellenbosch & the Western Cape.',
+  title: 'Cape Town Escorts — VIP Escort Services Sea Point, Camps Bay & Stellenbosch',
+  description: 'Cape Town escort services by MUSE & CO. VIP escorts available in Sea Point, Camps Bay, V&A Waterfront, Clifton, Stellenbosch & across the Western Cape. Premium escort bookings for private dining, yacht parties, nightlife, events & travel companionship. Call today.',
   alternates: {
     canonical: '/cape-town-escorts',
   },
   openGraph: {
-    title: 'Escorts Cape Town | MUSE & CO',
-    description: 'Cape Town\'s top-rated escort agency. Elite escorts for private arrangements, events & luxury experiences across the Western Cape.',
+    title: 'Cape Town Escorts — VIP Escort Services | MUSE & CO',
+    description: 'VIP escort services across Cape Town. Premium escorts in Sea Point, Camps Bay, V&A Waterfront & Stellenbosch.',
     url: '/cape-town-escorts',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Escorts Cape Town | MUSE & CO',
-    description: 'Cape Town\'s top-rated escort agency. Elite escorts for private arrangements and luxury experiences.',
+    title: 'Cape Town Escorts — VIP Escort Services | MUSE & CO',
+    description: 'VIP escort services across Cape Town. Premium escorts in Sea Point, Camps Bay & Stellenbosch.',
   },
 }
 

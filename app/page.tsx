@@ -5,14 +5,15 @@ import HomeContent from './HomeContent'
 export const revalidate = 300
 
 export const metadata: Metadata = {
-  title: 'Elite Companions Cape Town — Luxury Companion Agency | MUSE & CO South Africa',
-  description: 'MUSE & CO is Cape Town\'s premier elite companion agency. Stunning, sophisticated companions for private arrangements, luxury events, yacht parties, and bespoke experiences. Serving Cape Town, Johannesburg, Durban & worldwide since 2011. Absolute discretion guaranteed.',
+  title: 'Elite Escorts Cape Town | Elite Companions & VIP Escort Agency — MUSE & CO',
+  description: 'MUSE & CO — Cape Town\'s #1 elite escort & companion agency. Elite escorts and luxury companions for private arrangements, VIP events, yacht parties & bespoke experiences. Serving Cape Town, Johannesburg, Durban & Pretoria since 2011. Book today — absolute discretion guaranteed.',
+  keywords: ['elite escorts cape town', 'elite companions cape town', 'escort agency cape town', 'vip escorts south africa', 'luxury companions cape town', 'cape town escort services', 'elite escort agency south africa'],
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Elite Companions Cape Town | MUSE & CO',
-    description: 'Cape Town\'s premier elite companion agency. Stunning companions for private arrangements, luxury events & bespoke experiences across South Africa.',
+    title: 'Elite Escorts & Companions Cape Town | MUSE & CO',
+    description: 'Cape Town\'s #1 elite escort & companion agency. Luxury escorts for private arrangements, VIP events & bespoke experiences across South Africa.',
     url: '/',
   },
 }
@@ -35,8 +36,8 @@ const DEFAULT_MODEL_IMAGES: Record<string, string> = {
 }
 
 const DEFAULT_CONTENT = {
-  heroTagline: 'Elite Companions • VIP Experiences • Global Luxury',
-  heroSubtitle: 'Curating South Africa\'s most beautiful models and sophisticated companions for luxury experiences worldwide. From exclusive private arrangements to international lifestyle experiences, we deliver unparalleled beauty, elegance, and absolute discretion to discerning clientele across the globe.',
+  heroTagline: 'Elite Escorts • Elite Companions • Cape Town & South Africa',
+  heroSubtitle: 'Cape Town\'s premier elite escort and companion agency. MUSE & CO curates South Africa\'s most beautiful elite escorts and luxury companions for private arrangements, VIP events, yacht parties, and bespoke experiences. Serving Cape Town, Johannesburg, Durban & Pretoria with absolute discretion since 2011.',
 }
 
 export default async function HomePage() {
