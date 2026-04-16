@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: false,
+  skipTrailingSlashRedirect: true, // Let middleware handle trailing slashes with absolute URLs + proper Location header
   images: {
     remotePatterns: [
       {
