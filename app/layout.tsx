@@ -11,10 +11,10 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfa
 
 export const metadata: Metadata = {
   title: {
-    default: 'MUSE & CO | Elite Escorts & Companions South Africa',
+    default: 'MUSE & CO | Elite Companions Cape Town',
     template: '%s | MUSE & CO'
   },
-  description: 'MUSE & CO — South Africa\'s premier elite escort & companion agency. Elite escorts and luxury companions for private arrangements, VIP events, and bespoke experiences. Cape Town, Johannesburg, Durban & Pretoria. Est. 2011.',  
+  description: 'MUSE & CO is a luxury companion agency based in Cape Town, South Africa. We connect discerning clients with elegant, sophisticated companions for private arrangements and bespoke experiences. Absolute discretion guaranteed.',  
   authors: [{ name: 'MUSE & CO' }],
   creator: 'MUSE & CO',
   publisher: 'MUSE & CO',
@@ -27,21 +27,21 @@ export const metadata: Metadata = {
     locale: 'en_ZA',
     url: 'https://www.museco.co.za',
     siteName: 'MUSE & CO',
-    title: 'MUSE & CO | Elite Escorts & Companions South Africa',
-    description: 'South Africa\'s premier elite escort & companion agency. Elite escorts and luxury companions for private arrangements and bespoke experiences. Est. 2011.',
+    title: 'MUSE & CO | Elite Companions Cape Town',
+    description: 'Luxury companion agency based in Cape Town. Elegant, sophisticated companions for private arrangements and bespoke experiences across South Africa.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'MUSE & CO Elite Escorts & Companions Cape Town South Africa'
+        alt: 'MUSE & CO Elite Companion Services Cape Town'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MUSE & CO | Elite Escorts & Companions South Africa',
-    description: 'South Africa\'s premier elite escort & companion agency. Elite escorts and luxury companions for private arrangements and bespoke experiences. Est. 2011.',
+    title: 'MUSE & CO | Elite Companions Cape Town',
+    description: 'Luxury companion agency based in Cape Town. Elegant companions for private arrangements and bespoke experiences.',
     images: ['/og-image.jpg']
   },
   robots: {
@@ -69,7 +69,7 @@ export default function RootLayout({
       name: 'MUSE & CO',
       url: 'https://www.museco.co.za',
       logo: 'https://www.museco.co.za/og-image.jpg',
-      description: 'Elite escort and companion agency based in Cape Town. Cape Town\'s #1 elite escort agency offering premium escorts, elite companions, and VIP escort services across South Africa.',
+      description: 'MUSE & CO is a luxury companion agency based in Cape Town, South Africa, connecting discerning clients with elegant companions for private arrangements and bespoke experiences.',
       telephone: '+27-60-776-9793',
       email: 'sharafindit@gmail.com',
       foundingDate: '2011',
@@ -85,7 +85,7 @@ export default function RootLayout({
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       name: 'MUSE & CO',
-      description: 'Elite escort and companion agency in Cape Town. #1 escort agency offering elite escorts, VIP companions, and premium escort services across South Africa. Serving Cape Town, Johannesburg, Durban & Pretoria.',
+      description: 'Luxury companion agency in Cape Town offering elite companion services, private arrangements and bespoke experiences across South Africa.',
       url: 'https://www.museco.co.za',
       telephone: '+27-60-776-9793',
       priceRange: '$$$$',
@@ -112,16 +112,15 @@ export default function RootLayout({
         { '@type': 'Place', name: 'Worldwide' }
       ],
       serviceType: [
-        'Elite Escort Services',
-        'VIP Companions',
-        'Private Escort Arrangements',
-        'Companion Services',
-        'Private Event Models',
-        'Yacht Party Models',
-        'Private Event Hostesses',
-        'Party & Nightlife Escorts',
-        'Travel Escort Companionship',
-        'Dinner Escorts',
+        'Luxury Companion Services',
+        'Elite Companion Agency',
+        'Private Arrangements',
+        'VIP Companion Experiences',
+        'Bespoke Lifestyle Services',
+        'Yacht Party Companions',
+        'Private Event Companions',
+        'Travel Companionship',
+        'Dinner Companionship',
       ]
     }
   ]
