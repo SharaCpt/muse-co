@@ -6,13 +6,13 @@ export const revalidate = 300
 
 export const metadata: Metadata = {
   title: 'MUSE & CO | Elite Companions Cape Town — Luxury Companion Agency',
-  description: 'MUSE & CO is Cape Town\'s premier luxury companion agency. Sophisticated, elegant companions for private arrangements, exclusive events, yacht parties, and bespoke experiences across South Africa. Discreet, professional, exceptional.',
+  description: 'MUSE & CO is Cape Town\'s premier luxury companion and escort agency. Sophisticated companions and elite escorts for private arrangements, exclusive events, yacht parties, and bespoke experiences across South Africa. Absolute discretion guaranteed.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'MUSE & CO | Elite Companions Cape Town',
-    description: 'Cape Town\'s premier luxury companion agency. Sophisticated companions for private arrangements and bespoke experiences across South Africa.',
+    description: 'Cape Town\'s premier luxury companion and escort agency. Elite escorts and sophisticated companions for private arrangements and bespoke experiences across South Africa.',
     url: '/',
   },
 }
