@@ -2,8 +2,8 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useRef } from 'react'
+import CTAButton from '@/components/CTAButton'
 import {
   heroVariants,
   heroFadeIn,
@@ -11,9 +11,6 @@ import {
   sectionVariants,
   sectionFadeIn,
   cardVariants,
-  primaryCTAHover,
-  primaryCTATap,
-  secondaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
 import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
@@ -128,27 +125,8 @@ export default function HomeContent({ images, modelImages, content }: HomeConten
             custom={heroStagger.cta}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
-            <motion.div
-              whileHover={primaryCTAHover}
-              whileTap={primaryCTATap}
-            >
-              <Link
-                href="/portfolio"
-                className="group relative px-12 py-4 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] block"
-              >
-                <span className="relative z-10 font-semibold">VIEW PORTFOLIO</span>
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </Link>
-            </motion.div>
-            
-            <motion.div whileTap={secondaryCTATap}>
-              <Link
-                href="/contact"
-                className="px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_20px_rgba(212,175,55,0.15)] block"
-              >
-                BOOK NOW
-              </Link>
-            </motion.div>
+            <CTAButton href="/portfolio" variant="primary">View Portfolio</CTAButton>
+            <CTAButton href="/contact" variant="secondary" icon={false}>Book Now</CTAButton>
           </motion.div>
         </motion.div>
 
@@ -266,120 +244,105 @@ export default function HomeContent({ images, modelImages, content }: HomeConten
             viewport={viewportOnce}
             className="text-center mt-20"
           >
-            <Link
-              href="/portfolio"
-              className="inline-block px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_20px_rgba(212,175,55,0.15)] font-light"
-            >
-              EXPLORE FULL PORTFOLIO
-            </Link>
+            <CTAButton href="/portfolio" variant="secondary">Explore Full Portfolio</CTAButton>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Statement Break */}
-      <section className="py-20 md:py-28 px-6 bg-deep-black relative">
-        <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-12 bg-gradient-to-b from-transparent to-champagne-gold/40" />
+      {/* Statement Moment — one large, slow idea filling the screen, not a paragraph */}
+      <section className="relative min-h-[70vh] md:min-h-screen flex items-center justify-center px-6 bg-deep-black overflow-hidden">
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-16 bg-gradient-to-b from-transparent to-champagne-gold/40" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.06),transparent_60%)]" />
+        <motion.div
+          variants={heroVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="max-w-5xl mx-auto text-center relative z-10"
+        >
+          <p className="font-playfair text-5xl md:text-8xl text-off-white/95 leading-[1.15] tracking-wide">
+            Where <span className="text-champagne-gold italic">beauty</span> meets
+            <br className="hidden md:block" /> <span className="text-champagne-gold italic">discretion</span>
+          </p>
+        </motion.div>
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-16 bg-gradient-to-b from-champagne-gold/40 to-transparent" />
+      </section>
+
+      {/* Luxury Services — one experience revealed at a time, not a wall of cards */}
+      <section className="relative overflow-hidden bg-charcoal">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_10%,rgba(212,175,55,0.08),transparent_60%)]" />
+
         <motion.div
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="max-w-3xl mx-auto text-center"
+          className="relative z-10 max-w-4xl mx-auto text-center pt-32 px-6"
         >
-          <p className="font-playfair text-3xl md:text-5xl text-off-white/90 leading-snug tracking-wide">
-            Where <span className="text-champagne-gold italic">beauty</span> meets <span className="text-champagne-gold italic">discretion</span>
+          <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Exclusive Services</p>
+          <h2 className="font-playfair text-5xl md:text-7xl text-off-white mb-6 tracking-wide">
+            Curated Experiences
+          </h2>
+          <p className="text-off-white/70 text-lg max-w-2xl mx-auto">
+            Bespoke companionship and private experiences for the world&apos;s most discerning clientele
           </p>
         </motion.div>
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-12 bg-gradient-to-b from-champagne-gold/40 to-transparent" />
-      </section>
 
-      {/* Luxury Services */}
-      <section className="py-32 px-6 md:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-deep-black via-charcoal to-deep-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(212,175,55,0.08),transparent_60%)]" />
-        
+        <div className="relative z-10">
+          <ServiceRow
+            index={0}
+            image={images.service_card_1}
+            title="Private Dining & Social Companions"
+            description="Elegant dinner companions for restaurants, wine tastings, galas, and social events. Intelligent, refined companions who elevate any occasion."
+            features={["Restaurant Dinner Companions", "Wine Tasting Partners", "Social Event & Gala Dates"]}
+          />
+          <ServiceRow
+            index={1}
+            image={images.service_card_2}
+            title="Yacht & Villa Event Models"
+            description="Professional models and hostesses for yacht parties, villa events, pool parties, and luxury coastal celebrations."
+            features={["Yacht Party Models", "Villa Event Hostesses", "Pool Party & Coastal Events"]}
+          />
+          <ServiceRow
+            index={2}
+            image={images.service_card_3}
+            title="Private Event Hostesses"
+            description="Professional hostesses for your corporate dinner, golf day, poker evening, or private celebration. You choose — we arrange."
+            features={["Corporate Dinner Companions", "Golf Day Hostesses", "Private Party Models"]}
+          />
+          <ServiceRow
+            index={3}
+            image={images.service_card_4}
+            title="Party & Nightlife Companions"
+            description="Choose your ideal companions for club nights, private parties, celebrations, and VIP nightlife experiences."
+            features={["Club Night Companions", "Private Party Models", "VIP Nightlife Dates"]}
+          />
+          <ServiceRow
+            index={4}
+            image={images.service_card_5}
+            title="Elite Private Companionship"
+            description="Exclusive private arrangements and ongoing bespoke companionship. Personalised matching with absolute confidentiality."
+            features={["Private Arrangements", "Ongoing Companionship", "Bespoke Matching"]}
+          />
+          <ServiceRow
+            index={5}
+            image={images.service_card_6}
+            title="Travel Companions"
+            description="Sophisticated travel companions for domestic and international trips. Experienced, well-travelled models for business or leisure."
+            features={["International Travel", "Business Trip Companions", "Safari & Holiday Partners"]}
+            isLast
+          />
+        </div>
+
         <motion.div
+          variants={cardVariants}
+          custom={0}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={sectionFadeIn}
-          className="max-w-7xl mx-auto relative z-10"
+          className="relative z-10 text-center pb-32 px-6"
         >
-          <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="text-center mb-20"
-          >
-            <p className="text-champagne-gold/70 text-sm tracking-[0.3em] mb-4 uppercase">Exclusive Services</p>
-            <h2 className="font-playfair text-5xl md:text-7xl text-off-white mb-6 tracking-wide">
-              Curated Experiences
-            </h2>
-            <p className="text-off-white/70 text-lg max-w-2xl mx-auto">
-              Bespoke companionship and private experiences for the world&apos;s most discerning clientele
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServiceCard
-              image={images.service_card_1}
-              title="Private Dining & Social Companions"
-              description="Elegant dinner companions for restaurants, wine tastings, galas, and social events. Intelligent, refined companions who elevate any occasion."
-              features={["Restaurant Dinner Companions", "Wine Tasting Partners", "Social Event & Gala Dates"]}
-            />
-            
-            <ServiceCard
-              image={images.service_card_2}
-              title="Yacht & Villa Event Models"
-              description="Professional models and hostesses for yacht parties, villa events, pool parties, and luxury coastal celebrations."
-              features={["Yacht Party Models", "Villa Event Hostesses", "Pool Party & Coastal Events"]}
-            />
-            
-            <ServiceCard
-              image={images.service_card_3}
-              title="Private Event Hostesses"
-              description="Professional hostesses for your corporate dinner, golf day, poker evening, or private celebration. You choose — we arrange."
-              features={["Corporate Dinner Companions", "Golf Day Hostesses", "Private Party Models"]}
-            />
-            
-            <ServiceCard
-              image={images.service_card_4}
-              title="Party & Nightlife Companions"
-              description="Choose your ideal companions for club nights, private parties, celebrations, and VIP nightlife experiences."
-              features={["Club Night Companions", "Private Party Models", "VIP Nightlife Dates"]}
-            />
-            
-            <ServiceCard
-              image={images.service_card_5}
-              title="Elite Private Companionship"
-              description="Exclusive private arrangements and ongoing bespoke companionship. Personalised matching with absolute confidentiality."
-              features={["Private Arrangements", "Ongoing Companionship", "Bespoke Matching"]}
-            />
-            
-            <ServiceCard
-              image={images.service_card_6}
-              title="Travel Companions"
-              description="Sophisticated travel companions for domestic and international trips. Experienced, well-travelled models for business or leisure."
-              features={["International Travel", "Business Trip Companions", "Safari & Holiday Partners"]}
-            />
-          </div>
-
-          <motion.div
-            variants={cardVariants}
-            custom={0}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="text-center mt-20"
-          >
-            <Link
-              href="/services"
-              className="inline-block px-12 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_20px_rgba(212,175,55,0.15)] font-light"
-            >
-              EXPLORE SERVICES
-            </Link>
-          </motion.div>
+          <CTAButton href="/services" variant="secondary">Explore Services</CTAButton>
         </motion.div>
       </section>
 
@@ -433,24 +396,8 @@ export default function HomeContent({ images, modelImages, content }: HomeConten
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <motion.div whileHover={primaryCTAHover} whileTap={primaryCTATap}>
-              <Link
-                href="/contact"
-                className="group relative px-12 py-5 bg-champagne-gold text-deep-black font-semibold tracking-[0.15em] transition-all duration-300 shadow-[0_0_40px_rgba(212,175,55,0.4)] text-sm uppercase block overflow-hidden"
-              >
-                <span className="relative z-10">Private Inquiry</span>
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </Link>
-            </motion.div>
-            
-            <motion.div whileTap={secondaryCTATap}>
-              <Link
-                href="/portfolio"
-                className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] shadow-[0_0_20px_rgba(212,175,55,0.15)] text-sm uppercase font-light block"
-              >
-                View Portfolio
-              </Link>
-            </motion.div>
+            <CTAButton href="/contact" variant="primary">Private Inquiry</CTAButton>
+            <CTAButton href="/portfolio" variant="secondary">View Portfolio</CTAButton>
           </div>
         </motion.div>
       </section>
@@ -458,63 +405,66 @@ export default function HomeContent({ images, modelImages, content }: HomeConten
   )
 }
 
-function ServiceCard({ 
-  image, 
-  title, 
-  description, 
-  features 
-}: { 
+function ServiceRow({
+  image,
+  title,
+  description,
+  features,
+  index,
+  isLast,
+}: {
   image: string
   title: string
   description: string
   features: string[]
+  index: number
+  isLast?: boolean
 }) {
+  const reversed = index % 2 === 1
+
   return (
     <motion.div
-      variants={cardVariants}
+      variants={sectionFadeIn}
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
-      className="group relative overflow-hidden shadow-[0_20px_70px_rgba(0,0,0,0.9)] hover:shadow-[0_25px_90px_rgba(212,175,55,0.15)] transition-all duration-500"
+      className={`relative grid md:grid-cols-2 max-w-7xl mx-auto items-stretch ${
+        !isLast ? 'border-b border-champagne-gold/10' : ''
+      }`}
     >
-      <div className="relative h-80 overflow-hidden">
+      <div className={`relative h-[50vh] md:h-[70vh] overflow-hidden ${reversed ? 'md:order-2' : ''}`}>
         <Image
           src={image}
           alt={title}
           fill
-          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-          sizes={SIZES.threeCol}
+          className="object-cover"
+          sizes={SIZES.twoCol}
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-deep-black via-deep-black/80 to-deep-black/40" />
-        <div className="absolute inset-0 glass-effect opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-t from-deep-black/50 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-transparent" />
       </div>
-      
-      <div className="relative -mt-32 px-8 pb-8">
-        <div className="w-16 h-[2px] bg-gradient-to-r from-champagne-gold to-transparent mb-6 shimmer" />
-        
-        <h3 className="font-playfair text-3xl text-champagne-gold mb-4 tracking-wide group-hover:text-champagne-gold/90 transition-colors">
+
+      <div className={`flex flex-col justify-center px-6 py-16 md:px-16 md:py-0 ${reversed ? 'md:order-1' : ''}`}>
+        <span className="font-inter text-champagne-gold/40 text-sm tracking-[0.3em] mb-4">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <h3 className="font-playfair text-4xl md:text-5xl text-off-white mb-6 tracking-wide">
           {title}
         </h3>
-        <p className="text-off-white/70 leading-relaxed mb-6 font-light">
+        <p className="text-off-white/70 leading-relaxed mb-8 text-lg font-light max-w-md">
           {description}
         </p>
-        
-        <div className="space-y-2">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="flex items-center text-off-white/60 text-sm"
-            >
+
+        <div className="space-y-3">
+          {features.map((feature, i) => (
+            <div key={i} className="flex items-center text-off-white/60 text-sm">
               <span className="text-champagne-gold mr-3 text-xs">◆</span>
               {feature}
             </div>
           ))}
         </div>
       </div>
-      
-      <div className="absolute inset-0 border-2 border-champagne-gold/0 group-hover:border-champagne-gold/30 transition-all duration-700 pointer-events-none gradient-border" />
     </motion.div>
   )
 }

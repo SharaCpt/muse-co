@@ -5,6 +5,8 @@ import AgeGate from '@/components/AgeGate'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import PageTransition from '@/components/PageTransition'
+import StickyBookBar from '@/components/StickyBookBar'
+import MotionRoot from '@/components/MotionRoot'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
@@ -140,14 +142,17 @@ export default function RootLayout({
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-champagne-gold focus:text-deep-black focus:font-semibold focus:tracking-wider">
           Skip to content
         </a>
-        <AgeGate />
-        <Navigation />
-        <div id="main-content">
-          <PageTransition>
-            {children}
-          </PageTransition>
-        </div>
-        <Footer />
+        <MotionRoot>
+          <AgeGate />
+          <Navigation />
+          <div id="main-content">
+            <PageTransition>
+              {children}
+            </PageTransition>
+          </div>
+          <Footer />
+          <StickyBookBar />
+        </MotionRoot>
       </body>
     </html>
   )

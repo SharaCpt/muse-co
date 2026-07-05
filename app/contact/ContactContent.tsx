@@ -2,19 +2,25 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { ShieldCheck, Clock3, Globe2 } from 'lucide-react'
+import CTAButton from '@/components/CTAButton'
 import {
   heroVariants,
   heroFadeIn,
   heroStagger,
   sectionVariants,
-  primaryCTAHover,
-  primaryCTATap,
-  secondaryCTATap,
+  cardVariants,
   viewportOnce,
 } from '@/lib/motion'
 import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
 
 const DEFAULT_HEADER = 'https://images.unsplash.com/photo-1647428028787-e004b0d00775?q=80&w=2000'
+
+const TRUST_POINTS = [
+  { icon: ShieldCheck, title: 'Absolute Discretion', text: 'Every inquiry and arrangement is handled in strict confidence, always.' },
+  { icon: Clock3, title: 'Replies Within 24 Hours', text: 'Personally reviewed and answered — never left waiting.' },
+  { icon: Globe2, title: 'Cape Town & Worldwide', text: 'Based in Cape Town, arranging experiences across South Africa and internationally.' },
+]
 
 interface ContactContentProps {
   content: {
@@ -66,60 +72,75 @@ export default function ContactContent({ content }: ContactContentProps) {
 
       {/* Contact Section */}
       <section className="py-24 px-6 md:px-12">
-        <div className="max-w-3xl mx-auto">
-          {/* Contact Info */}
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-12 items-start">
+          {/* Editorial column */}
           <motion.div
             variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="space-y-12 text-center"
           >
-            <div>
-              <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-6">
-                Get In Touch
-              </h2>
-              <p className="text-off-white/80 font-inter leading-relaxed mb-8 text-lg">
-                {content.intro}
-              </p>
-            </div>
+            <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-6 leading-tight">
+              Let&apos;s Arrange Something Extraordinary
+            </h2>
+            <p className="text-off-white/80 font-inter leading-relaxed mb-12 text-lg">
+              {content.intro}
+            </p>
 
-            {/* Direct Contact Methods */}
-            <div className="space-y-4 max-w-md mx-auto">
-              <motion.a
+            <div className="space-y-8">
+              {TRUST_POINTS.map((point, index) => (
+                <motion.div
+                  key={point.title}
+                  variants={cardVariants}
+                  custom={index}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={viewportOnce}
+                  className="flex items-start gap-4"
+                >
+                  <div className="flex-shrink-0 w-11 h-11 rounded-full border border-champagne-gold/40 flex items-center justify-center">
+                    <point.icon className="w-5 h-5 text-champagne-gold" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <p className="text-off-white font-inter font-semibold tracking-wide mb-1">{point.title}</p>
+                    <p className="text-off-white/60 text-sm leading-relaxed">{point.text}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Action card */}
+          <motion.div
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="relative overflow-hidden rounded-lg border border-champagne-gold/25 bg-gradient-to-br from-charcoal/70 via-deep-black to-charcoal/40 backdrop-blur-sm p-8 md:p-10"
+          >
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-champagne-gold/50 to-transparent" />
+
+            <p className="text-champagne-gold/70 text-xs tracking-[0.3em] uppercase mb-2">Direct Line to Shara</p>
+            <p className="text-off-white/70 text-sm mb-8 leading-relaxed">
+              The fastest and most discreet way to reach us — a real conversation, not a form.
+            </p>
+
+            <div className="flex flex-col gap-4 items-stretch">
+              <CTAButton
                 href="https://wa.me/+27607769793?text=Hi%20Shara!%20I%20found%20your%20contact%20details%20on%20the%20MUSE%20%26%20CO%20website.%20I%27d%20like%20to%20inquire%20about%20your%20elite%20companion%20services.%20Looking%20forward%20to%20discussing%20an%20exclusive%20arrangement.%20%E2%9C%A8"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={primaryCTAHover}
-                whileTap={primaryCTATap}
-                className="group relative block px-8 py-5 bg-gradient-to-r from-champagne-gold to-[#B8962E] text-deep-black font-semibold tracking-wider transition-all duration-300 text-center overflow-hidden"
+                variant="primary"
+                className="w-full"
               >
-                <span className="relative z-10">MESSAGE ON WHATSAPP</span>
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </motion.a>
-              
-              <motion.a
-                href="tel:+27607769793"
-                whileTap={secondaryCTATap}
-                className="block px-8 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 text-center font-semibold tracking-wider"
-              >
-                CALL SHARA
-              </motion.a>
-              
-              <p className="text-off-white/50 text-xs text-center mt-4 italic">
-                Fully confidential • Response within 24 hours
-              </p>
+                Message on WhatsApp
+              </CTAButton>
+              <CTAButton href="tel:+27607769793" variant="secondary" className="w-full" icon={false}>
+                Call Shara
+              </CTAButton>
             </div>
 
-            {/* Business Hours */}
-            <div className="pt-8 border-t border-champagne-gold/20">
-              <h3 className="font-inter text-champagne-gold mb-4 tracking-wider">
-                RESPONSE TIME
-              </h3>
-              <p className="text-off-white/70 text-sm">
-                We respond to all inquiries within 24 hours.
-              </p>
-            </div>
+            <p className="text-off-white/50 text-xs text-center mt-6 italic">
+              Fully confidential • Response within 24 hours
+            </p>
           </motion.div>
         </div>
       </section>

@@ -28,23 +28,27 @@ export default function JoinContent() {
   return (
     <>
       <ModelRecruitmentButton ctaBoxRef={ctaBoxRef} />
-      <main className="bg-deep-black pt-24">
+      <main className="relative bg-deep-black pt-24">
+        {/* Ambient warm glow — signals this is a different room from the client-facing pages */}
+        <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_50%_0%,rgba(199,91,122,0.08),transparent_60%)]" />
+
         {/* Hero */}
         <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <Image src={DEFAULT_HEADER} alt="Join MUSE & CO — model recruitment Cape Town Johannesburg Durban South Africa" fill className="object-cover" priority sizes={SIZES.hero} placeholder="blur" blurDataURL={BLUR_DATA_URL} />
             <div className="absolute inset-0 bg-gradient-to-b from-deep-black/60 via-deep-black/40 to-deep-black" />
+            <div className="absolute inset-0 bg-gradient-to-t from-rose-950/30 via-transparent to-transparent" />
           </div>
 
           <motion.div initial="hidden" animate="visible" className="relative z-10 text-center px-6 max-w-5xl">
             <motion.p 
               variants={heroFadeIn}
               custom={heroStagger.label}
-              className="text-champagne-gold/80 text-sm tracking-[0.4em] mb-6 uppercase"
+              className="inline-block px-5 py-2 mb-6 border border-[#C75B7A]/50 rounded-full text-[#E8A2B8] text-xs tracking-[0.4em] uppercase"
             >
-              South Africa&apos;s Elite Companion Standard
+              For Models — Now Recruiting
             </motion.p>
-            <motion.h1 variants={heroVariants} custom={heroStagger.title} className="font-playfair text-6xl md:text-8xl text-champagne-gold mb-6 tracking-[0.15em]">
+            <motion.h1 variants={heroVariants} custom={heroStagger.title} className="font-playfair text-6xl md:text-8xl mb-6 tracking-[0.15em] bg-gradient-to-r from-champagne-gold via-[#E8A2B8] to-[#C75B7A] bg-clip-text text-transparent">
               JOIN MUSE & CO
             </motion.h1>
             <motion.p variants={heroFadeIn} custom={heroStagger.tagline} className="text-off-white/90 text-xl md:text-2xl font-light mb-3">
@@ -57,10 +61,10 @@ export default function JoinContent() {
         </section>
 
         {/* Shara's Message */}
-        <section className="py-24 px-6 md:px-12 bg-gradient-to-b from-deep-black to-charcoal">
+        <section className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-deep-black to-charcoal">
           <div className="max-w-4xl mx-auto">
             <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={viewportOnce} className="text-center mb-12">
-              <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-6">
+              <h2 className="font-playfair text-4xl md:text-5xl mb-6 bg-gradient-to-r from-champagne-gold to-[#C75B7A] bg-clip-text text-transparent">
                 A Personal Invitation
               </h2>
               <div className="text-off-white/90 text-lg leading-relaxed space-y-4">
@@ -72,7 +76,7 @@ export default function JoinContent() {
                   My companions move through South Africa&apos;s elite circles with grace and confidence — from Cape Town to Johannesburg to Durban. They&apos;re valued not just 
                   for their beauty, but for their intelligence, warmth, and authenticity. These are ladies who enhance every room they enter.
                 </p>
-                <p className="text-champagne-gold/90 italic">
+                <p className="text-[#E8A2B8] italic">
                   If this resonates with you, I&apos;d love to hear from you.
                 </p>
               </div>
@@ -81,10 +85,11 @@ export default function JoinContent() {
         </section>
 
         {/* The Lifestyle */}
-        <section className="py-24 px-6 md:px-12 bg-charcoal">
-          <div className="max-w-5xl mx-auto">
+        <section className="relative py-24 px-6 md:px-12 bg-charcoal overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(199,91,122,0.06),transparent_55%)]" />
+          <div className="relative max-w-5xl mx-auto">
             <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={viewportOnce} className="text-center mb-16">
-              <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-4">
+              <h2 className="font-playfair text-4xl md:text-5xl mb-4 bg-gradient-to-r from-champagne-gold to-[#C75B7A] bg-clip-text text-transparent">
                 What You Get
               </h2>
               <p className="text-off-white/70 text-lg">
@@ -97,8 +102,8 @@ export default function JoinContent() {
               <BenefitBox emoji="🔒" title="Protected Always" text="Every client personally vetted. Total discretion guaranteed. Your safety isn't negotiable - it's the foundation of everything." />
             </div>
 
-            <motion.div variants={sectionFadeIn} initial="hidden" whileInView="visible" viewport={viewportOnce} className="bg-gradient-to-br from-rose-900/30 to-deep-black p-8 rounded-lg border-2 border-champagne-gold/40 text-center">
-              <p className="text-champagne-gold text-xl font-playfair mb-3">The Elite Standard</p>
+            <motion.div variants={sectionFadeIn} initial="hidden" whileInView="visible" viewport={viewportOnce} className="bg-gradient-to-br from-rose-900/30 to-deep-black p-8 rounded-lg border-2 border-[#C75B7A]/40 text-center">
+              <p className="text-[#E8A2B8] text-xl font-playfair mb-3">The Elite Standard</p>
               <p className="text-off-white/80 leading-relaxed">
                 My companions work exclusively with Muse & Co - it&apos;s what maintains our premium positioning and ensures your safety. 
                 If you understand why exclusivity equals value, you&apos;re exactly who I&apos;m looking for.
@@ -111,7 +116,7 @@ export default function JoinContent() {
         <section className="py-24 px-6 md:px-12 bg-deep-black">
           <div className="max-w-4xl mx-auto">
             <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={viewportOnce} className="text-center mb-12">
-              <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-4">
+              <h2 className="font-playfair text-4xl md:text-5xl mb-4 bg-gradient-to-r from-champagne-gold to-[#C75B7A] bg-clip-text text-transparent">
                 Are You Ready?
               </h2>
               <p className="text-off-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -135,17 +140,17 @@ export default function JoinContent() {
         <section className="py-24 px-6 md:px-12 bg-gradient-to-b from-deep-black to-charcoal">
           <div className="max-w-3xl mx-auto">
             <motion.div variants={sectionVariants} initial="hidden" whileInView="visible" viewport={viewportOnce} className="text-center mb-12">
-              <h2 className="font-playfair text-4xl text-champagne-gold mb-6">
+              <h2 className="font-playfair text-4xl mb-6 bg-gradient-to-r from-champagne-gold to-[#C75B7A] bg-clip-text text-transparent">
                 How It Works
               </h2>
               <div className="flex flex-wrap justify-center gap-4 text-off-white/70 text-sm">
-                <span className="flex items-center gap-2"><span className="text-champagne-gold">1.</span> Message me</span>
-                <span className="text-champagne-gold/50">→</span>
-                <span className="flex items-center gap-2"><span className="text-champagne-gold">2.</span> Coffee chat</span>
-                <span className="text-champagne-gold/50">→</span>
-                <span className="flex items-center gap-2"><span className="text-champagne-gold">3.</span> Photos</span>
-                <span className="text-champagne-gold/50">→</span>
-                <span className="flex items-center gap-2"><span className="text-champagne-gold">4.</span> Start living ✨</span>
+                <span className="flex items-center gap-2"><span className="text-[#E8A2B8]">1.</span> Message me</span>
+                <span className="text-[#C75B7A]/50">→</span>
+                <span className="flex items-center gap-2"><span className="text-[#E8A2B8]">2.</span> Coffee chat</span>
+                <span className="text-[#C75B7A]/50">→</span>
+                <span className="flex items-center gap-2"><span className="text-[#E8A2B8]">3.</span> Photos</span>
+                <span className="text-[#C75B7A]/50">→</span>
+                <span className="flex items-center gap-2"><span className="text-[#E8A2B8]">4.</span> Start living ✨</span>
               </div>
             </motion.div>
 
@@ -156,9 +161,9 @@ export default function JoinContent() {
               initial="hidden"
               whileInView="visible"
               viewport={viewportOnce}
-              className="text-center p-10 bg-gradient-to-br from-charcoal via-deep-black to-charcoal border border-champagne-gold/40 rounded-2xl"
+              className="text-center p-10 bg-gradient-to-br from-charcoal via-deep-black to-charcoal border border-[#C75B7A]/40 rounded-2xl"
             >
-              <p className="text-champagne-gold font-playfair text-2xl mb-3">
+              <p className="text-[#E8A2B8] font-playfair text-2xl mb-3">
                 Think You&apos;re Ready?
               </p>
               <p className="text-off-white/70 mb-8">
@@ -177,7 +182,7 @@ export default function JoinContent() {
                 </svg>
                 <span>Message Me</span>
               </motion.a>
-              <p className="text-off-white/40 text-xs mt-6 italic">
+              <p className="text-off-white/60 text-xs mt-6 italic">
                 Everything we discuss stays between us - always
               </p>
             </motion.div>
@@ -196,10 +201,10 @@ function BenefitBox({ emoji, title, text }: { emoji: string; title: string; text
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
-      className="p-6 bg-deep-black/50 border border-champagne-gold/20 rounded-lg hover:border-champagne-gold/40 transition-all"
+      className="p-6 bg-deep-black/50 border border-[#C75B7A]/20 rounded-lg hover:border-[#C75B7A]/50 transition-all"
     >
       <div className="text-3xl mb-3">{emoji}</div>
-      <h3 className="text-champagne-gold font-semibold text-lg mb-2">{title}</h3>
+      <h3 className="text-[#E8A2B8] font-semibold text-lg mb-2">{title}</h3>
       <p className="text-off-white/70 text-sm leading-relaxed">{text}</p>
     </motion.div>
   )
@@ -213,9 +218,9 @@ function RequirementBox({ text }: { text: string }) {
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
-      className="flex items-center gap-3 p-4 bg-charcoal/50 border border-champagne-gold/20 rounded-lg"
+      className="flex items-center gap-3 p-4 bg-charcoal/50 border border-[#C75B7A]/20 rounded-lg"
     >
-      <div className="text-champagne-gold text-lg">✓</div>
+      <div className="text-[#E8A2B8] text-lg">✓</div>
       <p className="text-off-white/80 text-sm">{text}</p>
     </motion.div>
   )

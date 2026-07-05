@@ -90,7 +90,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-champagne-gold/10 text-center text-off-white/40 text-xs font-inter">
+        <div className="mt-12 pt-8 border-t border-champagne-gold/10 text-center text-off-white/60 text-xs font-inter">
           <p>&copy; {new Date().getFullYear()} MUSE & CO. All rights reserved. Cape Town, South Africa.</p>
         </div>
       </div>

@@ -127,15 +127,18 @@ export default function AboutContent({ content }: AboutContentProps) {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <ValueCard
-                title="EXCLUSIVE"
+                index={0}
+                title="Exclusive"
                 description="Curated portfolio of elite models and companions, handpicked for their beauty, intelligence, and sophistication."
               />
               <ValueCard
-                title="REFINED"
+                index={1}
+                title="Refined"
                 description="Over a decade of experience curating unforgettable encounters with the world's most elegant companions."
               />
               <ValueCard
-                title="DISCREET"
+                index={2}
+                title="Discreet"
                 description="White-glove service with absolute confidentiality and attention to detail."
               />
             </div>
@@ -146,15 +149,24 @@ export default function AboutContent({ content }: AboutContentProps) {
   )
 }
 
-function ValueCard({ title, description }: { title: string; description: string }) {
+function ValueCard({ index, title, description }: { index: number; title: string; description: string }) {
   return (
-    <div className="text-center p-6 border border-champagne-gold/20 bg-charcoal/30">
-      <h3 className="font-playfair text-xl text-champagne-gold mb-4 tracking-wider">
+    <motion.div
+      variants={sectionFadeIn}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
+      className="text-center p-8 border border-champagne-gold/20 bg-charcoal/30 hover:border-champagne-gold/40 transition-colors duration-500"
+    >
+      <span className="font-inter text-champagne-gold/40 text-xs tracking-[0.3em] mb-4 block">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+      <h3 className="font-playfair text-2xl text-champagne-gold mb-4 tracking-wide">
         {title}
       </h3>
       <p className="text-off-white/70 text-sm font-inter leading-relaxed">
         {description}
       </p>
-    </div>
+    </motion.div>
   )
 }

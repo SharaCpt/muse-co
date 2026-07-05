@@ -1,18 +1,17 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { Lock, LockOpen } from 'lucide-react'
+import CTAButton from '@/components/CTAButton'
 import {
   heroVariants,
   heroFadeIn,
   heroStagger,
   sectionVariants,
   cardVariants,
-  primaryCTAHover,
-  primaryCTATap,
-  secondaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
 import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
@@ -137,54 +136,119 @@ export default function PortfolioContent({ models, content }: PortfolioContentPr
         </div>
       </section>
 
-      {/* Inquiry Section */}
+      {/* Inquiry Section — the vault: tap to unlock, reinforcing exclusivity/discretion */}
       <section className="py-32 px-6 bg-charcoal relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05),transparent_70%)]" />
         
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-3xl mx-auto relative z-10">
           <motion.div
             variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="space-y-8"
           >
-            <h2 className="font-playfair text-4xl md:text-5xl text-champagne-gold mb-4 tracking-wide drop-shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-              Request Our Full Portfolio
-            </h2>
-            <p className="text-off-white/70 text-lg leading-relaxed max-w-2xl mx-auto">
-              For privacy and exclusivity, detailed profiles are shared directly with serious inquiries only. 
-              Contact us to discuss your exclusive companion preferences and bespoke arrangements.
-            </p>
-            <p className="text-off-white/50 text-sm mt-4">
-              Discover our <Link href="/services" className="text-champagne-gold hover:underline">full range of services</Link> or review our <Link href="/pricing" className="text-champagne-gold hover:underline">transparent pricing</Link> before reaching out.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
-              <motion.a
-                href="https://wa.me/27607769793?text=Hi%20Shara!%20I%20found%20you%20on%20the%20MUSE%20%26%20CO%20website.%20I%27d%20like%20to%20inquire%20about%20your%20portfolio%20and%20services."
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={primaryCTAHover}
-                whileTap={primaryCTATap}
-                className="group px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 text-lg shadow-[0_0_40px_rgba(212,175,55,0.4)] relative overflow-hidden inline-block"
-              >
-                <span className="relative z-10">MESSAGE US</span>
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </motion.a>
-              <motion.div whileTap={secondaryCTATap}>
-                <Link
-                  href="/contact"
-                  className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] text-lg shadow-[0_0_20px_rgba(212,175,55,0.15)] inline-block"
-                >
-                  CONTACT US
-                </Link>
-              </motion.div>
-            </div>
+            <VaultCard />
           </motion.div>
         </div>
       </section>
     </main>
+  )
+}
+
+function VaultCard() {
+  const [unlocked, setUnlocked] = useState(false)
+
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-champagne-gold/30 bg-gradient-to-br from-deep-black via-charcoal to-deep-black p-10 md:p-14 text-center">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-champagne-gold/60 to-transparent" />
+
+      <button
+        type="button"
+        onClick={() => setUnlocked(true)}
+        disabled={unlocked}
+        aria-label="Unlock the full portfolio"
+        className="group relative mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border-2 border-champagne-gold/50 transition-all duration-500 disabled:cursor-default"
+      >
+        <motion.div
+          animate={unlocked ? { scale: [1, 1.15, 1] } : {}}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {unlocked ? (
+              <motion.div
+                key="open"
+                initial={{ opacity: 0, rotate: -20 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <LockOpen className="w-8 h-8 text-champagne-gold" strokeWidth={1.5} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="closed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, rotate: 20 }}
+                transition={{ duration: 0.3 }}
+                className="group-hover:scale-110 transition-transform duration-300"
+              >
+                <Lock className="w-8 h-8 text-champagne-gold" strokeWidth={1.5} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+        {!unlocked && (
+          <motion.span
+            className="absolute inset-0 rounded-full border border-champagne-gold/30"
+            animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0, 0.6] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        )}
+      </button>
+
+      <AnimatePresence mode="wait">
+        {!unlocked ? (
+          <motion.div
+            key="locked"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h2 className="font-playfair text-3xl md:text-4xl text-champagne-gold mb-4 tracking-wide">
+              Request Our Full Portfolio
+            </h2>
+            <p className="text-off-white/70 text-lg leading-relaxed max-w-xl mx-auto mb-8">
+              For privacy and exclusivity, detailed profiles are shared directly with serious inquiries only.
+              Tap to unlock.
+            </p>
+            <p className="text-champagne-gold/60 text-xs tracking-[0.3em] uppercase">Tap to Unlock</p>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="unlocked"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            <h2 className="font-playfair text-3xl md:text-4xl text-champagne-gold mb-4 tracking-wide">
+              Welcome
+            </h2>
+            <p className="text-off-white/70 text-lg leading-relaxed max-w-xl mx-auto mb-4">
+              Contact us to discuss your exclusive companion preferences and bespoke arrangements — full profiles shared directly, discreetly.
+            </p>
+            <p className="text-off-white/50 text-sm mb-8">
+              Discover our <Link href="/services" className="text-champagne-gold hover:underline">full range of services</Link> or review our <Link href="/pricing" className="text-champagne-gold hover:underline">transparent pricing</Link> before reaching out.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <CTAButton href="https://wa.me/27607769793?text=Hi%20Shara!%20I%20found%20you%20on%20the%20MUSE%20%26%20CO%20website.%20I%27d%20like%20to%20inquire%20about%20your%20portfolio%20and%20services." variant="primary">Message Us</CTAButton>
+              <CTAButton href="/contact" variant="secondary">Contact Us</CTAButton>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 

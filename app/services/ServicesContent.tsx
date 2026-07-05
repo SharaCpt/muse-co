@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import CTAButton from '@/components/CTAButton'
 import {
   heroVariants,
   heroFadeIn,
@@ -10,8 +11,6 @@ import {
   sectionVariants,
   sectionFadeIn,
   cardVariants,
-  primaryCTAHover,
-  primaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
 import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
@@ -89,9 +88,10 @@ export default function ServicesContent({ headerImage, serviceImages, content }:
 
       {/* Services Detail */}
       <section className="py-24 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto space-y-24">
+        <div className="max-w-6xl mx-auto space-y-32">
           <ServiceDetail
-            title="PRIVATE DINING & SOCIAL COMPANIONS"
+            index={0}
+            title="Private Dining & Social Companions"
             image={serviceImages.dining_companions}
             description={content.dining}
             features={[
@@ -105,7 +105,8 @@ export default function ServicesContent({ headerImage, serviceImages, content }:
           />
 
           <ServiceDetail
-            title="YACHT & VILLA EVENT MODELS"
+            index={1}
+            title="Yacht & Villa Event Models"
             image={serviceImages.yacht_villa}
             description={content.yacht}
             features={[
@@ -119,7 +120,8 @@ export default function ServicesContent({ headerImage, serviceImages, content }:
           />
 
           <ServiceDetail
-            title="PRIVATE EVENT HOSTESSES"
+            index={2}
+            title="Private Event Hostesses"
             image={serviceImages.private_events}
             description={content.events}
             features={[
@@ -133,7 +135,8 @@ export default function ServicesContent({ headerImage, serviceImages, content }:
           />
 
           <ServiceDetail
-            title="PARTY & NIGHTLIFE COMPANIONS"
+            index={3}
+            title="Party & Nightlife Companions"
             image={serviceImages.party_nightlife}
             description={content.nightlife}
             features={[
@@ -147,7 +150,8 @@ export default function ServicesContent({ headerImage, serviceImages, content }:
           />
 
           <ServiceDetail
-            title="ELITE PRIVATE COMPANIONSHIP"
+            index={4}
+            title="Elite Private Companionship"
             image={serviceImages.private_companionship}
             description={content.private}
             features={[
@@ -161,7 +165,8 @@ export default function ServicesContent({ headerImage, serviceImages, content }:
           />
 
           <ServiceDetail
-            title="TRAVEL COMPANIONS"
+            index={5}
+            title="Travel Companions"
             image={serviceImages.travel_companions}
             description={content.travel}
             features={[
@@ -322,17 +327,9 @@ export default function ServicesContent({ headerImage, serviceImages, content }:
             <p className="text-off-white/50 font-inter text-sm mt-4">
               Browse our <Link href="/portfolio" className="text-champagne-gold hover:underline">elite companion portfolio</Link>, review our <Link href="/pricing" className="text-champagne-gold hover:underline">transparent pricing</Link>, or <Link href="/contact" className="text-champagne-gold hover:underline">get in touch</Link> to begin.
             </p>
-            <motion.div whileHover={primaryCTAHover} whileTap={primaryCTATap} className="inline-block">
-              <a
-                href="https://wa.me/+27607769793"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-block px-10 py-5 bg-champagne-gold text-deep-black font-inter tracking-widest transition-smooth text-lg overflow-hidden"
-              >
-                <span className="relative z-10">CONTACT US</span>
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </a>
-            </motion.div>
+            <div className="pt-2">
+              <CTAButton href="https://wa.me/+27607769793" variant="primary">Contact Us</CTAButton>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -341,12 +338,14 @@ export default function ServicesContent({ headerImage, serviceImages, content }:
 }
 
 function ServiceDetail({
+  index,
   title,
   image,
   description,
   features,
   reverse,
 }: {
+  index: number
   title: string
   image: string
   description: string
@@ -359,10 +358,10 @@ function ServiceDetail({
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
-      className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${reverse ? 'md:grid-flow-col-dense' : ''}`}
+      className={`grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center ${reverse ? 'md:grid-flow-col-dense' : ''}`}
     >
       {/* Image */}
-      <div className={`relative h-96 overflow-hidden ${reverse ? 'md:col-start-2' : ''}`}>
+      <div className={`relative h-[45vh] md:h-[60vh] overflow-hidden ${reverse ? 'md:col-start-2' : ''}`}>
         <Image
           src={image}
           alt={title}
@@ -372,27 +371,27 @@ function ServiceDetail({
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL}
         />
-        <div className="absolute inset-0 border-2 border-champagne-gold/30" />
       </div>
 
       {/* Content */}
       <div className={reverse ? 'md:col-start-1' : ''}>
-        <h2 className="font-playfair text-4xl text-champagne-gold mb-6 tracking-wider">
+        <span className="font-inter text-champagne-gold/40 text-sm tracking-[0.3em] mb-4 block">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <h2 className="font-playfair text-4xl md:text-5xl text-off-white mb-6 tracking-wide">
           {title}
         </h2>
-        <p className="text-off-white/80 font-inter mb-8 leading-relaxed">
+        <p className="text-off-white/70 font-inter mb-8 leading-relaxed text-lg font-light max-w-md">
           {description}
         </p>
-        <ul className="space-y-3">
-          {features.map((feature, index) => (
-            <li key={index} className="flex items-start">
-              <span className="text-champagne-gold mr-3 mt-1">•</span>
-              <span className="text-off-white/70 font-inter text-sm">
-                {feature}
-              </span>
-            </li>
+        <div className="space-y-3">
+          {features.map((feature, i) => (
+            <div key={i} className="flex items-center text-off-white/60 text-sm">
+              <span className="text-champagne-gold mr-3 text-xs">◆</span>
+              {feature}
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </motion.div>
   )

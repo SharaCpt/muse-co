@@ -4,14 +4,13 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import CTAButton from '@/components/CTAButton'
 import {
   heroVariants,
   heroFadeIn,
   heroStagger,
   sectionVariants,
   cardVariants,
-  primaryCTAHover,
-  primaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
 import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
@@ -102,7 +101,7 @@ export default function ModelPageContent({ model, gallery, relatedModels }: Mode
             <path d="m12 19-7-7 7-7" />
           </svg>
         </Link>
-        <nav className="flex items-center gap-2 text-sm text-off-white/40">
+        <nav className="flex items-center gap-2 text-sm text-off-white/60">
           <Link href="/" className="hover:text-champagne-gold transition">Home</Link>
           <span>/</span>
           <Link href="/portfolio" className="hover:text-champagne-gold transition">Portfolio</Link>
@@ -166,19 +165,19 @@ export default function ModelPageContent({ model, gallery, relatedModels }: Mode
                 {model.age && (
                   <div className="text-center">
                     <p className="text-champagne-gold text-2xl font-playfair">{model.age}</p>
-                    <p className="text-off-white/40 text-xs tracking-[0.2em] uppercase mt-1">Age</p>
+                    <p className="text-off-white/60 text-xs tracking-[0.2em] uppercase mt-1">Age</p>
                   </div>
                 )}
                 {model.height && (
                   <div className="text-center">
                     <p className="text-champagne-gold text-2xl font-playfair">{model.height}<span className="text-sm">cm</span></p>
-                    <p className="text-off-white/40 text-xs tracking-[0.2em] uppercase mt-1">Height</p>
+                    <p className="text-off-white/60 text-xs tracking-[0.2em] uppercase mt-1">Height</p>
                   </div>
                 )}
                 {model.weight && (
                   <div className="text-center">
                     <p className="text-champagne-gold text-2xl font-playfair">{model.weight}<span className="text-sm">kg</span></p>
-                    <p className="text-off-white/40 text-xs tracking-[0.2em] uppercase mt-1">Weight</p>
+                    <p className="text-off-white/60 text-xs tracking-[0.2em] uppercase mt-1">Weight</p>
                   </div>
                 )}
               </motion.div>
@@ -205,23 +204,10 @@ export default function ModelPageContent({ model, gallery, relatedModels }: Mode
 
             {/* CTA Buttons */}
             <motion.div variants={heroFadeIn} custom={0.9} className="flex flex-col sm:flex-row gap-4 mt-4">
-              <motion.a
-                href={`https://wa.me/27607769793?text=${whatsappMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={primaryCTAHover}
-                whileTap={primaryCTATap}
-                className="group px-10 py-4 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 text-center text-lg shadow-[0_0_40px_rgba(212,175,55,0.4)] relative overflow-hidden inline-block"
-              >
-                <span className="relative z-10">BOOK {model.name.toUpperCase()}</span>
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </motion.a>
-              <Link
-                href="/contact"
-                className="px-10 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] text-center text-lg"
-              >
-                ENQUIRE
-              </Link>
+              <CTAButton href={`https://wa.me/27607769793?text=${whatsappMessage}`} variant="primary">
+                Book {model.name}
+              </CTAButton>
+              <CTAButton href="/contact" variant="secondary" icon={false}>Enquire</CTAButton>
             </motion.div>
 
             {/* Availability badge */}
@@ -372,17 +358,11 @@ export default function ModelPageContent({ model, gallery, relatedModels }: Mode
             <p className="text-off-white/70 text-lg leading-relaxed">
               Get in touch to arrange a private introduction. All enquiries are handled with absolute discretion.
             </p>
-            <motion.a
-              href={`https://wa.me/27607769793?text=${whatsappMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={primaryCTAHover}
-              whileTap={primaryCTATap}
-              className="group inline-block px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 text-lg shadow-[0_0_40px_rgba(212,175,55,0.4)] relative overflow-hidden"
-            >
-              <span className="relative z-10">MESSAGE US ON WHATSAPP</span>
-              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-            </motion.a>
+            <div className="pt-2">
+              <CTAButton href={`https://wa.me/27607769793?text=${whatsappMessage}`} variant="primary">
+                Message Us on WhatsApp
+              </CTAButton>
+            </div>
           </motion.div>
         </div>
       </section>

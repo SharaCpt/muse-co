@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import CTAButton from '@/components/CTAButton'
 import {
   heroVariants,
   heroFadeIn,
@@ -10,9 +11,6 @@ import {
   sectionVariants,
   sectionFadeIn,
   cardVariants,
-  primaryCTAHover,
-  primaryCTATap,
-  secondaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
 import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
@@ -97,20 +95,14 @@ export default function LocationPageContent({
           <motion.p variants={heroFadeIn} custom={heroStagger.tagline} className="text-off-white/80 text-lg md:text-xl tracking-wide mb-4">
             {intro}
           </motion.p>
-          <motion.p variants={heroFadeIn} custom={heroStagger.subtitle} className="text-off-white/50 text-sm tracking-widest mb-8">
+          <motion.p variants={heroFadeIn} custom={heroStagger.subtitle} className="text-off-white/60 text-sm tracking-widest mb-8">
             PREMIUM ESCORTS • VIP COMPANIONS • LUXURY EXPERIENCES
           </motion.p>
-          <motion.a
-            variants={heroFadeIn}
-            custom={heroStagger.cta}
-            href={`https://wa.me/27607769793?text=${whatsappMessage}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-block px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 text-lg shadow-[0_0_40px_rgba(212,175,55,0.4)] relative overflow-hidden"
-          >
-            <span className="relative z-10">BOOK AN ESCORT IN {city.toUpperCase()}</span>
-            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          </motion.a>
+          <motion.div variants={heroFadeIn} custom={heroStagger.cta}>
+            <CTAButton href={`https://wa.me/27607769793?text=${whatsappMessage}`} variant="primary">
+              Book an Escort in {city}
+            </CTAButton>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -233,12 +225,7 @@ export default function LocationPageContent({
             </div>
 
             <div className="text-center mt-12">
-              <Link
-                href="/portfolio"
-                className="px-10 py-4 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] text-lg inline-block"
-              >
-                VIEW FULL PORTFOLIO
-              </Link>
+              <CTAButton href="/portfolio" variant="secondary">View Full Portfolio</CTAButton>
             </div>
           </div>
         </section>
@@ -358,25 +345,10 @@ export default function LocationPageContent({
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
-              <motion.a
-                href={`https://wa.me/27607769793?text=${whatsappMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={primaryCTAHover}
-                whileTap={primaryCTATap}
-                className="group px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 text-lg shadow-[0_0_40px_rgba(212,175,55,0.4)] relative overflow-hidden inline-block"
-              >
-                <span className="relative z-10">MESSAGE US ON WHATSAPP</span>
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </motion.a>
-              <motion.div whileTap={secondaryCTATap}>
-                <Link
-                  href="/contact"
-                  className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] text-lg shadow-[0_0_20px_rgba(212,175,55,0.15)] inline-block"
-                >
-                  CONTACT US
-                </Link>
-              </motion.div>
+              <CTAButton href={`https://wa.me/27607769793?text=${whatsappMessage}`} variant="primary">
+                Message Us on WhatsApp
+              </CTAButton>
+              <CTAButton href="/contact" variant="secondary">Contact Us</CTAButton>
             </div>
           </motion.div>
         </div>

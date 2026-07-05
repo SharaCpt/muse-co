@@ -3,15 +3,13 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import CTAButton from '@/components/CTAButton'
 import {
   heroVariants,
   heroFadeIn,
   heroStagger,
   sectionVariants,
   cardVariants,
-  primaryCTAHover,
-  primaryCTATap,
-  secondaryCTATap,
   viewportOnce,
 } from '@/lib/motion'
 import { BLUR_DATA_URL, SIZES } from '@/lib/image-utils'
@@ -189,25 +187,8 @@ export default function PricingContent({ rates, experiences, content }: PricingC
               Browse our <Link href="/portfolio" className="text-champagne-gold hover:underline">elite companion portfolio</Link> or explore our <Link href="/services" className="text-champagne-gold hover:underline">full range of services</Link> to find your perfect experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-6">
-              <motion.div whileHover={primaryCTAHover} whileTap={primaryCTATap}>
-              <Link
-                href="/contact"
-                className="group relative px-12 py-5 bg-champagne-gold text-deep-black font-inter tracking-[0.15em] transition-all duration-300 overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.4)] block"
-              >
-                <span className="relative z-10">BOOK CONSULTATION</span>
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </Link>
-              </motion.div>
-              
-              <motion.a
-                href="https://wa.me/+27607769793"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileTap={secondaryCTATap}
-                className="px-12 py-5 border-2 border-champagne-gold text-champagne-gold hover:bg-champagne-gold hover:text-deep-black transition-all duration-300 tracking-[0.15em] inline-block"
-              >
-                MESSAGE US
-              </motion.a>
+              <CTAButton href="/contact" variant="primary">Book Consultation</CTAButton>
+              <CTAButton href="https://wa.me/+27607769793" variant="secondary">Message Us</CTAButton>
             </div>
           </motion.div>
         </div>
